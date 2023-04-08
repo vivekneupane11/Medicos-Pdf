@@ -186,8 +186,8 @@ export const PlayListCard = () => {
                 </Link>
                 <div className='playlistCard-wrapper-container-bottom'>
                     <div className='profileImage'>
-                        {/* <LazyLoadImage className="profilePic" src={data?.userAvatar ? data?.userAvatar : require("../../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' effect='blur'/> */}
-                        <img loading="lazy" className="profilePic" src={data?.userAvatar ? data?.userAvatar : require("../../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' />
+                        {/* <LazyLoadImage className="profilePic" src={data?.userAvatar ? data?.userAvatar : require("../../../../../assets/images/slide/medicos.webp")} alt='MedicosPdf logo' effect='blur'/> */}
+                        <img loading="lazy" className="profilePic" src={data?.userAvatar ? data?.userAvatar : require("../../../../../assets/images/slide/medicos.webp")} alt='MedicosPdf logo' />
                     </div>
                     <div className='descriptions'>
                         <Link

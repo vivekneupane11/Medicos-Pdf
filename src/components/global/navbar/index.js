@@ -201,7 +201,7 @@ const Navbar = () => {
 
                             }}>
                             <img
-                                src={require('../../../assets/images/medicospdf_logo.webp').default}
+                                src={require('../../../assets/images/medicospdf_logo.webp')}
                                 alt='MedicosPdf Logo'
                                 className='logoBelowImage'
                                 />
@@ -258,8 +258,8 @@ const Navbar = () => {
                 <div className={'navbar-dropdown'}  >
                     <div className="logo" style={{ display: scroll ? 'none' : 'flex' }}>
                         <Link className='logo' to="/">
-                            <LazyLoadImage  src={require('../../../assets/images/android-chrome-512x512.webp').default} alt={'MedicosPdf logo'} className='logo-images-navbar' effect='blur'/>
-                            {/* <img src={require('../../../assets/images/android-chrome-512x512.webp').default} alt='MedicosPdf logo' style={{ width: 145, height: 35 }} /> */}
+                            <LazyLoadImage  src={require('../../../assets/images/android-chrome-512x512.webp')} alt={'MedicosPdf logo'} className='logo-images-navbar' effect='blur'/>
+                            {/* <img src={require('../../../assets/images/android-chrome-512x512.webp')} alt='MedicosPdf logo' style={{ width: 145, height: 35 }} /> */}
                         </Link>
 
                     </div>
@@ -280,8 +280,8 @@ const Navbar = () => {
                      !user &&
                      <div onClick={showmenuFalse} className="nav-item-top">
                           <div className="logo">
-                              <LazyLoadImage src={require('../../../assets/images/medicospdf_logo.webp').default} alt={'MedicosPdf logo'}  className='mobile-logo' effect='blur'/>
-                              {/* <img src={require('../../../assets/images/medicospdf_logo.webp').default} alt='MedicosPdf logo'  className='mobilelogo' /> */}
+                              <LazyLoadImage src={require('../../../assets/images/medicospdf_logo.webp')} alt={'MedicosPdf logo'}  className='mobile-logo' effect='blur'/>
+                              {/* <img src={require('../../../assets/images/medicospdf_logo.webp')} alt='MedicosPdf logo'  className='mobilelogo' /> */}
                           </div>
                       </div>
                  }

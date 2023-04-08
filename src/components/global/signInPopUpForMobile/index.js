@@ -104,8 +104,8 @@ const SignInPopUpForMobile = ({callBack}) => {
                   </div>
 
                   <div className='signInPopUpForMobile-container-show-bottom-container-right'>
-                      <LazyLoadImage src={require('../../../assets/images/qr.webp').default} alt='medicosPdf app QR picture' className='signInPopUpForMobile-container-show-bottom-container-right-qr' effect='blur'/>
-                      {/* <img src={require('../../../assets/images/qr.webp').default} alt='medicosPdf app QR picture' className='signInPopUpForMobile-container-show-bottom-container-right-qr'/> */}
+                      <LazyLoadImage src={require('../../../assets/images/qr.webp')} alt='medicosPdf app QR picture' className='signInPopUpForMobile-container-show-bottom-container-right-qr' effect='blur'/>
+                      {/* <img src={require('../../../assets/images/qr.webp')} alt='medicosPdf app QR picture' className='signInPopUpForMobile-container-show-bottom-container-right-qr'/> */}
                       <p className='signInPopUpForMobile-container-show-bottom-container-right-text'>Get the app</p>
                   </div>
               </div>

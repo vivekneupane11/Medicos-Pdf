@@ -72,7 +72,7 @@ const LastWholeSection = ({ details }) => {
                     <div className="newsLastWholeSection-container-right-individualDetailsContainer">
                         <div className="newsLastWholeSection-container-right-individualDetailsContainer-description">
                             <h6 className="newsLastWholeSection-container-right-individualDetailsContainer-description-head">Hello, I'm Medicos PDF
-                                <div className="newsLastWholeSection-container-right-individualDetailsContainer-description-head-img" style={{ backgroundImage: `url(${require('../../../../assets/images/android-chrome-512x512.png').default})` }}>
+                                <div className="newsLastWholeSection-container-right-individualDetailsContainer-description-head-img" style={{ backgroundImage: `url(${require('../../../../assets/images/android-chrome-512x512.png')})` }}>
                                 </div>
                             </h6>
                             <p className="newsLastWholeSection-container-right-individualDetailsContainer-description-para">I have 1000's of medical slides, books, journals, articles, news, medical notes. Please have me</p>

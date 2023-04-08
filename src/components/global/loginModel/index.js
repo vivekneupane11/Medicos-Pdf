@@ -156,8 +156,8 @@ export const LoginModal = ({ show, formModel }) => {
                         <div className="loginModal-wrapper-container-left">
                             <div className="loginModal-wrapper-container-left-top">
                                 <div className="loginModal-wrapper-container-left-top-logo">
-                                    {/* <img src={require('../../../assets/images/medicospdf_logo.webp').default} alt='img'  className='logo' /> */}
-                                    <LazyLoadImage src={require('../../../assets/images/medicospdf_logo.webp').default} alt={'img'}  className='logo' effect='blur'/> 
+                                    {/* <img src={require('../../../assets/images/medicospdf_logo.webp')} alt='img'  className='logo' /> */}
+                                    <LazyLoadImage src={require('../../../assets/images/medicospdf_logo.webp')} alt={'img'}  className='logo' effect='blur'/> 
 
                                 </div>
                                 <div className='loginModal-wrapper-container-left-top-heading'>
@@ -447,8 +447,8 @@ export const LoginModal = ({ show, formModel }) => {
                                                 ''
                                                 :
                                                 <div className="loginModal-wrapper-container-right-main-logo">
-                                                    {/* <img src={require('../../../assets/images/medicospdf_logo.webp').default} alt='logo' /> */}
-                                                    <LazyLoadImage src={require('../../../assets/images/medicospdf_logo.webp').default} alt={'logo'} effect='blur'/>
+                                                    {/* <img src={require('../../../assets/images/medicospdf_logo.webp')} alt='logo' /> */}
+                                                    <LazyLoadImage src={require('../../../assets/images/medicospdf_logo.webp')} alt={'logo'} effect='blur'/>
                                                 </div>
                                         }
 

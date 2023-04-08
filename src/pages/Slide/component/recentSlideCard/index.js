@@ -248,15 +248,15 @@ const RecentSlideCard = ({data,showModal,showShareModal}) => {
                to={{
                    pathname: `${data.username? `/profile/${data?.username}`:'/profile/medicos.int7'}`,
                }}>
-                   <LazyLoadImage effect='blur' src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp').default} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" />
-               {/* <img loading="lazy" src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp').default} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" /> */}
+                   <LazyLoadImage effect='blur' src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp')} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" />
+               {/* <img loading="lazy" src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp')} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" /> */}
                <h6 className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-head">{data?.username ? data?.username : "Medicos Int'l"}</h6>
            </Link>
            :
            <div onClick={handelmodal} className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-link">
-                   <LazyLoadImage effect='blur' src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp').default} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" />
+                   <LazyLoadImage effect='blur' src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp')} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" />
                
-            {/* <img loading="lazy" src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp').default} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" /> */}
+            {/* <img loading="lazy" src={data?.userAvatar? data?.userAvatar: require('../../../../assets/images/slide/medicos.webp')} alt='profile' className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-img" /> */}
             <h6 className="slideRecentSlide-container-swiperContainer-slide-bgImg-desc-bottom-profile-head">{data?.username ? data?.username : "Medicos Int'l"}</h6>
         </div>
           }

@@ -459,8 +459,8 @@ const SlideCard = ({ title, title2, description, images, datas, showModal, showS
                                     <div className="left">
                                         <div className="userInfo">
                                             {/* {console.log('user data',datas)} */}
-                                            <LazyLoadImage className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' effect='blur'/>
-                                            {/* <img loading="lazy" className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' /> */}
+                                            <LazyLoadImage className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp")} alt='MedicosPdf logo' effect='blur'/>
+                                            {/* <img loading="lazy" className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp")} alt='MedicosPdf logo' /> */}
                                             <Headings type="heading7" content={datas?.username ? datas?.username : "Medicos Int'l"} />
                                         </div>
                                     </div>
@@ -469,9 +469,9 @@ const SlideCard = ({ title, title2, description, images, datas, showModal, showS
                                 <div onClick={handelmodal}>
                                     <div className="left">
                                         <div className="userInfo">
-                                        <LazyLoadImage className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' effect='blur'/>
+                                        <LazyLoadImage className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp")} alt='MedicosPdf logo' effect='blur'/>
 
-                                            {/* <img loading="lazy" className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' /> */}
+                                            {/* <img loading="lazy" className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp")} alt='MedicosPdf logo' /> */}
                                             <Headings type="heading7" content={datas?.username ? datas?.username : "Medicos Int'l"} />
                                         </div>
                                     </div>

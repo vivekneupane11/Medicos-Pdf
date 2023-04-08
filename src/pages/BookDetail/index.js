@@ -616,7 +616,7 @@ const BookDetail = () => {
                                         user ?
                                             <Reviews data={bookDetail} profilePic={user?.photoURL} />
                                             :
-                                            <Reviews data={bookDetail} profilePic={require("../../assets/images/avatar.webp").default} />
+                                            <Reviews data={bookDetail} profilePic={require("../../assets/images/avatar.webp")} />
                                     }
 
 

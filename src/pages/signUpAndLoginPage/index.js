@@ -193,8 +193,8 @@ export const SignUpAndLogin = () => {
                         <div className="signUpAndLoginPage-wrapper-container-left">
                             <div className="signUpAndLoginPage-wrapper-container-left-top">
                                 <div className="signUpAndLoginPage-wrapper-container-left-top-logo">
-                                    <LazyLoadImage src={require("../../assets/images/medicospdf_logo.png").default}  alt='medicosPdf_logo' className='logo' effect='blur'/>
-                                    {/* <img loading="lazy" src={require("../../assets/images/medicospdf_logo.png").default} style={{ width: 179, height: 38 }} alt='medicosPdf_logo'/> */}
+                                    <LazyLoadImage src={require("../../assets/images/medicospdf_logo.png")}  alt='medicosPdf_logo' className='logo' effect='blur'/>
+                                    {/* <img loading="lazy" src={require("../../assets/images/medicospdf_logo.png")} style={{ width: 179, height: 38 }} alt='medicosPdf_logo'/> */}
 
                                 </div>
                                 <div className='signUpAndLoginPage-wrapper-container-left-top-heading'>
@@ -481,8 +481,8 @@ export const SignUpAndLogin = () => {
                                                 ''
                                                 :
                                                 <div className="signUpAndLoginPage-wrapper-container-right-main-logo">
-                                                    {/* <img loading="lazy" src={require("../../assets/images/medicospdflogo.png").default} alt='logo' /> */}
-                                                    <LazyLoadImage src={require("../../assets/images/medicospdflogo.png").default} alt='logo' effect='blur'/>
+                                                    {/* <img loading="lazy" src={require("../../assets/images/medicospdflogo.png")} alt='logo' /> */}
+                                                    <LazyLoadImage src={require("../../assets/images/medicospdflogo.png")} alt='logo' effect='blur'/>
                                                 </div>
                                         }
 

@@ -2,8 +2,8 @@ const preferencesCategories = [
     {
         key: 'Jacksoxn',
         id: 0,
-        image: require("../../assets/images/preferences/mbbs.webp").default,
-        fadedImage:require("../../assets/images/preferences/mbbs-fade.webp").default,
+        image: require("../../assets/images/preferences/mbbs.webp"),
+        fadedImage:require("../../assets/images/preferences/mbbs-fade.webp"),
         faculty:'MBBS',
         fullName:"Bachelor of Medicine and a Bachelor of Surgery",
         subjects:[
@@ -20,8 +20,8 @@ const preferencesCategories = [
     {
         key: 'Dominic',
         id: 1,
-        image: require("../../assets/images/preferences/bds.webp").default,
-        fadedImage:require("../../assets/images/preferences/bds-fade.webp").default,
+        image: require("../../assets/images/preferences/bds.webp"),
+        fadedImage:require("../../assets/images/preferences/bds-fade.webp"),
         faculty:'BDS',
         fullName:'Bachelor of Dental Surgery',
         subjects:[
@@ -42,8 +42,8 @@ const preferencesCategories = [
     {
         key: 'James',
         id: 2,
-        image: require("../../assets/images/preferences/nursing.webp").default,
-        fadedImage:require("../../assets/images/preferences/nursing-fade.webp").default,
+        image: require("../../assets/images/preferences/nursing.webp"),
+        fadedImage:require("../../assets/images/preferences/nursing-fade.webp"),
         faculty:'Nursing',
         fullName:'Nursing',
         subjects:[
@@ -60,8 +60,8 @@ const preferencesCategories = [
     {
         key: 'Devin',
         id: 3,
-        image: require("../../assets/images/preferences/bams.webp").default,
-        fadedImage:require("../../assets/images/preferences/bams-fade.webp").default,
+        image: require("../../assets/images/preferences/bams.webp"),
+        fadedImage:require("../../assets/images/preferences/bams-fade.webp"),
         faculty:'BAMS',
         fullName:'Bachelor of Ayurveda, Medicine and Surgery',
         subjects:[
@@ -78,8 +78,8 @@ const preferencesCategories = [
     {
         key: 'Jack',
         id: 3,
-        image: require("../../assets/images/preferences/physio.webp").default,
-        fadedImage:require("../../assets/images/preferences/physio-fade.webp").default,
+        image: require("../../assets/images/preferences/physio.webp"),
+        fadedImage:require("../../assets/images/preferences/physio-fade.webp"),
         faculty:'Physiotherapy',
         fullName:'Physiotherapy',
         subjects:[

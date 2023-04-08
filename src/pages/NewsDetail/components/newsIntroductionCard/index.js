@@ -8,7 +8,7 @@ const NewsIntroductionCard = () => {
                 
                 <div className="newsIntroductionCard-wrapper-description">
                     <h6 className="newsIntroductionCard-wrapper-description-head">Hello, I'm Medicos PDF
-                        <div className="newsIntroductionCard-wrapper-description-head-img" style={{ backgroundImage: `url(${require('../../../../assets/images/android-chrome-512x512.png').default})` }}>
+                        <div className="newsIntroductionCard-wrapper-description-head-img" style={{ backgroundImage: `url(${require('../../../../assets/images/android-chrome-512x512.png')})` }}>
                         </div>
                     </h6>
                     <p className="newsIntroductionCard-wrapper-description-para">I have 1000's of medical slides, books, journals, articles, news, medical notes. Please have me</p>

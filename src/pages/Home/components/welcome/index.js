@@ -139,17 +139,17 @@ const Welcome = () => {
 
           <div className="animating-container">
             <div className="animating-container-main">
-            {/* <img  loading="lazy"   src={require('../../../../assets/images/home/animating banner/web.webp').default} alt="banner" /> */}
-            <LazyLoadImage  src={require('../../../../assets/images/home/animating banner/web.webp').default} alt="banner" effect="blur"/>
+            {/* <img  loading="lazy"   src={require('../../../../assets/images/home/animatingbanner/web.webp')} alt="banner" /> */}
+            <LazyLoadImage  src={require('../../../../assets/images/home/animatingbanner/web.webp')} alt="banner" effect="blur"/>
             </div>
             <div className="animating-container-one">
               <div className="animating-container-one-slide1">
-                {/* <img  loading="lazy" src={require('../../../../assets/images/home/animating banner/slides1.webp').default} alt="banner" /> */}
-                <LazyLoadImage src={require('../../../../assets/images/home/animating banner/slides1.webp').default} alt="banner" effect="blur"/>
+                {/* <img  loading="lazy" src={require('../../../../assets/images/home/animatingbanner/slides1.webp')} alt="banner" /> */}
+                <LazyLoadImage src={require('../../../../assets/images/home/animatingbanner/slides1.webp')} alt="banner" effect="blur"/>
               </div>
               <div className="animating-container-one-slide2">
-                {/* <img  loading="lazy" src={require('../../../../assets/images/home/animating banner/slides2.webp').default} alt="banner" /> */}
-                <LazyLoadImage src={require('../../../../assets/images/home/animating banner/slides2.webp').default} alt="banner" effect="blur"/>
+                {/* <img  loading="lazy" src={require('../../../../assets/images/home/animatingbanner/slides2.webp')} alt="banner" /> */}
+                <LazyLoadImage src={require('../../../../assets/images/home/animatingbanner/slides2.webp')} alt="banner" effect="blur"/>
               </div>
 
             </div>
@@ -165,8 +165,8 @@ const Welcome = () => {
             </div>
             <div className="animating-container-three">
 
-              {/* <img  loading="lazy" src={require('../../../../assets/images/home/animating banner/medicos.webp').default} alt="banner" /> */}
-              <LazyLoadImage src={require('../../../../assets/images/home/animating banner/medicos.webp').default} alt="banner" effect="blur"/>
+              {/* <img  loading="lazy" src={require('../../../../assets/images/home/animatingbanner/medicos.webp')} alt="banner" /> */}
+              <LazyLoadImage src={require('../../../../assets/images/home/animatingbanner/medicos.webp')} alt="banner" effect="blur"/>
               <h6 className="animating-container-three-para">Medicos Int'l</h6>
               <div className="animating-container-three-icons">
                 <FacebookIcon className="FAicon" />
@@ -176,8 +176,8 @@ const Welcome = () => {
 
             </div>
             <div className="animating-container-four">
-              {/* <img  loading="lazy" src={require('../../../../assets/images/home/animating banner/mobile.webp').default} alt="banner" /> */}
-              <LazyLoadImage src={require('../../../../assets/images/home/animating banner/mobile.webp').default} alt="banner" effect="blur"/>
+              {/* <img  loading="lazy" src={require('../../../../assets/images/home/animatingbanner/mobile.webp')} alt="banner" /> */}
+              <LazyLoadImage src={require('../../../../assets/images/home/animatingbanner/mobile.webp')} alt="banner" effect="blur"/>
             </div>
           </div>
         </section>
@@ -193,11 +193,11 @@ const Welcome = () => {
 
       <img
         className="background-image"
-        src={require("../../../../assets/banner/headerBg.webp").default}
+        src={require("../../../../assets/banner/headerBg.webp")}
         alt='bgImage'
       />
       {/* <LazyLoadImage className="background-image"
-        src={require("../../../../assets/banner/headerBg.webp").default}
+        src={require("../../../../assets/banner/headerBg.webp")}
         alt='bgImage'effect="blur"/> */}
 
     

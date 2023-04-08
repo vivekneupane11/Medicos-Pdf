@@ -951,7 +951,7 @@ const ImgSlider = ({ images, user, viewCount, playlistUrl = null }) => {
                                         {images?.slideCategory ? <img
                                         
                                        
-                                            className="profilePic" src={images?.userAvatar ? images?.userAvatar : images?.slideCategory ? require("../../../../assets/images/slide/medicos.webp").default : ''} />
+                                            className="profilePic" src={images?.userAvatar ? images?.userAvatar : images?.slideCategory ? require("../../../../assets/images/slide/medicos.webp") : ''} />
                                             :
                                             <div
                                            
@@ -971,7 +971,7 @@ const ImgSlider = ({ images, user, viewCount, playlistUrl = null }) => {
                                         {images?.slideCategory ? <img
                                        
                                        
-                                            className="profilePic" src={images?.userAvatar ? images?.userAvatar : images?.slideCategory ? require("../../../../assets/images/slide/medicos.webp").default : ''} />
+                                            className="profilePic" src={images?.userAvatar ? images?.userAvatar : images?.slideCategory ? require("../../../../assets/images/slide/medicos.webp") : ''} />
                                             :
                                             <div
                                          

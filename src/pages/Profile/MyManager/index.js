@@ -13,7 +13,7 @@ export const MyManager = () => {
             </div>
             <div className="myManager-wrapper-details">
                 <div className="myManager-wrapper-details-left">
-                <Avatar Image={require("../../../assets/images/members.jpg").default} size={50} text="this is avatar" />
+                <Avatar Image={require("../../../assets/images/members.jpg")} size={50} text="this is avatar" />
 
                 </div>
                 <div className="myManager-wrapper-details-right">
@@ -30,7 +30,7 @@ export const MyManager = () => {
             </div>
             <div className="myManager-wrapper-details">
                 <div className="myManager-wrapper-details-left">
-                <Avatar Image={require("../../../assets/images/members.jpg").default} size={50} text="this is avatar" />
+                <Avatar Image={require("../../../assets/images/members.jpg")} size={50} text="this is avatar" />
 
                 </div>
                 <div className="myManager-wrapper-details-right">
