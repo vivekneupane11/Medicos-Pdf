@@ -1,0 +1,59 @@
+@import "../../../App.scss";
+
+.radio-container {
+    // background-color: yellow;
+    width: 100%;
+    // height: 410px;
+    padding: 18px 0px;
+    @include flexCenter;
+
+    &-wrapper {
+        @include flexColCenterStart;
+        display: flex;
+        border-radius: 10px;
+        height: 100%;
+        // background-color: red;
+        max-height: 1050px;
+        width: 15%;
+
+        &-option {
+            @include flexRowStartCenter;
+            margin: 9px 0px;
+            // background-color: green;
+            .label {
+                color: $--primary;
+            }
+        }
+    }
+}
+
+.radio-option {
+    background-color: white;
+    border-radius: 100%;
+    height: 21px;
+    width: 21px;
+    border: 1px solid lightgray;
+    margin-right: 8px;
+}
+
+.radio-option-active {
+    @include flexRowCenter;
+    background-color: $--primary;
+    border-radius: 100%;
+    height: 21px;
+    width: 21px;
+    margin-right: 8px;
+    // border: 1px solid lightgray;
+}
+
+.dot{
+    background-color: white;
+    border-radius: 100%;
+    height: 8px;
+    width: 8px;
+    
+}
+
+.disabled-radio{
+    opacity: 0.5;
+}

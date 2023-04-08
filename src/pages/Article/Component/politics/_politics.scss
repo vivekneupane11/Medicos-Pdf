@@ -1,0 +1,54 @@
+@import '../../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.politics-wrapper{
+    width: 100%;
+    padding: 0px 40px 00px 30px ;
+
+    &-heading{
+        border-top:4px solid #0f0e0e;
+        padding: 10px 0 0;
+        font-size: 24px;
+        font-weight: 800;
+        font-family: 'Nunito';
+        margin:10px 0;
+        color: #0f0e0e;
+    }
+
+    &-content{
+        border-top: 1px solid gray;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 20px 0;
+       border-bottom: 4px solid #0f0e0e;
+       //margin-bottom: 10px;
+
+        &-item{
+            width: 20%;
+            @include tablet {
+                width: 48%;
+                margin-bottom: 10px;
+            }
+            @include mobile{
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            &-heading{
+                color: #0f0e0e;
+                font-size: 18px;
+                font-weight: 800;
+                font-family: 'Nunito';
+                margin: 15px 0;
+                line-height: 1;
+                cursor: pointer;
+                &:hover{
+                    color: #326891;
+                }
+            }
+        }
+    }
+}

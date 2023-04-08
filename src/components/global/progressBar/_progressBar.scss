@@ -1,0 +1,121 @@
+@mixin progressIndicator ($backgroundColor) {
+    background-color: $backgroundColor;
+    border-radius: 15px;
+    height: 15px;
+    width: 50%;
+}
+
+@mixin labelColor($color) {
+    color: $color;
+}
+
+.progressBar-wrapper {
+    @include flexColCenter;
+    // background-color: yellow;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    padding: 18px 0px;
+
+    @include tablet {
+        @include flexColCenter;
+        padding: 100px 60px 100px 120px;
+    }
+
+    @include mobile {
+        @include flexColCenter;
+        padding: 100px 20px;
+    }
+
+    &-label-container {
+        @include flexRowSbCenter;
+        width: 50%;
+        margin: 15px 0px;
+        &-text{
+            @include labelColor($--primary);
+
+            &-primary {
+                @include labelColor($--primary)
+            }
+
+            &-danger {
+                @include labelColor($--danger)
+            }
+
+            &-dark {
+                @include labelColor($--dark)
+            }
+
+            &-light {
+                @include labelColor($--light)
+            }
+
+            &-lighter {
+                @include labelColor($--lighter)
+            }
+
+            &-teal {
+                @include labelColor($--teal)
+            }
+
+            &-gray-dark {
+                @include labelColor($--gray-dark)
+            }
+
+            &-white {
+                @include labelColor($--white)
+            }
+
+            &-orange {
+                @include labelColor($--gray-dark)
+            }
+        }
+    }
+
+    &-indicator {
+        background-color: #e5e5e5;
+        border-radius: 15px;
+        height: 15px;
+        width: 50%;
+
+        &-active {
+            @include progressIndicator($--primary);
+
+            &-primary {
+                @include progressIndicator($--primary)
+            }
+
+            &-danger {
+                @include progressIndicator($--danger)
+            }
+
+            &-dark {
+                @include progressIndicator($--dark)
+            }
+
+            &-light {
+                @include progressIndicator($--light)
+            }
+
+            &-lighter {
+                @include progressIndicator($--lighter)
+            }
+
+            &-teal {
+                @include progressIndicator($--teal)
+            }
+
+            &-gray-dark {
+                @include progressIndicator($--gray-dark)
+            }
+
+            &-white {
+                @include progressIndicator($--white)
+            }
+
+            &-orange {
+                @include progressIndicator($--gray-dark)
+            }
+        }
+    }
+}

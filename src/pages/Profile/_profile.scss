@@ -1,0 +1,77 @@
+@import '../../App.scss';
+.profilePage-wrapper{
+    padding: 40px 30px;
+    width: 100%;
+    &-container{
+        position:relative;
+        width: 100%;
+        &-top{
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-profileDetails{
+                width: 40%;
+                align-items: center;
+                &-bottom{
+                    margin-top: 20px;
+                    display: flex;
+                   
+                    
+                }
+               
+            }
+            &-profileImage{
+                width: 40%;
+                @include mobile{
+                    width: 100%;
+                }
+                img{
+                    height: auto;
+                    width: 60%;
+                    margin-left: 100px;
+                    transform: scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg);
+                    border-radius: 5px;
+                    box-shadow: 0 15px 35px rgba(50, 50, 93, .1);
+                    object-fit: contain;
+                    @include mobile{
+                       width: 100%;
+                       margin-left: 0;
+                       transform: none;
+                       box-shadow: none;
+                       object-fit: cover;
+                    }
+                }
+            
+
+            }
+        }
+        &-logo{
+            position: absolute;
+            top: 0;
+            right: 50%;
+           
+
+        }
+        &-bottom{
+            &-content{
+                @include flexRowSbCenter;
+                align-self:center;
+                text-align: center;
+                width: 100%;
+          //  justify-content:space-between;
+                height: auto;
+                flex-wrap: wrap;
+
+                display: grid;
+                column-gap: 10px;
+                grid-template-columns: auto auto auto auto;
+                .item{
+                    margin-bottom:20px;
+                }
+               
+            }
+
+        }
+    }
+}

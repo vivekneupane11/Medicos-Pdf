@@ -1,0 +1,163 @@
+@import '../../../../App.scss';
+.shareModelAfterUploading-container{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    top: 0;
+    left: 0;
+    position: fixed;
+    justify-content: center;
+    align-items: center;   
+   &-modal{
+    //    margin: auto;
+    //    margin-top: 50px;
+    background-color: #ffffff;
+       box-shadow: rgba(59, 56, 56, 0.15) 0px 2px 10px;
+       height: 80%;
+       width: 80%;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       align-items: center;
+    //    @include tablet{
+    //        width: 70vw;
+    //        height: 70vh;
+    //        align-self: center;
+    //    }
+     
+       &-iconContainer{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        &-icon{
+            margin-right: 15px;
+            cursor: pointer;
+            color: rgba(0,0,0,.2);
+            &:hover{
+                color: rgba(0,0,0,.4);
+            }
+
+        }
+       }
+      &-main{
+          height: 90%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0 20px;
+
+
+        &-top{
+            width: 100%;
+            border-bottom: 1px solid #e6e6e6;
+            &-head{
+                color: rgb(8, 8, 8);
+                letter-spacing: -0.035em;
+                font-size: 32px;
+                line-height: 36px;
+                font-weight: 400;
+                text-align: center;
+    
+            }
+            &-para{
+                 text-align: center;
+                 margin: 20px 0;
+            }
+    
+        }
+        &-bottom{
+            margin: 20px 0;
+            &-head{
+                font-weight: 400;
+                font-size: 16px;
+                color: rgba(41, 41, 41, 1);
+    
+            }
+            &-fb{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #a8a8a8;
+                border-radius: 50px;
+                padding: 10px 0;
+                margin-top: 5px;
+                p{
+                    margin-left:10px ;
+                }
+    
+            }
+            &-messenger{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #a8a8a8;
+                border-radius: 50px;
+                padding: 10px 0;
+                margin-top: 5px;
+                p{
+                    margin-left:10px ;
+                }
+            }
+            &-twitter{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #a8a8a8;
+                border-radius: 50px;
+                padding: 10px 0;
+                margin-top: 5px;
+                p{
+                    margin-left:10px ;
+                }
+            }
+            &-email{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #a8a8a8;
+                border-radius: 50px;
+                padding: 10px 0;
+                margin-top: 5px;
+                p{
+                    margin-left:10px ;
+                }
+            }
+            &-linkShare{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #a8a8a8;
+                border-radius: 50px;
+                padding: 10px 0;
+                margin-top: 5px;
+                &-para{
+                    margin-left:10px ;
+                    cursor: pointer;
+                }
+            }
+        }
+      }
+   }
+}
+.shareAfterUpload-shareBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.successContainerForCopyToClipboard{
+    position: absolute;
+    z-index: 101;
+    margin-top: 90px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+}

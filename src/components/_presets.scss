@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+
+}
+
+body {
+    margin: auto;
+    max-width: 1920px;
+    width: 100%;
+ }
+
+ 
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family:'Nunito', 'Montserrat',sans-serif;
+    font-weight: 800;
+    color: #333333;
+
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+ul {
+    font-family: 'Rubik','Alegreya Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+li{
+    font-family: 'Rubik','Alegreya Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+}
+
+span{
+
+    font-family:'Rubik', 'Alegreya Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #333333;
+
+}
+
+p,label{
+    font-family: 'Rubik',sans-serif;
+    font-size: 15px;
+     font-weight: 400;
+    color: #333;
+    line-height: 1.4;
+} 
+button {
+    font-family:'Nunito' ,'Roboto', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+}

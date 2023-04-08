@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+
+.selectedJournal-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    &-head1{
+        font-size: 30px;
+        font-family: 'Nunito';
+        font-weight: 800;
+        color: #0f0e0e;
+        margin-top: 10px;
+       
+    }
+    &-head2{
+        text-transform: uppercase;
+        font-size: 12px;
+        font-family: 'Nunito';
+        font-weight: 500;
+        color: #0f0e0e;
+        margin: 0px 0 20px 0;
+        padding: 10px 0;
+        border-bottom: 1px solid gray;
+    }
+    &-infoContainer{
+        display: flex;
+        @include tablet{
+         flex-direction: column;
+        }
+        @include mobile{
+         flex-direction: column;
+        }
+        &-col1{
+            width: 33.33%;
+            display: flex;
+            flex-direction: column;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            &-tag{
+                margin: 0 auto;
+            }
+            &-head{
+                margin: 10px 0;
+                font-size: 30px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                color: #0f0e0e;
+                transition: .25s ease;
+                cursor: pointer;
+                text-align: center;
+                &:hover{
+                    color:$--primary ;
+                    transition: .25s ease;
+                }
+
+            }
+            &-authordateread{
+                @include tablet{
+                   margin: 0 auto;
+                }
+                @include mobile{
+                    margin: 0 auto;
+                }
+            }
+            &-para{
+                margin: 20px 0;
+                font-family: 'Rubik';
+                font-size: 15px;
+                color: #13181c;
+                line-height: 1.75;
+                text-align: center;
+            }
+            &-bottom{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                @include tablet{
+                    flex-direction: column;
+                 }
+                 @include mobile{
+                    flex-direction: column;
+                 }
+                &-description{
+                    width: 48%;
+                    @include tablet{
+                        width: 100%;
+                    }
+                    @include mobile{
+                        width: 100%;
+                    }
+                    &-img::before{
+                        content: " ";
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        opacity: 0;
+                        background: #000;
+                    }
+                    &-img{
+                      height: 100px;
+                      width: 100%;
+                      position: relative;
+                      border-radius: 5px;
+                      background-color: rgba(0,0,0,.1);
+                      background-blend-mode: overlay;
+                      background-size: cover;
+                      border: none;
+                      background-position: center center;
+                      background-repeat: no-repeat;
+                      @include tablet{
+                        height: 400px;
+                        // height: 100%;
+                        margin-top: 30px;
+                     }
+                     @include mobile{
+                        height: 400px;
+                        margin-top: 30px;
+                     }
+                    }
+                    &-img:hover{
+                        background-color: rgba(0,0,0,.3);
+                    }
+                    &-img:hover:after{
+                       transition: .25s linear;
+                       border-width: 20px;
+                    }
+                    &-img::after{
+                        transition:.25s linear;
+                        position: absolute;
+                        content: "";
+                        bottom: 0;
+                        right: 0;
+                        background:white;
+                        border-width: 0px;
+                        border-style: solid;
+                        display: block;
+                        border-color: $--primary #fff #fff  $--primary;
+                    }
+                    &-head{
+                        font-size: 16px;
+                        font-family: 'Nunito';
+                        font-weight: 800;
+                        margin: 20px 0;
+                        color: #0f0e0e;
+                        transition: .25s ease;
+                        cursor: pointer;
+                       
+                        &:hover{
+                            color:$--primary  ;
+                            transition: .25s ease;
+                        }
+                    }
+                }
+            }
+
+        }
+        &-col2{
+            width: 33.33%;
+            padding: 0 25px;
+            @include tablet{
+                width: 100%;
+                padding: 0 ;
+            }
+            @include mobile{
+                width: 100%;
+                padding: 0 ;
+            }
+            &-description{
+               margin-bottom: 32px;
+               @include tablet{
+                  margin: 32px 0;
+                }
+                @include mobile{
+                    margin: 32px 0;
+                }
+                &-head{
+                    font-size: 18px;
+                    font-family: 'Nunito';
+                    font-weight: 800;
+                    margin: 10px 0;
+                    color: #0f0e0e;
+                    transition: .25s ease;
+                    cursor: pointer;
+                    &:hover{
+                        color:$--primary  ;
+                        transition: .25s ease;
+                    }
+                }
+            }
+
+        }
+        &-col3{
+            width: 33.33%;
+            @include tablet{
+               width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            &-img{
+                width: 100%;
+                height: 250px;
+                position: relative;
+                border-radius: 5px;
+                background-color: rgba(0,0,0,.1);
+                background-blend-mode: overlay;
+                background-size: cover;
+                border: none;
+                background-position: center center;
+                background-repeat: no-repeat;
+                @include tablet{
+                    height: 400px;
+                 }
+                 @include mobile{
+                    height: 400px;
+                 }
+            }
+            &-img:hover{
+                background-color: rgba(0,0,0,.3);
+            }
+            &-img:hover:after{
+               transition: .25s linear;
+               border-width: 20px;
+            }
+            &-img::after{
+                transition:.25s linear;
+                position: absolute;
+                content: "";
+                bottom: 0;
+                right: 0;
+                background:white;
+                border-width: 0px;
+                border-style: solid;
+                display: block;
+                border-color: $--primary #fff #fff  $--primary;
+            }
+           &-desc{
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+               margin:20px 0;
+               &-tag{
+                   margin: 0 auto;
+               }
+            &-head{
+                font-size: 30px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                text-align: center;
+                margin: 10px 0;
+                color: #0f0e0e;
+                transition: .25s ease;
+                cursor: pointer;
+                &:hover{
+                    color:$--primary  ;
+                    transition: .25s ease;
+                }
+            }
+           }
+
+        }
+    }
+}

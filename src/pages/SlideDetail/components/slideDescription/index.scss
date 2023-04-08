@@ -1,0 +1,146 @@
+@import "../../../../App.scss";
+
+.slide-description {
+    @include flexColCenter;
+    width: 100%;
+    // background-color: red;
+    // height: 1000px;
+    padding: 4% 0px;
+
+    @include tablet {
+        padding: 5% 0 6% 0px;
+        // width: 80%;
+    }
+
+    @include mobile {
+        // width: 80%;
+    }
+
+    &-container {
+        @include flexColCenterStart;
+        // text-align: left;
+        width: 59%;
+
+        @include tablet {
+            width: 80%;
+        }
+
+        @include mobile {
+            width: 80%;
+        }
+
+        .paragraph {
+            margin: 25px 0px;
+            font-weight:normal;
+            line-height: 1.7;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+
+        &-bottom-container {
+            @include flexColCenter;
+            // background-color: blue;
+            width: 100%;
+
+            .row1 {
+                @include flexRowSbCenter;
+                // background-color: red;
+                width: 100%;
+
+                @include mobile {
+                    flex-direction: row;
+                }
+
+                .userInfo {
+                    @include flexRowSbCenter;
+
+                    .profilePic {
+                        width: 50px;
+                        border-radius: 100%;
+                        margin-right: 15px
+                    }
+
+                    .name {
+                        @include flexColCenterStart;
+
+                        h5 {
+                            font-weight: bold;
+                            font-family: "Roboto", sans-serif;
+                            color: $--primary;
+                        }
+
+                        p {
+                            font-weight: normal;
+                            font-family: "Roboto", sans-serif;
+                            color: gray;
+                        }
+
+
+                    }
+                }
+
+                .button-container {
+                    @include flexRowCenter;
+                    position: relative;
+
+                    .icon {
+                        margin-right: 5px;
+                        color: lightgray
+                    }
+
+                    h7 {
+                        font-weight: bold;
+                        font-family: "Roboto", sans-serif;
+                        color: $--primary;
+                    }
+
+                    .tweet {
+                        @include flexRowCenter;
+                        padding: 7px 10px;
+                        border-top-left-radius: 3px;
+                        border-bottom-left-radius: 3px;
+                        border: 0.5px solid lightgray;
+                        border-right: none;
+                    }
+
+                    .tweet:hover {
+                        cursor: pointer;
+                        border: 0.5px solid gray;
+                        border-right: none;
+                    }
+
+                    .tweet:hover~.share {
+                        border-left: 0.5px solid gray;
+                    }
+
+                    .share {
+                        @include flexRowCenter;
+                        padding: 7px 10px;
+                        border-top-right-radius: 3px;
+                        border-bottom-right-radius: 3px;
+                        border: 0.5px solid lightgray;
+                    }
+
+                    .share:hover {
+                        cursor: pointer;
+                        border: 0.5px solid gray;
+                    }
+                }
+            }
+        }
+    }
+}
+.slideDetail-longModalButton{
+    padding: 10px 20px;
+    background-color: $--primary;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 30px;
+    &:hover{
+        background-color: #82C09A;
+    }
+}

@@ -1,0 +1,49 @@
+@import '../../../App.scss';
+.latestNews_container{
+    width:100%;
+    padding: 15px;
+    background-color: $--primary;
+    &_desc{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+           
+            &_info{
+                width: 98%;
+                text-align: center;
+                // padding: 10px 0;
+                font-size: 15px;
+                color: #333333;
+                margin-right: 30px;
+                @include tablet{
+                    width: 96%;
+                }
+               @include mobile{
+                   width: 94%;
+                   font-size: 12px;
+               }
+            }
+            &_icon{
+                width: 2%;
+               height: 20px;
+            //    width: 20px;
+               cursor: pointer;
+               color: #333333;
+               @include tablet{
+                height: 20px;
+                width: 4%;
+                
+               }
+               @include mobile{
+                height: 20px;
+                width: 6%;
+               
+               }
+            }
+
+    
+    }
+}
+.visibilityNone{
+    display: none;
+}

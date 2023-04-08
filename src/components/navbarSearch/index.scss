@@ -1,0 +1,19 @@
+.topNavBarSearch {
+    width: 30%;
+    position: relative;
+
+    &-icon {
+        position: absolute;
+        margin-top: 12px;
+        margin-left: 15px;
+        color: gray;
+    }
+
+    input {
+        width: 80%;
+        padding: 10px 10px 10px 37px;
+        border-radius: 100px;
+        outline: none;
+        border: 2px solid #f2f2f2;
+    }
+}

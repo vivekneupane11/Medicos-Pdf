@@ -1,0 +1,62 @@
+@import '../../App.scss';
+
+.news-detail-page-container{
+    width: 100%;
+    .progressBarContainer{
+        height: 5px;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        z-index: 10;
+        top: 70px;
+        &-increment{
+           background-color: #e61e61;
+           height: 100%;
+        
+        }
+    }
+    &-aboutAuthor{
+        width: 65%;
+        padding: 0 30px;
+        @include tablet{
+          width: 100%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+    }
+    &-navigationLinks{
+        width: 65%;
+        padding: 0 30px;
+        @include tablet{
+          width: 100%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+    }
+    &-relatedPosts{
+        width: 65%;
+        padding: 0 30px;
+        @include tablet{
+          width: 100%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+    }
+    &-leaveAReply{
+        width: 65%;
+        padding: 0 30px;
+        @include tablet{
+            width: 100%;
+          }
+          @include mobile{
+              width: 100%;
+          }
+    }
+}
+.newsDetail_loading{
+    padding-top: 200px;
+    padding-bottom: 200px;
+}

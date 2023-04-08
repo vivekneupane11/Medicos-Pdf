@@ -1,0 +1,92 @@
+@import '../../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+
+.swiper-container{
+    
+   .swiper-wrapper{
+       .swiper-slide{
+          
+       }
+   }
+}
+.topslider-wrapper{
+    width: 100%;
+    padding: 10px 40px 10px 30px;
+    .topslider{
+        border-bottom: 4px solid #0f0e0e;
+        padding: 50px 0px;
+        &-content{
+            border: 1px solid gray;
+            width: 100%;
+        }
+       
+        
+    }
+    &-slide{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        align-items: center;
+       
+        &-left{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            @include mobile{
+                width: 100%;
+            }
+            
+            &-head{
+                margin: 10px 0;
+               font-size: 22px;
+               color: #0f0e0e;
+               font-weight: 800;
+               font-family: 'Nunito';
+               cursor: pointer;
+               a{
+                   text-decoration: none;
+                   color: #0f0e0e;
+                   cursor: pointer;
+                   &:hover{
+                    color:$--primary ;
+                   }
+               }
+               &:hover{
+                color:$--primary ;
+               }
+            }
+
+        }
+        &-rightImg{
+            width: 100%;
+            height: 120px;
+            position: relative;
+            background-color: rgba(0,0,0,.1);
+            background-blend-mode: overlay;
+            background-size: cover;
+            border: none;
+            background-position: center center;
+           // background-repeat: no-repeat;
+            border-radius: 5px;
+            @include mobile{
+                display: none;
+            }
+           
+
+        }
+        &-rightImg:hover{
+            background-color: rgba(0,0,0,.3);
+            transition:.25s linear;
+        }
+        
+    }
+}
+
+.topSlider_link{
+    text-decoration: none;
+    width: 30%;
+
+}

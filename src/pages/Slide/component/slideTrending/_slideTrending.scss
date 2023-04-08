@@ -1,0 +1,114 @@
+@import '../../../../App.scss';
+
+.swiper-container {
+    .swiper-wrapper {
+        .swiper-slide {}
+    }
+
+    .swiper-button-prevvv {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: '';
+        top: 2px;
+        right: 130px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
+        z-index: 8;
+        cursor: pointer;
+        transition: .25 ease-in;
+
+        @include mobile {
+            top: 84%;
+            right: 46%;
+            transform: translateX(-50%);
+            height: 40px;
+            width: 40px;
+            margin-right: 11px;
+        }
+
+    }
+
+    .swiper-button-prevvv:hover {
+        background-color: rgba(0, 0, 0, .1);
+        transition: .25 ease-in;
+    }
+
+    .swiper-button-nexttt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '';
+        top: 2px;
+        right: 60px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
+        z-index: 8;
+        cursor: pointer;
+        transition: .25 ease-in;
+
+        @include mobile {
+
+            top: 84%;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            height: 40px;
+            width: 40px;
+            margin-left: 23px;
+        }
+    }
+
+    .swiper-button-nexttt:hover {
+        background-color: rgba(0, 0, 0, .1);
+        transition: .25 ease-in;
+    }
+
+}
+
+
+.slideTrending-container {
+    width: 100%;
+    padding: 0 30px;
+
+    // @include tablet {
+    //     padding-top: 140px;
+    // }
+
+    // @media(max-width:992px) {
+    //     padding-top: 120px;
+    // }
+
+    @include mobile {
+        padding-top: 20px;
+    }
+
+
+    &-swiperContainer {
+        padding: 80px 0 60px;
+        width: 100%;
+
+        @include mobile {
+            padding: 20px 0 100px 0;
+        }
+
+
+        &-slide {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.slide-trending-loading-wrapper {
+    padding-top: 150px;
+    padding-bottom: 150px;
+}

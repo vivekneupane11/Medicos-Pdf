@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+.lastSection-wrapper{
+    width: 100%;
+    padding: 20px 40px 20px 30px;
+    .lastSection{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        @include tablet{
+            flex-direction: column;
+        }
+        @include mobile{
+            flex-direction: column;
+        }
+       
+        &-col1{ 
+            margin-top: 10px;
+           // padding-right: 40px;
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+               &-content{
+                   width: 100%;
+                   margin-bottom: 20px;
+                   //padding: 10px 0;
+                   &-image{
+                       @include mobile{
+                           height: 250px;
+                       }
+                   //padding: 10px 0;
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 400px;
+                    position: relative;
+                    background-size: cover;
+                    background-color: rgba(0,0,0,.1);
+                    background-blend-mode: overlay;
+                    cursor: pointer;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        background:white;
+                        border-width: 0;
+                        border-style: solid;
+                        display: block;
+                       border-color: $--primary #fff #fff  $--primary;
+                       transition: all 0.25s linear;
+                    }
+                    &:hover{
+                        background-color: rgba(0,0,0,0.2);
+                        transition: background-color 0.25s linear;
+                          
+                       &::after{
+                           border-width: 25px;
+                           transition: all 0.25s linear;
+                       }
+        
+                       
+                       }
+                    &-play{
+                    position: absolute;
+                       right: 0;
+                       transform: translate( -10px ,10px);
+                    }
+                   
+                   
+                }
+                &-bottom{
+                    margin-top: 20px;
+                    
+                    &-heading{
+                     font-size: 30px;
+                     font-family: 'Nunito';
+                     font-weight: 800;
+                     margin: 10px 0;
+                     line-height: 1;
+                     cursor: pointer;
+                     color: #0f0e0e;
+                     &:hover{
+                        color:$--primary ;
+                    }
+                    }
+                
+                    &-paragraph{
+                        font-size: 15px;
+                        font-family: 'Rubik';
+                        font-weight: 400;
+                        line-height: 1;
+                        margin: 10px 0;
+                        
+    
+                    }
+                }
+
+                  
+               }
+               &-row{
+                   margin-bottom: 20px;
+                   width: 100%;
+                   display: flex;
+                   justify-content: space-between;
+                   @include mobile{
+                       flex-direction: column;
+                       margin: 10px 0;
+                   }
+                   &-image{
+                       @include mobile{
+                           width: 100%;
+                           margin-bottom: 5px;
+                       }
+                    width: 100%;
+                    height: 200px;
+                    border-radius: 10px;
+                    background-size: cover;
+                    background-color: rgba(0,0,0,.1);
+                    background-blend-mode: overlay;
+                    cursor: pointer;
+                    position: relative;
+                    &::after{
+                     content: "";
+                     position: absolute;
+                     bottom: 0;
+                     right: 0;
+                     background:white;
+                     border-width: 0;
+                     border-style: solid;
+                     display: block;
+                    border-color: $--primary #fff #fff  $--primary;
+                    transition: all 0.25s linear;
+                 }
+                 &:hover{
+                     background-color: rgba(0,0,0,0.2);
+                     transition: background-color 0.25s linear;
+                       
+                    &::after{
+                        border-width: 20px;
+                        transition: all 0.25s linear;
+                    }
+     
+                    
+                    }
+                }
+                &-bottom{
+                    width: 55%;
+                    @include mobile{
+                        width: 100%;
+                        margin: 10px 0;
+                    }
+                   //margin-top: 20px;
+                    &-heading{
+                     font-size: 22px;
+                     font-family: 'Nunito';
+                     font-weight: 800;
+                     margin: 10px 0;
+                     line-height: 1;
+                     cursor: pointer;
+                     color: #0f0e0e;
+                     &:hover{
+                         
+                        color:$--primary ;
+                     }
+                     
+                    }
+                    p{
+                        margin: 10px 0;
+                        font-size: 15px;
+                        color: #0f0e0e;
+                        font-family: 'Rubik';
+                    }
+                }
+                   
+               }
+        }
+        &-col2{
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            width: 30%;
+            position: sticky;
+            top: 80px;
+            right: 0;
+            display: flex;
+            align-self: flex-start;
+            flex-direction: column;
+        }
+    }
+}
+.article-lastSection-link{
+    text-decoration: none;
+    height: 100%;
+    width: 40%;
+    @include mobile{
+        width: 100%;
+    }
+}

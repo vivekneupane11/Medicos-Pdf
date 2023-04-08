@@ -1,0 +1,244 @@
+@import "../../App.scss";
+
+.footer-Container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F7F7;
+    &-top{
+        width: 100%;
+        display: flex;
+        // justify-content: space-between;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0 20px;
+        margin-top: 20px;
+        &-card{
+            padding: 10px;
+            flex: 1;
+            @include tablet{
+                width: 33.33%;
+                flex: none;
+            }
+            @include mobile{
+                width: 50%;
+                flex: none;
+            }
+            &-link{
+                padding: 20px 0;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px 0 rgba(103, 151 ,255 ,.09);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                font-size: .85em;
+                cursor: pointer;
+                img{
+                    height: 40px;
+                    width: 40px;
+                    
+
+                }
+                &-count{
+                    font-weight: 700;
+                    color: #414a56;
+                    letter-spacing: 2.5px;
+                    padding-top: 10px;
+                }
+                &-title{
+                    color: #6d7c90;
+                }
+            }
+        }
+
+    }
+
+    &-mid{
+        width: 100%;
+        display: flex;
+        @include tablet{
+            flex-direction: column;
+        }
+        @include mobile{
+            flex-direction: column;
+        }
+       &-container{
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding-left: 30px;
+            @include tablet{
+                justify-content: flex-start;
+                width: 100%;
+            }
+            @include mobile{
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+        &-links{
+            width: 25%;
+            @include tablet{
+
+                // width: 33.33%;
+                margin-bottom: 20px;
+            }
+           @include mobile{
+            //    width: 50%;
+               margin-bottom: 20px;
+               width: 50%;
+           }
+            &-heading{
+                color: #576373;
+                font-size: .8125rem;
+                text-transform: uppercase;
+                margin-bottom: 1.5rem;
+                letter-spacing: .07em;
+                font-weight: 700;
+            }
+            &-subHeadingContainer{
+                display: flex;
+                flex-direction: column;
+                &-subheading{
+                    list-style: none;
+                    text-transform: capitalize;
+                    margin-bottom: 1.5rem;
+
+                    &-link{
+                        text-decoration: none;
+                        color: #6d7c90;
+                        font-weight: 400;
+                        transition: .2s;
+                        font-size: .875rem;
+                        cursor: pointer;
+                        
+                    }
+                    &-link:hover{
+                        color: $--primary;
+                        transition: .2s;
+                    }
+                }
+            }
+        }
+       }
+       &-newsletter{
+        width: 30%;
+        padding: 20px 30px 0 0;
+        @include tablet{
+            width: 70%;
+            padding: 0 30px 30px;
+        }
+        @include mobile{
+            width: 100%;
+            padding: 0 30px 30px;
+        }
+           
+           &-head1{
+            color: #333333;
+           }
+           &-head2{
+            font-size: .875rem;
+            letter-spacing: .07em;
+            line-height: 1.75;
+            margin-top: 20px;
+            margin-bottom: 10px;
+           }
+           &-subscribe{
+               height: 45px;
+               width: 100%;
+               display: flex;
+               input{
+                  height: 45px;
+                  width: 60%;
+                  padding-left: 15px;
+                  background-color: #fff;
+                  border: 1px solid #b1bbc9;
+                  border-top-left-radius:5px ;
+                  border-bottom-left-radius:5px ;
+               }
+               input:focus{
+                   outline: none;
+                   border:1px solid  $--primary;
+                   
+               
+               }
+               &-btn{
+                   width: 40%;
+                   text-transform: uppercase;
+                   height: 45px;
+                   background-color: $--primary;
+                   border: none;
+                   cursor: pointer;
+                   color: #fff;
+                   letter-spacing: 2px;
+                   border-top-right-radius:5px ;
+                  border-bottom-right-radius:5px ;
+                  @include mobile{
+                      letter-spacing: 1px;
+                  }
+               }
+               &-btn:hover{
+                   background-color: $--primary;
+                   color: #fff;
+               }
+           }
+       }
+
+    }
+
+    &-bottom{
+        border-top: 1px solid #e4e4e5;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 30px;
+        @include mobile{
+            flex-direction: column;
+        }
+        &-left{
+            display: flex;
+            width: 50%;
+            @include mobile{
+                width: 100%;
+            }
+            li{
+               list-style: none;
+               margin-right: 20px;
+               font-size: .875rem;
+               a{
+                   text-decoration: none;
+                   color: #6d7c90;
+                   cursor: pointer;
+                   transition: .2s;
+               }
+               a:hover{
+                color: $--primary;
+                cursor: pointer;
+                transition: .2s;
+            }
+            }
+           
+        }
+        &-right{
+            width: 50%;
+            text-align: center;
+            color: #6d7c90;
+            text-align: right;
+            span{
+                color: $--primary;
+            }
+            @include mobile{
+                width: 100%;
+               text-align: left;
+                margin-top: 10px;
+            }
+        }
+
+    }
+}

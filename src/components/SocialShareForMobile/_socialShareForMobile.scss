@@ -1,0 +1,33 @@
+@import '../../App.scss';
+
+
+.socialShareForMObile-container{
+    display: none;
+}
+@include mobile{
+    .socialShareForMObile-container{
+        left: 0;
+        bottom: 0;
+        position: fixed;
+        box-shadow: 2px 2px 25px 15px rgba(128 ,128, 128,  0.2);
+        width: 100%;
+        background-color: white;
+        overflow: hidden;
+        padding:0 30px;
+        opacity: 1;
+        z-index: 1000;
+        height: 0;
+        transition:all 0.25s linear;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    
+    }
+    .social-active{
+        padding: 7px;
+        height: auto;
+        transition:all 0.25s linear;
+        background-color: #ffffff;
+       
+    }
+}

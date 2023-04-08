@@ -1,0 +1,94 @@
+@import '../../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.storiesForYou-wrapper{
+    background-color: white;
+    padding: 10px 40px 10px 30px ;
+    h3{
+        font-size: 24px;
+        font-family: 'Nunito';
+        font-weight: 800;
+        color: #0f0e0e;
+      }
+    
+   
+    .storiesForYou{
+       margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border-top: 1px solid gray;
+        border-bottom: 4px solid #0f0e0e;
+        @include tablet{
+           
+        }
+        
+        &-content{
+            @include tablet{
+                width:48%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            
+            width:23%;
+           padding: 20px 0;
+            &-image{
+                @include tablet{
+                    height: 250px;
+                }
+                @include mobile{
+                    height: 250px;
+                }
+                width: 100%;
+                height: 200px;
+                border-radius: 5px;
+                background-size: cover;
+                background-color: rgba(0,0,0,.1);
+                background-blend-mode: overlay;
+                cursor: pointer;
+                position: relative;
+                &::after{
+                 content: "";
+                 position: absolute;
+                 bottom: 0;
+                 right: 0;
+                 background:white;
+                 border-width: 0;
+                 border-style: solid;
+                 display: block;
+                border-color: $--primary #fff #fff  $--primary;
+                transition: all 0.25s linear;
+             }
+             &:hover{
+                 background-color: rgba(0,0,0,0.2);
+                 transition: background-color 0.25s linear;
+                   
+                &::after{
+                    border-width: 20px;
+                    transition: all 0.25s linear;
+                }
+ 
+                
+                }
+            }
+            &-bottom{
+                margin-top: 20px;
+                &-heading{
+                 font-size: 24px;
+                 font-family: 'Nunito';
+                 font-weight: 800;
+                 margin: 10px 0;
+                 line-height: 1;
+                 cursor: pointer;
+                 color: #0f0e0e;
+                 &:hover{
+                     
+                    color:$--primary ;
+                 }
+                }
+            }
+        }
+    }
+}

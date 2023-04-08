@@ -1,0 +1,106 @@
+@import "../../../App.scss";
+
+@mixin alertBackgroundColor ($backgroundColor) {
+    @include flexSbCenter;
+    padding: 0px 30px;
+    background-color: $backgroundColor;
+    max-width: 1000px;
+    max-height: 80px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    &-icon{
+        color: #ffffff;
+        margin: 0px 15px;
+        font-size: 25px;
+    }
+    &-text {
+        @include flexRowCenter;
+        color: #ffffff;
+        &-type {
+            @include flexRowCenter;
+            color: #ffffff;
+            margin: 0px 2px;
+            font-weight: bold;
+            font-size: 19.5px;
+            // background-color: red;
+        }
+        &-message {
+            @include flexRowCenter;
+            color: #ffffff;
+            margin: 0px 2px;
+            font-size: 21px;
+            font-weight: lighter;
+            // background-color: red;
+        }
+    }
+
+}
+
+.alert-wrapper {
+    // background-color: yellow;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    padding: 18px 0px;
+    @include flexCenter;
+
+    @include tablet {
+        @include flexColCenter;
+        padding: 100px 60px 100px 120px;
+    }
+
+    @include mobile {
+        @include flexColCenter;
+        padding: 100px 20px;
+    }
+
+    &-container {
+        @include alertBackgroundColor(#1D264F);
+
+        &-primary {
+            @include alertBackgroundColor($--primary)
+        }
+
+        &-danger {
+            @include alertBackgroundColor($--danger)
+        }
+
+        &-dark {
+            @include alertBackgroundColor($--dark)
+        }
+
+        &-light {
+            @include alertBackgroundColor($--light)
+        }
+
+        &-lighter {
+            @include alertBackgroundColor($--lighter)
+        }
+
+        &-teal {
+            @include alertBackgroundColor($--teal)
+        }
+
+        &-gray-dark {
+            @include alertBackgroundColor($--gray-dark)
+        }
+
+        &-white {
+            @include alertBackgroundColor($--white)
+        }
+
+        &-orange {
+            @include alertBackgroundColor($--gray-dark)
+        }
+
+        &-close {
+            cursor: pointer;
+            color: #ffffff;
+
+            :hover {
+                color: #c5c5c5;
+            }
+        }
+    }
+}

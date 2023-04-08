@@ -1,0 +1,93 @@
+@import "../../../App.scss";
+
+
+.avatar-upload-container {
+    
+    @include flexRowCenter;
+    
+    &-wrapper {
+        @include flexColCenter;
+
+        // background-color: red;
+        &-button-container {
+            @include flexColCenter;
+
+            // background-color: red;
+            &-select:hover {
+                box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+                transform: translateY(-1px);
+                transition: transform box-shadow .2s ease;
+            }
+
+            &-select {
+                @include flexRowCenter;
+                border-radius: 50px;
+                padding: 15px 30px;
+                background-color: white;
+                margin-top: 25px;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+
+                input[type=file] {
+                    // background-color: red;
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                p {
+                    font-weight: bold;
+                }
+            }
+
+            &-remove:hover {
+                box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+                transform: translateY(-1px);
+                transition: transform box-shadow .2s ease;
+            }
+
+            &-remove {
+                @include flexRowCenter;
+                margin-left: 9px;
+                border-radius: 50px;
+                padding: 15px 30px;
+                background-color: #f5365c;
+                margin-top: 25px;
+                will-change: transform;
+                // position: relative;
+                overflow: hidden;
+                cursor: pointer;
+
+                .icon {
+                    font-weight: bold;
+                    color: white;
+                    margin-right: 5px;
+                }
+
+                p {
+                    color: white;
+                }
+            }
+        }
+
+
+        &-selected-avatar {
+            // background-image: url("../../../assets/images/upload.png");
+            height: 100%;
+            width: 100%;
+            &-container {
+                // height: 187px;
+                width: 150px;
+                max-width: 150px;
+                border-radius: 5px;
+                overflow: hidden;
+                border-radius: 100%;
+                box-shadow: 5px 5px 19px rgba(128, 128, 128, 0.3);
+                // background-color: red;
+            }
+        }
+    }
+}

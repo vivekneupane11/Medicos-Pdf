@@ -1,0 +1,115 @@
+@import "../../../App.scss";
+@import "../../../components/abstracts/variables";
+@import"../../../components/abstracts/mixins";
+.relatedStories-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-direction: column;
+    //height: 100vh;
+    padding: 40px 0px;
+    &-row{
+        background-color: white;
+        max-width: 100%;
+        width: 70%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include tablet{
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 40px;
+        }
+        @include mobile{
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        &-col1{
+            //margin-right: 20px;
+            //max-width: 220px;
+         //width: 50%;
+         border-radius: 3px;
+         object-fit: contain;
+         align-items: center;
+         display: flex;
+         justify-content: center;
+         width: fit-content;
+          // height: 250px;
+           // 
+            & img{
+                border-radius: 5px;
+                box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.2);
+                width: 260px;
+                height: 260px;
+                
+                @include tablet{
+                    width: 450px;
+                    height:450px;
+                }
+                @include mobile{
+                    width: 340px;
+                    height: 340px;
+                }
+                   
+            }
+        }
+        &-col2{
+            display: flex;
+            margin-left: 30px;
+            width: 60%;
+            .storiesContent{
+                p{
+                    font-size: 1rem;
+                    font-weight: 300;
+                    line-height: 1.7;
+                    color: $--lead;
+                }
+            }
+           a{
+               text-decoration: none;
+           }
+            @include tablet{
+                margin: 0;
+              max-width: 450px;
+              width: 100%;
+
+            }
+            @include mobile{
+                margin: 0;
+                max-width: 340px;
+                width: 100%;
+                
+                padding: 0;
+            }
+
+            .authorProfile{
+                padding: 20px 0px;
+                display: flex;
+                &-col1{
+                    border-radius: 50%;
+                    margin-right: 20px;
+                    & img{
+                        box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.2);
+                   
+                    }
+                }
+            }
+
+        }
+        
+    }
+}
+
+.storiesTitle{
+    cursor: pointer;
+    opacity: 0.9;
+    &:hover{
+        opacity: 1;
+    }
+}

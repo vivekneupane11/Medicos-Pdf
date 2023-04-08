@@ -1,0 +1,112 @@
+
+@import '../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.income-wrapper{
+    padding: 0 40px 0 30px;
+    &-heading{
+        border-top: 4px solid #0f0e0e;
+        font-size: 24px;
+        font-weight: 800;
+        color: #0f0e0e;
+        font-family: 'Nunito';
+        border-bottom: 1px solid gray;
+        padding: 10px 0;
+
+    }
+    .income{
+        
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap:40px ;
+      padding: 20px 0;
+     // border-bottom: 1px solid black;
+        @include mobile{
+            display: block;
+        }
+    }
+    &-content{
+        margin: 10px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+         @include mobile{
+             flex-direction: column;
+             margin-bottom: 30px;
+         }
+        
+        &-col1{
+           
+            width: 40%;
+            @include mobile{
+                width: 100%;
+            }
+
+            &-img{
+                border-radius: 5px;
+                width: 90%;
+                height:200px;
+                background-color: rgba(0,0,0,.1);
+                background-blend-mode: overlay;
+                background-size: cover;
+                border: none;
+                background-position: center center;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                position: relative;
+                @include mobile{
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+                &::after{
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    background:white;
+                    border-width: 0;
+                    border-style: solid;
+                    display: block;
+                   border-color: $--primary #fff #fff  $--primary;
+                   transition: all 0.25s linear;
+                }
+                &:hover{
+                    transition: all .25s linear;
+                    background-color: rgba(0,0,0,.3);
+                    &::after{
+                        border-width: 20px;
+                        transition: all 0.25s linear;
+                    }
+                }
+            }
+
+        }
+        &-col2{
+            width: 60%;
+            @include mobile{
+                width: 100%;
+            }
+            &-head{
+                margin: 10px 0;
+                font-size: 20px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                color: #0f0e0e;
+                cursor: pointer;
+                &:hover{
+                    color: $--primary;
+                }
+            }
+            &-tag{
+                display: flex;
+                //margin-right: 10px;
+            }
+        }
+    }
+}
+.article-income-clamText{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: rgba(117, 117, 117, 1);
+}

@@ -1,0 +1,37 @@
+@import "base/base";
+
+// import abstracts
+
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+//import components
+@import "components/carousal";
+@import "components/headnav";
+@import "components/intro";
+@import "components/analytics";
+@import "components/blog";
+@import "components/paidplan";
+@import "../../components/footer/footer";
+@import "../../components/global/alert/alert";
+@import "../../components/global/toast/toast";
+@import "../../components/global/label/label";
+@import "../../components/global/pagination/pagination";
+@import "../../components/global/progressBar/progressBar";
+@import "../../components/global/tabs/tab";
+@import "../../components/global/slider/slider";
+
+
+@import"../../components/global/navbar/navbar";
+//@import"../../components/global/paragraphs/paragraphs";
+// @import"../../pages/BookDetails/component/reviews/reviews"
+
+// @import"../../components/navbar/navbar";
+
+// @import"../../components/navbar/navbar";
+//@import "../../pages/BookDetails/component/reviews/reviews"
+
+
+
+
+

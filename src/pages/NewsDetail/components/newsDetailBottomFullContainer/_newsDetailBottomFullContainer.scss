@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+
+
+.newsDetailBottomFullContainer-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 30px;
+    @include tablet{
+      flex-direction: column;
+    }
+    @include mobile{
+       flex-direction: column;
+   }
+    &-left{
+     width: 65%;
+     display: flex;
+     flex-direction: column;
+     @include tablet{
+      width: 100%;
+    }
+    @include mobile{
+      width: 100%;
+   }
+     &-para1{
+        font-family: 'Rubik';
+        font-size: 16px;
+        line-height: 1.75;
+        color: #333;
+        margin-bottom: 20px;
+    }
+     &-futureFocused{
+         &-head{
+            font-family: 'Nunito';
+            font-weight: 800;
+            font-size: 24px;
+            color: #0f0e0e;
+            border-bottom: 1px solid #e0dede;
+            padding-bottom: 20px;
+         }
+         &-para1{
+            font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+            margin-top: 20px;
+         }
+         &-images1{
+             width: 100%;
+             display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+             &-img{
+                 position: relative;
+                 height: 200px;
+                 width: 48%;
+                 border-radius: 5px;
+                //  background-color: rgba(0,0,0,.1);
+                //  background-blend-mode: overlay;
+                 background-size: cover;
+                 border: none;
+                 background-position: center center;
+                 background-repeat: no-repeat;
+                 &-bottom{
+                   position: absolute;
+                   bottom: 0;
+                   left: 0;
+                   height: 40px;
+                   width: 100%;
+                   background-color: rgba(0,0,0,.1);
+                   color: #fff;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                 }
+             }
+         }
+         &-images2{
+            position: relative;
+            height: 400px;
+            width: 100%;
+            border-radius: 5px;
+            // background-blend-mode: overlay;
+            background-size: cover;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+            &-bottom{
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              height: 40px;
+              width: 100%;
+              background-color: rgba(0,0,0,.1);
+              color: #fff;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+         }
+         &-para2{
+            
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin:20px 0;
+            &-col1{
+               width: 48%;
+               font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+            }
+            &-col2{
+                width: 48%;
+                font-family: 'Rubik';
+                font-size: 15px;
+                line-height: 1.75;
+                color: #333;
+            }
+
+         }
+         &-para3{
+            font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+            margin-bottom: 20px;
+         }
+     }
+     &-morefromHype{
+         width: 100%;
+         &-top{
+            width: 100%;
+            &-head1{
+               font-size: 24px;
+               font-family: 'Nunito';
+               font-weight: 800;
+               color: #0f0e0e;
+           }
+           &-head2{
+               font-size: 12px;
+               font-family: 'Nunito';
+               font-weight: 500;
+               color: #0f0e0e;
+               margin: 10px 0;
+           }
+         }
+         &-para{
+            font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+            margin-bottom: 20px;
+         }
+         &-head{
+             border-top: 3px solid black;
+             border-bottom: 1px solid #e0dede;
+             padding: 40px;
+             font-family: 'Nunito';
+             font-weight: 800;
+             font-size: 28px;
+             color: #333;
+         }
+         &-para2{
+            font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+            margin: 20px 0;
+            ul{
+                margin-left: 50px;
+                margin-top: 10px;
+                li{
+                    font-family: 'Rubik';
+                    font-size: 15px;
+                    line-height: 1.75;
+                    color: #333;
+                    margin-bottom: 10px;
+                    font-weight: 400;
+                 }
+            }
+         }
+        
+     }
+     &-alsoRead{
+         width: 100%;
+         &-para{
+            font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+            margin-bottom: 20px;
+         }
+     }
+     &-blogging{
+        &-head{
+           border-bottom: 1px solid #e0dede;
+           padding: 40px 0;
+           font-family: 'Nunito';
+           font-weight: 800;
+           font-size: 24px;
+           color: #333;
+        }
+        &-para{
+           font-family: 'Rubik';
+           font-size: 15px;
+           line-height: 1.75;
+           color: #333;
+           margin: 20px 0;
+        }
+    }
+     
+    }
+
+    &-right{
+     width: 30%;
+     display: flex;
+     flex-direction: column;
+     position: sticky;
+     top: 100px;
+     align-self: flex-start;
+     @include tablet{
+      width: 100%;
+    }
+    @include mobile{
+      width: 100%;
+   }
+
+    &-inhypeSponsored{
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       &-head{
+        font-size: 22px;
+        font-family: 'Nunito';
+        font-weight: 800;
+        color: #0f0e0e;
+        border-bottom:1px solid #e0dede;
+        padding-bottom:20px ;
+       }
+    }
+    }
+}
+.newsDetailMoreFromInhype_loading{
+   padding-top: 200px;
+   padding-bottom: 200px;
+}

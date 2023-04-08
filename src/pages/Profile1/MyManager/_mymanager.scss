@@ -1,0 +1,33 @@
+@import '../../../App.scss';
+.myManager-wrapper{
+    border: 1px solid #ebecf0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    @include mobile{
+        display: none;
+    }
+    @include tablet{
+        margin-top: 20px;
+    }
+    &-heading{
+       
+
+
+    }
+    &-details{
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+
+        &-left{
+            margin-right: 10px;
+
+        }
+        &-right{
+            display: flex;
+            flex-direction: column;
+
+        }
+    }
+}

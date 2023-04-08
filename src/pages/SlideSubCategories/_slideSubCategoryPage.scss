@@ -1,0 +1,30 @@
+@import "../../App.scss";
+
+.AllSubCategoriesSLides-heading{
+    padding: 20px 30px;
+    span{
+        text-transform: uppercase;
+        font-size: 32px;
+        font-weight: 600;
+    }
+}
+.AllSubCategoriesSLides-container{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    @include mobile{
+        justify-content: center;
+        align-items: center;
+    }
+   
+    &-link{
+        
+        &-card{
+          padding: 30px;
+
+        }
+    }
+}
+.AllSubCategoriesSLides-pagination{
+    text-align: center;
+}

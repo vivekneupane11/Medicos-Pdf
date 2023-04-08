@@ -1,0 +1,93 @@
+.analytics-container{
+    width: 100%;
+    @include flexCol;
+    padding-bottom:80px;
+    &-rowTop{
+        @include flexCenter;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 180px;
+        @include tablet{
+            padding: 50px 120px;
+        }
+        @include mobile{
+            padding: 50px 90px;
+        }
+       
+        &-Para{
+            height: 30px;
+            width: 80px;
+            background-color: #5e72e4;
+            @include flexCol;
+            justify-content: center;
+            border-radius: 20px;
+            p{
+             color: $--white;
+            }
+        }
+        h1{
+           padding: 30px;
+           color: rgb(50,50,93);
+           font-size: 30px;
+        }
+        h3{
+           
+            color:rgb(82,95,127);
+            font-size: 20px;
+        }
+    }
+    &-rowBottom{
+        // background-color: yellow;
+      width: 100%;
+      display: flex;
+      padding: 0 180px;
+      @include tablet{
+          padding: 0 120px;
+      }
+      @include mobile{
+        padding: 0 80px;
+       flex-direction: column;
+     }
+     
+      &-container{
+         @include flexCol;
+          color: #2643e9;
+          padding: 20px;
+         
+          &-icon{
+              height: 60px;
+              width: 60px;
+              background-color: rgba(138,152,235,.5);
+             
+              @include flexCenter;
+              border-radius: 50%;
+              box-shadow: 0px 3px 39px -15px rgba(0,0,0,0.75);
+              -webkit-box-shadow: 0px 3px 39px -15px rgba(0,0,0,0.75);
+              -moz-box-shadow: 0px 3px 39px -15px rgba(0,0,0,0.75);
+          }
+          h1{
+             font-size: 20px;
+             padding-top: 20px;
+          }
+          p{
+            font-size: 14px;
+            color: rgb(117,127,153) ;
+            padding: 20px 0;
+            line-height: 2;
+          }
+          &-next{
+              display: flex;
+              align-items: center;
+              h2{
+                font-size: 16px;
+                
+              }
+              .arrow{
+               margin-left: 4px;
+              }
+
+          }
+      }
+    }
+}

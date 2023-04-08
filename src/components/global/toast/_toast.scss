@@ -1,0 +1,174 @@
+@import "../../../App.scss";
+
+
+@mixin toastContainer($backgroundColor) {
+    @include flexColCenter;
+    display: flex;
+    background-color: $backgroundColor;
+    width: 100%;
+    max-width: 500px;
+    max-height: 110px;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 5px 5px 19px rgba(128, 128, 128, 0.3);
+}
+
+.toast-wrapper {
+    // background-color: yellow;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    @include flexCenter;
+
+    @include tablet {
+        @include flexColCenter;
+        padding: 100px 60px 100px 120px;
+    }
+
+    @include mobile {
+        @include flexColCenter;
+        padding: 100px 20px;
+    }
+
+    &-container {
+        &-default {
+            @include toastContainer($--white)
+        }
+
+        &-primary {
+            @include toastContainer($--primary)
+        }
+
+        &-danger {
+            @include toastContainer($--danger)
+        }
+
+        &-dark {
+            @include toastContainer($--dark)
+        }
+
+        &-light {
+            @include toastContainer($--light)
+        }
+
+        &-lighter {
+            @include toastContainer($--lighter)
+        }
+
+        &-teal {
+            @include toastContainer($--teal)
+        }
+
+        &-gray-dark {
+            @include toastContainer($--gray-dark)
+        }
+
+        &-white {
+            @include toastContainer($--white)
+        }
+
+        &-orange {
+            @include toastContainer($--gray-dark)
+        }
+
+        &-header {
+            @include flexRowSbCenter;
+            // background-color: red;
+            // height: 40px;
+            width: 100%;
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, .05);
+
+            &-profile {
+                @include flexRowCenter;
+                // background-color: red;
+                // color: #ffffff;
+
+                &-text {
+                    color: #8898aa;
+                    margin: 0px 7px;
+                    font-size: 19px;
+                    font-weight: bold;
+                    &-white{
+                        color: white;
+                        margin: 0px 7px;
+                        font-size: 19px;
+                        font-weight: bold;
+                    }
+                }
+
+                &-picture {
+                    // background-color: yellow;
+                    border-radius: 500px;
+                    overflow: hidden;
+                    height: 28px;
+                    max-height: 28px;
+                    // width: 34px;
+                    object-fit: contain;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+            }
+
+            &-close {
+                @include flexRowCenter;
+                // background-color: red;
+                cursor: pointer;
+                color: #ffffff;
+
+                :hover {
+                    color: #c5c5c5;
+                }
+
+                &-text {
+                    color: #8898aa;
+                    margin: 0px 18px;
+                    font-size: 19px;
+                    font-weight: lighter;
+                    &-white {
+                        color: #ffffff;
+                        margin: 0px 18px;
+                        font-size: 19px;
+                        font-weight: lighter;
+                    }
+                }
+
+                &-icon {
+                    color: #8898aa;
+                    font-size: 19px;
+                    font-weight: lighter;
+                }
+            }
+        }
+
+        &-message {
+            @include flexRowStartCenter;
+            width: 100%;
+            // height: 100%;
+            padding: 0px 15px;
+            // background-color: red;
+
+            flex: 1;
+
+            &-text {
+                color: #8898aa;
+                font-weight: lighter;
+                font-size: 22px;
+                text-align: left;
+                &-white {
+                    color: #ffffff;
+                    font-weight: lighter;
+                    font-size: 22px;
+                    text-align: left;
+                }
+            }
+          
+
+        }
+    }
+}

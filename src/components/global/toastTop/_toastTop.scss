@@ -1,0 +1,43 @@
+@import '../../../App.scss';
+.toastTop_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    background-color: #dff0d8;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    &_mid{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        &_icon{
+            border: 1px solid $--primary;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            &_tick{
+                color: $--primary;
+            }
+        }
+        &_para{
+           margin-left:15px ;
+           font-size: 20px;
+           color: #333333;
+        }
+
+    }
+    &_cancelIcon{
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        color: #333333;
+       
+
+    }
+}
+.hide_toastTop{
+    display: none;
+}

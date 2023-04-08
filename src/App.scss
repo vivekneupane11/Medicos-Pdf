@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+@import './components/presets';
+// @import "base/base";
+
+// import abstracts
+
+@import "./components/abstracts/mixins";
+@import "./components/abstracts/variables";
+
+//import components
+@import "./components/global/pagination/pagination";
+@import "./components/global/progressBar/progressBar";
+@import "./components/global/tabs/tab";
+@import "./components/global/slider/slider";
+
+.main-container{
+    width: 100%;
+}
+
+
+

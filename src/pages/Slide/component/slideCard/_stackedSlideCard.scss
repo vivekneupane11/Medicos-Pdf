@@ -1,0 +1,111 @@
+@import "../../../../App.scss";
+
+.slide {
+
+    background-color: rgb(163, 126, 126);
+    background-color: transparent;
+    width: 250px;
+    height: 100%;
+    padding-bottom: 20px;
+    //text-align: center;
+
+    .slide-image {
+
+        position: relative;
+        //background-color: red !important;
+        top: 20px;
+        display: block;
+        height: 230px;
+        width: 250px;
+
+
+        &:hover {
+            //top: 10px;
+            // transform: scale(1,1);
+
+            .slide-image1,
+            .slide-image2 {
+                //display: none;
+                transform: scaleY(0);
+                transition: 0.8s ease-in-out;
+
+
+            }
+        }
+
+        .slide-image1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scaleX(0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 230px;
+            width: 100%;
+        }
+
+        .slide-image2 {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            transform: scaleX(0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 230px;
+            width: 100%;
+
+        }
+
+        .slide-image3 {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 230px;
+            width: 100%;
+
+            &:hover {}
+
+        }
+
+        .slide_tooltip {
+            position: absolute;
+            background: white;
+            color: black;
+            padding: 5px;
+            white-space: nowrap;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            //transform: translateY(-220px);
+            top: 20px;
+            display: flex;
+            width: 40%;
+
+            .icon{
+                color: #1D264F;
+            }
+
+            p {
+                padding-left: 5px;
+                color: #1D264F;
+                font-weight: 500;
+                font-size: 15px;
+            }
+
+
+        }
+
+        .playbutton {
+            @include flexRowCenter;
+            // background-color: red;
+            position: absolute;
+            // top: 0;
+            left: 75px;
+            font-size: 100px;
+            color: #1D264F;
+            cursor: pointer;
+        }
+    }
+
+}

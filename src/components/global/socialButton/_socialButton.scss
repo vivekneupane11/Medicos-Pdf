@@ -1,0 +1,92 @@
+@import "../../../App.scss";
+
+.Social__button{
+     //display: inline-block;
+    // color: black;
+     font-size: 1em;
+     margin: 1em;
+    // padding: 0.25em 0.8em;
+     border-radius: 3px;
+     opacity: .9;
+     border: 1px solid;
+    // text-align: center;
+    // height: 40px;
+    @include flexRowCenter;
+    padding: 10px 20px;
+    .icon{
+        margin-right: 5px;
+    }
+    &.facebook{
+        @include flexRowCenter;
+        background-color: #3b5999;
+        color: #fff;
+        border-color: #3b5999;
+        
+    }
+    &.twitter{
+        background-color:  #1da1f2;
+        color: #fff;
+        border-color: #1da1f2;
+        
+    }
+    &.instagram{
+        background-color: #e4405f;
+        color: #fff;
+        border-color:#e4405f ;
+    }
+    &.git{
+        background-color: #222;
+        color: #fff;
+        border-color:#222 ;
+    }
+    &.pintrest{
+        background-color: #bd081c;
+        color: #fff;
+        border-color: #bd081c;
+    }
+    &.youtube{
+        background-color: #cd201f;
+        color: #fff;
+        border-color:#cd201f ;
+    }
+    &.vimeo{
+        background-color: #1ab7ea;
+        color: #fff;
+        border-color:#1ab7ea ;
+    }
+    &.slack{
+        background-color: #3aaf85;
+        color: #fff;
+        border-color:3aaf85 ;
+    }
+    &.dribble{
+        background-color: #ea4c89;
+        color: #fff;
+        border-color:#ea4c89 ;
+    }
+    &.reddit{
+        background-color: #ff4500;
+        color: #fff;
+        border-color:#ff4500 ;
+    }
+    &.tumblr{
+        background-color: #35465c;
+        color: #fff;
+        border-color:#35465c ;
+    }
+    &.linkedin{
+        background-color: #0077b5;
+        color: #fff;
+        border-color:#0077b5 ;
+    }
+      
+
+}
+.Social__button:hover{
+    transform: translateY(-1px);
+    transition: translateY 0.2s  ease-in-out;
+    opacity: 1;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.2);
+}
+

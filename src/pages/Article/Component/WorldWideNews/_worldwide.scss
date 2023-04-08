@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+
+.worldwide-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    padding: 0 40px 0 30px;
+    &-head1{
+        padding: 10px 0 0;
+        font-size: 24px;
+        font-family: 'Nunito';
+        font-weight: 800;
+        color: #0f0e0e;
+        border-top: 4px solid #0f0e0e;
+       
+    }
+    &-head2{
+        text-transform: uppercase;
+        font-size: 12px;
+        font-family: 'Nunito';
+        font-weight: 800;
+        color: #0f0e0e;
+        padding: 0px 0 10px;
+       border-bottom: 1px solid gray;
+    }
+    &-imagesContainer{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 20px 0 10px;
+        &-bgImg{
+            margin: 10px 0;
+            width: 32%;
+            height: 380px;
+            position: relative;
+            border-radius: 5px;
+            background-color: rgba(0,0,0,.3);
+            background-blend-mode: overlay;
+            background-size: cover;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+            @include tablet{
+                width: 48%;
+            }
+            @include mobile{
+                width: 100%;
+                height: 300px;
+            }
+            &-description{
+                transition: .25s;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                padding:50px;
+                @include mobile{
+                    padding: 30px;
+                }
+                &-heading{
+                    font-size: 22px;
+                    font-family: 'Nunito';
+                    font-weight: 800;
+                    margin: 20px 0;
+                    color:#fff;
+                    a{
+                        text-decoration: none;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        &-bgImg:hover{
+            background-color: rgba(0,0,0,.5);
+            .worldwide-wrapper-imagesContainer-bgImg-description{
+                transform: translateY(-10px);
+                transition: transform .25s;
+            }
+        }
+    }
+}
+.clamped_text{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #fff;
+}

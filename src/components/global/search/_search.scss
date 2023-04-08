@@ -1,0 +1,53 @@
+@import "../../../App.scss";
+
+.search-container {
+    @include flexRowCenter;
+    // background-color: yellow;
+    // height: 315px;
+    // width: 100%;
+    // background-image: url("../../../assets/images/searchBg.png");
+    // background-size: 100% 100%;
+    // background-repeat: no-repeat;
+    width: 100%;
+    // display: flex;
+    @include mobile{
+        width: 86%;
+    }
+    &-search-box {
+        @include flexRowCenter;
+        height: 53px;
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+        border-radius: 50px;
+        .search-loading-wrapper{
+            position: absolute;
+            right: 0;
+            margin-right: 10px;
+        }
+        input {
+            border-radius: 100px;
+            // background-color: #e5e5e5;
+            box-shadow: 2px 5px 15px rgba(128, 128, 128, 0.3);
+            text-indent: 55px;
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border: none;
+       
+        }
+
+        p {
+            color: #808080;
+            font-size: 19px;
+        }
+
+        .icon {
+            color: #c5c5c5;
+            font-size: 21px;
+            margin-right: 25px;
+            position: absolute;
+            left: 25px;
+        }
+    }
+}

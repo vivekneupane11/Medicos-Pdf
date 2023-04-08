@@ -1,0 +1,165 @@
+.paidPlan{
+    width: 100%;
+    background:url('../../images/paidbg.svg');
+    &-container{
+        width: 100%;
+        height: auto;
+        display: flex;
+        padding: 50px 160px 50px 180px;
+        @include tablet{
+            padding: 50px 100px 50px 120px;
+        }
+        @include mobile{
+           flex-direction: column;
+           width: 100%;
+          padding: 50px 40px;
+        }
+       
+        &-col1{
+            width: 30%;
+           @include flexCol;
+            // margin-top: 50px;
+            @include mobile{
+                width: 100%;
+             }
+            h1{
+                color: rgb(50,50,93);
+               font-size: 30px;
+               line-height: 2;
+               @include tablet{
+                line-height: 1;
+              }
+            }
+            &-button{
+                margin: 20px 0;
+            }
+            &-button button{
+               padding: 10px;
+               border-radius: 5px;
+               border-style: none;
+               background-color: $--blue;
+               color: white;
+               box-shadow: 3px 3px 9px -3px rgba(0,0,0,0.75);
+                -webkit-box-shadow: 3px 3px 9px -3px rgba(0,0,0,0.75);
+                -moz-box-shadow: 3px 3px 9px -3px rgba(0,0,0,0.75);
+                
+              
+            }
+            &-button button:nth-child(2){
+                margin-left: 10px;
+                padding: 10px;
+                border-radius: 5px;
+                border-style: none;
+                color: $--blue;
+                background-color: white;
+                box-shadow: 3px 3px 9px -3px rgba(0,0,0,0.75);
+                -webkit-box-shadow: 3px 3px 9px -3px rgba(0,0,0,0.75);
+                -moz-box-shadow: 3px 3px 9px -3px rgba(0,0,0,0.75);
+             }
+
+            p{
+                font-size: 20px;
+                line-height: 2;
+                color:rgb(82,95,127);
+                @include tablet{
+                    line-height: 1.5;
+                }
+            }
+        }
+        &-col2{
+            width: 70%;
+            display: flex;
+            justify-content: space-evenly;
+           
+            @include mobile{
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+             }
+            &-items{
+                width: 40%;
+                height: 400px;
+                @include flexCol;
+                text-align: center;
+                background-color: white;
+                box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.8);
+                -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.8);
+                -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.8);
+                @include tablet{
+                    width: 48%;
+                }
+                @include mobile{
+                //    justify-content:center;
+                    width: 80%;
+                    margin-bottom: 20px;
+                 }
+
+                h1{
+                    width: 100%;
+                    border-bottom: 1px solid $--light;
+                    padding: 15px 30px;
+                    color: rgb(50,50,93);
+                    font-size: 20px;
+                }
+
+                &-mid{
+                    font-size: 16px;
+                    font-weight: 500;
+
+                    &-1{
+                        padding: 30px 0;
+                        list-style: none;
+                        color: #525f7f;
+                        &-1{
+                             font-size: 40px;
+                        }
+                        &-2{
+                            padding: 10px;
+                        }
+                    }
+
+                    &-2{
+                        padding:10px;
+                        list-style: none;
+                        &-1{
+                            padding: 10px;
+                            color:rgb(82,95,127);
+                            span{
+                                color:$--primary;
+                            }
+
+                        }
+                        &-2{
+                            padding: 10px;
+                            color:rgb(82,95,127);
+                            span{
+                                color:$--primary;
+                            }
+                            
+                        }
+                        &-3{
+                            padding: 10px;
+                            color:rgb(82,95,127);
+                            span{
+                                color:$--primary;
+                            }
+                            
+                        }
+
+                    }
+                }
+               
+           
+                p{
+                    width: 100%;
+                    border-top: 1px solid $--light;
+                    padding: 15px 30px;
+                    color: $--blue;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+   

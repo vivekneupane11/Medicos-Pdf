@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+
+.selected-wrapper{
+    width: 100%;
+    padding: 0 40px 20px 30px;
+    margin-top: 20px;
+    &-heading{
+        font-size: 24px;
+        font-weight: 800;
+        font-family: 'Nunito';
+        color: #0f0e0e;
+        padding: 10px 0;
+        border-bottom: 1px solid gray;
+        border-top: 4px solid #0f0e0e;
+    }
+    &
+    &-content{
+        padding: 20px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        @include tablet {
+            flex-direction: column;
+        }
+        @include mobile{
+            display: block;
+        }
+        &-col1{
+            width: 50%;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            &-content{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                @include mobile{
+                    flex-direction: column;
+                    margin-bottom: 30px;
+                }
+                &-image{
+                    height: 200px;
+                    width: 100%;
+                    border-radius: 5px;
+                    background-size: cover;
+                    background-color: rgba(0,0,0,.1);
+                    background-blend-mode: overlay;
+                    cursor: pointer;
+                    position: relative;
+                    @include mobile{
+                        margin-bottom: 20px;
+                    }
+                    &::after{
+                        transition:.25s linear;
+                        position: absolute;
+                        content: "";
+                        bottom: 0;
+                        right: 0;
+                        background:white;
+                        border-width: 0px;
+                        border-style: solid;
+                      
+                        border-color: $--primary #fff #fff  $--primary;
+                       
+                    }
+                    &:hover{
+                        background-color: rgba(0,0,0,0.2);
+                    transition: background-color 0.25s linear;
+                        &::after{
+                            border-width: 20px;
+                        transition: .25s linear;
+                        }
+                    }
+                    // @include mobile{
+                    //     display: none;
+                    // }
+                }
+                &-description{
+                    width: 55%;
+                    @include mobile{
+                        width: 100%;
+                    }
+                    .tags{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: row;
+                    }
+                    h3{
+                        margin: 10px 0;
+                        font-size: 18px;
+                        font-family: 'Nunito';
+                        color: #0f0e0e;
+                        cursor: pointer;
+                        font-weight: 800;
+                        width: fit-content;
+                        &:hover{
+                            color:$--primary ;
+                        }
+                    }
+                    p{
+                      
+                        margin: 10px 0;
+                    }
+                }
+            }
+
+        }
+        &-col2{
+            width: 45%;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            &-imagesContainer{
+                width: 100%;
+               
+                &-bgImg{
+                    //margin: 15px 0;
+                    margin-bottom: 10px;
+                    width: 100%;
+                    height: 380px;
+                    position: relative;
+                    border-radius: 5px;
+                    background-color: rgba(0,0,0,.3);
+                    background-blend-mode: overlay;
+                    background-size: cover;
+                    border: none;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    @include tablet{
+                        width: 100%;
+                    }
+                    @include mobile{
+                        width: 100%;
+                        height: 350px;
+                    }
+                    &-description{
+                        transition: .25s;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        padding:50px;
+                        @include mobile{
+                            padding: 20px;
+                        }
+                        &-heading{
+                            font-size: 22px;
+                            font-family: 'Nunito';
+                            font-weight: 800;
+                            margin: 20px 0;
+                            // color:#0f0e0e;
+                            color: #fff;
+                            @include mobile{
+                                margin: 10px 0;
+                            }
+                            a{
+                                text-decoration: none;
+                                color: #fff;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                &-bgImg:hover{
+                    background-color: rgba(0,0,0,.5);
+                    .selected-wrapper-content-col2-imagesContainer-bgImg-description{
+                        transform: translateY(-10px);
+                        transition: transform .25s;
+                    }
+            }
+        }
+
+        }
+    }
+}
+
+.selected-link{
+    text-decoration: none;
+    height: 100%;
+    width: 40%;
+    @include mobile{
+        width: 100%;
+    }
+}

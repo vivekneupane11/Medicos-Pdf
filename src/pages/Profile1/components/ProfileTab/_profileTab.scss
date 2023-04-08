@@ -1,0 +1,68 @@
+@import '../../../../App.scss';
+
+.profileTab-wrapper{
+    display: flex;
+    background-color: #f8f7fc;
+    justify-content: space-between;
+    align-items: center;
+    //@at-root: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 100%;
+    padding: 5px;
+    @include mobile{
+        width: 100%;
+        display: flex;
+        //flex-wrap: wrap;
+
+    }
+    
+    &-item{
+        text-align: center;
+        padding: 10px 40px;
+        cursor: pointer;
+        p{
+            @include mobile{
+                font-size: 10px;
+            }
+           
+            
+        }
+        
+        @include mobile{
+            padding: 5px 10px;
+
+        }
+        @include tablet{
+            padding: 10px 30px;
+        }
+        &-active{
+           // padding: 8px 38px;
+           text-align: center;
+           padding: 10px 40px;
+            background-color:white;
+            cursor: pointer;
+            color: black;
+            //border: 1px solid #ebecf0;
+            box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.1);
+            border-radius: 5px;
+            p{
+                @include mobile{
+                    font-size: 10px;
+                }
+               
+                
+            }
+            
+            @include mobile{
+                padding: 5px 10px;
+    
+            }
+            @include tablet{
+                padding: 10px 30px;
+            }
+            
+        }
+
+    }
+}

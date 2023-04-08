@@ -1,0 +1,102 @@
+@import '../../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.weekend-wrapper{
+    width: 100%;
+    padding: 0px 40px 0px 30px;
+    
+   &-heading{
+        font-family: 'Nunito';
+       margin-bottom: 10px;
+       font-weight: 800;
+       font-size: 24px;
+   }
+    &-content{
+        border-bottom: 4px solid #0f0e0e;
+        border-top: 1px solid gray;
+        padding: 20px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        @include tablet{
+            flex-direction: column;
+        }
+        @include mobile{
+            flex-direction: column;
+        }
+        &-col1{
+            width: 35%;
+            @include tablet{
+                margin-bottom: 10px;
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            &-image{
+                height: 300px;
+                width: 100%;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                background-size: cover;
+                background-repeat: no-repeat;
+
+            }
+            &-heading{
+                width: 100%;
+                margin: 10px 0;
+                font-weight: 800;
+                font-size: 22px;
+                font-family: 'Nunito';
+                color: #0f0e0e;
+                cursor: pointer;
+                &:hover{
+                    color: #326891;
+                }
+
+            }
+            p{
+                margin: 10px 0;
+              
+            }
+        }
+        &-col2{
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            //justify-content: space-between;
+            &-content{
+                
+                width: 45%;
+                @include tablet{
+                    width: 100%;
+                }
+                @include mobile{
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+                &-heading{
+                    margin: 10px 0;
+                    font-weight: 800;
+                    font-size: 22px;
+                    font-family: 'Nunito';
+                    color: #0f0e0e;
+                    cursor: pointer;
+                    &:hover{
+                        color: #326891;
+                    }
+                }
+            }
+           
+        }
+    }
+}

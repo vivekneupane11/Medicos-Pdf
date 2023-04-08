@@ -1,0 +1,43 @@
+@import "../../../../App.scss";
+
+.book-card-container {
+    @include flexColCenter;
+    width: 206px;
+    text-align: center;
+
+    &-content {
+        padding-top: 15px;
+
+        // background-color: yellow;
+        p {
+            margin: 10px 0px;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        &-rating {
+            @include flexRowCenter;
+            display: block ruby;
+
+            .icon {
+                margin-right: 5px;
+                color: yellow;
+                //    background-color: white;
+            }
+
+            .rating {
+                //    background-color: white;
+                width: auto;
+            
+            }
+        }
+    }
+
+    &-img {
+        height: 220px;
+        width: 198px;
+      
+    }
+}

@@ -1,0 +1,50 @@
+.back-video{
+    // position:absolute;
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    z-index: -1;
+    clip-path: polygon(100% 0, 100% 82%, 11% 100%, 0 100%, 0 0);
+  
+
+}
+.text-container{
+    position: absolute;
+    @include flexCenter;
+    top: 250px;
+    flex-direction: column;
+    width: 100%;
+    color:$--white;
+    padding: 0 60px;
+    @include mobile{
+    //    padding: ;
+    }
+    .text-container-top{
+        text-align: center;
+        @include flexCenter;
+        flex-direction: column;
+        h1{
+          
+            font-size: 80px;
+        }
+        p{
+            margin: 1rem 0;
+            font-size: 40px;
+        }
+    }
+    &-bottom{
+    @include flexCenter;
+    &-playIcon{
+        transform: translateX(30px);
+    }
+    button{
+        background-color: $--orange;
+        padding: 15px 25px 15px 40px;
+        border-style: none;
+        border-radius: 5px;
+        text-align: center;
+        color: $--white;
+    }
+    }
+}
+

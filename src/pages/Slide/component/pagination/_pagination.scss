@@ -1,0 +1,123 @@
+@mixin activeButton($color) {
+    @include flexCenter;
+    text-align: center;
+    cursor: pointer;
+    height: 47px;
+    width: 47px;
+    border-radius: 500px;
+    background-color: $color;
+
+    &-p {
+        color: #ffffff;
+        font-weight: normal;
+        font-size: 24px;
+        font-family: "Roboto", sans-serif;
+    }
+}
+
+.pagination-wrapper {
+    @include flexRowCenter;
+    // background-color: yellow;
+    width: auto;
+    height: 110px;
+    display: inline-flex;
+    padding: 18px 0px;
+
+    // display: block ruby;
+    @include tablet {
+        @include flexColCenter;
+        padding: 100px 60px 100px 120px;
+    }
+
+    @include mobile {
+        @include flexColCenter;
+        padding: 100px 20px;
+    }
+
+    &-container {
+        @include flexSbCenter;
+        padding: 15px 25px;
+        // background-color: red;
+        border-radius: 5px;
+
+        &-pages {
+            @include flexRowCenter;
+            width: auto;
+            // background-color:red
+        }
+
+        &-p {
+            color: gray;
+            font-weight: normal;
+            font-size: 24px;
+            font-family: "Roboto", sans-serif;
+        }
+
+        &-button-icon {
+            color: gray;
+            // background-color: red
+        }
+
+        &-button-circle {
+            @include flexCenter;
+            text-align: center;
+            cursor: pointer;
+            margin: 0px 4px;
+            // padding: 25px;
+            height: 45px;
+            width: 45px;
+            border: 0.1px solid lightgray;
+            border-radius: 50%;
+            // border-style: solid;
+            // border-width: 1px;
+            // border-color: lightgray;
+
+            &:hover {
+                background-color: lightgray
+            }
+
+            // background-color: red;
+        }
+
+        &-button-circle-active {
+            @include activeButton(blue);
+
+            &-primary {
+                @include activeButton($--primary)
+            }
+
+            &-danger {
+                @include activeButton($--danger)
+            }
+
+            &-dark {
+                @include activeButton($--dark)
+            }
+
+            &-light {
+                @include activeButton($--light)
+            }
+
+            &-lighter {
+                @include activeButton($--lighter)
+            }
+
+            &-teal {
+                @include activeButton($--teal)
+            }
+
+            &-gray-dark {
+                @include activeButton($--gray-dark)
+            }
+
+            &-white {
+                @include activeButton($--white)
+            }
+
+            &-orange {
+                @include activeButton($--gray-dark)
+            }
+        }
+
+    }
+}

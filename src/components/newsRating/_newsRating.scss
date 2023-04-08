@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+.newsRating-wrapper{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   p{
+       font-family: 'Nunito';
+       font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+   }
+}

@@ -1,0 +1,38 @@
+@import '../../App.scss';
+  .circle-background,
+  .circle-progress {
+    fill: none;
+  }
+  
+  .circle-background {
+    stroke: #ddd;
+      // stroke: blue;
+
+  }
+  
+  .circle-progress {
+    // stroke: $--primary;
+    stroke: gray;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: .2s ease;
+  }
+  
+  .circle-text {
+    font-size: 25px;
+    font-weight: bold;
+    // fill: $--primary;
+    fill:#ffff;
+  }
+
+  .circle-text-uploading{
+    // font-size: 25px;
+    font-weight: bold;
+    // fill: $--primary;
+    fill:#ffff;
+    
+  }
+
+.circularProgressBar-container{
+  
+}

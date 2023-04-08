@@ -1,0 +1,16 @@
+.SocialCard{
+    display: flex;
+    padding: 20px 0;
+    background-color: #172b4d ;
+   justify-content: center;
+   align-items: center;
+
+    &-1 ,&-2,&-3{
+        border-right: 1px solid white;
+        padding: 0px 20px;
+
+    }
+    &-4{
+        padding: 0px 20px;
+    }
+}

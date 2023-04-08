@@ -1,0 +1,107 @@
+@import '../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+.ourteam-wrapper{
+    width: 100%;
+    padding: 40px 0;
+   
+   
+
+    .ourteam-heading{
+       padding: 10px 50px;
+        display: flex;
+        align-items: center;
+        @include tablet{
+            padding: 10px 65px;
+        }
+        @include mobile{
+            padding:0 10px 10px;
+        }
+        .dropdown{
+            align-items: center;
+            margin-left: 7px;
+            color: $--blue;
+            font-size: 30px;
+            cursor: pointer;
+        }
+      
+    }
+    .ourteam{
+        background-color:lightblue ;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+       // padding: 0 50px;
+      
+
+        &-row{
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            @include tablet{
+                max-width: 50%;
+                width: 100%;
+            }
+           @include mobile{
+               width: 100%;
+           }
+           
+    
+            &-row1{
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                align-self: flex-start;
+                
+
+               .image{
+                  height: 280px ;
+                  width: 250px;
+               }
+               .image2{
+                   height:280px;
+                   width: 250px;
+                   position: absolute;
+                   opacity: 0;
+                   transition: all 0.5s ease-out;
+                   &:hover{
+                       
+                       opacity: 1;
+                       transition: all 0.5s ease-in;
+                   }
+               }
+                
+               
+            }
+            &-row2{
+                width: 100%;
+                display: flex;
+               justify-content: center;
+                align-items: center;
+                background-color: white;
+                padding: 10px 0;
+                text-align: center;
+                h6{
+                    font-size: 20px;
+                    font-family: 'Nunito';
+                    font-weight: 700;
+                    color: $--primary;
+                }
+                p{
+                    font-family: 'Rubik';
+                    font-size: 15px;
+                    color: #333;
+                    font-weight: 400;
+                }
+               
+                
+    
+            }
+
+        }
+       
+    }
+}

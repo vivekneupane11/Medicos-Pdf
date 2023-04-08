@@ -1,0 +1,153 @@
+@import "../../App.scss";
+.invoice-wrapper{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   // height: 100vh;
+   // background-color: lightgray;
+    padding: 50px 0px;
+    .invoice-card{
+        width: 70%;
+        box-shadow:  10px 15px 20px rgba(50,50,93,.2), 0 3px 6px rgba(0 ,0,0,.2);
+        padding: 20px 0px;
+        background-color: white;
+        position: relative;
+        @include tablet{
+            width: 80%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+
+        &-top{
+            width: 100%;
+            border-bottom: 1px solid lightgray;
+            padding: 0px 30px;
+            &-row {
+                width: 100%;
+                display: flex;
+                 justify-content: space-between;
+                 line-height: 1.5;
+                 align-items: center;
+                 padding: 20px 0px;
+                 @include mobile{
+                     flex-direction: column;
+                 }
+                 img{
+                     width: 100%;
+                 }
+                 &-col{
+                    width: 33.33%;
+                     word-wrap: break-word;
+                     @include mobile{
+                         width: 100%;
+                        // margin-bottom: 20px;
+                     }
+                    
+                 }
+                 &-col2{
+                    width: 25%;
+                    align-items: center;
+                   // margin-bottom: 20px;
+                    &-customer{
+                      @include mobile{
+                          margin-top: 20px;
+                          width: 100%;
+                      }
+                    }
+                    @include mobile{
+                        display: flex;
+                        width: 100%;
+                        // //align-items: center;
+                        // justify-content: center;
+                        flex-direction: column;
+                        
+                    }
+                    & .invoice-date{
+                        display: flex;
+                        justify-content: space-between;
+                        @include mobile{
+                            margin-top: 20px;
+                            flex-direction: column;
+                        }
+
+                    }
+                    & .due-date{
+                       display: flex;
+                       justify-content: space-between;
+                       @include mobile{
+                        
+                        flex-direction: column;
+                    }
+
+                   }
+                 }
+            }
+        }
+        &-main{
+            padding: 30px;
+            border-bottom: 1px solid lightgray;
+            //border-bottom: 1px solid lightgray;
+            &-table{
+                width: 100%;
+                text-align: right;
+                border-collapse: collapse;
+               
+                
+              
+                @include mobile{
+                    width: 100%;
+
+                }
+               
+                &-header{ 
+                   
+                  padding: 0 10px;
+                    th{
+                       // width: fit-content;
+                        padding: 10px ;
+                       // margin-left: 20px;
+                        color: white;
+                        text-align: right;
+                        background-color: #172b4d;
+                    }
+                  
+                }
+                &-invoiceDetails td{
+                    padding: 10px 10px 10px 30px;
+                    border-bottom: 1px solid lightgray;
+                }
+
+                &-invoiceTotal td {
+                    padding: 10px ;
+
+                }
+            }
+
+
+        }
+        &-bottom{
+            display: flex;
+            justify-content: center;
+            width: 35%;
+            float: right;
+            flex-direction: column;
+            text-align: right;
+            padding: 20px 30px;
+            &-notice{
+                padding: 10px 0px;
+                width: 100%;
+            }
+            &-email{
+               display: flex;
+               justify-content: flex-end;
+               align-items: center;
+            }
+            @include mobile{
+                width: 100%;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,723 @@
+@import "../../../App.scss";
+.loginModal-wrapper-hide{
+   display: none;
+}
+.loginModal-wrapper{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgba(0 ,0,0,.2);
+    padding: 40px 0;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    @include tablet{
+        padding: 20px 0;
+    }
+    @include mobile{
+        padding: 0;
+    }
+    &-container{
+        width: 60%;
+        height: 100%;
+        display: flex;
+        background: #fff;
+        box-sizing: border-box;
+        box-shadow: 5px 5px 19px rgba(128, 128, 128, 0.3);
+        position: relative;
+        @include tablet{
+            width: 90%;
+            height: 90%;
+        }
+        @include mobile{
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+       
+        .exit{
+            
+           justify-content: flex-end;
+           padding: 0 20px 20px 0;
+           display: none;
+           @include mobile{
+            padding: 20px 20px 0;
+            display: flex;
+           }
+        }
+        @include tablet{
+            width: 90%;
+        }
+        @include mobile{
+            width: 100%;
+            display: block;
+
+        }
+        
+        &-left{
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #d9effb;;
+            padding: 20px 10px 40px;
+            @include mobile{
+                display: none;
+                // width: 100%;
+                // background: #fff;
+                // padding: 20px 20px 0  ;
+            }
+            &-top{
+                padding: 50px 0 0;
+                &-logo{
+                    display: flex;
+                    justify-content: center;
+                    padding-bottom: 15px;
+                }
+                &-heading{
+                    text-align: center;
+                    p{
+                        font-size: 18px;
+                        color: #1c263D;
+                    }
+                    @include mobile{
+                        display: none;
+                    }
+                }
+                @include mobile{
+                    padding:  0;
+                }
+
+            }
+            &-bottom{
+                &-userImage{
+                    align-items: center;
+                    padding: 20px 0;
+                    &-container{
+                        @include flexRowCenter;
+                        &-one:hover {
+                            z-index: 2;
+                        }
+                
+                        &-two:hover {
+                            z-index: 2;
+                        }
+                
+                        &-one {
+                            cursor: pointer;
+                            border-radius: 100%;
+                            height: 50px;
+                            width: 50px;
+                            position: relative;
+                            border: 2px solid white;
+                            margin-right: 10px;
+                        }
+                
+                        &-two {
+                            cursor: pointer;
+                            border-radius: 100%;
+                            height: 50px;
+                            width: 50px;
+                            position: absolute;
+                            border: 2px solid white;
+                            margin-right: 10px;
+                        }
+                
+                        &-three {
+                            cursor: pointer;
+                            border-radius: 100%;
+                            height: 50px;
+                            width: 50px;
+                            position: relative;
+                            border: 2px solid white;
+                        }
+                    }
+                }
+                &-userLogin{
+                    align-items: center;
+                    text-align: center;
+                    .count{
+                        display: flex;
+                        justify-content: center;
+                        color: $--primary;
+
+                        span{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-left: 5px;
+                           
+                        }
+                    }
+                }
+
+            }
+
+        }
+        &-right{
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            overflow: hidden;
+            @include mobile{
+                width: 100%;
+                height: 100%;
+            }
+
+            &-top{
+               padding: 20px;
+               display: flex;
+               flex-direction: row-reverse;
+               justify-content: space-between;
+               align-items: center;
+               cursor: pointer;
+               @include tablet{
+                   padding:10px;
+               }
+               &-back{
+                   display: flex;
+                   justify-content: flex-start;
+                   align-items: center;
+                   color: #8f929e;
+                   &-iconArrow{
+                    font-size: 24px;
+                   }
+                   &-para{
+                    color: #8f929e;
+                    font-size: 18px;
+                   }
+               }
+               &-iconClose{
+                   cursor: pointer;
+                   color: #8f929e;
+                   font-size: 24px;
+               }
+              
+            }
+           
+
+            &-formContainer{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                &-SignUpForm{
+                    width: 70%;
+                    &-form{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        &-head{
+                            font-size: 28px;
+                            font-weight: 700;
+                            text-align: center;
+                            color: #000514;
+                        }
+                        &-name{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            label{
+                                font-size: 14px;
+                                font-weight: 700;
+                                color: #1c263d;
+                                margin-bottom: 5px;
+                            }
+                            input{
+                               
+                                padding:10px;
+                                border-radius: 5px;
+                                border: 1px solid rgb(118, 118, 118);
+                            }
+                            input:focus{
+                                border: 1px solid #d9effb;
+                            }
+
+                        }
+                        &-email{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            margin: 10px 0;
+                            label{
+                                font-size: 14px;
+                                font-weight: 700;
+                                color: #1c263d;
+                                margin-bottom: 5px;
+                            }
+                            input{
+                                padding:10px;
+                                border-radius: 5px;
+                                border: 1px solid rgb(118, 118, 118);
+                            }
+                            input:focus{
+                                border: 1px solid #d9effb;
+                            }
+
+                        }
+                        &-password{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            label{
+                                font-size: 14px;
+                                font-weight: 700;
+                                color: #1c263d;
+                                margin-bottom: 5px;
+                            }
+                            input{
+                                padding:10px;
+                                border-radius: 5px;
+                                border: 1px solid rgb(118, 118, 118);
+                            }
+                            input:focus{
+                                border: 1px solid #d9effb;
+                            }
+
+                        }
+                        &-checkContainer{
+                            width: 100%;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin: 10px 0;
+                            cursor: pointer;
+                            input{
+
+                            }
+                            label{
+                                margin-left: 5px;
+                                font-size: 12px;
+                               font-weight: 400;
+                            }
+                        }
+                        &-btn{
+                            width: 100%;
+                            border: 1px solid #1e7b85;
+                            background-color: #1e7b85;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            color: #fff;
+                            cursor: pointer;
+                            display: inline-block;
+                            font-size: 18px;
+                            font-weight: 600;
+                            padding: 12px 24px;
+                            position: relative;
+                            text-align: center;
+                            &:hover{
+                                background-color: #0d6069;
+                                color: #fff;
+                            }
+                        }
+
+                        &-para{
+                            margin: 10px 0;
+                            font-size: 12px;
+                            color: #57617a;
+                            text-align: center;
+                            span{
+                                font-size: 12px;
+                                font-weight: 700;
+                                text-decoration: underline;
+                                // color: #57617a;
+                                color:$--primary;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                &-SignInForm{
+                    width: 70%;
+                    &-form{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        &-head{
+                            font-size: 28px;
+                            font-weight: 700;
+                            text-align: center;
+                            color: #000514;
+                        }
+                        &-email{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            label{
+                                font-size: 14px;
+                                font-weight: 700;
+                                color: #1c263d;
+                                margin-bottom: 5px;
+
+                            }
+                            input{
+                                padding:10px;
+                                border-radius: 5px;
+                                border: 1px solid rgb(118, 118, 118);
+                            }
+                            input:focus{
+                                border: 1px solid #d9effb;
+                            }
+
+                        }
+                        &-password{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            margin-top: 10px;
+                            label{
+                                font-size: 14px;
+                                font-weight: 700;
+                                color: #1c263d;
+                                margin-bottom: 5px;
+                            }
+                            input{
+                                padding:10px;
+                                border-radius: 5px;
+                                border: 1px solid rgb(118, 118, 118);
+                            }
+                            input:focus{
+                                border: 1px solid #d9effb;
+                            }
+
+                        }
+                        &-checkContainer{
+                            width: 100%;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin: 10px 0;
+                            cursor: pointer;
+                            input{
+
+                            }
+                            label{
+                                margin-left: 5px;
+                                font-size: 12px;
+                               font-weight: 400;
+                            }
+                        }
+                        &-btn{
+                            width: 100%;
+                            border: 1px solid #1e7b85;
+                            background-color: #1e7b85;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            color: #fff;
+                            cursor: pointer;
+                            display: inline-block;
+                            font-size: 18px;
+                            font-weight: 600;
+                            padding: 12px 24px;
+                            position: relative;
+                            text-align: center;
+                            &:hover{
+                                background-color: #0d6069;
+                                color: #fff;
+                            }
+                        }
+                        &-resetPageLink{
+                           
+                            cursor: pointer;
+                            display: inline-block;
+                            // color: #1e7b85;
+                            color:$--primary;
+                            font-size: 16px;
+                            font-weight: 700;
+                            margin-top: 10px;
+                        
+                        }
+                        &-para{
+                            margin: 10px 0;
+                            font-size: 12px;
+                            color: #57617a;
+                            text-align: center;
+                            span{
+                                font-size: 12px;
+                                font-weight: 700;
+                                text-decoration: underline;
+                                // color: #57617a;
+                                color:$--primary;
+                                cursor: pointer;
+                            }
+                        }
+
+                    }
+                   
+                }
+                &-resetPassword{
+                    width: 100%;
+                    &-form{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    &-head{
+                        font-size: 28px;
+                        font-weight: 700;
+                        text-align: center;
+                        color: #000514;
+                    }
+                    &-email{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        label{
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: #1c263d;
+                            margin-bottom: 5px;
+
+                        }
+                        input{
+                            padding:10px;
+                            border-radius: 5px;
+                            border: 1px solid rgb(118, 118, 118);
+                        }
+                        input:focus{
+                            border: 1px solid #d9effb;
+                        }
+
+                    }
+                    &-btn{
+                        margin-top: 20px;
+                        width: 100%;
+                        border: 1px solid #1e7b85;
+                        background-color: #1e7b85;
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                        color: #fff;
+                        cursor: pointer;
+                        display: inline-block;
+                        font-size: 18px;
+                        font-weight: 600;
+                        padding: 12px 24px;
+                        position: relative;
+                        text-align: center;
+                        &:hover{
+                            background-color: #0d6069;
+                            color: #fff;
+                        }
+                    }
+                    &-para{
+                        margin: 10px 0;
+                        font-size: 12px;
+                        color: #57617a;
+                        text-align: center;
+                        span{
+                            font-size: 12px;
+                            font-weight: 700;
+                            text-decoration: underline;
+                            // color: #57617a;
+                            color:$--primary;
+                            cursor: pointer;
+                        }
+                    }
+                  }
+                }
+
+
+            }
+
+           
+    
+            
+
+            &-main{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 90%;
+                @include mobile{
+                    height: auto;
+                    padding: 20px 0;
+
+                }
+                &-logo{
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    margin-bottom: 30px;
+                    img{
+                        height:100%;
+                        width: 70%;
+                    }
+                    @include mobile{
+                        display: flex;
+                    }
+                }
+                &-heading{
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &-head1{
+                        font-size: 28px;
+                        font-weight: 600;
+                        text-align: center;
+                    }
+                    &-head2{
+                        font-size: 28px;
+                        font-weight: 700;
+                        text-align: center;
+                        width: 60%;
+                    }
+                    @include mobile{
+                        // display: none;
+                    }
+                }
+
+                &-loginMethod{
+
+                    h5{
+                        margin-left: 10px;
+                        color: white;
+                         font-weight: 300;
+                    }
+                    &-facebook{
+                        background-color: #3b5998;
+                        padding: 10px 20px;
+                        display: flex;
+                        color: white;
+                        border-radius: 2px;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.2s ease-in-out;
+
+                        // h5{
+                        //     margin-left: 10px;
+                        //     color: white;
+                        // }
+                        margin-bottom: 16px;
+                        &:hover{
+                            background-color: #0e1f56;
+                            
+                        }
+
+                    }
+                    &-google{
+                        background-color: #3674da;
+                        padding: 10px 20px;
+                        display: flex;
+                        color: white;
+                        border-radius: 2px;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.2s ease-in-out;
+
+                       
+                        margin-bottom: 16px;
+                        &:hover{
+                            background-color: #104295;
+                        }
+
+                    }
+                    &-email{
+                        cursor: pointer;
+                        text-align: center;
+                        display: flex;
+                        font-size: 18px;
+                        justify-content: center;
+                        .email-link{
+                            padding-left: 10px;
+                            color: $--primary;
+                        }
+
+                    }
+                }
+                &-checkContainer{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 60%;
+                    margin: 15px 0;
+                    @include mobile{
+                        width: 65%;
+                    }
+                    &-check{
+                        margin-bottom: 10px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        input{
+                           cursor: pointer;
+                        }
+                        label{
+                            margin-left: 5px;
+                            color: #1c263d;
+                            font-size: 14px;
+                        }
+                    }
+                    &-para{
+                        text-align: center;
+                        color: #57617a;
+                        a{
+                            font-weight: 700;
+                            // color: #57617a;
+                            color:$--primary;
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+            }
+            &-bottom{
+                border-top: 1px solid lightgray;
+                padding: 20px 0;
+                text-align: center;
+                @include tablet{
+                    padding: 10px 0;
+                }
+              &-signup{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  h5{
+                      font-weight: 300;
+                  }
+                  .signup-link{
+                      margin-left: 10px;
+                      color: $--primary;
+                      cursor: pointer;
+                      
+                  }
+                
+                 
+              }  
+              &-signIn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                h5{
+                    font-weight: 300;
+                }
+                .signIn-link{
+                    margin-left: 10px;
+                    color: $--primary;
+                    cursor: pointer;
+                    
+                }
+              
+               
+            }
+                
+
+            }
+
+        }
+    }
+
+}

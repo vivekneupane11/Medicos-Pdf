@@ -1,0 +1,155 @@
+@import "../../App.scss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.termsAndConditions-wrapper{
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    @include mobile{
+        padding: 20px;
+    }
+    .termsAndConditions{
+        width: 90%;
+        padding: 100px 120px;
+        border-radius: 10px;
+
+        background-color: white;
+        @include tablet{
+            padding: 40px 60px;
+
+        }
+        @include mobile{
+            width: 98%;
+            padding: 20px;
+        }
+        &-content{
+            width:100%;
+            padding: 50px 0px;
+            p{
+                font-family: 'Rubik';
+                font-size: 15px;
+                line-height: 1.75;
+                color: #333;
+                font-weight: 400;
+            }
+           
+            &-muted-heading p{
+                color:$--muted;
+
+            }
+            &-heading{
+                font-size: 30px;
+                font-family: 'Nunito';
+                font-weight: 700;
+                margin: 10px 0;
+                @include tablet{
+                    font-size: 26px;
+                }
+                @include mobile{
+                    font-size: 26px;
+                }
+
+            }
+            .topic{
+                padding-left: 15px;
+                font-family: 'Rubik';
+                font-size: 15px;
+                line-height: 1.75;
+                color: #333;
+                font-weight: 400;
+                list-style: none;
+                li {
+
+                   //margin-left: 10px;
+                   
+                    &::before {
+                        content: "";
+                        border-style: solid;
+                        border-width: 3px;
+                        border-color:$--blue;
+                        margin-left: -10px;
+                        margin-right: 5px;
+                        display: inline-block; 
+                        transform: translateY(-2px);
+
+                      
+                      }
+                    
+                }
+
+            }
+            
+        }
+        &-button{
+         
+            button{
+                font-family: 'Rubik';
+                font-size: 15px;
+                line-height: 1.75;
+                color: #333;
+                font-weight: 400;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.1);
+                cursor: pointer;
+                opacity: 0.9;
+                @include mobile{
+                    margin-bottom: 10px;
+                }
+
+                &:hover{
+                    opacity: 1;
+                    transform: translateY(-1px);
+                }
+
+            }
+            .cancel{
+               border: 1px solid lightgray;
+                background: transparent;
+                color: $--primary;
+                margin-right: 20px;
+
+            }
+            .accept{
+                background-color: $--blue;
+                color: #fff;
+            }
+
+        }
+    }
+}
+
+.h3{
+    font-size: 28px;
+    font-family: 'Nunito';
+    font-weight: 700;
+    margin: 10px 0;
+}
+.ul{
+    margin-top: 10px;
+    li{
+        margin-left: 50px;
+        padding: 5px 0;
+        font-family: 'Rubik';
+        font-size: 15px;
+        line-height: 1.75;
+        color: #333;
+        font-weight: 400;
+    }
+}
+.ol{
+    li{
+        margin-left: 50px;
+        padding: 5px 0;
+        font-family: 'Rubik';
+        font-size: 15px;
+        line-height: 1.75;
+        color: #333;
+        font-weight: 400;
+    }
+}

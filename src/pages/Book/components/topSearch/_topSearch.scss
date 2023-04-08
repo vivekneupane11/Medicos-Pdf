@@ -1,0 +1,30 @@
+@import '../../../../App.scss';
+.topSearch-container{
+    background-image: url('../../../../assets/images/bookbackg.jpg');
+    height:300px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position:center ;
+    background-repeat: no-repeat;
+    
+    &-heading{
+       color: #fff;
+       text-align: center;
+       @include mobile{
+           font-size: 28px;
+       }
+    }
+    &-para{
+        color: #fff;
+        margin: 20px 0;
+        text-align: center;
+        @include mobile{
+            padding: 0 20px;
+        }
+    }
+   
+}

@@ -1,0 +1,30 @@
+.bookpad-wrapper{
+    width: 15%;
+    height: 100%;
+    margin: 50px;
+    padding-bottom: 10px;
+    background-color: rgb(175, 175, 175);
+    text-align: center;
+    .cover-page{
+        width: 100%;
+    }
+    .heading{
+        font-weight: 600;
+        font: bold;
+        color: black;
+        line-height: 1;
+        padding:0px 5px 5px 5px;
+        
+    }
+    .author-detials{
+        opacity: 0.7;
+        padding:0px 5px 5px 5px;
+    }
+    .rating{
+        font: bold;
+        font-weight: 600;
+    }
+    .star{
+        color: yellow;
+    }
+}

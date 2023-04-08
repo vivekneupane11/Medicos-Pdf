@@ -1,0 +1,75 @@
+.Icons__button{
+    font-size: 1em;
+    opacity: .9;
+    height: 40px;
+    width: 40px;
+    border: none;
+    margin: 5px;
+    &.facebook{
+        background-color: #3b5999;
+        color: #fff;
+        border-color: #3b5999;
+    }
+    &.twitter{
+        background-color:  #1da1f2;
+        color: #fff;
+        border-color: #1da1f2;
+        
+    }
+    &.instagram{
+        background-color: #e4405f;
+        color: #fff;
+    }
+    &.git{
+        background-color: #222;
+        color: #fff;
+    }
+    &.pintrest{
+        background-color: #bd081c;
+        color: #fff;
+    }
+    &.youtube{
+        background-color: #cd201f;
+        color: #fff;
+    }
+    &.vimeo{
+        background-color: #1ab7ea;
+        color: #fff;
+    }
+    &.slack{
+        background-color: #3aaf85;
+        color: #fff;
+    }
+    &.dribble{
+        background-color: #ea4c89;
+        color: #fff;
+    }
+    &.reddit{
+        background-color: #ff4500;
+        color: #fff;
+    }
+    &.tumblr{
+        background-color: #35465c;
+        color: #fff;
+    }
+    &.linkedin{
+        background-color: #0077b5;
+        color: #fff;
+    }
+    
+
+}
+.Icons__button:hover{
+    transform: translateY(-1px);
+    transition: 0.2s ease;
+    opacity: 1;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.2);
+    
+}
+.rounded{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    
+}

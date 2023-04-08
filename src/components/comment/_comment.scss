@@ -1,0 +1,328 @@
+@import "../../App.scss";
+
+
+.post-container {
+    // background-color: green;
+    width: 100%;
+
+    &-header {
+        @include flexRowSbCenter;
+        // background-color: red;
+        border-bottom: 1px solid #f8f8f8;
+        border-top: 1px solid #f8f8f8;
+        width: 100%;
+        padding: 15px 25px;
+
+        &-button:hover {
+            background-color: $--indigo;
+        }
+
+        &-button {
+            @include flexRowSbCenter;
+            background-color: $--primary;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+
+            h5 {
+                font-size: 14px;
+                color: white;
+                margin: 0px 0px 0px 10px;
+            }
+
+            .plus-icon {
+                font-size: 10px;
+                color: white;
+            }
+        }
+
+        &-user-info {
+            @include flexRowSbCenter;
+        }
+
+        &-user-text {
+            margin: 0px 15px;
+            border-radius: 100%;
+
+            h5 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 15px;
+                font-weight: lighter;
+                color: gray;
+                padding: 0px 2px;
+            }
+        }
+
+        &-user-picture {
+            // background-color: red;
+            border-radius: 100%;
+            height: 67px;
+            width: 67px;
+        }
+    }
+}
+
+.post {
+    @include flexColCenter;
+    padding: 25px 25px;
+    width: 100%;
+
+    &-caption {
+        font-weight: lighter;
+        font-size: 21px;
+        line-height: 25px;
+    }
+
+    &-image {
+        object-fit: contain;
+        width: 100%;
+        border-radius: 7px;
+        margin: 19px 0px;
+    }
+
+    &-bottom-container {
+        @include flexRowSbCenter;
+        // background-color: red;
+        width: 100%;
+    }
+
+    &-button-container {
+        @include flexRowStartCenter;
+
+        // background-color: red;
+        p {
+            margin-left: 5px;
+        }
+
+        &-like {
+            @include flexRowCenter;
+            cursor: pointer;
+        }
+
+        &-comment {
+            @include flexRowCenter;
+            margin: 0px 17px;
+            cursor: pointer;
+        }
+
+        &-share {
+            @include flexRowCenter;
+            cursor: pointer;
+        }
+
+        &-like-icon {
+            color: $--primary;
+        }
+
+        &-icon {
+            color: gray;
+        }
+    }
+
+}
+
+.post-follower {
+    @include flexRowCenterEnd;
+    // background-color: red;
+
+    &-image-container {
+        @include flexRowCenter;
+
+        // background-color: red;
+        // width: 100px;
+        &-one:hover {
+            z-index: 2;
+        }
+
+        &-two:hover {
+            z-index: 2;
+        }
+
+        &-one {
+            cursor: pointer;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            position: relative;
+            border: 2px solid white;
+        }
+
+        &-two {
+            cursor: pointer;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            border: 2px solid white;
+        }
+
+        &-three {
+            cursor: pointer;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            position: relative;
+            border: 2px solid white;
+        }
+    }
+}
+
+.comment-container {
+    // background-color: yellow;
+    width: 100%;
+    // height: 110px;
+    display: flex;
+    padding: 18px 0px;
+    @include flexCenter;
+
+    &-wrapper {
+        @include flexColCenter;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        overflow: hidden;
+        max-width: 600px;
+        box-shadow: 5px 5px 19px rgba(128, 128, 128, 0.3);
+        padding: 15px 0px;
+
+        &-disabled {
+            @include flexRowCenter;
+            padding: 2px 5px;
+            opacity: 0.4;
+        }
+
+        &-header-title {
+            // background-color: red;
+            width: 100%;
+            padding: 15px 15px;
+        }
+    }
+}
+
+
+
+
+
+
+.comment-box {
+    @include flexRowSbStart;
+    display: flex;
+    // background-color: yellow;
+    padding: 10px 25px;
+    // height: 400px;
+}
+
+.comment-box:hover {
+    .comment-profile-picture {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+
+.comment-profile-picture {
+    border-radius: 100%;
+    height: 67px;
+    width: 67px;
+    // background-color: red;
+    position: absolute;
+    // left: 0px;
+    // top:0;
+    border: 6px solid white;
+}
+
+.comment {
+    // @include flexColStartCenter;
+    // background-color: red;
+    // width: 90%;
+    border-radius: 5px;
+    background-color: #f6f9fc;
+    padding: 15px 30px;
+    margin: 25px 0px 0px 39px;
+}
+
+.comment h5 {
+    color: gray;
+    font-weight: lighter;
+}
+
+.comment p {
+    color: gray;
+    font-weight: lighter;
+    font-size: 18px;
+    line-height: 23px;
+    margin: 10px 0px;
+}
+
+.button-container {
+    @include flexRowStartCenter;
+    // background-color: green;
+}
+
+.like {
+    @include flexRowCenter;
+    margin-right: 15px;
+    cursor: pointer;
+
+    &-icon {
+        color: $--primary;
+        margin-right: 7px;
+        font-size: 12px;
+    }
+}
+
+.share {
+    @include flexRowCenter;
+    cursor: pointer;
+
+    &-icon {
+        color: gray;
+        font-size: 12px;
+    }
+}
+
+.share p {
+    margin-left: 7px;
+}
+
+.comment-input-container {
+    @include flexRowSbCenter;
+    display: flex;
+    // background-color: yellow;
+    padding: 10px 25px;
+    // height: 400px;
+    width: 100%;
+
+    &-picture {
+        border-radius: 100%;
+        height: 64px;
+        width: 64px;
+    }
+
+    &-textarea {
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        padding: 15px 15px;
+        color: gray;
+        resize: vertical;
+        width: 80%;
+        // background-color: red;
+    }
+
+    &-textarea:focus {
+        outline: none !important;
+    }
+}
+
+@include tablet;
+
+@include mobile {
+    .post-follower {
+        display: none;
+    }
+}
+
+;

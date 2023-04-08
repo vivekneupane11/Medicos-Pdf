@@ -1,0 +1,75 @@
+@import '../../../../App.scss';
+
+.commentComponent-container {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    padding: 20px 10px;
+
+    &-wrapper {
+        width: 100%;
+        display: flex;
+
+        &-col1 {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            &-profile {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+
+            }
+
+
+        }
+
+        &-desc {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            &-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                // background-color: red;
+            }
+
+            &-comment {
+                color: #4f5152;
+                padding: 0 10px;
+            }
+
+            &-time {
+                color: gray;
+                padding: 0 10px;
+                font-size: 12px;
+            }
+
+            &-name {
+                color: $--primary;
+                padding-left: 10px;
+            }
+
+        }
+
+    }
+
+}
+
+.commentComponent-head {
+    font-weight: 600;
+
+}
+
+.wholeCommentContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}

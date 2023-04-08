@@ -1,0 +1,39 @@
+@import "../../App.scss";
+
+.journal-detail-page{
+    width: 100%;
+    margin: 40px 0;
+    .journal-detail-page-container{
+        width: 60%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 30px ;
+        border: 1px solid #e0dede;
+       
+        @include tablet{
+            width: 70%;
+        }
+        @include mobile{
+            width: 90%;
+        }
+      
+        &-title{
+            color: #0f0e0e;
+            font-size: 30px;
+            text-transform: uppercase;
+    
+        }
+        &-description{
+            margin: 20px 0;
+           font-size: 20px;
+    
+        }
+        &-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+}

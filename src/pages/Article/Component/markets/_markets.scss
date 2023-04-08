@@ -1,0 +1,54 @@
+@import '../../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.markets-wrapper{
+    width: 100%;
+    padding: 0px 40px 00px 30px ;
+
+    &-heading{
+        border-top: 4px solid #0f0e0e ;
+        padding-top: 10px;
+        font-size: 24px;
+        font-weight: 800;
+        font-family: 'Nunito';
+        margin:10px 0;
+        color: #0f0e0e;
+    }
+
+    &-content{
+        border-top: 1px solid gray;
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-column-gap: 40px;
+        padding: 20px 0 ;
+       border-bottom: 4px solid #0f0e0e;
+      @include tablet{
+          grid-template-columns: auto auto;
+      }
+      @include mobile{
+          grid-template-columns: auto;
+      }
+
+        &-item{
+            width: 100%;
+            margin: 10px 0 ;
+            @include mobile{
+                margin: 10px 0 20px 0;
+            }
+            &-heading{
+                color: #0f0e0e;
+                font-size: 18px;
+                font-weight: 800;
+                font-family: 'Nunito';
+                margin: 15px 0;
+                line-height: 1;
+                cursor: pointer;
+                &:hover{
+                    color:$--primary ;
+                }
+            }
+        }
+    }
+}

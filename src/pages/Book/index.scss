@@ -1,0 +1,225 @@
+@import "../../App.scss";
+
+.book-page {
+    height: 100%;
+    width: 100%;
+
+    &-book-section {
+        @include flexRowSbStart;
+        border-top: 0.1px solid #f7f7f7;
+        width: 100%;
+
+        &-col1 {
+            @include flexColStartCenter;
+            // background-color: red;
+            padding: 35px 25px 0px 25px;
+            // display: flex;
+            text-align: center;
+            width: 35%;
+            height: 100%;
+
+            @include mobile {
+                display: none;
+            }
+
+            .heading {
+                text-align: left;
+                width: 100%;
+                // margin-left: 30px;
+                // background-color: red
+            }
+
+            .sub-heading {
+                align-self: flex-start;
+                text-align: left;
+                margin-top: 20px;
+                border-bottom: 1.9px solid $--primary;
+                // margin-left: 30px;
+                // background-color: red
+            }
+
+            .sub-categories {
+                // background-color: green;
+                width: 100%;
+                margin-top: 12px;
+            }
+        }
+
+        &-col2 {
+            @include flexColCenterStart;
+            padding-top: 35px;
+            width: 75%;
+            height: 100%;
+            border-left: 0.1px solid #f7f7f7;
+
+            // background-color: yellow;
+            @include mobile {
+                width: 100%;
+            }
+
+            &-content-section {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                margin: 20px 0;
+                @include tablet{
+                    margin: 28px 0;
+                }
+
+                @include mobile {
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .item {
+                    padding: 20px;
+                    @include tablet{
+                        padding: 20px 10px;
+                    }
+                }
+
+                // background-color: red;
+            }
+
+            .tabs {
+                // @include flexRowStartCenter;
+                // background-color: red;
+                width: 100%;
+
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            .sub-categories-forMobile {
+                display: none;
+
+                @include mobile {
+                    // display: block;
+                    display: none;
+                    width: 100%;
+                    padding: 0 20px;
+                    margin-top: 14px;
+
+                }
+            }
+
+            .pagination {
+                @include flexRowEndCenter;
+                width: 100%;
+                border-top: 0.1px solid #f7f7f7;
+
+                // background-color: red;
+                // display: inline-grid;
+                @include mobile {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    // display: flex;
+}
+
+.book-loading-wrapper {
+    padding-top: 250px;
+    padding-bottom: 250px;
+    // background-color: red;
+    width: 100%;
+}
+
+
+
+.dropdownForMobile {
+    display: none;
+
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    &-head {
+        font-size: 30px;
+        @include mobile{
+            margin-bottom: 20px;
+        }
+    }
+
+    &-category {
+        width: 100%;
+        margin-bottom: 10px;
+
+        &-dd {
+            cursor: pointer;
+            // height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #eee;
+            padding: 10px;
+            @include mobile{
+                margin-bottom: 10px;
+            }
+
+            span {
+
+                // font-size: 18px;
+                padding: 5px 0;
+                font-family: 'Rubik',sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                color: #333;
+            }
+        }
+    }
+
+    &-subcategory {
+        width: 100%;
+
+        &-dd {
+            cursor: pointer;
+            // height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #eee;
+            padding: 10px;
+
+            span {
+                // font-size: 18px;
+
+                padding: 5px 0;
+                font-family: 'Rubik',sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                color: #333;
+            }
+        }
+    }
+
+    .dd-hide {
+        display: none;
+    }
+
+    .dd-show {
+        display: block;
+    }
+}
+
+.showD {
+    margin-top: -2px;
+    transition: .2s linear;
+    margin-left: 10px;
+    height: 15px;
+    width: 15px;
+}
+
+.rotateD {
+    margin-top: 4px;
+    transform: rotate(90deg);
+    transition: .2s linear;
+}

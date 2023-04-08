@@ -1,0 +1,21 @@
+.error500-wrapper{
+    line-height: 2;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #525F7F;
+
+    &-heading{
+        font-size: 12rem;
+        font-weight: 900;
+        color: #525F7F;
+    }
+    &-description p{
+        font-size: 25px;
+        line-height: 1.7;
+    }
+}

@@ -1,0 +1,777 @@
+//@import '../SASS/_variable.scss';
+@import "../../../App.scss";
+
+.button {
+    display: inline-block;
+    color: black;
+    font-size: 1em;
+    padding: .625rem 1.25rem;
+    margin: 5px;
+    border-radius: 3px;
+    opacity: 0.9;
+    border: 1px solid;
+    text-align: center;
+    //font-family:'Nunito' ,'Roboto', sans-serif;
+    box-sizing: border-box;
+    cursor: pointer;
+
+
+    &:hover {
+        opacity: 1;
+
+    }
+
+    &.primary {
+        background-color: $--primary;
+        color: white;
+        border-color: $--primary;
+
+        &:hover {
+            transform: translateY(-1px);
+            transition: .2s all ease-in-out;
+            cursor: pointer;
+            opacity: 1;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+        &-rounded {
+            border-radius: 6px;
+            background-color: $--primary;
+            color: white;
+            border-color: $--primary;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+        }
+
+        &-outline {
+
+            color: $--primary;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--primary;
+
+            &:hover {
+                background-color: $--primary;
+                color: white;
+                border-color: $--primary;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                border-radius: 6px;
+                color: $--primary;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--primary;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-width: 130px;
+
+                &:hover {
+                    background-color: $--primary;
+                    color: white;
+                    border-color: $--primary;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+
+            }
+        }
+
+        &-link {
+            color: $--primary;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+
+        }
+
+    }
+
+    &.info {
+        background-color: $--info;
+        color: white;
+        border-color: $--info;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+
+        &-rounded {
+            border-radius: 6px;
+            background-color: $--info;
+            color: white;
+            border-color: $--info;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+        }
+
+        &-outline {
+            color: $--info;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--info;
+
+            &:hover {
+                background-color: $--info;
+                color: white;
+                border-color: $--info;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                color: $--info;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--info;
+                border-radius: 6px;
+
+                &:hover {
+
+                    background-color: $--info;
+                    color: white;
+                    border-color: $--info;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+            }
+
+        }
+
+        &-link {
+            color: $--info;
+            border: none;
+            background-color: white;
+
+        }
+    }
+
+    &.success {
+        background-color: $--success;
+        color: #fff;
+        border-color: $--success;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+        &-rounded {
+            background-color: $--success;
+            color: #fff;
+            border-color: $--success;
+            border-radius: 6px;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+        }
+
+        &-outline {
+            color: $--success;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--success;
+
+            &:hover {
+
+                background-color: $--success;
+                color: #fff;
+                border-color: $--success;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                color: $--success;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--success;
+                border-radius: 6px;
+
+                &:hover {
+                    background-color: $--success;
+                    color: #fff;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+
+            }
+
+        }
+
+        &-link {
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            color: $--success;
+            border: none;
+            padding: 0;
+        }
+    }
+
+    &.danger {
+        background-color: $--danger;
+        color: white;
+        border-color: $--danger;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+
+        &-rounded {
+            background-color: $--danger;
+            color: white;
+            border-color: $--danger;
+            border-radius: 6px;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+        }
+
+        &-outline {
+            color: $--danger;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--danger;
+
+            &:hover {
+                background-color: $--danger;
+                color: white;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                color: $--danger;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--danger;
+                border-radius: 6px;
+
+                &:hover {
+                    background-color: $--danger;
+                    color: white;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+            }
+        }
+
+        &-link {
+            color: $--danger;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border: none;
+
+        }
+    }
+
+    &.warning {
+        background-color: $--warning;
+        color: white;
+        border-color: $--warning;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+        &-rounded {
+            background-color: $--warning;
+            color: white;
+            border-color: $--warning;
+            border-radius: 6px;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+
+        }
+
+        &-outline {
+            color: $--warning;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--warning;
+
+            &:hover {
+                background-color: $--warning;
+                color: white;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                color: $--warning;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--warning;
+                border-radius: 6px;
+
+                &:hover {
+                    background-color: $--warning;
+                    color: white;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+
+            }
+
+        }
+
+        &-link {
+            color: $--warning;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border: none;
+            padding: 0;
+        }
+    }
+
+    &.default {
+        background-color: $--b;
+        color: white;
+        border-color: $--b;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+        &-rounded {
+            background-color: $--b;
+            color: white;
+            border-color: $--b;
+            border-radius: 6px;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+        }
+
+        &-outline {
+            color: $--b;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--b;
+
+            &:hover {
+                background-color: $--b;
+                color: white;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                color: $--b;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--b;
+                border-radius: 6px;
+
+                &:hover {
+                    background-color: $--b;
+                    color: white;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+
+            }
+        }
+
+        &-link {
+            border: none;
+            color: $--b;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            padding: 0;
+        }
+    }
+
+    &.secondary {
+        background-color: #f4f5f7;
+        color: $--b;
+        border-color: #f4f5f7;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+        &-rounded {
+            background-color: #fff;
+            color: $--b;
+            border-color: #f4f5f7;
+            border-radius: 6px;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                background-color: #f4f5f7;
+
+            }
+        }
+
+        &-outline {
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            color: $--b;
+            border-color: #f4f5f7;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+
+                background-color: #f4f5f7;
+                color: $--b;
+
+            }
+
+            &-rounded {
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                color: $--b;
+                border-color: #f4f5f7;
+                border-radius: 6px;
+
+                &:hover {
+                    background-color: #f4f5f7;
+                    color: $--b;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+
+                }
+            }
+        }
+
+        &-link {
+            border: none;
+            color: $--b;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+
+        }
+    }
+
+    &.transparent {
+        background-color: transparent;
+        color: #2568ef;
+        border-color: #2568ef;
+
+        &:hover {
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            cursor: pointer;
+            opacity: 1;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border: none;
+            background-color: #2568ef;
+            color: white;
+            //color: transparent;
+        }
+
+        &-rounded {
+            border-color: #2568ef;
+            border-radius: 6px;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+
+            &:hover {
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                background-color: #2568ef;
+                color: white;
+
+
+                // color: transparent;
+            }
+
+        }
+
+        &-outline {
+            border-color: #2568ef;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+
+            &:hover {
+
+                background-color: transparent;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                //color: transparent;
+                background-color: #2568ef;
+                color: white;
+
+            }
+
+            &-rounded {
+                border-color: #2568ef;
+                border-radius: 6px;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+
+                &:hover {
+                    background-color: transparent;
+                    font-size: 16px;
+                    font-weight: 600;
+                    padding: 10px 25px 10px 25px;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                    background-color: #2568ef;
+                    color: white;
+                    //color: white;
+                }
+            }
+        }
+
+        &-link {
+            border: none;
+            color: #2568ef;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            padding: 0;
+        }
+    }
+
+    &.blue {
+        background-color: $--blue;
+        color: white;
+        border-color: $--blue;
+
+        &:hover {
+
+            transform: translateY(-1px);
+            transition: .2s ease-in;
+            box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+
+        &-rounded {
+            border-radius: 6px;
+            background-color: $--blue;
+            color: white;
+            border-color: $--blue;
+
+            &:hover {
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+        }
+
+        &-outline {
+            color: $--blue;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 25px 10px 25px;
+            border-color: $--blue;
+
+            &:hover {
+                background-color: $--blue;
+                color: white;
+                border-color: $--blue;
+                transform: translateY(-1px);
+                transition: .2s ease-in;
+                cursor: pointer;
+                opacity: 1;
+                box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+            }
+
+            &-rounded {
+                color: $--blue;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 10px 25px 10px 25px;
+                border-color: $--blue;
+                border-radius: 6px;
+
+                &:hover {
+
+                    background-color: $--blue;
+                    color: white;
+                    border-color: $--blue;
+                    transform: translateY(-1px);
+                    transition: .2s ease-in;
+                    cursor: pointer;
+                    opacity: 1;
+                    box-shadow: 0 5px 10px rgba(50, 50, 93, 0), 0 3px 6px rgba(0, 0, 0, .2);
+                }
+            }
+
+        }
+
+        &-link {
+            color: $--blue;
+            border: none;
+            background-color: white;
+
+        }
+    }
+
+}

@@ -1,0 +1,64 @@
+.profileexploreLink{
+    width: 100%;
+    height: 50px;
+   
+    .profileexploreLinkTab{
+         display: flex;
+         width: 100%;
+         justify-content: flex-start;
+         
+            &-container{
+               width: 100%;
+              
+              &-link{
+                  width: 100%;
+                  text-decoration: none;
+                  padding: 10px;
+                  text-align: center;
+                  cursor: pointer;
+                 
+              }
+              &-link-active{
+                  width: 100%;
+                  text-decoration: none;
+                  padding: 10px;
+                  text-align: center;
+                  cursor: pointer;
+                 
+              }
+            }
+    }
+  
+    .move0 ~ .underline-active{
+      margin-left:5%;
+    
+    }
+    
+    .move1 ~ .underline-active {
+       margin-left: 25%;
+     
+    }
+    
+    .move2 ~ .underline-active {
+      margin-left: 45%;
+    
+    }
+    .move3 ~ .underline-active{
+        margin-left: 65%;
+       
+    }
+    .move4 ~ .underline-active{
+      margin-left:85%;
+    
+  }
+      .underline-active {
+        // position: absolute;
+        height: 5px;
+        // margin-left: 10%;
+        width: 10%;
+        background-color: #1D264F;
+        border: none;
+        transition: all .5s ease;
+      }
+      
+  }

@@ -1,0 +1,93 @@
+@import '../../../../App.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.inHypeBusiness-wrapper{
+    padding: 00px 40px 00px 30px ;
+   
+    align-items: center;
+  h3{
+    font-size: 24px;
+    font-family: 'Nunito';
+    font-weight: 800;
+    color: #0f0e0e;
+  }
+  &-button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+    .inHypeBusiness{
+        margin-top: 10px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-column-gap: 30px;
+        
+       //border-bottom: 5px solid black;
+        border-top: 1px solid gray;
+        @include tablet{
+            grid-template-columns: auto auto;
+        }
+        @include mobile{
+            display: block;
+        }
+        
+
+        &-content{
+            
+            width:100%;
+            
+            padding: 20px 0;
+            &-image{
+                width: 100%;
+                height: 250px;
+                border-radius: 5px;
+                background-size: cover;
+                background-color: rgba(0,0,0,.1);
+                background-blend-mode: overlay;
+                cursor: pointer;
+                position: relative;
+                &::after{
+                 content: "";
+                 position: absolute;
+                 bottom: 0;
+                 right: 0;
+                 background:white;
+                 border-width: 0;
+                 border-style: solid;
+                 display: block;
+                border-color: #F36 #fff #fff  #F36;
+                transition: all 0.25s linear;
+             }
+             &:hover{
+                 background-color: rgba(0,0,0,0.2);
+                 transition: background-color 0.25s linear;
+                   
+                &::after{
+                    border-width: 20px;
+                    transition: all 0.25s linear;
+                }
+ 
+                
+                }
+            }
+            &-bottom{
+               padding: 20px 0;
+                &-heading{
+                 font-size: 18px;
+                 font-family: 'Nunito';
+                 font-weight: 800;
+                 margin: 10px 0;
+                 line-height: 1;
+                 color: #0f0e0e;
+                 cursor: pointer;
+                 &:hover{
+                     
+                    color: #326891;
+                 }
+                }
+            }
+        }
+    }
+}

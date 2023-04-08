@@ -1,0 +1,182 @@
+$Pbg: #5e72e4;
+$Pbor: #5e72e4;
+$Phbg: #3d55df;
+$Phbor: #324cdd;
+$Wbg: #fb6340;
+$Wbor: #fb6340;
+$Whbg: #fa441b;
+$Whbor: #fa3a0e;
+$Dbg: #172b4d;
+$Dbor: #172b4d;
+$Dhbg: #0e1b30;
+$Dhbor: #0b1526;
+$Dabg: #f5365c;
+$Dabor: #f5365c;
+$Dahbg: #f3123e;
+$Dahbor: #ec0c38;
+$Sbg: #2dce89;
+$Sbor: #2dce89;
+$Shbg: #26af74;
+$Shbor: #24a46d;
+$Ibg: #11cdef;
+$Ibor: #11cdef;
+$Ihbg: #0eafcc;
+$Ihbor: #0da5c0;
+
+
+
+@mixin btn-color($bgc,$bgb,$hbg,$hb){
+
+    .tooltips-btn{
+   
+       padding: 6px 8px;
+        background-color: $bgc;
+        text-align: center;
+        font-size: .75rem;
+        font-weight: 600px;
+        border:1px solid $bgb;
+        border-radius: .25rem;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.8);
+    }
+    .tooltips-btn:hover{
+        background-color: $hbg;
+        border:1px solid $hb;
+        box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0 ,0,0,.8);
+        transform: translateY(-1px);
+        
+    }
+    
+}
+
+//bottom
+.tooltips-tip-bottom{
+    
+    display: none;
+    position: absolute;
+    background-color: $Dhbg;    
+    color: white;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: .25rem;
+
+}
+.tooltips-tip-bottom::before{
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: $Dhbg;
+    margin: -12px 0 0 16px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.tooltips-tipS-bottom{
+    display: flex ;
+}
+
+//top
+.tooltips-tip-top{
+    display: none;
+    position: absolute;
+    background-color: $Dhbg;    
+    color: white;
+    padding: 10px;
+    margin-top:-74px;
+    border-radius: .25rem;
+
+}
+.tooltips-tip-top::before{
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: $Dhbg;
+    margin: 10px 0 0 18px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.tooltips-tipS-top{
+    display: flex ;
+}
+
+
+
+//right
+.tooltips-tip-right{
+    display: none;
+    position: absolute;
+    background-color: $Dhbg;    
+    color: white;
+    padding: 10px;
+    margin:-34px 0 0 78px;
+    border-radius: .25rem;
+
+}
+.tooltips-tip-right::before{
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: $Dhbg;
+    margin-left: -12px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.tooltips-tipS-right{
+    display: flex ;
+}
+
+//left
+.tooltips-tip-left{
+    display: none;
+    position: absolute;
+    background-color: $Dhbg;    
+    color: white;
+    padding: 10px;
+    margin:-32px 0 0 -108px;
+    border-radius: .25rem;
+
+}
+.tooltips-tip-left::before{
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: $Dhbg;
+    margin-left: 72px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.tooltips-tipS-left{
+    display: flex ;
+}
+
+
+
+.tooltips-wrapper-Primary{
+    margin: 20px 0 0 40%;
+    @include btn-color($Pbg,$Pbor,$Phbg,$Phbor);
+}
+.tooltips-wrapper-Warning{
+    margin: 20px 0 0 40%;
+    @include btn-color($Wbg,$Wbor,$Whbg,$Whbor);
+}
+.tooltips-wrapper-Default{
+    margin: 20px 0 0 40%;
+    @include btn-color($Dbg,$Dbor,$Dhbg,$Dhbor);
+}
+.tooltips-wrapper-Danger{
+    margin: 20px 0 0 40%;
+    @include btn-color($Dabg,$Dabor,$Dahbg,$Dahbor);
+}
+.tooltips-wrapper-Success{
+    margin: 20px 0 0 40%;
+    @include btn-color($Sbg,$Sbor,$Shbg,$Shbor);
+}
+.tooltips-wrapper-Info{
+    margin: 20px 0 0 40%;
+    @include btn-color($Ibg,$Ibor,$Ihbg,$Ihbor);
+}

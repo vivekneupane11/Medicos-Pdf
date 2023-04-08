@@ -1,0 +1,165 @@
+@import "../../../App.scss";
+
+
+@mixin labelContainer ($backgroundColor, $type, $size, $cursor:default) {
+    @include flexSbCenter;
+    padding: $size;
+    background-color: #{$backgroundColor};
+    border-radius: $type;
+    cursor: $cursor;
+    @if($cursor!=default) {
+        :hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+@mixin labelColor($color) {
+    &-size {
+        &-default {
+            &-type {
+                &-default {
+                    @include labelContainer($backgroundColor:$color, $type: 5px, $size: 15px 25px);
+                }
+
+                &-pill {
+                    @include labelContainer($backgroundColor:$color, $type: 65px, $size: 15px 25px);
+                }
+
+                &-links {
+                    @include labelContainer($backgroundColor:$color, $type: 5px, $size: 15px 25px, $cursor:pointer);
+                }
+
+            }
+        }
+
+        &-small {
+            &-type {
+                &-default {
+                    @include labelContainer($backgroundColor:$color, $type: 5px, $size: 8px 10px);
+                }
+
+                &-pill {
+                    @include labelContainer($backgroundColor:$color, $type: 65px, $size: 8px 10px);
+                }
+
+                &-links {
+                    @include labelContainer($backgroundColor:$color, $type: 5px, $size: 8px 10px, $cursor:pointer);
+                }
+            }
+        }
+
+        &-large {
+            &-type {
+                &-default {
+                    @include labelContainer($backgroundColor:$color, $type: 5px, $size: 18px 30px);
+                }
+
+                &-pill {
+                    @include labelContainer($backgroundColor:$color, $type: 65px, $size: 18px 30px);
+                }
+
+                &-links {
+                    @include labelContainer($backgroundColor:$color, $type: 5px, $size: 18px 30px, $cursor:pointer);
+                }
+            }
+        }
+    }
+    
+}
+
+@mixin dynamicLabel() {
+    &-default {
+        @include labelColor($--lighter)
+    }
+
+    &-primary {
+        @include labelColor($--primary)
+    }
+
+    &-danger {
+        @include labelColor($--danger)
+    }
+
+    &-dark {
+        @include labelColor($--dark)
+    }
+
+    &-light {
+        @include labelColor($--light)
+    }
+    &-teal {
+        @include labelColor($--teal)
+    }
+
+    &-gray-dark {
+        @include labelColor($--gray-dark)
+    }
+    &-orange {
+        @include labelColor($--orange)
+    }
+}
+
+@mixin labelType() {
+    &-default {
+        @include labelContainer($type: 5px);
+    }
+
+    &-primary {
+        @include labelContainer($type: 25px);
+    }
+}
+
+.label-wrapper {
+    // background-color: yellow;
+    width: 100%;
+    // height: 2px;
+    // display: flex;
+    // padding: 18px 0px;
+    @include flexCenter;
+
+    @include tablet {
+        @include flexColCenter;
+        padding: 100px 60px 100px 120px;
+    }
+
+    @include mobile {
+        @include flexColCenter;
+        padding: 100px 20px;
+    }
+
+    &-container {
+        &-color {
+            @include dynamicLabel();
+        }
+
+        &-text {
+            color: gray;
+            margin: 0px 7px;
+            font-weight: bold;
+
+            &-white {
+                color: white;
+                margin: 0px 7px;
+                font-weight: bold;
+            }
+        }
+
+        &-type {
+            &-default {
+                border-radius: 5px;
+            }
+
+            &-pill {
+                @include flexSbCenter;
+                padding: 15px 25px;
+                background-color: red;
+                border-radius: 25px;
+                // background-color: red;
+                // border-radius: 25px;
+            }
+        }
+
+
+    }
+}

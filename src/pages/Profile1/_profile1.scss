@@ -1,0 +1,54 @@
+@import '../../App.scss';
+.profile1-wrapper{
+    &-container{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        @include tablet{
+            display: block;
+            width: 100%;
+        }
+        @include mobile{
+            display: block;
+        }
+        &-left{
+            
+            width: 70%;
+            
+
+            @include mobile{
+                width: 100%;
+            }
+            @include tablet{
+                width: 100%;
+            }
+
+        }
+        &-right{
+            width: 28%;
+
+            @include mobile{
+                width: 100%;
+            }
+            @include tablet {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .item1{
+                width: 100%;
+                @include tablet {
+                    width: 33%;
+                }
+            }
+            .item2{
+                width: 100%;
+                @include tablet{
+                    width: 65%;
+                }
+
+            }
+
+        }
+    }
+}

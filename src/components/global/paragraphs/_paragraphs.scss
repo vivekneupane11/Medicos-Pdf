@@ -1,0 +1,79 @@
+ @import "../../../App.scss";
+ @import "../../abstracts/variables";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+
+
+.QuotesBlock {
+    border-left: 2px solid lightgray;
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 1.25rem;
+
+    .quotes {
+        //font-size: 1.25rem;
+        color: $--lead;
+        line-height: 1.7;
+    }
+
+    .author {
+        color: $--lead;
+        font-weight: 400;
+        font-size: 80%;
+        margin-top: 10px;
+
+    }
+}
+
+.paragraph {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.2;
+    font-family: 'Rubik',sans-serif;
+    color: #333333;
+    // color: red;
+
+    .lead-text {
+        font-size: 1.25rem;
+        color: $--lead;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.7;
+        &-small{
+            line-height: 1.7;
+            font-size: 1rem;
+            color: $--lead;
+        }
+    }
+
+    .muted-text {
+        color: $--muted;
+    }
+
+    .info-text {
+        color: $--info;
+    }
+
+    .primary-text {
+        color: $--primary;
+
+    }
+
+    .danger-text {
+        color:$--danger;
+    }
+
+    .success-text {
+        color: $--success;
+    }
+
+    .warning-text {
+        color: $--warning;
+    }
+    .heading-text{
+        color: $--lead;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+}

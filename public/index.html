@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+
+    <title>Medicos PDF</title>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('worker.js').then(function(registration) {
+            console.log('Worker registration successful', registration.scope);
+          }, function(err) {
+            console.log('Worker registration failed', err);
+          }).catch(function(err) {
+            console.log(err);
+          });
+        });
+      } else {
+        console.log('Service Worker is not supported by browser.');
+      }
+
+    </script>
+    <div id="root">
+      <div class="navbar-container-pwa">
+        <div class='navbarAll'>
+          <div class="logo">
+            <h1>Medicos </h1>
+            <h1 class="logo-title">PDF</h1>
+          </div>
+          <div class='nav-item'>
+            <ul class="nav-link">
+              <!-- <div class="link">
+                <li class='home-active'>
+                  Home
+                </li>
+                <li>
+                  Book
+                </li>
+                <li>
+                  Article
+                </li>
+                <li>
+                  News
+                </li>
+                <li>
+                  Journal
+                </li>
+                <li>
+                  Slide
+                </li>
+              </div> -->
+              <div class="button-container">
+                <div class="primary-pwa primary-pwa-outline primary-pwa-outline-rounded">
+                  Join Now
+                </div>
+                <div class="primary-pwa primary-pwa-outline primary-pwa-outline-rounded">
+                  UPLOAD
+                </div>
+              </div>
+
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="navbar-container-pwa-mobile">
+        <div class='navbarAll'>
+          <div class="logo">
+            <h2>Medicos </h2>
+            <h2 class="logo-title">PDF</h2>
+          </div>
+          <div class="search-box">
+            <i class="fas fa-search icon"></i>
+            <p>
+              Search
+            </p>
+          </div>
+          <i class="fas fa-bars icon"></i>
+        </div>
+      </div>
+      <div class="loader-container">
+      <div class="loader"></div>
+      </div>
+
+    </div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+
+</html>

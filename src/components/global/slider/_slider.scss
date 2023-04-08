@@ -1,0 +1,141 @@
+@mixin thumbColor($color) {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: $color;
+    cursor: pointer;
+}
+
+@mixin progressColor($color) {
+    background-color: $color;
+    width: 25px;
+    height: 15px;
+    border-radius: 5px;
+}
+
+@mixin dynamicThumbColor() {
+    &-default::-moz-range-thumb {
+        @include thumbColor(yellow)
+    }
+
+    &-primary::-moz-range-thumb {
+        @include thumbColor($--primary)
+    }
+
+    &-danger::-moz-range-thumb {
+        @include thumbColor($--danger)
+    }
+
+    &-dark::-moz-range-thumb {
+        @include thumbColor($--dark)
+    }
+
+    &-light::-moz-range-thumb {
+        @include thumbColor($--light)
+    }
+
+    &-lighter::-moz-range-thumb {
+        @include thumbColor($--lighter)
+    }
+
+    &-teal::-moz-range-thumb {
+        @include thumbColor($--teal)
+    }
+
+    &-gray-dark::-moz-range-thumb {
+        @include thumbColor($--gray-dark)
+    }
+
+    &-white::-moz-range-thumb {
+        @include thumbColor($--white)
+    }
+
+    &-orange::-moz-range-thumb {
+        @include thumbColor($--gray-dark)
+    }
+}
+
+@mixin dynamicProgressColor() {
+    &-default::-moz-range-progress {
+        @include progressColor(gray)
+    }
+
+    &-primary::-moz-range-progress {
+        @include progressColor($--primary)
+    }
+
+    &-danger::-moz-range-progress {
+        @include progressColor($--danger)
+    }
+
+    &-dark::-moz-range-progress {
+        @include progressColor($--dark)
+    }
+
+    &-light::-moz-range-progress {
+        @include progressColor($--light)
+    }
+
+    &-lighter::-moz-range-progress {
+        @include progressColor($--lighter)
+    }
+
+    &-teal::-moz-range-progress {
+        @include progressColor($--teal)
+    }
+
+    &-gray-dark::-moz-range-progress {
+        @include progressColor($--gray-dark)
+    }
+
+    &-white::-moz-range-progress {
+        @include progressColor($--white)
+    }
+
+    &-orange::-moz-range-progress {
+        @include thumbColor($--gray-dark)
+    }
+}
+
+.slide-container {
+    @include flexRowCenter;
+    width: 100%;
+    // background-color: yellow;
+
+    &-wrapper {
+        @include flexColCenter;
+        // background-color: red;
+        width: 50%;
+    }
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    margin: 15px 0px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+// .slider-thumb::-webkit-slider-thumb {
+//     @include dynamicColor();
+//     -webkit-appearance: none;
+//     appearance: none;
+// }
+
+.slider-thumb {
+    @include dynamicThumbColor();
+}
+
+.slider-progress {
+    @include dynamicProgressColor();
+}

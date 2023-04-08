@@ -1,0 +1,47 @@
+.heading{
+    font-weight: 400;
+    color: #32325d;
+    font-size: 1rem;
+    &-footer{
+        font-size: 600;
+    }
+    &-title{
+        font-weight: 600;
+        font-size: 1.25rem;
+        
+    &.info-text{
+        color: #11cdef;
+    }
+    &.primary-text{
+        color: #5e72e4;
+
+    }
+    &.danger-text{
+        color: #f5365c;
+    }
+    &.success-text{
+        color: #2dce89;
+    }
+    &.warning-text{
+        color: #fb6340;
+    }
+}
+    &.display1{
+        font-weight: 600;
+        font-size: 3.3rem;
+    }
+    &.display2{
+        font-weight: 600;
+        font-size: 2.75rem;
+    }
+    &.display3{
+        font-weight: 600;
+        font-size: 2.1875rem;
+    }
+    &.display4{
+        font-weight: 600;
+        font-size: 1.6275rem;
+
+    }
+   
+}

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+
+.newsDetailMoreFromInHype-Container{
+    width: 100%;
+    // &-head1{
+    //     font-size: 24px;
+    //     font-family: 'Nunito';
+    //     font-weight: 800;
+    //     color: #0f0e0e;
+    // }
+    // &-head2{
+    //     font-size: 12px;
+    //     font-family: 'Nunito';
+    //     font-weight: 500;
+    //     color: #0f0e0e;
+    //     margin: 10px 0;
+    // }
+    &-wrapper{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &-card{
+             width: 32%;
+             display: flex;
+             flex-direction: column;
+             margin-bottom: 20px;
+             @include mobile{
+                 width: 100%;
+             }
+            &-img{
+                position: relative;
+                height: 180px;
+                width: 100%;
+                border-radius: 5px;
+                background-color: rgba(0,0,0,.1);
+                background-blend-mode: overlay;
+                background-size: cover;
+                border: none;
+                background-position: center center;
+                background-repeat: no-repeat;
+                &-rating{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin: 20px 20px 0 0;
+                }
+            }
+            &-img:hover{
+                background-color: rgba(0,0,0,.3);
+            }
+            &-img:hover:after{
+                transition: .25s linear;
+                border-width: 20px;
+            }
+            &-img::after{
+                transition:.25s linear;
+                position: absolute;
+                content: "";
+                bottom: 0;
+                right: 0;
+                background:white;
+                border-width: 0px;
+                border-style: solid;
+                display: block;
+                border-color:  $--primary #fff #fff   $--primary;
+            }
+            &-description{
+                width:100%;
+                margin-top: 20px;
+                &-head{
+                    font-size: 18px;
+                    font-family: 'Nunito';
+                    font-weight: 800;
+                    margin: 15px 0;
+                    a{
+                        text-decoration: none;
+                        color: #0f0e0e;
+                        transition: .25s ease;
+                        cursor: pointer;
+                    }
+                    a:hover{
+                        color:#2568ef ;
+                        transition: .25s ease;
+                    }
+                }
+
+            }
+           
+
+        }
+    }
+        
+}
+

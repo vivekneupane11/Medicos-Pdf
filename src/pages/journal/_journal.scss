@@ -1,0 +1,20 @@
+.journal-wrapper{
+    width: 100%;
+    .progressBarContainer{
+        height: 5px;
+        width: 100%;
+        position: fixed;
+        top:70px;
+        left: 0;
+        z-index: 10;
+        &-increment{
+           background-color: #e61e61;
+           height: 100%;
+        
+        }
+    }
+}
+.journal-loading-wrapper{
+    padding-top: 200px;
+    padding-bottom: 200px;
+}

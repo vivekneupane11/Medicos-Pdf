@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+    
+.newsLinkTag-container{
+    font-family:'nunito';
+    display: flex;
+    width: 100%;
+    .newsLinkTag-link{ 
+        padding:4px 15px 4px 10px;
+        border: 1px solid #E0DEDE;
+        text-decoration:none;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        border-radius: 30px;
+        cursor: pointer;
+        &-circle{
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        &-text{
+           
+            p{
+                font-family:'nunito';
+                color: #0F0E0E;
+                font-size: 14px !important;
+                font-weight: 600;
+                transition: .25s ease;
+                text-transform: capitalize;
+            }
+            p:hover{
+                color: #428BCA;
+                transition: .25s ease;
+            }
+        }
+       
+    }
+
+}

@@ -1,0 +1,193 @@
+@import "../../../../App.scss";
+
+.slide-card {
+    // background-color: red;
+    // box-shadow: 5px 5px 19px rgba(128, 128, 128, 0.3);
+    box-shadow: 0px 3px 8px rgba(128, 128, 128, 0.3);
+    border-radius: 5px;
+    width: 300px;
+    // height: 363px;
+    // overflow: hidden;
+    @include tablet{
+        width: 265px;
+    }
+    @media only screen and (max-width: 1250px) and (min-width: 1024px)  {
+        width: 290px;
+    }
+   
+
+    &-image {
+        width: 100%;
+        height: 100%;
+        background-color: #f2f2f2;
+    }
+
+
+
+    &-image-container {
+        // background-color: green;
+        height: 186px;
+        width: 100%;
+        position: relative;
+
+        // .progress-indicator-container {
+        //     width: 100%;
+        //     height: 5px;
+        //     position: absolute;
+        //     bottom: 0;
+        //     background-color: lightgray;
+
+        //     &-active {
+        //         background-color: gray;
+        //         width: 10%;
+        //         height: 5px;
+        //     }
+        // }
+    }
+
+    &-image-container:hover {
+        cursor: pointer;
+
+        .progress-indicator-container {
+            width: 100%;
+            height: 5px;
+            position: absolute;
+            bottom: 0;
+            background-color: lightgray;
+
+            &-active {
+                background-color: $--primary;
+                width: 10%;
+                height: 5px;
+            }
+        }
+    }
+
+    &-bottom:hover {
+        cursor: pointer;
+    }
+
+    &-bottom {
+        @include flexColSbCenter;
+        padding:0px 10px;
+        // background-color: green;
+        // height: 48%;
+        width: 100%;
+
+        .description {
+            @include flexColSbStart;
+            width: 100%;
+            // background-color: white;
+            .title{    
+                width: 100%;
+                overflow: hidden;       
+                margin:10px 0px;
+                height: 50px;
+            }
+        }
+
+        .slide-info {
+            @include flexRowSbCenter;
+            width: 100%;
+            height: 55px;
+            margin-top: 10px;
+            border-top: 1px solid lightgray;
+            // background-color: red;
+            .left {
+                @include flexRowCenter;
+
+                .userInfo {
+                    @include flexRowCenter;
+                    margin-right: 25px;
+                    cursor: auto;
+                    h7 {
+                        font-weight: bold;
+                        font-family: "Roboto", sans-serif;
+                    }
+
+                    .profilePic {
+                        width: 25px;
+                        border-radius: 100%;
+                        margin-right: 5px;
+                    }
+
+
+                }
+            }
+
+            .right {
+                @include flexRowCenter;
+
+                h7 {
+                    font-weight: normal;
+                    // font-size: 12px;
+                    color: gray;
+                    font-family: "Roboto", sans-serif;
+                }
+
+                .icon {
+                    font-size: 18px;
+                    color: gray;
+                    // margin-right: 5px
+                }
+                .downloadIcon {
+                    font-size: 17px;
+                    color: gray;
+                    margin-right: 10px
+                }
+                .shareIcon {
+                    font-size: 22px;
+                    color: gray;
+                    margin:0px 10px
+                }
+
+
+                .category {
+                    @include flexRowCenter;
+                }
+
+                .right-comment-icon {
+                    @include flexRowCenter;
+                
+                    p{
+                        font-size: 12px;
+                    }
+                }
+
+                .view {
+                    @include flexRowCenter;
+                    margin: 0px 10px;
+                    p{
+                        font-size: 12px;
+                    }
+                }
+                .shareOptions{
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .sharePopUp{
+                        display: flex;
+                        opacity: 0;
+                        position: absolute;
+                        transform: translate(-50px,-50px);
+                        transition: .2s ease opacity;
+                    }
+                    .sharePopUpActive{
+                        opacity: 1;
+                        transition: .2s ease opacity;
+                        animation: share .2s ease;
+                    }
+                    @keyframes share {
+                        0%   {top:30px;}
+                        100%  {top: 0;}
+                      }
+                     .shareBtn{
+                         padding:2px!important;
+                     } 
+                }
+
+            }
+        }
+    }
+}

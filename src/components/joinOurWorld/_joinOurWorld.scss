@@ -1,0 +1,168 @@
+@import '../abstracts/mixins';
+@import '../abstracts/variables';
+
+.JoinOurWorld-wrapper{
+    width: 100%;
+    @include tablet{
+        display: flex;
+        flex-direction: column;
+    }
+    @include mobile{
+        display: flex;
+        flex-direction: column;
+    }
+    &-heading{
+        font-size: 2.1875rem;
+        text-transform: capitalize;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    &-col1{
+        position: absolute;
+        width:300px ;
+        margin: 100px 0 0 100px;
+        z-index: 100;
+        @include tablet{
+            position: relative;
+            z-index: none;
+            margin:0 auto;
+    
+           
+        }
+        @include mobile{
+            position: relative;
+            z-index: none;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        &-head{
+            font-size: 2.1875rem;
+            text-transform: capitalize;
+        }
+        &-para{
+            font-size: 1.25rem;
+            margin: 30px 0;
+            line-height: 1.5;
+        }
+        &-btn{
+            height: 45px;
+            width: 120px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: .875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: #5e72e4;
+            color: #fff;
+            border:none;
+            box-shadow: 0 4px 6px rgba(50 ,50 ,93 ,.11);
+            @include tablet{
+                margin: 0 auto;
+            }
+            @include mobile{
+                margin: 0 auto;
+            }
+        }
+        &-btn:hover{
+            background-color: #3d55df;
+            transform: translateY(-1px);
+            color: #fff;
+        }
+    }
+    .swiper-container {
+        width: 100%;
+       padding:40px 0;
+       @include mobile{
+        width: 70%;
+        margin: auto;
+       }
+        .swiper-wrapper{
+            .swiper-slide{
+                filter: blur(2px);
+                opacity: .1;
+                cursor: grab;
+               
+            }
+        }
+        .swiper-slide-active {
+            border: 1px solid #172b4d;
+            filter: blur(0) !important;
+            opacity: 1 !important;
+            border-radius: 5px;
+           
+        }
+        .swiper-btn-wrap{
+
+        }
+        .swiper-button-prev {
+           top: 99%;
+            margin-left: 30%;
+            color: #172b4d;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            box-shadow: 0 0.25em 0.5em 0 rgba(0, 0 ,0 ,.10);
+            transition: all .3s ease 0s;
+            @include tablet{
+                margin-left: 45%;
+            }
+            @include mobile{
+                margin-left: 30%;
+            }
+        }
+    
+        .swiper-button-prev::after {
+            content: '';
+        }
+    
+        .swiper-button-next {
+            top: 99%;
+            margin-right: 64%;
+            color: #172b4d;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            box-shadow: 0 0.25em 0.5em 0 rgba(0, 0 ,0 ,.10);
+            transition: all .3s ease 0s;
+            @include tablet{
+                margin-right: 45%;
+            }
+            @include mobile{
+                margin-right: 45%;
+            }
+        }
+    
+        .swiper-button-next::after {
+            content: '';
+        }
+    }
+
+    &-slide{
+        // background-color: gray;
+        width: 95%;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20px 30px 30px 40px;
+        &-quote{
+          font-size: .875rem;
+          line-height: 2;
+        }
+        &-info{
+            display: flex;
+            align-items: center;
+            img{
+               height: 35px;
+               width: 35px;
+               border-radius: 50%;
+            }
+            &-name{
+              margin-left: 5px;
+            }
+        }
+    }
+
+   
+
+}

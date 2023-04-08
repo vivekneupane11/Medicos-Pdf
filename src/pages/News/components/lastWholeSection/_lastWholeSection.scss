@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+.newsLastWholeSection-container{
+    width: 100%;
+    padding: 60px 30px;
+    display: flex;
+    @include tablet{
+        flex-direction: column;
+      }
+      @include mobile{
+       flex-direction: column;
+      }
+    &-left{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        @include tablet{
+          width: 100%;
+        }
+        @include mobile{
+           width: 100%;
+        }
+        &-topImg{
+            position: relative;
+            height: 470px;
+            width: 90%;
+            border-radius: 5px;
+            background-color: rgba(0,0,0,.3);
+            background-blend-mode: overlay;
+            background-size: cover;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+                height: 300px;
+            }
+            &-description{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                margin:0 0 40px 40px;
+                transition: .25s ease;
+                @include mobile{
+                    margin: 0 0 30px 30px;
+                }
+                &-head{
+                    font-size: 30px;
+                    font-family: 'Nunito';
+                    font-weight: 800;
+                    margin: 15px 0;
+                    color: #fff;
+                    cursor: pointer;
+                
+                    // a{
+                    //     text-decoration: none;
+                    //     color: #fff;
+                    //     cursor: pointer;
+                    // }
+    
+                }
+            }
+        }
+        &-topImg:hover{
+            background-color: rgba(0,0,0,.5);
+            .newsLastWholeSection-container-left-topImg-description{
+                transform: translateY(-10px);
+                transition: .25s ease;
+            }
+        }
+        &-bottomContainer{
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            &-singleCard{
+                width: 48%;
+                &-img{
+                    position: relative;
+                    height: 240px;
+                    width: 100%;
+                    border-radius: 5px;
+                    background-color: rgba(0,0,0,.1);
+                    background-blend-mode: overlay;
+                    background-size: cover;
+                    border: none;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    cursor: pointer;
+                    @include mobile{
+                        height: 180px;
+                    }
+                    &-tags{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        margin: 20px 20px 0 0;
+                    }
+                }
+                &-img:hover{
+                    background-color: rgba(0,0,0,.3);
+                }
+                &-img:hover:after{
+                   transition: .25s linear;
+                   border-width: 20px;
+                }
+                &-img::after{
+                    transition:.25s linear;
+                    position: absolute;
+                    content: "";
+                    bottom: 0;
+                    right: 0;
+                    background:white;
+                    border-width: 0px;
+                    border-style: solid;
+                    display: block;
+                    border-color: $--primary #fff #fff  $--primary;
+                }
+                &-description{
+                     margin: 20px 0;
+                    &-head{
+                        font-size: 22px;
+                        font-family: 'Nunito';
+                        font-weight: 800;
+                        margin: 15px 0;
+                        color: #0f0e0e;
+                            transition: .25s ease;
+                            cursor: pointer;
+                      
+                        &:hover{
+                            color:$--primary ;
+                            transition: .25s ease;
+                        }
+        
+                    }
+                }
+                &-para{
+                    font-family: 'Rubik';
+                    font-size: 15px;
+                    color: #333;
+                    margin-bottom: 30px;
+                }
+            }
+        }
+        &-btn{
+            font-family: 'Nunito';
+            font-weight: 600;
+            font-size: 16px;
+            padding: 13px 30px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            margin: 0 auto 50px;
+            background-color: $--primary ;
+            cursor: pointer;
+            transition: .25s;
+        }
+        &-btn:hover{
+            background-color: #48494b;
+            transition: .25s;
+        }
+    }
+    &-right{
+        position: sticky;
+        top: 100px;
+        right: 0;
+        width: 30%;
+        display: flex;
+        align-self: flex-start;
+        flex-direction: column;
+        @include tablet{
+            width: 100%;
+          }
+          @include mobile{
+             width: 100%;
+          }
+
+        &-latestPostsContainer{
+            width: 100%;
+            &-head{
+                font-size: 22px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                color: #0f0e0e;
+                border-bottom:1px solid #e0dede;
+                padding-bottom:20px ;
+            }
+            &-cardsContainer{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 30px 0;
+                &-card{
+                    width: 100%;
+                    &-img{
+                        position: relative;
+                        height: 240px;
+                        width: 100%;
+                        border-radius: 5px;
+                        background-color: rgba(0,0,0,.1);
+                        background-blend-mode: overlay;
+                        background-size: cover;
+                        border: none;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        @include tablet{
+                            height: 400px;
+                        }
+                        @include mobile{
+                            height: 300px;
+                        }
+                        &-playbtn{
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            margin: 20px 20px 0 0;
+                        }
+                    }
+                    &-img:hover{
+                        background-color: rgba(0,0,0,.3);
+                    }
+                    &-img:hover:after{
+                       transition: .25s linear;
+                       border-width: 20px;
+                    }
+                    &-img::after{
+                        transition:.25s linear;
+                        position: absolute;
+                        content: "";
+                        bottom: 0;
+                        right: 0;
+                        background:white;
+                        border-width: 0px;
+                        border-style: solid;
+                        display: block;
+                        border-color: $--primary #fff #fff  $--primary;
+                    }
+                   &-description{
+                       margin: 30px 0;
+                        &-head{
+                            font-size: 16px;
+                            font-family: 'Nunito';
+                            font-weight: 800;
+                            margin: 10px 0;
+                            padding-right: 30px;
+                            color: #0f0e0e;
+                            transition: .25s ease;
+                            cursor: pointer;
+                            &:hover{
+                                color:$--primary  ;
+                                transition: .25s ease;
+                            }
+            
+                        }
+                   }
+                }
+
+            }
+        }
+
+        &-individualDetailsContainer{
+            width: 100%;
+            background-color: #f7f7f7;
+            padding: 50px 40px 50px 40px;
+            display: flex;
+            &-description{
+               
+                &-head{
+                    font-size: 17px;
+                    font-family: 'Nunito';
+                    font-weight: 800;
+                    color: #0f0e0e;
+                    &-img{
+                        height: 60px;
+                        width: 60px;
+                        border-radius: 50%;
+                        background-size: cover;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        float: right;
+                    }
+                }
+                &-para{
+                    font-family: 'Rubik';
+                    font-size: 15px;
+                    color: #333;
+                    line-height: 1.75;
+                    margin: 10px 0;
+                }
+                &-btn{
+                    font-family: 'Nunito';
+                    font-weight: 600;
+                    font-size: 16px;
+                    padding: 13px 30px;
+                    border: none;
+                    border-radius: 5px;
+                    color: #fff;
+                    background-color: $--primary ;
+                    cursor: pointer;
+                    transition: .25s;
+                    a{
+                        text-decoration: none;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                   
+                }
+                &-btn:hover{
+                    background-color: #48494b;
+                    transition: .25s;
+                }
+            }
+           
+        }
+
+        &-popularContainer{
+            width: 100%;
+            margin: 20px 0;
+            @include tablet{
+              margin-top: 40px;
+            }
+            @include mobile{
+             margin-top: 40px;
+            }
+            &-head{
+                font-size: 22px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                color: #0f0e0e;
+                border-bottom:1px solid #e0dede;
+                padding-bottom:20px ;
+            }
+            &-cardsContainer{
+                width: 100%;
+                margin: 30px 0;
+                &-card{
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    @include tablet{
+                       justify-content: flex-start;
+                    }
+                    @include mobile{
+                        justify-content: flex-start;
+                    }
+                    &-img{
+                        position: relative;
+                        height: 100px;
+                        width: 35%;
+                        border-radius: 5px;
+                        background-color: rgba(0,0,0,.1);
+                        background-blend-mode: overlay;
+                        background-size: cover;
+                        border: none;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        @include tablet{
+                           width: 160px;
+                           height: 120px;
+                           margin-right: 30px;
+                        }
+                        @include mobile{
+                            width: 160px;
+                            height: 120px;
+                            margin-right: 30px;
+                        }
+                    }
+                    &-img:hover{
+                        background-color: rgba(0,0,0,.3);
+                    }
+                    &-img:hover:after{
+                       transition: .25s linear;
+                       border-width: 20px;
+                    }
+                    &-img::after{
+                        transition:.25s linear;
+                        position: absolute;
+                        content: "";
+                        bottom: 0;
+                        right: 0;
+                        background:white;
+                        border-width: 0px;
+                        border-style: solid;
+                        display: block;
+                        border-color: $--primary #fff #fff  $--primary;
+                    }
+                    &-description{
+                        width: 50%;
+                        &-head{
+                            font-size: 16px;
+                            font-family: 'Nunito';
+                            font-weight: 800;
+                            margin-bottom: 10px;
+                            color: #0f0e0e;
+                            transition: .25s ease;
+                            cursor: pointer;
+                            &:hover{
+                                color:$--primary  ;
+                                transition: .25s ease;
+                            }
+            
+                        }
+                    }
+
+                }
+            }
+        }
+
+        &-subscribeAndFollowContainer{
+            width: 100%;
+            margin: 20px 0;
+            &-head{
+                font-size: 22px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                color: #0f0e0e;
+                border-bottom:1px solid #e0dede;
+                padding-bottom:20px ;
+            }
+            &-cardsContainer{
+                margin: 30px 0;
+                display: flex;
+                flex-direction: column;
+                &-card{
+                    margin-bottom: 10px;
+                    transition: .25s ease;
+                    border-radius: 5px;
+                   
+                    &-link{
+                        display: flex;
+                        text-decoration: none;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 5px 20px;
+                        cursor: pointer;
+                        &-wrapper{
+                             display: flex;
+                             flex-direction: column;
+
+                            &-head{
+                             font-family: 'Rubik';
+                              color: #fff;
+                              font-size: 14px;
+                            }
+                            &-para{
+                              font-family: 'Rubik';
+                              color: #fff;
+                              font-size: 12px;
+                            }
+                        }
+                        &-icon{
+                            color: #fff;
+                        }
+                    }
+                }
+                &-card:hover{
+                    background-color: #48494b !important;
+                    transition: .25s ease;
+                }
+            }
+        }
+    }
+}

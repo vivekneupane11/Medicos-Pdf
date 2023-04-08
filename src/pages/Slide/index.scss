@@ -1,0 +1,264 @@
+@import "../../App.scss";
+
+.slide-page-container {
+    width: 100%;
+
+    &-wrapper {
+
+        
+        .slide-page-slide-section {
+            @include flexRowSbStart;
+            border-top: 0.1px solid #f7f7f7;
+            width: 100%;
+            &-col1 {
+                @include flexColStartCenter;
+                padding: 35px 0px 0px 25px;
+                text-align: center;
+                width: 30%;
+                @include mobile{
+                    display: none;
+                }
+                .heading {
+                    text-align: left;
+                    width: 100%;
+                }
+                .sub-heading {
+                    align-self: flex-start;
+                    margin-top: 20px;
+                    text-align: left;
+                    border-bottom: 1.9px solid $--primary;
+                }
+                .sub-categories{
+                    width: 100%;
+                    margin-top: 10px;
+                    @include mobile{
+                        width: 100%
+                    }
+                   
+                }
+            }
+
+            &-col2 {
+                @include flexColCenterStart;
+                padding-top: 35px;
+                width: 100%;
+                border-left: 0.1px solid #f7f7f7;
+                
+
+                &-content-section {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-evenly;
+                    flex-wrap: wrap;
+                    margin: 40px 0;
+                    
+                    @include mobile{
+                        margin: 40px 0 20px 0;
+                        justify-content: center;
+                        align-items: center;
+
+                    }
+                   
+                    
+                        .item{
+                            padding: 10px 10px 20px 10px;
+                         }
+                  
+                   
+                     
+                     // background-color: red;
+                 }
+
+                .tabs {
+                    width: 100%;
+                    @include mobile{
+                        display: none;
+                    }
+                }
+                .S-sub-categories-forMobile{
+                    display: none;
+                    @include mobile{
+                        // display: block;
+                        display: none;
+                        width: 100%;
+                        padding: 0 20px;
+                        margin-top: 14px;
+                        
+                    }
+                }
+
+                .pagination {
+                    @include flexRowEndCenter;
+                    width: 100%;
+                    border-top: 1px solid #f7f7f7;
+                }
+            }
+        }
+
+    }
+
+
+    // display: flex;
+}
+
+@include tablet {
+    .book-detail-page {
+        height: 100%;
+        width: 100%;
+
+        &-wrapper {
+
+            // background-color: red;
+            &-book-detail-section {
+                &-container {
+                    width: 100%;
+
+                    img {
+                        width: 250px;
+                        margin-right: 25px
+                    }
+                }
+
+            }
+
+            &-book-explore-section {
+                @include flexColCenter;
+                // background-color: green;
+                width: 100%;
+
+                .book-review-section {
+                    width: 100%;
+                }
+
+                .related-book-section {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+}
+
+@include mobile {
+    .book-detail-page {
+        height: 100%;
+        width: 100%;
+
+        &-wrapper {
+
+            // background-color: red;
+            &-book-detail-section {
+                @include flexColCenter;
+
+                &-container {
+                    @include flexColCenter;
+                    // background-color: red;
+                    width: 100%;
+
+                    // padding: 0px;
+                    img {
+                        width: 250px;
+                        margin: 0px;
+                    }
+                    &-content {
+                        width: 90%;
+                        // background-color: white;
+                        margin-top: 35px
+                    }
+                }
+
+            }
+
+            &-book-explore-section {
+                @include flexColCenter;
+                // background-color: green;
+                width: 100%;
+
+                .book-review-section {
+                    width: 100%;
+                }
+                .related-book-section {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+}
+
+.slide-loading-wrapper{
+    padding-top: 250px;
+    padding-bottom: 250px;
+    width: 100%;
+}
+
+
+.S-dropdownForMobile{
+    display: none;
+    
+    @include mobile{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 20px;
+    }
+    &-head{
+        font-size: 30px;
+    }
+    &-category{
+        width: 100%;
+        margin-bottom: 5px;
+        &-dd{
+            cursor: pointer;
+            // height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #eee;
+            padding:10px;
+           span{
+           
+            font-size: 18px;
+          
+            padding: 5px 0;
+           }
+        }
+    }
+    &-subcategory{
+       width: 100%;
+       &-dd{
+        cursor: pointer;
+        // height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid #eee;
+        padding: 10px;
+        span{
+            font-size: 18px;
+            
+            padding: 5px 0;
+        }
+       }
+    }
+    .S-dd-hide{
+        display: none;
+    }
+    .S-dd-show{
+        display: block;
+    }
+}
+
+.S-showD{
+    margin-top: -2px;
+    transition:.2s linear;
+    margin-left: 10px;
+    height: 15px;
+    width: 15px;
+}
+.S-rotateD{
+   margin-top: 4px;
+    transform:rotate(90deg);
+    transition:.2s linear;
+}

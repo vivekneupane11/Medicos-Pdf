@@ -1,0 +1,96 @@
+@import "../../../App.scss";
+
+
+.checkbox-container {
+    // background-color: yellow;
+    width: 100%;
+    // height: 110px;
+    display: flex;
+    padding: 18px 0px;
+    @include flexCenter;
+
+    &-wrapper {
+        @include flexRowCenter;
+        padding: 2px 5px;
+
+        &-disabled {
+            @include flexRowCenter;
+            padding: 2px 5px;
+            opacity: 0.4;
+        }
+    }
+}
+
+.regular-checkbox {
+    -webkit-appearance: none;
+    background-color: white;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 11px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    margin: 0px 10px;
+    &-disabled {
+        -webkit-appearance: none;
+        background-color: lightgray;
+        border: 1px solid #cacece;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+        padding: 11px;
+        border-radius: 3px;
+        display: inline-block;
+        position: relative;
+        margin: 0px 10px;
+    }
+}
+
+
+
+.regular-checkbox:active,
+.regular-checkbox:checked:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regular-checkbox:checked {
+    background-color: $--primary;
+    border-style: none;
+    // border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+    color: #99a1a7;
+    padding: 11px;
+}
+
+.regular-checkbox:checked:after {
+    content: '✓';
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: white;
+    transition: 2s;
+}
+
+.regular-checkbox-disabled:active,
+.regular-checkbox-disabled:checked:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regular-checkbox-disabled:checked {
+    background-color: $--primary;
+    // border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+    color: #99a1a7;
+}
+
+.regular-checkbox-disabled:checked:after {
+    content: '✓';
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: white;
+    transition: 2s;
+}
+
+
+

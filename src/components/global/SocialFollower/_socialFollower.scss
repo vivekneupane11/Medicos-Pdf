@@ -1,0 +1,127 @@
+@import "../../../App.scss";
+
+.Social__follower{
+    margin-bottom: 10px;
+     font-size: 1em;
+     border-radius: 5px;
+    padding: 5px 15px;
+    width: 100%;
+    align-items: center;
+
+    .label{
+        display: flex;
+        flex-direction: column;
+        .name{
+            font-size: 16px;
+            font-weight: 800;
+            font-family: 'Nunito';
+            color: white;
+        }
+        .follower{
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'Nunito';
+            color: white;
+        }
+    }
+    &.facebook{
+       // @include flexRowCenter;
+        background-color: #3b5999;
+        color: #fff;
+        border-color: #3b5999;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    &.twitter{
+        background-color:  #1da1f2;
+        color: #fff;
+        border-color: #1da1f2;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    &.instagram{
+        background-color: #e4405f;
+        color: #fff;
+        border-color:#e4405f ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.git{
+        background-color: #222;
+        color: #fff;
+        border-color:#222 ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.pintrest{
+        background-color: #bd081c;
+        color: #fff;
+        border-color: #bd081c;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.youtube{
+        background-color: #cd201f;
+        color: #fff;
+        border-color:#cd201f ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.vimeo{
+        background-color: #1ab7ea;
+        color: #fff;
+        border-color:#1ab7ea ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.slack{
+        background-color: #3aaf85;
+        color: #fff;
+        border-color:3aaf85 ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.dribble{
+        background-color: #ea4c89;
+        color: #fff;
+        border-color:#ea4c89 ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.reddit{
+        background-color: #ff4500;
+        color: #fff;
+        border-color:#ff4500 ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.tumblr{
+        background-color: #35465c;
+        color: #fff;
+        border-color:#35465c ;
+        display: flex;
+        justify-content: space-between;
+    }
+    &.linkedin{
+        background-color: #0077b5;
+        color: #fff;
+        border-color:#0077b5 ;
+        display: flex;
+        justify-content: space-between;
+    }
+      
+
+}
+.Social__follower:hover{
+    cursor: pointer;
+    background-color: #48494b ;
+   // box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.2);
+}
+
+.socialFollower-link{
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}

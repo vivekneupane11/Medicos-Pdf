@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+.authorDateReadDate-wrapper{
+    font-family: 'Nunito';
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &-author{
+      
+        &-firstSpan{
+            font-weight: 600;
+            font-family: 'Nunito';
+                a{
+                    font-weight: 600;
+                    font-family: 'Nunito';
+                    text-decoration: none;
+                    cursor: pointer;
+
+                }
+                a:hover{
+                    color:#2568ef ;
+                }
+    
+        }
+    }
+    &-dot{
+        display: inline-block;
+        margin-left: 7px;
+        margin-right: 7px;
+        border-radius: 5px;
+        width: 6px;
+        height: 6px;
+        // border: 1px solid #909090;
+        position: relative;
+    }
+    &-date{
+         font-weight: 600;
+    }
+    &-readTime{
+        font-weight: 600;
+    }
+}

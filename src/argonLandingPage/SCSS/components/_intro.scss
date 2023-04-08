@@ -1,0 +1,85 @@
+.intro-wrapper{
+    width: 100%;
+    display: flex;
+    padding: 100px 100px 100px 180px;
+    @include tablet{
+         @include flexColCenter;
+          padding: 100px 60px 100px 120px;
+    }
+    @include mobile{
+         @include flexColCenter;
+          padding: 100px 20px;
+    }
+    &-left{
+        width: 50%;
+        @include flexCol;
+        @include tablet{
+         width: 80%;
+        }
+        @include mobile{
+          width: 80%;
+         
+        }
+       
+        &-item{
+            display: flex;
+            &-icon{
+                height: 50px;
+                width: 50px;
+                background-color: rgba(65,215,242,.5);
+                color: $--info;
+                @include flexCenter;
+                border-radius: 50%;
+            }
+            &-desc{
+               @include flexCol;
+                flex: .8;
+                padding: 0  0 80px 20px;
+                h1{
+                  font-size: 20px;
+                  color: rgb(50,50,93);
+                }
+                p{
+                  font-size: 16px;
+                  padding: 20px 0;
+                  color:rgb(82,95,127);
+                  line-height: 2;
+                }
+                h3{
+                  font-size: 14px;
+                  color: $--info;
+                }
+            }
+
+        }
+    }
+    &-right{
+        width: 50%;
+        @include tablet{
+          width: 80%;
+         }
+         @include mobile{
+          width: 80%;
+          
+         }
+       
+        img{
+          margin-top: 100px;
+            height: 550px;
+            width: 95%;
+            @include tablet{
+              margin-top: 50px;
+              height: 400px;
+              width: 95%;
+             }
+             @include mobile{
+               
+              margin-top: 20px;
+              height: 300px;
+              width: 95%;
+              
+             }
+        }
+
+    }
+}

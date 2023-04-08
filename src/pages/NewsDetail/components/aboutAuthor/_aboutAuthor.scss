@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+
+.newsDetailAboutAuthor-Container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 0;
+    @include mobile{
+        flex-direction: column;
+    }
+    &-left{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+       
+        @include mobile{
+            width: 100%;
+        }
+        &-a{
+            width: 100%;
+            display: flex;
+            &-img{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-size: cover;
+                border: none;
+                background-position: center center;
+                background-repeat: no-repeat;
+
+            }
+        }
+        &-posts{
+             color: #9f9f9f;
+             font-size: 14px;
+             font-family: 'Rubik';
+             margin-top: 10px;
+             margin-left: 15px;
+        }
+
+    }
+    &-right{
+        width: 80%;
+        @include mobile{
+            width: 100%;
+        }
+        &-name{
+           font-size: 22px;
+           font-family: 'Nunito';
+           font-weight: 800;
+           a{
+               text-decoration: none;
+               color: #0f0e0e;
+           }
+           a:hover{
+            color: #2568ef;
+        }
+        }
+        &-head{
+            font-size: 12px;
+            font-family: 'Nunito';
+            font-weight: 500;
+            color: #0f0e0e;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+        &-intro{
+            font-family: 'Rubik';
+            font-size: 15px;
+            line-height: 1.75;
+            color: #333;
+        }
+       &-bottom{
+           display: flex;
+           align-items: center;
+           @include mobile{
+               flex-direction: column;
+               align-items: flex-start;
+           }
+            &-btn{
+                border: 1px solid #e0dede;
+                border-radius: 30px;
+                padding: 5px 20px;
+                background-color: #fff;
+                text-transform: lowercase;
+                font-family: 'Rubik';
+                font-size: 15px;
+                margin: 10px 0;
+                margin-right: 15px;
+                a{
+                    text-decoration: none;
+                    color:#0f0e0e
+                }
+                a:hover{
+                    color: #2568ef;
+                }
+            }
+            &-icons{
+                display: flex;
+               
+                &-a{
+                    text-decoration: none;
+
+                    &-icon{
+                        margin-right: 15px;
+                        color: #0f0e0e;
+                        cursor: pointer;
+                    }
+                    &-icon:hover{
+                        color: #2568ef;
+                    }
+                }
+            }
+           
+ 
+       }
+    }
+}

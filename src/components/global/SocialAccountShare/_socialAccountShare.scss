@@ -1,0 +1,21 @@
+@import '../../../App.scss';
+
+    .sharePopUp{
+        display: flex;
+        opacity: 0;
+        position: absolute;
+        transform: translate(-50px,-50px);
+        transition: .2s ease opacity;
+    }
+    .sharePopUpActive{
+        opacity: 1;
+        transition: .2s ease opacity;
+        animation: share .2s ease;
+    }
+    @keyframes share {
+        0%   {top:30px;}
+        100%  {top: 0;}
+      }
+     .shareBtn{
+         padding:2px!important;
+     } 

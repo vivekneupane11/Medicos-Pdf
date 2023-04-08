@@ -1,0 +1,54 @@
+@import '../../../../App.scss';
+.homeButtonWithArrow-container{
+    width: 100%;
+    margin:5% 0;
+    display: flex;
+    justify-content: center;
+   a{
+       text-decoration: none;
+    .homeButtonWithArrow-container-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Nunito';
+        font-weight: 800;
+        font-size: 16px;
+        padding: 25px 60px;
+        border: none;
+        border-radius: 5px;
+        // margin: 30px auto 20px;
+        background-color: $--primary;
+        cursor: pointer;
+        transition: .25s;
+        @include tablet{
+            width: 100%;
+          
+        }
+        @include mobile{
+            width: 100%;
+           
+        }
+        &:hover{
+           
+            background-color: #48494b;
+            .homeButtonWithArrow-container-btn-icon{
+                transform: translateX(10px);
+                transition: .25s;
+            }
+        }
+        span{
+          color: #fff;
+          margin-right: 10px;
+          
+        }
+       
+        &-icon{
+            color: #fff;
+            transition: .25s;
+        }
+    }
+   }
+   
+   
+   
+}

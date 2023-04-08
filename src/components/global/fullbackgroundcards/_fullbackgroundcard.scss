@@ -1,0 +1,67 @@
+
+@mixin bg($height,$width){
+  .contain{
+        height: $height;
+        width: $width;
+        margin-left:20px ;
+        margin-top:50px;
+        margin-bottom: 30px;
+        overflow: hidden;
+        transition:all .3s ease;
+        .fullbackgroundcard-wrapper{
+            position: absolute;
+            height: $height;
+            width: $width;
+            background-size:cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: overlay;
+            border-radius: 4px;
+            background-color:rgba(0,0,0,.6);
+            transition:all .3s ease;
+          
+          
+            }
+
+        .fullbackgroundcard-wrapper:hover{
+            transform: scale(1.15);
+            transition:all .3s ease;
+        }
+        .fullbackgroundcard-wrapper-text{
+            margin-top: 280px;
+            margin-left: 14px;
+            position: absolute;
+            &-h5{
+               text-transform:capitalize;
+               color: #ced4da;
+               font-size: 1rem;
+            }
+            &-h4{
+                color: #fff!important;
+                font-size: 1.25rem; 
+             }
+
+        }
+       
+       
+  }
+  .contain:hover{
+    transform: scale(1.05);
+    transition:all .3s ease;
+  }
+        
+    
+    
+}
+
+.bg-wrap-small{
+    @include bg(330px,210px);
+}
+
+.bg-wrap-large{
+    @include bg(330px,500px);
+    .contain:hover{
+        transform: scale(1);
+        transition:.3s ease;
+      }
+}

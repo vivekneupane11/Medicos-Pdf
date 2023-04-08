@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import '../../../../App.scss';
+.NewsLinks-container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 50px 20px;
+       &-wrapper{
+           width: 25%;
+           @include flexCol;
+            padding:0 10px;
+            @include tablet{
+                width: 50%;
+                margin-bottom: 30px;
+            }
+            @include mobile{
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            &-newslinktags{
+                @include flexCol;
+                @include tablet{
+                    flex-direction: row;
+                }
+                @include mobile{
+                    flex-direction: row;
+                }
+                &-tag{
+                  margin-bottom: 5px;
+                  @include tablet{
+                   margin-right: 10px;
+                }
+                @include mobile{
+                    margin-right: 10px;
+                 }
+               }
+          }
+        &-heading{
+            font-size: 18px;
+            margin: 15px 0;
+            font-family: 'Nunito';
+            font-weight: 800;
+            cursor: pointer;
+            // a{
+            //     text-decoration: none;
+            //     color:black;
+            //     cursor: pointer;
+            // }
+            &:hover{
+                color: $--primary ;
+            }
+        }
+       
+    }
+}
+
