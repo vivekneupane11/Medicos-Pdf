@@ -1,6 +1,5 @@
 import React from 'react'
 import './_exploreMoreSlider.scss'
-import { FaChevronRight } from 'react-icons/fa';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
@@ -8,7 +7,8 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import Slider from '../../../../components/global/slider';
+import ArrowRight from '../../../../components/global/icons/arrow_right';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -44,7 +44,8 @@ const ExploreMoreSlider = ({ ExploreSliderDetails, slidesPerView }) => {
                 {ExploreSliderDetails.map(data => (
                     <SwiperSlide key={data.id} >
                         <div className="ExploreMoreSlider-container-swiper-slide">
-                            <img src={data.img} alt="biology" className="ExploreMoreSlider-container-swiper-slide-img" />
+                            {/* <img loading="lazy" src={data.img} alt="biology" className="ExploreMoreSlider-container-swiper-slide-img" /> */}
+                            <LazyLoadImage src={data.img} alt="biology" className="ExploreMoreSlider-container-swiper-slide-img" effect='blur'/>
                             <div className="ExploreMoreSlider-container-swiper-slide-col2">
                                 <h4 className="ExploreMoreSlider-container-swiper-slide-col2-heading">{data.title}</h4>
                                 <p className="ExploreMoreSlider-container-swiper-slide-col2-para">{data.description}</p>
@@ -55,7 +56,7 @@ const ExploreMoreSlider = ({ ExploreSliderDetails, slidesPerView }) => {
                     </SwiperSlide>
                 ))}
 
-                <div className="swiper-button-next"> <FaChevronRight /></div>
+                <div className="swiper-button-next"> <ArrowRight /></div>
             </Swiper>
         </div>
     )

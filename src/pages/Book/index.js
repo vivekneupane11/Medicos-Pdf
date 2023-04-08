@@ -1,523 +1,494 @@
-import axios from 'axios';
-import firebase from "firebase";
-import { motion } from 'framer-motion';
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
-
+// import firebase from "firebase/compat/app";
+// import 'firebase/compat/auth';
+// import 'firebase/compat/firestore';
+import React, { useCallback, useContext, useEffect, useRef, useState, Suspense } from 'react';
+import LazyLoad from 'react-lazyload';
+import shortid from "shortid";
 //LOCAL IMPORTS
 import { Link } from "react-router-dom";
+import img from '../../assets/images/bookbackg.webp';
 import { exploreLinks } from '../../components/constants/mock';
+import { Button } from '../../components/global/button';
 import { Headings } from '../../components/global/headings';
+import ScrollToTopButton from '../../components/global/scrollToTopButton';
 import SEO from '../../components/global/SEO';
 import Loading from '../../components/loading';
-import { PostPopUp } from '../../components/postPopUp';
 import { AuthContext } from '../../components/signUp/authMethods/authentication';
 import { bookCategories } from "../../constants/Book/BookCategories";
+// import useLocalStorage from '../../customHooks/useLocalStorage';
 import { logEventWithoutParams } from '../../functions/commonMethod';
-import SlidePagination from '../Slide/component/pagination';
+import { fetchAllBooksAndSlidesDocId, fetchSlidesAndBooksOrderedByNameWithLimit, fetchStartAfterBooksAndSlides } from '../../functions/firebaseMethod';
 import { SubCatagories } from '../Slide/component/SubCatagories';
-import BookCard from './components/bookCard';
-import BookSuggestion from './components/bookSuggestion';
-import BookTrending from './components/bookTrending';
-import ExploreLinkTab from './components/exploreLinkTab';
-import TopSearch from './components/topSearch';
+
+import Loadable from 'react-loadable';
 import "./index.scss";
+import BookCardPlaceholder from "./components/bookCardPlaceholder";
+import LazyLoadingComponentLoader from "../../components/lazyLoadingLoaderComponent";
+import { collection, getDocs, getFirestore ,doc, getDoc} from "firebase/firestore";
+import ArrowRight from '../../components/global/icons/arrow_right';
 
 
+const BookCard = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/bookCard")));
+const BookSuggestion = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/bookSuggestion")));
+const BookTrending = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/bookTrending")));
+const ExploreLinkTab = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/exploreLinkTab")));
+// const ExploreSearch = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/exploreSearch")));
+const TopSearch = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/topSearch")));
 
+const LoadableLoginModal = Loadable({
+    loader: () => import('../../components/global/loginModel').then(module => module.LoginModal),
+    loading() {
+        return <div style={{ color: 'gray' }}>Loading...</div>
+    }
+});
 
 
 const Book = () => {
-    const firestoreDatabase = firebase.firestore();
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext)
+    // const firestoreDatabase = firebase.firestore();
+    // const [preference, setPreference] = useLocalStorage("preference", null);
     const [bookDocId, setBookDocId] = useState([]);
     const [slideDocId, setSlideDocId] = useState([])
-    const [mappingData, setMappingData] = useState([])
-    const [exploreLinkActiveData, setExploreLinkActiveData] = useState('')
+    const [mappingData, setMappingData] = useState()
+    const [exploreLinkActiveData, setExploreLinkActiveData] = useState('All')
     const [subCategoryActiveHeading, setSubCategoryActiveHeading] = useState('')
     const [loadingBooks, setLoadingBooks] = useState(false);
     const [trendingBooks, setTrendingBooks] = useState([])
-    const [firstBook, setFirstBook] = useState("")
+    const [firstBook , setFirstBook] = useState("")
     const [lastBook, setLastBook] = useState("")
-    const pageLimit = 10;
+    const pageLimit = 25;
     const refToExploreSLides = useRef();
     const [showDDC, setShowDDC] = useState(false)
     const [showDDS, setShowDDS] = useState(false)
-    const [articleData, setArticleData] = useState([])
-    const [fetchedId,setFetchedId]=useState(null)
+    const [showLoadMore, setShowLoadMore] = useState(true);
+    const [loadMoreLoading, setLoadMoreLoading] = useState(false);
+    //  const [fetchedId, setFetchedId] = useState(null);
+    const [loadFromSearch, setLoadFromSearch] = useState(false);
+    const [matchedBooks, setMatchedBooks] = useState([]);
+    const [searchBookLimit, setSearchBookLimit] = useState(10);
+    const [showFormModel, setShowFormModel] = useState(false)
+    const loadingArray = Array.apply(null, Array(20))
+    const db =getFirestore();
 
-    const randomSubcategory = useCallback(category => {
-       
+     useCallback(category => {
         let filtered = bookCategories.filter(
-            bookCategory => bookCategory.category == category,
+            bookCategory => bookCategory.category === category,
         );
+
         let subCategories = filtered[0]?.subCategories;
         let randomInteger = Math.floor(Math.random() * (subCategories?.length - 1));
-        // console.log('######');
-        // console.log(randomInteger);
+
         // console.log(category, randomInteger, subCategories[randomInteger]);
-        return subCategories[Math.floor(Math.random() * (subCategories?.length - 1))]
+        return subCategories[randomInteger]
             .category;
     }, []
     )
+    // USER FOR ANALYTICS
     useEffect(() => {
         let isMounted = true;
         if (isMounted) {
-          logEventWithoutParams("web_books_page_visited")
+            logEventWithoutParams("web_books_page_visited")
         }
-        return (() => {
-          isMounted = false;
-        })
-      }, [])
+        return () => {
+            isMounted = false;
+        }
+    }, [])
 
     useEffect(() => {
         let isMounted = true;
 
-        const getUserPreferencesData = (subjectName, activeHeading) => {
-   
-            let allBooksData = [];
-
-            try {
-
-                if (subjectName == "All Books") {
-                    setLoadingBooks(true);
-                    const AllBooks = firestoreDatabase
-                        .collection(`K-Books`)
-                        .orderBy("subject")
-                        // .startAt("fundamentals")
-                        .limit(pageLimit)
-                        .get()
-                        .then(querySnapshot => {
-                            querySnapshot.forEach(ele => {
-                                allBooksData.push(ele.data());
-                            });
-
-                            if (isMounted) {
-                                setLoadingBooks(false);
-                                setMappingData(() => allBooksData)
-                            }
-
-                        });
-
-                }
-
-                else {
-
-                    if (subjectName != '' && activeHeading != '') {
+        if (isMounted) {
+            const getUserPreferencesData = (subjectName, activeHeading) => {
+                // let allBooksData = [];
+                try {
+                    if (subjectName === "All") {
                         setLoadingBooks(true);
-                      
-                        const OtherBooks = firestoreDatabase
-                            .collection(`K-Books-${subjectName.replace(/\s|\//g, "")}-${activeHeading.replace(/\s|\//g, "")}`)
-                            .orderBy("subject")
-                            // .startAt("Anatomy of Arm ")
-                            .limit(pageLimit)
-                            .get()
-                            .then(querySnapshot => {
-                                querySnapshot.forEach(ele => {
-                                    allBooksData.push(ele.data());
-                                });
+                        fetchSlidesAndBooksOrderedByNameWithLimit('K-Books', 'subject', pageLimit)
+                            .then((res) => {
 
                                 if (isMounted) {
                                     setLoadingBooks(false);
-                                    setMappingData(() => allBooksData);
-                                    setFirstBook(allBooksData[0]?.subject)
-                                    setLastBook(allBooksData[allBooksData.length - 1]?.subject)
+                                    setMappingData(() => res?.allData)
+                                    setFirstBook(res?.firstData)
+                                    setLastBook(res?.lastData)
                                 }
-                            });
+                            })
                     }
+                    else {
+                        if (subjectName !== '' && activeHeading !== '' && activeHeading) {
+                            setLoadingBooks(true);
+                            fetchSlidesAndBooksOrderedByNameWithLimit(`K-Books-${subjectName.replace(/\s|\//g, "")}-${activeHeading.replace(/\s|\//g, "")}`, 'subject', pageLimit)
+                                .then((res) => {
+                                    if (isMounted) {
+                                        setLoadingBooks(false);
+                                        setMappingData(() => res?.allData);
+                                        setFirstBook(res?.firstData)
+                                        setLastBook(res?.lastData)
+                                    }
+                                })
+                        }
+                    }
+                } catch (err) {
+                    console.log("ERROR FETCHING BOOKS", err);
                 }
-            } catch (err) {
-                console.log("ERROR FETCHING BOOKS", subjectName);
-            }
-        };
+            };
 
-        getUserPreferencesData(exploreLinkActiveData?.length ? exploreLinkActiveData : 'All Books', subCategoryActiveHeading);
+            getUserPreferencesData(exploreLinkActiveData?.length ? exploreLinkActiveData : 'All', subCategoryActiveHeading);
+        }
         return () => {
             isMounted = false;
         }
     }, [exploreLinkActiveData, subCategoryActiveHeading])
 
-    // // BOOK TRENDING DATA
-    // useEffect(() => {
-    //     let isMounted = true
-    //     if (isMounted) {
-    //       try {
-    //         firestoreDatabase.collection('K-Books')
-    //           .orderBy("title")
-    //           .limit(30)
-    //           .get().then((querySnapshot) => {
-    //             // console.log("No Preference data found",res)
-    //             if (querySnapshot) {
-    //               let bookTrendingData = [];
-    //               querySnapshot.forEach((doc) => {
-    //                 bookTrendingData.push(doc.data())
-    //               })
-    //               setTrendingBooks(bookTrendingData)
-    //             }
-    //           })
-    
-    //       } catch (err) {
-    //         console.log("Error while fetching book trending data", err)
-    //       }
-    //     }
-    //     return () => {
-    //       isMounted = false
-    //     }
-    //   }, [])
+
     useEffect(() => {
         let isMounted = true
         if (isMounted) {
-            firebase.firestore().collection("K-Books")
-                .get()
+            const colRef= collection(db,"K-Books")
+            getDocs(colRef)
                 .then((querySnapshot) => {
                     let bookDocIdData = [];
                     let bookTrendingData = [];
                     querySnapshot.forEach((doc) => {
                         bookDocIdData.push(doc.id)
-                        if(bookTrendingData?.length <=30){
+                        if (bookTrendingData?.length <= 30) {
                             bookTrendingData.push(doc.data())
                         }
                     })
                     setTrendingBooks(bookTrendingData);
-                    setBookDocId(bookDocIdData)
-                  
-
+                    setBookDocId(bookDocIdData);
                 })
-            firebase.firestore().collection("AllSlidesDataLockDownVersions")
-                .get()
-                .then((querySnapshot) => {
-                    let slideDocIdData = [];
-                    querySnapshot.forEach((doc) => {
-                        slideDocIdData.push(doc.id);
-                        // console.log("Numbers of collection",doc.id)    
-                    })
-                    setSlideDocId(slideDocIdData)
-                   
-
+            fetchAllBooksAndSlidesDocId("K-Books")
+                .then((res) => {
+                    if (isMounted) {
+                        setSlideDocId(res);
+                    }
                 })
         }
         return () => {
             isMounted = false
         }
-    }, [])
-    
+    }, [db])
+
     const activeData = (data) => {
         setExploreLinkActiveData(data.linkName)
 
     }
+    const toggleLoadFromSearch = () => {
+        setLoadFromSearch(true);
+    }
+
+    // const toggleShowLoadMore = () => {
+    //     setShowLoadMore(!showLoadMore);
+    // }
+    const searchResult = (data, matchedBooksData) => {
+        setShowLoadMore(true);
+        console.log('SEARCHED DATA', data?.length, matchedBooksData?.length)
+        setSearchBookLimit(10);
+        setMappingData(data);
+        setMatchedBooks(matchedBooksData);
+        if (matchedBooksData[matchedBooksData?.length - 1] === data[data?.length - 1].title) {
+            setShowLoadMore(false);
+        }
+    }
     const subCategoryHeading = (data) => {
-        if (data != '') {
+        if (data !== '') {
             setSubCategoryActiveHeading(data)
         }
     }
 
 
-    const nextSlideAction = (index) => {
-        let allBooksData = []
+    const loadMore = (index) => {
+        setLoadMoreLoading(true);
+        // let allBooksData = []
         setLoadingBooks(true);
-       
 
-        const randomBasicScience = randomSubcategory('Basic Science');
-        const randomNursing = randomSubcategory('Nursing');
-        const randomDental = randomSubcategory('Dental');
-        const randomPhysiotherapy = randomSubcategory('Clinical Science');
-
-
-
-
-        let bookType = exploreLinkActiveData?.length ? exploreLinkActiveData : 'All Books'
+        let bookType = exploreLinkActiveData?.length ? exploreLinkActiveData : 'All'
         let collectionName = ""
 
         switch (bookType) {
-            case "All Books":
-                collectionName = "AllSlidesDataLockDownVersions";
+            case "All":
+                collectionName = "K-Books";
                 break
             case "Basic Science":
-                collectionName = `K-Books-BasicScience-${randomBasicScience.replace(/\s|\//g, "")}`;
+                collectionName = `K-Books-BasicScience-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+                break
+            case "Clinical Science":
+                collectionName = `K-Books-ClinicalScience-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
                 break
             case "Physiotherapy":
-                collectionName = `K-Books-Physiotherapy-${randomPhysiotherapy.replace(/\s|\//g, "")}`;
+                collectionName = `K-Books-Physiotherapy-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
                 break
             case "Nursing":
-                collectionName = `K-Books-Nursing-${randomNursing.replace(/\s|\//g, "")}`;
+                collectionName = `K-Books-Nursing-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
                 break
             case "Dental":
-                collectionName = `K-Books-Dental-${randomDental.replace(/\s|\//g, "")}`;
+                collectionName = `K-Books-Dental-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
                 break
+            default:
         }
 
 
         const getNextDataFromFirebase = () => {
-            refToExploreSLides.current.scrollIntoView({ behavior: 'smooth' })
-            if (lastBook != null && lastBook != undefined && collectionName != "") {
-                firestoreDatabase
-                    .collection(collectionName)
-                    .orderBy("subject")
-                    .startAfter(lastBook)
-                    .limit(pageLimit)
-                    .get()
-                    .then(querySnapshot => {
-                        if (querySnapshot.empty) return;
-                        querySnapshot.forEach(ele => {
-                            allBooksData.push(ele.data());
-                        });
-
-                        setLoadingBooks(false);
-                       
-                        setMappingData(() => allBooksData);
-                        setFirstBook(allBooksData[0]?.subject)
-                        setLastBook(allBooksData[allBooksData.length - 1]?.subject)
-                    });
+            // refToExploreSLides.current.scrollIntoView({ behavior: 'smooth' })
+            if (lastBook !== null && lastBook !== undefined && collectionName !== "") {
+                fetchStartAfterBooksAndSlides(collectionName, 'subject', lastBook, pageLimit)
+                    .then((res) => {
+                        if (res.length > 0) {
+                            setLoadMoreLoading(false);
+                            setLoadingBooks(false);
+                            setMappingData((init) => [...init, ...res]);
+                            setFirstBook(res[0]?.subject)
+                            setLastBook(res[res.length - 1]?.subject)
+                        } else {
+                            // alert('data not found');
+                            setShowLoadMore(false);
+                            setLoadMoreLoading(false);
+                        }
+                    })
             }
         }
         getNextDataFromFirebase()
     }
 
-    const previousSlideAction = (index) => {
-        refToExploreSLides.current.scrollIntoView({ behavior: 'smooth' })
-        let allBooksData = []
-        setLoadingBooks(true);
-        // console.log('checking:',subjectName);
-       
-        const randomBasicScience = randomSubcategory('Basic Science');
-        const getPreviousDataFromFirebase = () => {
-            if (firstBook != null && firstBook != undefined) {
-                firestoreDatabase
-                    .collection(`K-Books-BasicScience-${randomBasicScience.replace(/\s|\//g, "")}`)
-                    .orderBy("subject")
-                    .endBefore(firstBook)
-                    .limit(pageLimit)
-                    .get()
-                    .then(querySnapshot => {
-                        if (querySnapshot.empty) return;
-                        querySnapshot.forEach(ele => {
-                            allBooksData.push(ele.data());
-                        });
+    const loadMoreFromSearch = () => {
+        setSearchBookLimit(searchBookLimit + 10)
+        console.log('load books', mappingData?.length, matchedBooks?.length, searchBookLimit);
+        matchedBooks.map((index) => {
+            
+           if (index > searchBookLimit && index < searchBookLimit + 10) {
+                try {
+                    console.log('clicked');
+                    const colRef=doc(db,"K-Books","bookId")
+                    // query (collection(db,"K-Books"),doc(db,'bookId'))
+                   getDoc(colRef)
+                        .then((res) => {
+                            if (res.data()) {
+                                setMappingData((init) => [...init, res.data()]);
+                                console.log('Books', res.data());
+                                // searchResult(searchedBook);
+                                if (matchedBooks[matchedBooks?.length - 1] === res.data().title) {
+                                    setShowLoadMore(false);
+                                }
+                            }
+                        })
 
-                        setLoadingBooks(false);
-                      
-                        setMappingData(() => allBooksData);
-                        setFirstBook(allBooksData[0]?.subject)
-                        setLastBook(allBooksData[allBooksData.length - 1]?.subject)
-                    });
+                } catch (error) {
+                    console.log("Error while fetching searched book", error)
+                }
             }
-        }
-        getPreviousDataFromFirebase()
+        })
     }
 
-   
+    //social  proof to be done
+    // useEffect(() => {
+    //     let isMounted = true;
+    //     if (isMounted) {
+    //         try {
+    //             firestoreDatabase.collection("MedicosPdfWeb-Social-PopUp")
+    //                 .get()
+    //                 .then((querySnapshot) => {
+    //                     if (querySnapshot) {
+    //                         let latestData = [];
+    //                         querySnapshot.forEach((doc) => {
+    //                             latestData.push(doc.data());
+    //                         })
+    //                         setFetchedId(latestData)
 
-   
-    
-  
-  
+    //                     }
+    //                 })
+    //         } catch (error) {
+    //             console.log("Error while fetching latest news");
+    //         }
+    //     }
+    //     return () => {
+    //         isMounted = false
+    //     }
+    // }, [])
+
+    const FormModel = useCallback(
+        (dontShow) => {
+
+            if (dontShow === false) {
+                setShowFormModel(false)
+
+            }
+        },
+        [],
+    )
     useEffect(() => {
-      let isMounted=true;
-  
-      const getArticleData = async () => {
-  
-        await axios.get('https://medschoolinsiders.com/wp-json/wp/v2/posts',
-          {
-            // baseURL: "https://localhost:9000",
-            // withCredentials: false,
-            headers: {
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-              // 'Accept': 'application/json',
-              // 'Referrer': 'origin'
-            }
-          }).then((response) => {
-           
-  
-            if (response?.data) {
-  
-              Promise.all(
-                response?.data.map(async data => {
-                  if (data._links["wp:featuredmedia"][0].href) {
-                    let image = await axios.get(data._links["wp:featuredmedia"][0].href,
-                      {
-                        // baseURL: "https://localhost:9000",
-                        // withCredentials: false,
-                        headers: {
-                          // 'Content-Type': 'application/x-www-form-urlencoded',
-                          // 'Accept': 'application/json',
-                          // 'Referrer': 'origin'
-                        }
-                      })
-               
-                    data.image = image.data.media_details.sizes.medium;
-                    return data;
-                  }
-                })
-              ).then(data => {
-                setArticleData(data);
-  
-              }).catch(err => {
-                console.log(err)
-              })
-  
-  
-              // if (isActive) {
-              // }
-            }
-          }).catch((err) => {
-        
-            return [];
-  
-          })
-      }
-  
-   
-   
-      getArticleData()
-
-          return()=>{
-              isMounted=false;
-          }
-    }, [])
-    
-
-    useEffect(() => {
-        let isMounted = true;
-        if (isMounted) {
-            try {
-                firestoreDatabase.collection("MedicosPdfWeb-Social-PopUp")
-                    .get()
-                    .then((querySnapshot) => {
-                        if (querySnapshot) {
-                            let latestData = [];
-                            querySnapshot.forEach((doc) => {
-                                latestData.push(doc.data());
-                            })
-                            setFetchedId(latestData)
-
-                        }
-                    })
-            } catch (error) {
-                console.log("Error while fetching latest news");
-            }
+        let isMounted = true
+        if (isMounted && user?.uid) {
+            setShowFormModel(false)
         }
         return () => {
-            isMounted = false
+            isMounted = false;
         }
-    }, [])
+    }, [user?.uid])
 
+
+    const clickhandlerdrop = () => { setShowDDC(!showDDC) }
+    const clickhandlerdrop2 = () => { setShowDDC(!showDDC) }
+    const clickhandlerdrop3 = () => { setShowDDS(!showDDS) }
+    const clickhandlerhide = () => { setShowDDS(!showDDS) }
+    const clickhandlerdrop4 = () => loadFromSearch ? loadMoreFromSearch() : loadMore()
+    const formmodalTrue=() => setShowFormModel(true)
 
     return (
-        <motion.div className="book-page">
-             <SEO title='Medicos Books page' description='Medicos book page provides over 10,000 medical books for medical students to enhance their knowledge and skill'/>
-            {
-               fetchedId && mappingData &&
-               <PostPopUp BooksID={fetchedId[0].bookId} linkData={mappingData}/>
-               
-            }
-           
-            <TopSearch slideDocId={slideDocId} bookDocId={bookDocId} />
-            <BookTrending details={trendingBooks} />
-   
-            <BookSuggestion details={trendingBooks} />
-            <div ref={refToExploreSLides} className="book-page-book-section">
-                <div className="book-page-book-section-col1">
-                    <div className="heading">
-                        <Headings className="heading" content="Explore" type="heading3" />
-                    </div>
-                    <div className="sub-heading">
-                        <Headings type="heading5" content="Sub Catagories" />
-                    </div>
-                    <div className="sub-categories">
-                        <SubCatagories slideArr={bookCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
-                    </div>
+        <div className="book-page">
+            {/* <h1>{lastBook.length}</h1> */}
+            <ScrollToTopButton />
+            <LoadableLoginModal show={showFormModel} formModel={FormModel} />
 
-                </div>
+            <SEO image={img} title=' Free Medical Books. We have more than 20,000 of medical books for free. Free Medical Books related to Basic Science , Clinical Science , Nursing , Dental (BDS) , BAMS and so on..Free authentic medical books are here for you.Free Medical Books , Free Medical Slides , Free Medical Notes , Medical Socio-Learning platform , MedicosPdf, medicos , free medical book , download medical book pdf , get medical books for free , medical slides for free , MedicosPdf ,free nursing book , free dentistry book pdf download , free mbbs book free download , free books , download freebooks pdf , free medical book , how to get free medical books , how to download medical books for free, where can i get free medical books , free medical notes, medical notes for free, download medical notes for free, free medical books pdf , get medical books for free., free basic science books pdf , free clinical science books free download , free nursing books , free medical books.' description={bookDocId.toString()} />
+      
+            <Suspense fallback={<div className='suspenseLoading'><Loading /></div>}>
+                <TopSearch slideDocId={slideDocId} bookDocId={bookDocId} />
+            </Suspense>
+            <Suspense fallback={<div className='suspenseLoading'><Loading /></div>}>
+                <BookTrending />
+            </Suspense>
+
+            <LazyLoad height={200} offset={100}>
+                <BookSuggestion details={trendingBooks} />
+            </LazyLoad>
+            <div ref={refToExploreSLides} className="book-page-book-section">
+               
                 <div className="book-page-book-section-col2">
+                <h3 className="explore-heading">Explore</h3>
 
                     <div className="tabs">
-                        <ExploreLinkTab links={exploreLinks} activeData={activeData} />
+
+                        <Suspense fallback={<div className='suspenseLoading'><Loading /></div>}>
+                            <ExploreLinkTab links={exploreLinks} activeData={activeData} />
+                        </Suspense>
+
                     </div>
 
-                    <div className="sub-categories-forMobile">
-                        <SubCatagories slideArr={bookCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
-                    </div>
+                  
 
                     <div className='dropdownForMobile'>
                         <h2 className='dropdownForMobile-head'>Explore</h2>
+
                         <div className='dropdownForMobile-category'>
-                            <h3 className='dropdownForMobile-category-dd' onClick={() => { setShowDDC(!showDDC) }}>
-                                <span>Category : {exploreLinkActiveData?`${exploreLinkActiveData}`:'All Books'}</span>
-                                {/* <FontAwesomeIcon icon={faSortDown} className={`showD ${showDDC? 'rotateD':''}`}/> */}
-                                <FaChevronRight className={`showD ${showDDC ? 'rotateD' : ''}`} width={5} fill={"#777"} />
+                            <h3 className='dropdownForMobile-category-dd' onClick={clickhandlerdrop}>
+                                <span>Category : {exploreLinkActiveData ? `${exploreLinkActiveData}` : 'All'}</span>
+                                <ArrowRight className={`showD ${showDDC ? 'rotateD' : ''}`} />
                             </h3>
-                            
-                            <div className={`dd-hide ${showDDC ? 'dd-show' : ''}`} onClick={() => { setShowDDC(!showDDC) }}>
+
+                            <div className={`dd-hide ${showDDC ? 'dd-show' : ''}`} onClick={clickhandlerdrop2}>
                                 <ExploreLinkTab links={exploreLinks} activeData={activeData} />
                             </div>
                         </div>
 
                         <div className='dropdownForMobile-subcategory'>
-                             {
-                                 exploreLinkActiveData.length===0 || exploreLinkActiveData==='All Books' ?
-                                 ""
-                                 :
-                                 <h3 className='dropdownForMobile-category-dd' onClick={() => { setShowDDS(!showDDS) }}>
-                                 <span>Sub-category : {subCategoryActiveHeading}</span>
-                                 {/* <FontAwesomeIcon icon={faSortDown} className={`showD ${showDDS? 'rotateD':''}`}/>  */}
-                                 <FaChevronRight className={`showD ${showDDS ? 'rotateD' : ''}`} width={5} fill={"#777"} />
-                                </h3>
-                             }
-                           
+                            {
+                                exploreLinkActiveData.length === 0 || exploreLinkActiveData === 'All' ?
+                                    ""
+                                    :
+                                    <h3 className='dropdownForMobile-category-dd' onClick={clickhandlerdrop3}>
+                                        <span>Sub-category : {subCategoryActiveHeading}</span>
+                                        <ArrowRight className={`showD ${showDDS ? 'rotateD' : ''}`} />
+                                    </h3>
+                            }
 
-                            <div className={`dd-hide ${showDDS ? 'dd-show' : ''}`} onClick={() => { setShowDDS(!showDDS) }}>
+
+                            <div className={`dd-hide ${showDDS ? 'dd-show' : ''}`} onClick={clickhandlerhide}>
                                 <SubCatagories slideArr={bookCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
                             </div>
                         </div>
+                        {/* <Suspense fallback={<div className='suspenseLoading'><Loading /></div>}>
+                            <ExploreSearch
+                                type='book'
+                                exploreLinkActiveData={exploreLinkActiveData}
+                                subCategoryActiveHeading={subCategoryActiveHeading}
+                                bookDocId={bookDocId}
+                                searchResult={searchResult}
+                                toggleLoadFromSearch={toggleLoadFromSearch}
+                                placeholder="Search Medical Books"
+                            />
+                        </Suspense> */}
 
                     </div>
 
-                    {mappingData.length > 0 ?
+                    {
                         <div className="book-page-book-section-col2-content-section">
-                            {mappingData.map((book, index) => {
-                                return <Link
-                                    key={book.image + index}
-                                    style={{ textDecoration: 'none' }}
-                                    to={{
-                                        pathname: `/bookDetails/${book.title}`,
-                                        state: {
-                                            data: JSON.stringify(book),
-                                            wholeData: JSON.stringify(mappingData),
-                                        }
-                                    }}>
-                                    <div className="item">
-                                        <BookCard
-                                            image={book?.image}
-                                            title={book?.title}
-                                            author={book?.writer}
-                                            rating={book?.rating}
-                                        />
+                            {mappingData?.length > 0 ?
+                                mappingData.map((book, index) => {
+                                    return <Suspense fallback={<div className='suspenseLoading'><Loading /></div>}>
+                                        <Link
+                                            key={book.image + index}
+                                            className="item"
+                                            to={{
+                                                pathname: `/bookdetails/${book.title}`,
+                                                state: {
+                                                    data: JSON.stringify(book),
+                                                    wholeData: JSON.stringify(mappingData),
+                                                }
+                                            }}>
+                                            <BookCard
+                                                image={book?.image}
+                                                title={book?.title}
+                                                author={book?.writer}
+                                                rating={book?.rating}
+                                            />
+                                        </Link>
+                                    </Suspense>
+                                })
+                                :
+                                loadingArray.map(() => {
+                                    return <div key={shortid.generate()} className="item">
+                                        <BookCardPlaceholder />
                                     </div>
-                                </Link>
-                            })}
+
+                                })
+                            }
 
                         </div>
-                        :
-                        <div className="book-loading-wrapper">
-                            <Loading />
-                        </div>
+
                     }
+
                     <div className="pagination">
-                        <SlidePagination
-                            activeSlideTab={exploreLinkActiveData?.length ? exploreLinkActiveData : 'All Books'}
+                        {
+                            user ?
+                                <div className="pagination-container">
+                                    {
+                                        showLoadMore &&
+                                        <div onClick={clickhandlerdrop4}>
+                                            <Button type="primary-outline-rounded" label="Load More" labelColor="black" />
+                                        </div>
+                                    }
+                                    {
+                                        loadMoreLoading &&
+                                        <Loading type='clip' size={25} />
+                                    }
+                                </div>
+                                :
+                                <div className="pagination-container">
+                                    {
+                                        <div onClick={formmodalTrue} >
+                                            <Button type="primary-outline-rounded" label="Load More" labelColor="black" />
+                                        </div>
+                                    }
+
+
+                                </div>
+                        }
+                        {/* <SlidePagination
+                            activeSlideTab={exploreLinkActiveData?.length ? exploreLinkActiveData : 'All'}
                             // pages={pages}
                             activeColor="primary"
                             lastSlide={lastBook}
                             firstSlide={firstBook}
-                            nextTrigger={nextSlideAction}
+                            nextTrigger={loadMore}
                             previousTrigger={previousSlideAction}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>
 
-        </motion.div>
+        </div>
     )
 }
 
-export default Book
+export default React.memo(Book)

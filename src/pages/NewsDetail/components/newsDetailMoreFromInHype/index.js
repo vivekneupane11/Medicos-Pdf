@@ -1,24 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { getReadTime } from '../../../../functions/tagColorAndReadTimeMethod'
 
 import AuthorDateRead from '../../../News/components/author-date-readTime'
 import './_newsDetailMoreFromInHype.scss'
 const NewsDetailMoreFromInHype = ({details,details1Source}) => {
-    const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
-
-      };
-                                   
-      const newTab=(url)=>{
-        window.open(
-           url, "_blank");
-    }
+  
     const goTop=()=>{
         window.scrollTo({top:0,behavior:'smooth'});
     }
+    const clickhandlergotop3 = ()=>goTop()
+    const clickhandlergotop4 = ()=>goTop()
     return (
         <>
              <div className="newsDetailMoreFromInHype-Container">
@@ -28,11 +20,11 @@ const NewsDetailMoreFromInHype = ({details,details1Source}) => {
                             <div key={index}  className="newsDetailMoreFromInHype-Container-wrapper-card">
                                  <Link
                         
-                                    style={{ textDecoration: 'none' }}
+                                    className='links'
                                     to={{
-                                        pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
+                                        pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
                                     }}>
-                                <div onClick={()=>goTop()} className="newsDetailMoreFromInHype-Container-wrapper-card-img" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
+                                <div onClick={clickhandlergotop3} className="newsDetailMoreFromInHype-Container-wrapper-card-img" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
                                    
                                 </div>
                                 </Link>
@@ -40,13 +32,13 @@ const NewsDetailMoreFromInHype = ({details,details1Source}) => {
                                     
                                     <Link
                         
-                                    style={{ textDecoration: 'none' }}
+                                    className='links'
                                     to={{
-                                        pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
+                                        pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
                                     }}>
-                                    <h3 onClick={()=>goTop()} className="newsDetailMoreFromInHype-Container-wrapper-card-description-head">{data?.title?.rendered}</h3>
+                                    <h3 onClick={clickhandlergotop4} className="newsDetailMoreFromInHype-Container-wrapper-card-description-head">{data?.title?.rendered}</h3>
                                     </Link>
-                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#0f0e0e' fontSize='12px'/>
+                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#0f0e0e' fontSize='12px'/>
                                 </div>
                               
                             </div>

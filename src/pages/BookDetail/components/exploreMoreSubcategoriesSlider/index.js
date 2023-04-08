@@ -1,6 +1,5 @@
 import React from 'react'
 import './_exploreMoreSlider.scss'
-import { FaChevronRight } from 'react-icons/fa';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
@@ -8,8 +7,9 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import Slider from '../../../../components/global/slider';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import ArrowRight from '../../../../components/global/icons/arrow_right';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -44,7 +44,13 @@ const ExploreMoreSlider = ({ ExploreSliderDetails, slidesPerView }) => {
                 {ExploreSliderDetails.map(data => (
                     <SwiperSlide key={data.id} >
                         <div className="ExploreMoreSlider-container-swiper-slide">
-                            <img src={data.img} alt="biology" className="ExploreMoreSlider-container-swiper-slide-img" />
+                        <LazyLoadImage
+    alt={'Medical Books'}
+    effect="blur"
+    src={data.img}
+    className="ExploreMoreSlider-container-swiper-slide-img"
+     />
+                            {/* <img src={data.img} alt="biology" className="ExploreMoreSlider-container-swiper-slide-img" /> */}
                             <div className="ExploreMoreSlider-container-swiper-slide-col2">
                                 <h4 className="ExploreMoreSlider-container-swiper-slide-col2-heading">{data.title}</h4>
                                 <p className="ExploreMoreSlider-container-swiper-slide-col2-para">{data.description}</p>
@@ -55,10 +61,9 @@ const ExploreMoreSlider = ({ ExploreSliderDetails, slidesPerView }) => {
                     </SwiperSlide>
                 ))}
 
-                <div className="swiper-button-next"> <FaChevronRight /></div>
+                <div className="swiper-button-next"> <ArrowRight/></div>
             </Swiper>
         </div>
     )
 }
-
 export default ExploreMoreSlider

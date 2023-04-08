@@ -1,15 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import  { render, hydrate } from 'react-dom';
+import { Workbox } from "workbox-window";
+
 import App from './App';
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
-import firebase from "firebase/app";
-import 'firebase/analytics'
+
+
+import {getApps,initializeApp} from 'firebase/app'
+import {getAnalytics} from 'firebase/analytics'
 import { AuthProvider } from "./components/signUp/authMethods/authentication";
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
 import ScrollToTop from './pages/customAnimation/scrollToTop';
+import {  getFirestore,  } from 'firebase/firestore';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyChASA7zgr-MewOuIu6DZ5cpz9qv4qywqs",
@@ -22,22 +28,55 @@ const firebaseConfig = {
   measurementId: "G-3DPSR9S8Z9"
 };
 
+if(getApps().length === 0){
+ 
+  initializeApp(firebaseConfig);
+  getAnalytics();
 
-if (!firebase.apps.length) {
+  
 
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+
+getFirestore(initializeApp(firebaseConfig));
+ 
+  
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router>
+
+
+
+const rootElement = document.getElementById("root");
+if (rootElement.hasChildNodes()) {
+  hydrate(<React.StrictMode>
+    <Router basename='/'>
       <AuthProvider>
         <ScrollToTop />
         <App />
       </AuthProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-serviceWorker.register();
+  </React.StrictMode>, rootElement);
+} else {
+  render(<React.StrictMode> 
+
+
+    <Router basename='/'>
+      <AuthProvider>
+        <ScrollToTop />
+        <App />
+      </AuthProvider>
+    </Router>
+  </React.StrictMode>, rootElement);
+}
+if (module.hot) { // enables hot module replacement if plugin is installed
+  module.hot.accept();
+ }
+
+ if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+      const wb = new Workbox("/sw.js");
+    
+wb.register();
+  });
+
+}
+
+

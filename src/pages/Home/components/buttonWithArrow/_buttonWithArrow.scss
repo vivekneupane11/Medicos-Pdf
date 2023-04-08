@@ -14,11 +14,11 @@
         font-weight: 800;
         font-size: 16px;
         padding: 25px 60px;
-        border: none;
         border-radius: 5px;
-        // margin: 30px auto 20px;
-        background-color: $--primary;
+        border: 1px solid #12D288;
+        color: black;
         cursor: pointer;
+        background: white;
         transition: .25s;
         @include tablet{
             width: 100%;
@@ -30,21 +30,22 @@
         }
         &:hover{
            
-            background-color: #48494b;
+            background-color: #12D288;
             .homeButtonWithArrow-container-btn-icon{
                 transform: translateX(10px);
                 transition: .25s;
             }
         }
         span{
-          color: #fff;
+          color: #000;
           margin-right: 10px;
           
         }
        
         &-icon{
-            color: #fff;
+            color: #000;
             transition: .25s;
+            height: 25px;
         }
     }
    }

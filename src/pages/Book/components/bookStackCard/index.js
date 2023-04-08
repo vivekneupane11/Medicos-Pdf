@@ -1,33 +1,59 @@
-import React from 'react'
-import './_bookStackCard.scss'
-import firebase from "firebase";
+import React, { useState } from 'react';
+import loaderImage from '../../../../assets/images/book/loaderpdf.webp';
+import checkIfImageExists from '../../../../functions/checkImageValidity';
+import { logEventWithParams } from '../../../../functions/commonMethod';
+import './_bookStackCard.scss';
+import StarFill from '../../../../components/global/icons/star_fill';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { logEventWithoutParams, logEventWithParams } from '../../../../functions/commonMethod'
 
 const BookStackCard = ({ data = null, bookImage, title, authorInfo, rating, views }) => {
-    // console.log("This is book data", data && data);
+
+    const [state,setState]=useState(false)
+
+    const clickhandlertodo = () => {
+        logEventWithParams("web_book_opened", { book_title: title, book_subcategory: data && data?.subject })
+    }
+    
+    useState(()=>{
+        let isMounted=true
+        if(isMounted){
+            checkIfImageExists(bookImage, (exists) => {
+                if (exists) {
+                   setState(!state)
+                } else {
+                }
+              });
+
+        }
+          return () => {
+            isMounted=false
+        }
+      },[])
+
     return (
         <div
             // TODO
-            onClick={() => {
-                logEventWithParams("web_book_opened", { book_title: title, book_subcategory: data && data?.subject })
-            }}
+            onClick={clickhandlertodo}
             className="bookStackCard-wrapper">
             <div className="bookStackCard-wrapper-infoCard">
                 <h6 className="bookStackCard-wrapper-infoCard-heading">{title}</h6>
                 <p className="bookStackCard-wrapper-infoCard-p">by {authorInfo} (author)</p>
                 <div className="bookStackCard-wrapper-infoCard-bottom">
                     <div className="bookStackCard-wrapper-infoCard-bottom-col1">
-                        <FontAwesomeIcon icon={faStar} className="bookStackCard-wrapper-infoCard-bottom-col1-icon" />
+                        <StarFill className="bookStackCard-wrapper-infoCard-bottom-col1-icon" />
                         <h6 className="bookStackCard-wrapper-infoCard-bottom-col1-heading">{rating}</h6>
                     </div>
                     <p className="bookStackCard-wrapper-infoCard-bottom-p"></p>
                 </div>
             </div>
             <div className="bookStackCard-wrapper-bookCoverCard">
-                <img src={bookImage} alt={title} />
+                {/* <img 
+                src={`${state?`${bookImage}`:`${loaderImage}`}`}
+                alt={`${state?`${title}`:'MedicosPdf default book image'}`}
+                /> */}
+                <LazyLoadImage  src={`${state?`${bookImage}`:`${loaderImage}`}`}
+                alt={`${state?`${title}`:'MedicosPdf default book image'}`} effect='blur'/>
             </div>
 
         </div>

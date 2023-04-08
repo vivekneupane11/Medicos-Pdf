@@ -236,7 +236,7 @@ const bookCategories = [
             },
             {
                 id: 8,
-                category: 'MidWifery and Obstetrical Nursing'
+                category: 'MidWifery And Obstetrical Nursing'
             },
             {
                 id: 9,
@@ -502,7 +502,7 @@ const slideCategories = [
             },
             {
                 id: 7,
-                category: 'Medwifery and Obstetrical Nursing'
+                category: 'Medwifery And Obstetrical Nursing'
             },
             {
                 id: 8,

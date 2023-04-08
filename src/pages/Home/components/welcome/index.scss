@@ -20,7 +20,7 @@
   margin-bottom: 35vh;
 
   @include mobile {
-    margin-bottom: 65vh;
+    margin-bottom: 450px;
   }
 
   @include tablet() {
@@ -41,16 +41,26 @@
     @include mobile() {
       display: flex;
       flex-direction: column;
-      padding-top: 15vh;
+      padding-top: 14vh;
     }
 
     @media (max-width:500px) {
-      padding-top: 8vh;
+      padding-top: 55px;
     }
 
     .homebanner-left {
       padding: 10px 30px;
       width: 60%;
+      .link{
+        text-decoration: none;
+        color: #12D288;
+      }
+
+      h1{
+        @include mobile{
+          line-height: 1.2;
+        }
+      }
 
       @include tablet() {
         width: 80%;
@@ -153,7 +163,7 @@
 
         &-one {
           position: absolute;
-          background-image: url('../../../../assets/images/home/animating banner/slide.png');
+          background-image: url('../../../../assets/images/home/animating banner/slide.webp');
           background-repeat: no-repeat;
           background-size: contain;
           height: 200px;
@@ -312,7 +322,7 @@
 
         &-two {
           position: absolute;
-          background-image: url('../../../../assets/images/home/animating banner/notes.png');
+          background-image: url('../../../../assets/images/home/animating banner/notes.webp');
           background-repeat: no-repeat;
           background-size: contain;
           animation: two 6s ease-in-out alternate infinite;
@@ -338,7 +348,9 @@
               // animation-delay: 6s;
               .dot {
                 margin-right: 10px;
+                height: 14px;
               }
+            
             }
 
             @for $i from 1 through 9 {
@@ -434,7 +446,7 @@
           position: absolute;
           height: 200px;
           width: 200px;
-          background-image: url('../../../../assets/images/home/animating banner/social.png');
+          background-image: url('../../../../assets/images/home/animating banner/social.webp');
           background-repeat: no-repeat;
           background-size: contain;
           animation: three 6s ease-in-out alternate infinite;
@@ -461,8 +473,9 @@
             justify-content: space-around;
             color: $--primary;
 
-            .FAicons {
-              background-color: $--primary;
+            .FAicon {
+             color: $--primary;
+              height: 20px;
             }
           }
         }
@@ -769,6 +782,7 @@
       align-items: center;
       padding: 6% 0;
       width: 100%;
+
       @include mobile {
         flex-direction: column;
       }
@@ -892,7 +906,7 @@
     bottom: -30%;
     background-color: white;
     border-radius: 6px;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
 
     box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
       0 5px 15px rgba(0, 0, 0, 0.07);
@@ -970,7 +984,7 @@
           input[type="search"],
           .dropdown-btn {
             border: none;
-            color: #bbabab;
+            color: #000000;
             outline: 0;
             // width: 60%;
             height: 50px;
@@ -1029,7 +1043,10 @@
             /* border: none; */
             margin-left: 4px;
             transition: .2s all;
-
+            color: $--primary;
+            .icon-button{
+              height: 25px;
+            }
             &:hover {
               // border: 2px dashed $--primary;
               background-color: $--primary;
@@ -1038,6 +1055,7 @@
                 color: white !important;
                 transition: .2s all;
               }
+             
 
             }
 
@@ -1057,6 +1075,9 @@
       align-items: center;
       position: relative;
       width: 40%;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      background-color: $--primary;
 
       @include tablet {
         width: 100%;
@@ -1070,9 +1091,9 @@
 
       img {
         position: absolute;
-        left: 0;
+        left: 5px;
         bottom: 0px;
-        z-index: -1;
+        z-index: 1;
 
         @include tablet() {
           display: none;
@@ -1095,6 +1116,7 @@
         justify-content: start;
         align-items: flex-end;
 
+
         @include mobile() {
           display: none;
         }
@@ -1114,9 +1136,9 @@
   border: none;
   font-weight: 700;
   font-size: 16px;
-  background-color: white;
+  background-color: transparent;
   border-radius: 6px;
-  border: 2px solid $--primary;
+  border: 2px solid #7fe8bf;
   cursor: pointer;
   transition: 0.25s all ease-in-out;
 
@@ -1127,11 +1149,11 @@
   &:hover {
     background-color: $--primary;
     color: white;
-    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
-      0 5px 15px rgba(0, 0, 0, 0.07);
+    // box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
+    //   0 5px 15px rgba(0, 0, 0, 0.07);
 
     .joinAsMedicosBtn-link {
-      color: white;
+      color: #fff;
     }
   }
 }
@@ -1139,7 +1161,7 @@
 .joinAsMedicosBtn-link {
   text-decoration: none;
   cursor: pointer;
-  color: $--primary;
+  color: #000;
 
 }
 
@@ -1154,6 +1176,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+
   @include mobile() {
     flex-direction: column;
   }
@@ -1182,13 +1205,17 @@
     @include mobile() {
       padding: 7% 1%;
       margin: 2% 0;
-      width: 90%;
+      width: 100%;
     }
 
     &:hover {
       background-color: #12D288;
       box-shadow: 0px 7px 20px 0px rgba(184, 183, 189, 0.25%);
       transition: 0.2s all ease-in-out;
+    }
+
+    .upload-icon{
+      height: 25px;
     }
 
     div {
@@ -1199,7 +1226,7 @@
       span {
         text-transform: capitalize;
         font-size: 20px;
-        font-weight: 500;
+        font-weight: 600;
         padding: 0 5px;
 
         @media (max-width:1500px) {
@@ -1213,7 +1240,7 @@
       }
     }
 
-    &:last-child {
+    &:first-child {
       background-color: #12D288;
     }
   }

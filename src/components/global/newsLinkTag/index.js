@@ -1,26 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import TextClamp from 'react-string-clamp';
 import './_newsLinkTag.scss'
-const NewsLinkTag = ({color,tag}) => {
+const NewsLinkTag = ({ color, tag }) => {
 
-     const newTag=tag?.slice(0,15)
+    const newTag = tag?.slice(0, 15)
 
     return (
-        <span className="newsLinkTag-container">
+        <Link
+            to={{
+                pathname: `/search/searchtext/${tag}`,
+                
+            }}
+            className="newsLinkTag-container">
             <div className='newsLinkTag-link'>
-                <div className="newsLinkTag-link-circle" style={{backgroundColor:`${color}`}}></div>
+                <div className="newsLinkTag-link-circle" style={{ backgroundColor: `${color}` }}></div>
                 <div className="newsLinkTag-link-text">
-                    {/* <TextClamp
-                        text={tag}
-                        line={1}
-                        element='p'
-                        className="newsLinkTag-link-text-p"
-                        /> */}
-                        {newTag}
+                   
+                    {newTag}
                 </div>
             </div>
-       </span>
+        </Link>
     )
 }
 
-export default NewsLinkTag
+export default React.memo(NewsLinkTag)

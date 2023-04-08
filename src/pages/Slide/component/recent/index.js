@@ -3,7 +3,12 @@ import NewsLinkTag from '../../../../components/global/newsLinkTag'
 import AuthorDateRead from '../../../News/components/author-date-readTime'
 import './_recent.scss'
 import { Link } from 'react-router-dom'
-import Loading from '../../../../components/loading'
+// import Loading from '../../../../components/loading'
+import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+import SlideRecentPlaceholder from '../recentPlaceholder'
+import shortid from 'shortid'
+
+const loadingArray=Array.apply(null,Array(10));
 
 
 const Recent = ({  slideDetailsRight }) => {
@@ -18,9 +23,9 @@ const Recent = ({  slideDetailsRight }) => {
                    <div className="slideRecent-wrapper-left-mid">
                        <NewsLinkTag color='red' tag={slideDetailsRight[7].slideSubCategory} />
                        <Link
-                                        style={{ textDecoration: 'none' }}
+                                        className='links'
                                         to={{
-                                            pathname: `/slideDetails/${slideDetailsRight[7]?.SlideName}/${slideDetailsRight[7]?.slideCategory}/${slideDetailsRight[7]?.slideSubCategory.replace(/\s|\//g, "")}`,
+                                            pathname: `/slidedetails/${slideDetailsRight[7]?.SlideName}/${slideDetailsRight[7]?.slideCategory}/${filterSlideSubCategory(slideDetailsRight[7]?.slideSubCategory)}`,
                                           }}>
                        <h3 className="slideRecent-wrapper-left-mid-head">{slideDetailsRight[7]?.SlideName}</h3>
                      </Link>
@@ -31,9 +36,11 @@ const Recent = ({  slideDetailsRight }) => {
 
                </div>
                :
-               <div style={{paddingTop:'200px',paddingBottom:'200px',width:'50%'}}>
-                   <Loading/>
-                </div>   
+                                                loadingArray.map(()=>{
+                                                        return <SlideRecentPlaceholder key={shortid.generate()}/>
+                                                           
+                                                    
+                                                    })
                
                }
 
@@ -44,9 +51,9 @@ const Recent = ({  slideDetailsRight }) => {
                             {slideDetailsRight.filter((data, index) => index < 6).map((data, index) => (
                                 <div key={index} className="slideRecent-wrapper-right-description-wrapper">
                                     <Link
-                                        style={{ textDecoration: 'none' }}
+                                        className='links'
                                         to={{
-                                            pathname: `/slideDetails/${data?.SlideName}/${data?.slideCategory}/${data?.slideSubCategory.replace(/\s|\//g, "")}`,
+                                            pathname: `/slidedetails/${data?.SlideName}/${data?.slideCategory}/${filterSlideSubCategory(data?.slideSubCategory)}`,
                                             }}>
                                         <h3 className="slideRecent-wrapper-right-description-wrapper-head">{data.SlideName}</h3>
                                     </Link>
@@ -55,10 +62,13 @@ const Recent = ({  slideDetailsRight }) => {
                             ))
                             }
                         </div>
+                        
                         :
-                        <div className="recent-loading-wrapper">
-                            <Loading />
-                        </div>
+                                                loadingArray.map(()=>{
+                                                        return <SlideRecentPlaceholder/>
+                                                           
+                                                    
+                                                    })
                     }
 
                 </div>

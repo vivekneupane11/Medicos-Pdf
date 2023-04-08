@@ -1,34 +1,26 @@
 import React from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
-
 //local imports
-import { logEventWithParams } from '../../../../functions/commonMethod';
+// import { logEventWithParams } from '../../../../functions/commonMethod';
 import BookCard from '../../../Book/components/bookCard';
 import './_relatedBooksSlider.scss';
+import ArrowLeft from '../../../../components/global/icons/arrow_left';
+import ArrowRight from '../../../../components/global/icons/arrow_right';
 
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 
 
-const RelatedBooksSlider = ({
-    // slidesPerView,
-    bookDetails, activeData }) => {
+const RelatedBooksSlider = ({bookDetails}) => {
 
-
-
-    const handleChange = (book) => {
-        activeData(book);
-        logEventWithParams("web_book_opened",{book_title:book?.title, book_subcategory: book?.subject})
-
-    }
-    return (
+        return (
         <div className="RelatedBooksSlider-container">
             <Swiper
                 autoHeight={true}
@@ -40,6 +32,7 @@ const RelatedBooksSlider = ({
                     prevEl: '.swiper-button-prevRBS',
                 }}
                 centeredSlides={true}
+                
                 breakpoints={{
                     "200": {
                         "slidesPerView": 1,
@@ -52,7 +45,18 @@ const RelatedBooksSlider = ({
             >
                 {bookDetails?.map((book, index) => (
 
-                    <SwiperSlide key={book.image + index} className="RelatedBooksSlider-container-slider-slides" onClick={() => handleChange(book)} >
+                    <SwiperSlide key={book.image + index} className="RelatedBooksSlider-container-slider-slides" >
+                    <Link
+                    
+                      key={book.image + index}
+                     className='links'
+                      to={{
+                        pathname: `/bookdetails/${book?.title}`,
+                        state: {
+                          data: JSON.stringify(book),
+                          wholeData: JSON.stringify(bookDetails),
+                        }
+                      }}>
                         <BookCard
                             data={book}
                             image={book.image}
@@ -60,16 +64,16 @@ const RelatedBooksSlider = ({
                             author={book.writer}
                             rating={book.rating}
                         />
+                        </Link>
                     </SwiperSlide>
 
                 ))}
 
-                <div className="swiper-button-prevRBS"><FaChevronLeft /></div>
-                <div className="swiper-button-nextRBS"> <FaChevronRight /></div>
+                <div className="swiper-button-prevRBS"><ArrowLeft className="next"/></div>
+                <div className="swiper-button-nextRBS"> <ArrowRight className="next" /></div>
 
             </Swiper>
         </div>
     )
 }
-
 export default RelatedBooksSlider

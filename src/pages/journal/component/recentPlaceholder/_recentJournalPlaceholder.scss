@@ -1,0 +1,57 @@
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+
+.recentJournalPlaceholder-wrapper{
+    padding: 50px 30px;
+    width: 100%;
+
+    .heading{
+        width: 100%;
+        font-family: 'Nunito';
+        border-bottom: 1px solid #e0dede;
+        color: #0f0e0e;
+        font-weight: 800;
+        font-size: 30px;
+       padding-bottom: 10px;
+       line-height: 1;
+    }
+    &-container{
+        display: flex;
+        justify-content: space-between;
+        &-col1{
+            width: 48%;
+            padding: 20px 0;
+            @include tablet{
+                width: 100%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+
+
+            .item{
+                padding: 20px 0;
+                h2{
+                    height: 15px;
+                    background-color: #f6f7f8;
+                    width: 100%;
+                    margin: 10px 0;
+                }
+                h3{
+                    height: 10px;
+                    background-color: #f6f7f8;
+                    width: 100%;
+                    margin: 10px 0;
+
+                }
+                p{
+                    height: 10px;
+                    background-color: #f6f7f8;
+                    width: 70%;
+                    margin: 10px 0;
+                }
+            }
+            
+        }
+    }
+}

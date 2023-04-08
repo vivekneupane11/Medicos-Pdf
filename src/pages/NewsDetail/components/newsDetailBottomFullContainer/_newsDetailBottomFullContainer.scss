@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 @import '../../../../App.scss';
 
 
@@ -8,6 +7,22 @@
     display: flex;
     justify-content: space-between;
     padding: 50px 30px;
+   a{
+      color: $--primary;
+   }
+  
+   ul{
+      p{
+        ::before{
+           content: '';
+          height: 5px;
+          width: 5px;
+          background-color: #0f0e0e;
+
+        }
+      }
+   }
+   
     @include tablet{
       flex-direction: column;
     }
@@ -25,11 +40,85 @@
       width: 100%;
    }
      &-para1{
-        font-family: 'Rubik';
+        font-family: 'Nunito';
         font-size: 16px;
         line-height: 1.75;
         color: #333;
         margin-bottom: 20px;
+        p{
+           font-size: 18px;
+           font-weight: 500;
+        }
+        @media screen and (max-width: 1400px) and (min-width: 768px) {
+         img{
+            width: 100%!important;
+         }
+        
+        
+      }
+      @media screen and (max-width: 1400px) and (min-width: 768px) {
+         
+            figure{
+               width: 100%!important;
+            }
+         
+       
+      }
+      iframe{
+         width: 100%;
+      }
+        @include tablet{
+         iframe{
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+         }
+         img{
+            height: 30%;
+            width: 100%;
+            overflow: hidden;
+           
+         }
+         figure{
+            width: 100%!important;
+           
+         }
+      
+      }
+    
+      @include mobile{
+         iframe{
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+         }
+
+         img{
+            height: 30%;
+            width: 100%;
+            overflow: hidden;
+         }
+         figure{
+            width: 100%!important;
+         }
+         h2{
+            font-size: 22px;
+            width: 100%;
+            background: #fff9f9;
+            padding: 6px;
+            font-weight: 700;
+            // text-decoration: underline;
+         }
+         h3{
+            font-size: 22px;
+            width: 100%;
+            background: #fff9f9;
+            padding: 6px;
+            font-weight: 700;
+         }
+      }
+       
+
     }
      &-futureFocused{
          &-head{
@@ -41,9 +130,10 @@
             padding-bottom: 20px;
          }
          &-para1{
-            font-family: 'Rubik';
+            font-family: 'Nunito';
             font-size: 15px;
             line-height: 1.75;
+            
             color: #333;
             margin-top: 20px;
          }
@@ -108,14 +198,14 @@
             margin:20px 0;
             &-col1{
                width: 48%;
-               font-family: 'Rubik';
+               font-family: 'Nunito';
             font-size: 15px;
             line-height: 1.75;
             color: #333;
             }
             &-col2{
                 width: 48%;
-                font-family: 'Rubik';
+                font-family: 'Nunito';
                 font-size: 15px;
                 line-height: 1.75;
                 color: #333;
@@ -123,7 +213,7 @@
 
          }
          &-para3{
-            font-family: 'Rubik';
+            font-family: 'Nunito';
             font-size: 15px;
             line-height: 1.75;
             color: #333;
@@ -134,11 +224,14 @@
          width: 100%;
          &-top{
             width: 100%;
+            padding: 10px 0;
             &-head1{
-               font-size: 24px;
+               font-size: 28px;
                font-family: 'Nunito';
                font-weight: 800;
                color: #0f0e0e;
+               margin-bottom: 10px;
+               border-bottom: 1px solid #e0dede;
            }
            &-head2{
                font-size: 12px;
@@ -149,7 +242,7 @@
            }
          }
          &-para{
-            font-family: 'Rubik';
+            font-family: 'Nunito';
             font-size: 15px;
             line-height: 1.75;
             color: #333;
@@ -165,7 +258,7 @@
              color: #333;
          }
          &-para2{
-            font-family: 'Rubik';
+            font-family: 'Nunito';
             font-size: 15px;
             line-height: 1.75;
             color: #333;
@@ -174,12 +267,12 @@
                 margin-left: 50px;
                 margin-top: 10px;
                 li{
-                    font-family: 'Rubik';
+                    font-family: 'Nunito';
                     font-size: 15px;
                     line-height: 1.75;
                     color: #333;
                     margin-bottom: 10px;
-                    font-weight: 400;
+                    font-weight: 500;
                  }
             }
          }
@@ -188,12 +281,13 @@
      &-alsoRead{
          width: 100%;
          &-para{
-            font-family: 'Rubik';
+            font-family: 'Nunito';
             font-size: 15px;
             line-height: 1.75;
             color: #333;
             margin-bottom: 20px;
          }
+         
      }
      &-blogging{
         &-head{
@@ -205,7 +299,7 @@
            color: #333;
         }
         &-para{
-           font-family: 'Rubik';
+           font-family: 'Nunito';
            font-size: 15px;
            line-height: 1.75;
            color: #333;

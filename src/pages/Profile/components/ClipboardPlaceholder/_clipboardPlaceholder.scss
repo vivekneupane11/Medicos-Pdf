@@ -1,0 +1,19 @@
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+
+.clipboardPlaceholder-wrapper{
+    width: 100%;
+    .image{
+        width: 245px;
+        object-fit: contain;
+        height: 200px;
+        border-radius: 10px;
+        background-color: #f6f7f8;
+        @include mobile{
+            width: 100%
+        }
+        @include tablet{
+            width: 235px;
+        }
+    }
+}

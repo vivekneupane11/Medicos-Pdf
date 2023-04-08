@@ -1,0 +1,60 @@
+@import '../../../../App.scss';
+
+.pagination-wrapper{
+    display: flex;
+    justify-content: center;
+    &-container{
+        display: flex;
+        .pageNumber-Button{
+            border: 1px solid $--primary;
+            height:40px ;
+            width: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // margin: 0 3px;
+            margin-right: 7px;
+            cursor: pointer;
+            &.active{
+                background-color: $--primary;
+                box-shadow: 2px 5px 10px rgba(50, 50, 93, 0), 0 4px 8px rgba(0, 0, 0, .3);
+                transform: scale(1.2);
+                
+                
+                .pageNumber{
+                    color: #fff;
+                }
+            }
+
+            .pageNumber{
+                font-size: 22px;
+                // color: #fff;
+                color: $--primary;
+            }
+
+        }
+        .next-prev-button{
+            background-color: $--primary;
+            border: 1px solid $--primary;
+            height:40px ;
+            width: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 7px;
+            cursor: pointer;
+            .icon{
+                height: 25px;
+                color: #fff;
+                // color: $--primary;
+
+            }
+           
+        }
+        .displaynone{
+            display: none;
+        }
+    }
+}

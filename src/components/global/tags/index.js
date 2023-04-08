@@ -1,9 +1,8 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './_tags.scss'
 
 
 const Tags = (props) => {
-
     const [tags, setTags] = useState([]);
     const removeTags = indexToRemove => {
         setTags([...tags.filter((value, index) => index !== indexToRemove)]);
@@ -18,48 +17,62 @@ const Tags = (props) => {
             }
         }
     };
-    
-    useEffect(() => {
-        let isMounted=true;
-   
-       if(props.fileName){
-            setTags([...tags,props.fileName])
-        }
-     
-        return () => {
-             isMounted=false
-        }
-    }, [props.fileName ])
 
     useEffect(() => {
-        let isMounted=true;
-        if(props.category){
-            setTags([...tags,props.category])
+        let isMounted = true;
+
+        if (!props?.loadedTagsFromEdit?.length && props.fileName) {
+            setTags([props.fileName, ...tags])
         }
-   
+
         return () => {
-             isMounted=false
+            isMounted = false
         }
-    }, [props.category ])
+    }, [props.fileName])
+
+
 
     useEffect(() => {
-        let isMounted=true;
-   
-       if(props.subCategory){
-            setTags([...tags,props.subCategory])
+        let isMounted = true;
+        if (!props?.loadedTagsFromEdit?.length && props.category) {
+            setTags([props.category, ...tags])
         }
-     
+
         return () => {
-             isMounted=false
+            isMounted = false
         }
-    }, [props.subCategory ])
+    }, [props.category])
+
+    useEffect(() => {
+        let isMounted = true;
+
+        if (!props?.loadedTagsFromEdit?.length && props.subCategory) {
+            setTags([props.subCategory, ...tags])
+        }
+
+        return () => {
+            isMounted = false
+        }
+    }, [props.subCategory])
+    //RENDERING INCOMING SLIDE TAGS FROM loadedTagFromEdit
+    useEffect(() => {
+        let isMounted = true
+        if (isMounted && props?.loadedTagsFromEdit && typeof(props?.loadedTagsFromEdit) == 'string') {
+            console.log('slide tags',typeof(props?.loadedTagsFromEdit))
+            setTags(props?.loadedTagsFromEdit?.split(','))
+        }
+        return () => {
+            isMounted = false
+        }
+    }, [props?.loadedTagsFromEdit])
 
     return (
         <>
             {/* <h3>Tags</h3> */}
             <div className="tags-wrapper">
                 <ul className="tags">
-                    {tags.map((tag, index) => (
+                    {tags?.length?  
+                    tags?.map((tag, index) => (
                         <li key={index} className="tags-tag">
                             <span className='tags-tag-title'>{tag}</span>
                             <span className='tags-tag-close-icon'
@@ -68,7 +81,11 @@ const Tags = (props) => {
                                 x
                             </span>
                         </li>
-                    ))}
+                    ))
+                    :
+                    ''
+                
+                }
                 </ul>
                 <input
                     className="tag-input-field"

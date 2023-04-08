@@ -11,26 +11,12 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Autoplay } from 'swiper';
+import { getColorByIndex, getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
 SwiperCore.use([Autoplay]);
 
  const TopSlider = ({details, sourceDocId}) => {
-    const getColorsByIndex = (index) => {
-        let color = "yellow";
-        if (index % 3 == 0) {
-          color = 'red'
-        } else if (index % 2 == 0) {
-          color = 'skyblue'
-        }
-        return color;
-      }
-    
-      const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text?.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
-    
-      };
+  
+
     return (
          <div className="topslider-wrapper">
          
@@ -55,24 +41,24 @@ SwiperCore.use([Autoplay]);
                             <div className="topslider-wrapper-slide">
                                 <div className="topslider-wrapper-slide-left">
                                    
-                                        <NewsLinkTag color={getColorsByIndex(index)} tag={data?.slug}  />
+                                        <NewsLinkTag color={getColorByIndex(index)} tag={data?.slug}  />
                                         <Link
                                                 onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
                                               style={{textDecoration:'none'}}
                                                 to={{
-                                                  pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                                  pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                                                 }}>
                                         <h3 className="topslider-wrapper-slide-left-head">{data?.title?.rendered}</h3>
                                         </Link>
-                                        <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='black' fontSize='12px'  />
+                                        <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='black' fontSize='12px'  />
                                     
 
                                 </div>
                                 <Link
-                                    onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                    onClick={ () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
                                    className="topSlider_link"
                                     to={{
-                                      pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                      pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                                     }}>
                                     <div className="topslider-wrapper-slide-rightImg" style={{backgroundImage:`url(${data?.image?.source_url})`}}>
                     

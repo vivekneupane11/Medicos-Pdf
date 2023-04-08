@@ -3,11 +3,46 @@
 .book-card-container {
     @include flexColCenter;
     width: 206px;
+    // height: 200px;
     text-align: center;
+    @include mobile{
+        width: 180px;
+    }
+    @media screen and (max-width: 567px) and (min-width: 320px) {
+        width: 123px;
+     }
+     @media screen and (max-width: 666px) and (min-width: 375px) {
+        width: 140px;
+     }
+    @media screen and (max-width: 811px) and (min-width: 375px) {
+        width: 148px;
+     }
+     @media screen and (max-width: 1023px) and (min-width: 768px) {
+        width: 220px;
+     }
+    
+   
+   
+  
 
     &-content {
         padding-top: 15px;
-
+        @include mobile{
+            padding: 15px 5px;
+        }
+        @media screen and (max-width: 567px) and (min-width: 320px) {
+            width: 123px;
+         }
+         @media screen and (max-width: 666px) and (min-width: 375px) {
+            width: 140px;
+         }
+        @media screen and (max-width: 811px) and (min-width: 375px) {
+            width: 148px;
+         }
+       
+       
+       
+        
         // background-color: yellow;
         p {
             margin: 10px 0px;
@@ -24,6 +59,7 @@
             .icon {
                 margin-right: 5px;
                 color: yellow;
+                height: 20px;
                 //    background-color: white;
             }
 
@@ -38,6 +74,30 @@
     &-img {
         height: 220px;
         width: 198px;
-      
+        border-radius: 15px;
+        @include mobile{
+            height: 190px;
+            width: 170px;
+        }
+        @media screen and (max-width: 567px) and (min-width: 320px) {
+            height: 150px;
+            width: 133px;
+         }
+         @media screen and (max-width: 666px) and (min-width: 375px) {
+            height: 160px;
+            width: 145px;
+         }
+        @media screen and (max-width: 666px) and (min-width: 375px) {
+            height: 180px;
+            width: 155px;
+         }
+        
+       
+       
+       
     }
+}
+
+.book-card-container-content-para{
+    text-transform: capitalize;
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import './_journalSlider.scss'
 
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
@@ -10,7 +9,10 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Autoplay } from 'swiper';
 import NewsLinkTag from '../../../../components/global/newsLinkTag';
 import AuthorDateRead from '../../../News/components/author-date-readTime';
-import { logEventWithParams } from '../../../../functions/commonMethod';
+// import { logEventWithParams } from '../../../../functions/commonMethod';
+import { newTab } from '../../../../functions/newTabMethod';
+import ArrowLeftLong from '../../../../components/global/icons/arrowLeft_Long';
+import ArrowRightLong from '../../../../components/global/icons/arrorRight_Long';
 
 
 
@@ -18,11 +20,8 @@ SwiperCore.use([Autoplay]);
 
 
 const JournalSlider = ({ details }) => {
-    const newTab = (url, title) => {
-        window.open(
-            url, "_blank");
-        logEventWithParams('web_journals_detail_page_opened', { journalTitle: title })
-    }
+  
+    const clickhandlernewtab2 = ()=>newTab(data?.headinglink,data?.heading,'web_journals_detail_page_opened')
     return (
         <>
             <div className="journalSlider-wrapper">
@@ -55,7 +54,7 @@ const JournalSlider = ({ details }) => {
 
                                     <div className="journalSlider-wrapper-slide-left-bottom">
                                         <NewsLinkTag key={data.tag.id} color={data.tag.color} tag={data.tag.tag} link={data.tag.link} />
-                                        <h3 className="journalSlider-wrapper-slide-left-bottom-head"><a onClick={()=>newTab(data?.headinglink,data?.heading)} href={data.headinglink}>{data.heading}</a></h3>
+                                        <h3 className="journalSlider-wrapper-slide-left-bottom-head"><a onClick={clickhandlernewtab2} href={data.headinglink}>{data.heading}</a></h3>
                                         <AuthorDateRead author={data.dateAndTime.author} link={data.dateAndTime.link} date={data.dateAndTime.date} readTime={data.dateAndTime.readTime} color={data.dateAndTime.color} fontSize={data.dateAndTime.fontSize} />
                                     </div>
 
@@ -72,8 +71,8 @@ const JournalSlider = ({ details }) => {
 
                     ))}
 
-                    <div className="swiper-journal-button-previous"><FaArrowLeft /></div>
-                    <div className="swiper-journal-button-nxt"><FaArrowRight /></div>
+                    <div className="swiper-journal-button-previous"><ArrowLeftLong /></div>
+                    <div className="swiper-journal-button-nxt"><ArrowRightLong /></div>
                 </Swiper>
 
             </div>

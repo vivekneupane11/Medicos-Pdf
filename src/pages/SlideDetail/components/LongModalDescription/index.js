@@ -1,36 +1,36 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './_longModalDescription.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes} from '@fortawesome/free-solid-svg-icons'
+import CloseCircle from '../../../../components/global/icons/xMark_Circle';
 
 const LongModalDescription = ({show,close,data}) => {
     // const [show, setShow] = useState(false);
+    const [active,setActive]=useState(false)
+    const clickhandlercloser = () =>close(false)
+    const clickhandlercloser2 = () => close(false)
 
     return (
         <div>
-          
-        
-
-                <div className={`SlideDetails-LongModal-containerN ${show ? `SlideDetails-LongModal-container` : ''}`}>
+                <div className={`SlideDetails-LongModal-container ${show ? `SlideDetails-LongModal-containerActive` : ''}`}>
+               
                     <div 
-                    className={`SlideDetails-LongModal-container-wrapper`}
-                    style={{
-                        transform: show ? 'translateY(10vh)' : 'translateY(-100vh)',
-                    }}
+                    className={`SlideDetails-LongModal-container-wrapper ${show?'SlideDetails-LongModal-container-wrapperActive':''}`}
                     >
                         <div className={`SlideDetails-LongModal-container-wrapper-top`}>
                             <h5 className={`SlideDetails-LongModal-container-wrapper-top-h5`}>{data?.SlideName}</h5>
-                            <FontAwesomeIcon icon={faTimes} className={`SlideDetails-LongModal-container-wrapper-top-icon`} onClick={() => close(false)} />
+                            <div onClick={clickhandlercloser2}>
+
+                            <CloseCircle className={`SlideDetails-LongModal-container-wrapper-top-icon`}  />
+                            </div>
                         </div>
 
                         <p className={`SlideDetails-LongModal-container-wrapper-mid`}  
                         // dangerouslySetInnerHTML={{__html: data?.slideTextExtract }}
                         >
-                           {data?.slideTextExtract }
+                           {data?.slideDescription}
                           
                         </p>
                         <div className={`SlideDetails-LongModal-container-wrapper-bottom`}>
-                            <button className={`SlideDetails-LongModal-container-wrapper-bottom-btn2`} onClick={() =>close(false)}>CLOSE</button>
+                            <button className={`SlideDetails-LongModal-container-wrapper-bottom-btn2`} onClick={clickhandlercloser}>CLOSE</button>
                         </div>
                     </div>
                 </div>

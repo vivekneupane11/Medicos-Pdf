@@ -1,0 +1,98 @@
+@import '../../../../App.scss';
+.followersAndFollowing-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    background-color: #f8f7fc;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    padding: 15px ;
+    border-radius: 5px;
+    margin: 15px 0;
+    &-img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            border-radius: 10px;
+            
+
+        }
+
+    }
+    &-desc{
+        padding: 0px 5px;
+        h6{
+            &:hover{
+                color: $--primary;
+            }
+
+        }
+        p{
+            font-size: 12px;
+            width: 100%;
+            word-break: break-all;
+        }
+        &-para{
+            color: $--primary;
+
+        }
+
+    }
+    &-option{
+        position: relative;
+        &-icon{
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+    }
+}
+
+.followersAndFollowing-container-option-container{
+    display: none;
+    width: 100px;
+    position: absolute;
+    box-shadow: 0 50px 100px rgba(50,50 ,93 , .1), 0 15px 35px rgba(50 ,50 ,93,.1), 0 5px 15px rgba(0 ,0 ,0 ,.1);
+    top: 25px;
+    border-radius: 5px;
+    right: 0px;
+    &-btn{
+        width: 90%;
+        padding: 10px;
+        cursor: pointer;
+         border: none;
+         background-color: $--primary;
+         box-shadow: 0 50px 100px rgba(50,50 ,93 , .1), 0 15px 35px rgba(50 ,50 ,93,.1), 0 5px 15px rgba(0 ,0 ,0 ,.1);
+
+         cursor: pointer;
+         border-radius: 5px;
+         margin:5px 0;
+         &:hover{
+             color: #fff;
+         }
+    }
+   
+    &Active{
+      display: block;
+      cursor: pointer;
+    }
+}
+
+.followersAndFollowing-container:disabled{
+    pointer-events: none;
+    background-color: rgba(0 ,0 ,0 ,.1);
+    opacity: .7;
+    
+}
+.avatar-followerFollowing{
+    @include flexColCenter;
+    background-color: $--primary;
+   height: 100px;
+   width: 100px;
+    border-radius: 100%;
+    text-decoration: none;
+}

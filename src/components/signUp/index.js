@@ -1,21 +1,21 @@
-
 import React, { useState, useEffect, useContext } from 'react'
 import './_signUp.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ToastContainer, toast } from 'react-toastify';
-
-import { faFacebook, faTwitter, faInstagramSquare, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons'
-// import fire from '../firebase'
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import firebase from "firebase";
+
 import "firebase/auth"
 import { facebookProvider, githubProvider, googleProvider, twitterProvider } from './authMethods/authMethods'
 import SocialMediaAuth from './authMethods/auth';
 import { AuthContext } from './authMethods/authentication';
-import { BiLogIn } from 'react-icons/bi'
 import PreferenceModal from '../global/preferenceModal'
+import useLocalStorage from '../../customHooks/useLocalStorage';
+import UserIcon from '../global/icons/user';
+import GoogleIcon from '../global/icons/SocialIcon/google';
+import FacebookIcon from '../global/icons/SocialIcon/facebook';
+import GithubIcon from '../global/icons/SocialIcon/github';
+import TwitterIcon from '../global/icons/SocialIcon/twitter';
+import Envelop from '../global/icons/envelop';
+import Unlock from '../global/icons/unlock';
 
 
 
@@ -23,15 +23,18 @@ import PreferenceModal from '../global/preferenceModal'
 const SignUp = () => {
     const { signInWithGoogle, register, login, user } = useContext(AuthContext);
     const [toggle, setToggle] = useState(false);
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+    const [preference, setPreference] = useLocalStorage("preference", null);
     const handleOnCLick = async (provider) => {
         await SocialMediaAuth(provider).then((res) => console.log("Email verification", res))
     }
     const renderError = (message) => <p className="error-msg">{message}</p>;
     const loginSubmit = async ({ values, setSubmitting, resetForm }) => {
-       
+
         const res = await login(values.email, values.password).then(() => {
-            checkUserPreference()
+            if (!preference?.preference) {
+                setShowModal(true);
+            }
         })
         setSubmitting(false)
         resetForm();
@@ -42,45 +45,35 @@ const SignUp = () => {
         setSubmitting(false)
         resetForm();
     }
-    function checkUserPreference() {
-     
-        if (user?.uid) {
-            try {
-                firebase.firestore().collection('Web-User-Data')
-                    .doc(user?.uid)
-                    .collection('User-Preference')
-                    .doc(user?.uid)
-                    .get()
-                    .then((res) => {
-                      
-                        if (!res.data()) {
-                            setShowModal(true);
-                        }
-                    })
-            } catch (err) {
-                alert("Error while fetching user preferences", err)
-            }
-        }
-    }
+
     useEffect(() => {
         let isMounted = true;
         if (isMounted) {
-            checkUserPreference()
+            if (!preference?.preference) {
+                setShowModal(true);
+            }
         }
         return (() => {
             isMounted = false
         })
     }, [user?.uid])
 
+    const clickhandlerfontfacebook = () => { handleOnCLick(facebookProvider) }
+    const clickhandlerfontgithub = () => { handleOnCLick(githubProvider) }
+    const clickhandlerfonttwitter = () => { handleOnCLick(twitterProvider) }
+    const clickhandlericon1 = () => { handleOnCLick(googleProvider) }
+    const clickhandlericon2 = () => { handleOnCLick(facebookProvider) }
+    const clickhandlericon3 = () => { handleOnCLick(githubProvider) }
+    const clickhandlericon4 = () => { handleOnCLick(twitterProvider) }
+    const clickhandleroverlay = () => setToggle(!toggle)
+    const clickhandleroverlaytoggle = () => setToggle(!toggle)
 
     return (
         <div>
             {
                 showModal && <PreferenceModal />
             }
-            <ToastContainer
-                position="top-right"
-            />
+           
             <div className='fragmentContainer'>
                 <div className="WholeContainer">
                     <div className='WholeContainer-wrapper'>
@@ -106,15 +99,27 @@ const SignUp = () => {
                                     <form onSubmit={props.handleSubmit} >
                                         <h1>Sign in</h1>
                                         <div className="sign-in-container-icons">
-                                            <FontAwesomeIcon onClick={signInWithGoogle} icon={faGoogle} className="sign-in-container-icons-icon1" />
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(facebookProvider) }} icon={faFacebook} className="sign-in-container-icons-icon2" />
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(githubProvider) }} icon={faGithub} className="sign-in-container-icons-icon3" />
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(twitterProvider) }} icon={faTwitter} className="sign-in-container-icons-icon4" />
+                                            <div onClick={signInWithGoogle}>
+
+                                            <GoogleIcon className="sign-in-container-icons-icon1" />
+                                            </div>
+                                            <div onClick={clickhandlerfontfacebook}>
+
+                                            <FacebookIcon className="sign-in-container-icons-icon2" />
+                                            </div>
+                                            <div onClick={clickhandlerfontgithub}>
+
+                                            <GithubIcon className="sign-in-container-icons-icon3" />
+                                            </div>
+                                            <div onClick={clickhandlerfonttwitter}>
+
+                                            <TwitterIcon className="sign-in-container-icons-icon4" />
+                                            </div>
 
                                         </div>
                                         <span>or use your account</span>
                                         <div className="sign-in-container-email">
-                                            <FontAwesomeIcon icon={faEnvelope} className="sign-in-container-email-icon" />
+                                            <Envelop className="sign-in-container-email-icon" />
                                             <Field
                                                 type="email"
                                                 name='email'
@@ -126,7 +131,7 @@ const SignUp = () => {
                                         <ErrorMessage name="email" render={renderError} />
 
                                         <div className="sign-in-container-password">
-                                            <FontAwesomeIcon icon={faUnlock} className="sign-in-container-password-icon" />
+                                            <Unlock className="sign-in-container-password-icon" />
                                             <Field
                                                 type="password"
                                                 name='password'
@@ -136,7 +141,7 @@ const SignUp = () => {
                                         </div>
                                         <ErrorMessage name="password" render={renderError} />
 
-                                        <a href="/resetPage">Forgot your password?</a>
+                                        <Link href="/resetPage">Forgot your password?</Link>
 
                                         <button type="submit" disabled={props.isSubmitting} >Sign In</button>
                                     </form>
@@ -184,14 +189,26 @@ const SignUp = () => {
                                     <form onSubmit={props.handleSubmit}>
                                         <h1>Create Account</h1>
                                         <div className="sign-up-container-icons">
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(googleProvider) }} icon={faGoogle} className="sign-up-container-icons-icon1" />
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(facebookProvider) }} icon={faFacebook} className="sign-up-container-icons-icon2" />
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(githubProvider) }} icon={faGithub} className="sign-up-container-icons-icon3" />
-                                            <FontAwesomeIcon onClick={() => { handleOnCLick(twitterProvider) }} icon={faTwitter} className="sign-up-container-icons-icon4" />
+                                            <div onClick={clickhandlericon1} >
+
+                                            <GoogleIcon  className="sign-up-container-icons-icon1" />
+                                            </div>
+                                            <div onClick={clickhandlericon2}>
+
+                                            <FacebookIcon className="sign-up-container-icons-icon2" />
+                                            </div>
+                                            <div onClick={clickhandlericon3} >
+
+                                            <GithubIcon className="sign-up-container-icons-icon3" />
+                                            </div>
+                                            <div onClick={clickhandlericon4}>
+
+                                            <TwitterIcon className="sign-up-container-icons-icon4" />
+                                            </div >
                                         </div>
                                         <span>or use your email for registration</span>
                                         <div className="sign-up-container-name">
-                                            <FontAwesomeIcon icon={faUser} className="sign-up-container-name-icon" />
+                                            <UserIcon className="sign-up-container-name-icon" />
                                             <Field
                                                 type="text"
                                                 name='name'
@@ -202,7 +219,7 @@ const SignUp = () => {
                                         </div>
                                         <ErrorMessage name="name" render={renderError} />
                                         <div className="sign-up-container-email">
-                                            <FontAwesomeIcon icon={faEnvelope} className="sign-up-container-email-icon" />
+                                            <Envelop className="sign-up-container-email-icon" />
                                             <input
                                                 type="email"
                                                 name='email'
@@ -212,7 +229,7 @@ const SignUp = () => {
                                         </div>
                                         <ErrorMessage name="email" render={renderError} />
                                         <div className="sign-up-container-password">
-                                            <FontAwesomeIcon icon={faUnlock} className="sign-up-container-password-icon" />
+                                            <Unlock className="sign-up-container-password-icon" />
                                             <input
                                                 type="password"
                                                 name='password'
@@ -232,16 +249,16 @@ const SignUp = () => {
 
                             <div className={`overlay ${toggle ? 'overlay-right-active' : ''}`}>
                                 <div className={`overlay-panel overlay-left ${toggle ? 'overlay-left-right-active' : ''}`}>
-                                    <h1>Welcome Back!</h1>
+                                    <h1>Welcome to Medicos Pdf!</h1>
                                     <p>
                                         To keep connected with us please login with your personal info
                                     </p>
-                                    <button className="overlay-btn" onClick={() => setToggle(!toggle)} >Sign In</button>
+                                    <button className="overlay-btn" onClick={clickhandleroverlay} >Sign In</button>
                                 </div>
                                 <div className={`overlay-panel overlay-right  ${toggle ? 'overlay-right-right-active' : ''}`}>
                                     <h1>Hello, Friend!</h1>
                                     <p>KickStart your journey with Medicos Int'l</p>
-                                    <button className="overlay-btn" onClick={() => setToggle(!toggle)}>Sign Up</button>
+                                    <button className="overlay-btn" onClick={clickhandleroverlaytoggle}>Sign Up</button>
                                 </div>
                             </div>
 

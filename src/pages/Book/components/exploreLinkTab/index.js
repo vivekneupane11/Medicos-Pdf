@@ -11,79 +11,76 @@ SwiperCore.use([Controller]);
 SwiperCore.use([Pagination]);
 
 
-const ExploreLinkTab = ({links,activeData}) => {
+const ExploreLinkTab = ({ links, activeData }) => {
 
     const [activeTab, setActiveTab] = useState(0);
-    const [screenWidth,setScreenWidth]=useState('');
-   const handleClick =(link,index)=>{
-    setActiveTab(index)
-    activeData(link)
+    const [screenWidth, setScreenWidth] = useState('');
+    const handleClick = (link, index) => {
+        setActiveTab(index)
+        activeData(link)
 
-   }
-
-   useEffect(() => {
-
-    const CurrentScreenSize=()=>{
-        setScreenWidth(window.innerWidth);
-      }
-  
-      window.addEventListener('resize',CurrentScreenSize)
-
-      return () => {
-        window.removeEventListener('resize',CurrentScreenSize )
     }
-      
-   }, [])
-  
+
+    useEffect(() => {
+
+        const CurrentScreenSize = () => {
+            setScreenWidth(window.innerWidth);
+        }
+
+        window.addEventListener('resize', CurrentScreenSize)
+
+        return () => {
+            window.removeEventListener('resize', CurrentScreenSize)
+        }
+
+    }, [])
 
 
     return (
-            <nav className="exploreLink">
+        <nav className="exploreLink">
 
             <div className={`exploreLinkTab move${activeTab}`}>
 
-           {links.map((link, index) => (
+                {links.map((link, index) => (
 
-                <div key={index} className="exploreLinkTab-container">
-                   {index == activeTab ?
-                       <div className="exploreLinkTab-container-link-active" onClick={()=>handleClick(link,index)}>
+                    <div key={index} className="exploreLinkTab-container">
+                        {index === activeTab ?
+                            <div className="exploreLinkTab-container-link-active" onClick={() => handleClick(link, index)}>
 
-                           <Headings
-                               className="tabText"
-                               type="heading6"
-                               href={link.url}
-                               key={link.id}
-                               content={link.linkName}
-                               active={true}
-                           />
-
-
-                       </div>
-                       :
-                       <div className="exploreLinkTab-container-link " onClick={()=>handleClick(link,index)}>
-                           <Headings
-                               className="tabText"
-                               type="heading6"
-                               href={link.url}
-                               key={link.id}
-                               content={link.linkName}
-                               active={false}
-                              
-                           />
+                                <Headings
+                                    className="tabText"
+                                    type="heading6"
+                                    href={link.url}
+                                    key={link.id}
+                                    content={link.linkName}
+                                    active={true}
+                                />
 
 
-                          </div>
-                      }
+                            </div>
+                            :
+                            <div className="exploreLinkTab-container-link " onClick={() => handleClick(link, index)}>
+                                <Headings
+                                    className="tabText"
+                                    type="heading6"
+                                    href={link.url}
+                                    key={link.id}
+                                    content={link.linkName}
+                                    active={false}
 
-                      </div>
+                                />
 
-                   ))}
 
-               </div>
-              <div className="underline-active"></div>
+                            </div>
+                        }
 
-           </nav>
+                    </div>
+
+                ))}
+
+            </div>
+
+        </nav>
     )
 }
-
 export default ExploreLinkTab

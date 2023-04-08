@@ -46,11 +46,11 @@
             cursor: pointer;
 
         }
-        .swiper-button-prevRBS:hover{
-            color: #fff;
-            transform: scale(1.5);
-            background-color: #48494b;
-        }
+        // .swiper-button-prevRBS:hover{
+        //     color: #fff;
+        //     transform: scale(1.5);
+        //     background-color: #48494b;
+        // }
         .swiper-button-prevRBS::after {
             content: '';
         }
@@ -71,11 +71,11 @@
             z-index: 8;
             cursor: pointer;
         }
-        .swiper-button-nextRBS:hover{
-            color: #fff;
-            transform: scale(1.5);
-            background-color: #48494b;
-        }
+        // .swiper-button-nextRBS:hover{
+        //     color: #fff;
+        //     transform: scale(1.5);
+        //     background-color: #48494b;
+        // }
     
         .swiper-button-nextRBS::after {
             content: '';
@@ -93,4 +93,7 @@
             opacity: 1;
         }
     }
+}
+.next{
+    height: 30px;
 }

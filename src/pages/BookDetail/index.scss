@@ -14,32 +14,96 @@
     width: 100%;
 
     &-wrapper {
-
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .showrequestmodal{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            left: 0;
+            // transform: translate(-50%,-50%);
+            background-size: cover;
+            background-blend-mode: overlay;
+            background-color: rgba(0,0,0,0.1);
+            z-index: 5;
+            &-displaynone{
+                display: none;
+            }
+        }
         // background-color: red;
         &-book-detail-section {
             @include flexRowCenter;
-            background-color: #1D264F;
+            // background-color: #3b4750;
             height: 100%;
             width: 100%;
-            max-height: 563px;
+          
+            // max-height: 563px;
+           
 
             &-container {
                 @include flexRowCenter;
                 padding: 65px 0px;
                 // background-color: yellow;
-                width: 60%;
+                width: 80%;
                 height: 100%;
+                .backgroundRound{
+                    height: 410px;
+                width: 410px;
+                border-radius: 50%;
+                background-color: #e8e9ec;
+                position: relative;
+                margin-right: 65px;
+                @include mobile{
+                    margin: 0;
+                border-radius: 50%;
 
-                img {
-                    width: 300px;
-                    margin-right: 65px
+                    height: 270px;
+                    width: 270px;
+
+                    
+                   
                 }
+                .bookImage {
+                    width: 310px;
+                    height: 430px;
+                    border-radius: 15px;
+                    position: absolute;
+                     top: -20px;
+                    left: 50px;
+                    
+                    filter: drop-shadow(20px 12px 10px #d9dce0);
+
+                
+                    @include mobile{
+                        width: 200px;
+                        height: 280px;
+                        left: 35px;
+
+                    }
+                    @media  (min-width:768px ) and ( max-width:769px)   {
+                        left: 20px;
+
+}
+                }
+                @media  (min-width:768px ) and ( max-width:769px)   {
+                    width: 354px;
+                    margin-right: 0;
+
+}
+                }
+
+               
 
                 &-content {
                     @include flexColEndStart;
                     // background-color: black;
                     width: 50%;
-                    height: 385px;
+                   
 
                     .book-title-section {
                         @include flexRowSbCenter;
@@ -51,41 +115,58 @@
                             align-items: flex-start
                         }
 
+                        .book-title{
+                            width: 70%;
+                            @include tablet{
+                                width: 65%;
+                            }
+                            @include mobile{
+                                width: 100%;
+                            }
+                        }
                         .icon-container {
-                          
+                            width: 30%;
                             @include flexRowCenter;
-                            width: auto;
-                            // background-color: green;
+                            @include tablet{
+                                width: 30%;
+                            }
                             @include mobile{
                                 margin: 10px 0;
+                                width: 40%;
+                                justify-content: flex-start;
                             }
                         }
 
                         .icon {
-                            font-size: 35px;
-                            color: white;
+                            // font-size: 32px;
+                            // color: white;
+                            color:#b3b3bc ;
                             width: auto;
+                            cursor: pointer;
+                            height: 35px;
                             // background-color: white;
                         }
 
                         .share {
                             position: relative;
                             @include flexRowCenter;
-                            color: white;
+                            // color: white;
                             border-radius: 50%;
-                            border: 2px solid white;
-                            width: 32px;
-                            height: 32px;
+                            border: 2px solid #b3b3bc;
+                            width: 30px;
+                            height: 30px;
                             margin-right: 10px;
 
                             .icon {
-                                font-size: 21px;
+                                font-size: 18px;
+                                height: 22px;
+                                color:#b3b3bc ;
 
                             }
                         }
 
                         h4 {
-                            color: white;
+                            // color: #a8a8b0;
                             font-weight: bold;
                             display: -webkit-box;
                             overflow: hidden;
@@ -96,26 +177,26 @@
                     }
 
                     .book-rating-section {
-                        @include flexRowSbCenter;
-                        // background-color: red;
+                       display: flex;
+                       justify-content: flex-start;
+                       align-items: center;
                         width: 100%;
+                        margin-top: 10px;
 
                         .star-container {
                             @include flexRowStartCenter;
-                            width: 24%;
-                            // background-color: pink;
                             color: yellow;
 
-                            .rating-icon {
-                                color: yellow;
-                                // background-color: white;
+                            .rating-icon,.icon {
+                                color: #d7d716;
                                 font-size: 19px;
                                 width: auto;
+                                height: 30px;
                             }
 
                             h6 {
                                 margin-left: 10px;
-                                color: white;
+                                color: #a8a8b0;
                                 font-family: 'Roboto', sans-serif;
                                 font-weight: bold;
                                 font-size: 18px;
@@ -123,9 +204,20 @@
                         }
 
                         .views {
-                            width: 70%;
-                            // background-color: green;
-                            text-align: left;
+                            margin-left: 20px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            &-icon{
+                                // color: #fff;
+                                color: #b3b3bc;
+                                font-size: 18px;
+                                height: 30px;
+                            }
+                            &-count{
+                                color: #a8a8b0;
+                                margin-left: 5px;
+                            }
 
                             p {
                                 width: auto;
@@ -139,7 +231,7 @@
                         margin: 15px 0px;
 
                         h6 {
-                            color: white;
+                            color: #a8a8b0;
                             font-family: 'Roboto', sans-serif;
                             font-weight: bold;
                             font-size: 18px;
@@ -154,7 +246,7 @@
                             -webkit-line-clamp: 5;
                             -webkit-box-orient: vertical;
                             p {
-                                color: #c4c4c4;
+                                color: $--muted;
                             }
                         }
                     }
@@ -166,7 +258,7 @@
                         margin: 15px 0px;
 
                         h6 {
-                            color: white;
+                            color: #a8a8b0;
                             font-family: 'Roboto', sans-serif;
                             font-weight: bold;
                             font-size: 18px;
@@ -181,14 +273,94 @@
                             -webkit-line-clamp: 2;
                             -webkit-box-orient: vertical;
                             p {
-                                color: #c4c4c4;
+                                color: $--muted;
                             }
                         }
+                        
+                    }
+                    .request-message{
+                        color: #0f8154;
+                        background: #f2f2f2;
+                        padding: 4px;
                     }
 
                     .book-button-container {
                         @include flexRowStartCenter;
                         margin-top: 25px;
+                        .downloadButton{
+                            width: 220px;
+                            padding: 15px 0;
+                            background-color: $--primary;
+                            color: black;
+                            font-size: 18px;
+                            text-align: center;
+                            border-style: none;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 20px;
+                            box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+                            border-top-left-radius: 20px;
+                            border-top-right-radius: 5px;
+                            cursor: pointer;
+                            margin-right: 10px;
+                            @include tablet{
+                                width: 190px;
+
+                            }
+                            @media  (min-width:768px ) and ( max-width:769px)   {
+                              width:170px;
+
+        }
+                            @include mobile{
+                                margin-bottom: 15px;
+                                width: 100%;
+                               
+                            }
+
+                        }
+
+                        .requestButton{
+                            width: 220px;
+                            padding: 15px 0;
+                            color: black;
+                            font-size: 18px;
+                            background-color: #fff;
+                            text-align: center;
+                            border-style: none;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 20px;
+                            box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+                            border-top-left-radius: 20px;
+                            border-top-right-radius: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            margin-right: 10px;
+                            .checkmark{
+                                height: 20px;
+                                margin-left: 3px;
+                                color: $--primary;
+                            }
+                            @include tablet{
+                                width: 190px;
+
+                            }
+                            @media  (min-width:768px ) and ( max-width:769px)   {
+                                width:170px;
+  
+          }
+                            @include mobile{
+                                margin-bottom: 15px;
+                                width: 100%;
+                               
+                            }
+
+                        }
+                    
+                        @include mobile{
+                            display: block;
+                            width: 100%;
+                        }
 
                         // background-color: red;
                         .right-button {
@@ -199,27 +371,31 @@
             }
 
         }
-
+   
         &-book-explore-section {
-            @include flexRowSbCenter;
+            display: flex;
+            justify-content: space-between;
+            
             // background-color: green;
+
             width: 100%;
 
             .book-review-section {
                 width: 50%;
-                // display: flex;
-                padding: 15px 19px;
-                // background-color: red;
+               padding: 30px;
             }
 
             .related-book-section {
-                @include flexColCenter;
+               display: flex;
+               flex-direction: column;
+               justify-content: flex-start;
+               align-items: center;
                 padding: 20px 0px;
                 width: 50%;
 
                 // position: relative;
                 // background-color: blue;
-                border-left: 0.5px solid lightgray;
+                border-left: 0.2px solid #fdf4f4;
 
                 .book-slider {
                     // background-color: red;
@@ -261,6 +437,7 @@
 
                 .book-review-section {
                     width: 100%;
+                    padding: 25px;
                 }
 
                 .related-book-section {
@@ -282,7 +459,7 @@
             // background-color: red;
             &-book-detail-section {
                 @include flexColCenter;
-                max-height: none;
+                // max-height: none;
 
                 &-container {
                     @include flexColCenter;
@@ -311,6 +488,7 @@
 
                 .book-review-section {
                     width: 100%;
+                    padding: 25px;
                 }
 
                 .related-book-section {
@@ -326,4 +504,6 @@
 }
 .exclamationIcon{
     margin-right: 10px;
+    font-size: 20px;
 }
+

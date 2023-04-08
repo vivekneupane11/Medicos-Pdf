@@ -1,269 +1,93 @@
-import firebase from "firebase"
-import React, { useCallback, useEffect, useState } from 'react'
+// import firebase from 'firebase/compat';
+// import { doc, getFirestore, onSnapshot } from 'firebase/firestore';
+import React, { useContext, useEffect, useState,Suspense } from 'react';
+import { useHistory, useParams } from 'react-router';
+//local imports
+import { ProfileNav } from '../../components/constants/mock';
+import SEO from '../../components/global/SEO';
+import LazyLoadingComponentLoader from '../../components/lazyLoadingLoaderComponent';
+import Loading from '../../components/loading';
+import { AuthContext } from '../../components/signUp/authMethods/authentication';
 
+import { ProfileTab } from './components/ProfileTab';
 
-//LOCAL IMPORTS
-import { bookCategories, slideCategories } from '../../constants/Book/BookCategories'
-import { shuffleArrayList } from '../../services/global/CommonServices'
-import { Profile1 } from '../Profile1'
-import './_profile.scss'
+import './_profile1.scss';
 
+const Summary = React.lazy(() => LazyLoadingComponentLoader(() => import("./components/Summary")));
+const TopCard = React.lazy(() => LazyLoadingComponentLoader(() => import("./topCard")));
 
-const ProfilePage = () => {
+const Profile = () => {
 
-    const firestoreDatabase = firebase.firestore();
-    const [mappingData,setMappingData]=useState([])
-    const [exploreLinkActiveData,setExploreLinkActiveData]=useState('Slides')
-    const [loadingSlides, setLoadingSlides] = useState(false);
-    const slidesLimit = 6;
+    const { user ,username:usernameauth} = useContext(AuthContext);
+    const { userId } = useParams();
+    const [userData, setUserData] = useState();
 
+    const history = useHistory()
+    // const db = getFirestore();
+    const getFirebaseAll =()=>{
+        return Promise.all([
+            import('../../firebase/firestore')
+        ])
+        .then(([firestore])=>{
+            return{firestore}
+        })
+    }
+    useEffect(async() => {
+        let isMounted = true;
+       try{
+           const {firestore:{db,doc,onSnapshot}}=await getFirebaseAll()
+        if (isMounted) {
+            if (userId) {
+                // firebase.firestore().collection("Web-User-Data")
+                // .doc(userId)
+                // .collection('Additional-Details')
+                // .doc(userId)
+                const docRef = doc(db,"Web-User-Data",userId,'Additional-Details',userId)
+                onSnapshot(docRef,(res) => {
+                    if (res?.data()) {
+                        setUserData(res?.data());
+                    }
+                })
+            }
 
-    const randombookSubcategory = useCallback(category => {
-        let filtered = bookCategories.filter(
-            bookCategory => bookCategory.category == category,
-        );
-        let subCategories = filtered[0].subCategories;
-        let randomInteger = Math.floor(Math.random() * (subCategories.length - 1));
-     
-        // console.log(category, randomInteger, subCategories[randomInteger]);
-        return subCategories[Math.floor(Math.random() * (subCategories.length - 1))]
-            .category;
-    }, []
-    )
+        }
+       }
+       catch(err){
 
-    const randomSubcategory = useCallback(category => {
-        let filtered = slideCategories .filter(
-            slideCategory => slideCategory.category == category,
-        );
-
-        let subCategories = filtered[0].subCategories;
-        let randomInteger = Math.floor(Math.random() * (subCategories.length - 1));
-   
-        // console.log(category, randomInteger, subCategories[randomInteger]);
-        return subCategories[Math.floor(Math.random() * (subCategories.length - 1))]
-            .category;
-    }, [])
+       }
+        return () => {
+            isMounted = false;
+        }
+    }, [userId])
 
 
     useEffect(() => {
         let isMounted = true;
 
-        const getUserPreferencesData = (exploreName) => {
-           
-
-            let allSlidesData = [];
-            let allBooksData=[];
-
-            try {
-
-                if (exploreName == "Slides") {
-                    setLoadingSlides(true);
-                  
-                    const AllSlides = firestoreDatabase
-                        .collection(`AllSlidesDataLockDownVersions`)
-                        .limit(slidesLimit)
-                        .get()
-                        .then(querySnapshot => {
-                          
-                            querySnapshot.forEach(ele => {
-                                allSlidesData.push(ele.data());
-                            });
-
-                            if (isMounted) {
-                               const value = {
-                                   data:allSlidesData,
-                                   type:'slides'
-                               }
-                                setLoadingSlides(false);
-                                setMappingData(()=>value)
-                            }
-                        });
-                }
-                else if (exploreName === "BookMarks") {
-                    setLoadingSlides(true);
-                  
-                    const BasicScienceSlides = firestoreDatabase
-                    .collection(`K-Books`)
-                    .orderBy('title')
-                    .limit(9)
-                    .get()
-                    .then(querySnapshot => {
-                      
-                        querySnapshot.forEach(ele => {
-
-                            allBooksData.push(ele.data());
-                        });
-
-                            if (isMounted) {
-                               const value = {
-                                   data:shuffleArrayList(allBooksData),
-                                   type:'book'
-                               }
-                                setLoadingSlides(false);
-                               setMappingData(()=>value);
-                            }
-                        });
-                }
-                else if (exploreName == "Clipboard") {
-
-
-                } else if (exploreName == "Following") {
-                 
-                  const value = {
-                      data:[{ profileImage:require("../../assets/images/profilebg.png"),
-                      userName:"Jane Doe",
-                      position:"Team Lead",
-                      skills:"Leadership",
-                      hobbies:"Skiing,Chess",
-                      level:"........."},
-                      { profileImage:require("../../assets/images/profilebg.png"),
-                      userName:"Jane Doe",
-                      position:"Team Lead",
-                      skills:"Leadership",
-                      hobbies:"Skiing,Chess",
-                      level:"........."},
-                      { profileImage:require("../../assets/images/profilebg.png"),
-                      userName:"cm pandey",
-                      position:"Team Lead",
-                      skills:"Leadership",
-                      hobbies:"Skiing,Chess",
-                      level:"........."},
-                      { profileImage:require("../../assets/images/profilebg.png"),
-                      userName:"cm pandey",
-                      position:"Team Lead",
-                      skills:"Leadership",
-                      hobbies:"Skiing,Chess",
-                      level:"........."}],
-                      type:'following'
-                  }
-                  setMappingData(value)
-
-
-                } else if (exploreName == "About Me") {
-
-                }
-            } catch (err) {
-                console.log("ERROR FETCHING BOOKS", err);
-            }
-        };
-     
-
-        getUserPreferencesData(exploreLinkActiveData?.length ? exploreLinkActiveData : "Slides");
+        if (isMounted && user === null) {
+            history.goBack()
+        }
         return () => {
             isMounted = false;
         }
-    }, [exploreLinkActiveData])
-
-    const activeData=(data)=>{
-      
-        setExploreLinkActiveData(data.linkName)
-    }
+    }, [user,history])
 
 
     return (
-        <div className="profilePage-wrapper">
-            <Profile1/>
-           {/* <div className="profilePage-wrapper-container">
-           <div className="profilePage-wrapper-container-logo">
-                    <img src={require("../../assets/images/logo.png").default} width={100} height={100} alt="logo"/>
+        <div className="profile1-wrapper">
+            <SEO title='MedicosPDF profile' description='Profile page of MedicosPdf'/>
+            <div className="profile1-wrapper-container">
+                <div className="profile1-wrapper-container-left">
+                <Suspense fallback={<div className='suspenseLoading'><Loading /></div>}>
+                    <TopCard user={userData} edit={usernameauth === userId} />
+                    </Suspense>
+                    <ProfileTab user={userData} profileNav={ProfileNav} />
+                </div>
+              
             </div>
-            <div className="profilePage-wrapper-container-top">
-                    <div className="profilePage-wrapper-container-top-profileDetails">
-                        <Images type="circle" Image={require("../../assets/images/members.jpg")} width={50} height={50}/>
-                       <Headings type="heading3" content="Hi! I am cm pandey"/>
-                       <div className="profilePage-wrapper-container-top-profileDetails-bottom" >
-                            <Button type="primary" label="Follow"/>
-                            <DropdownSingle datas={dropdownsingle}/>
-
-
-                       </div>
-
-                    </div>
-
-                    <div className="profilePage-wrapper-container-top-profileImage">
-                     <img src={require("../../images/client2.jpg").default} alt="client" />
-
-                    </div>
-
-                </div>
-
-
-                <div className="profilePage-wrapper-container-bottom">
-                <ExploreLinkTab links={exploreProfileTab} activeData={activeData}  />
-                <div className="profilePage-wrapper-container-bottom-content">
-                { mappingData.type==='slides' && mappingData.data.filter((data,index)=>index<6).map((slide, index) =>{
-                    return  <Link
-                                  key={index}
-                                    style={{ textDecoration: 'none' }}
-                                    to={{
-                                        pathname: '/slideDetails',
-                                        state: {
-                                            data: JSON.stringify(slide),
-                                            wholeData: JSON.stringify(mappingData),
-                                        }
-                                    }}>
-                                    <div className="item" >
-                                            <SlideCard
-                                                title={slide.slideCategory}
-                                                description={slide.SlideName}
-                                                images={slide.slideImages}
-                                            />
-                                     </div>
-                              </Link>
-                })}
-                { mappingData.type==='book' && mappingData.data.map((book, index) => {
-                            return <Link
-                                key={book.image + index}
-                                style={{ textDecoration: 'none' }}
-                                to={{
-                                    pathname: '/bookDetails',
-                                    state: {
-                                        data: JSON.stringify(book),
-                                        wholeData: JSON.stringify(mappingData),
-                                    }
-                                }}>
-                                <div className="item">
-                                    <BookCard
-                                        image={book.image}
-                                        title={book.subject}
-                                        author={book.writer}
-                                        rating={book.rating}
-                                    />
-                                </div>
-                            </Link>
-                        })}
-                        { mappingData.type==='following' && mappingData.data.map((following, index) => {
-                            return <Link
-                                key={index}
-                                style={{ textDecoration: 'none' }}
-                                to={{
-                                    pathname: '/profiledetails',
-                                    state: {
-                                        data: JSON.stringify(following),
-                                        wholeData: JSON.stringify(mappingData),
-                                    }
-                                }}>
-                                <div className="item">
-                                <ProfileCard
-                                profileImage={following.profileImage}
-                                userName={following.userName}
-                                position={following.position}
-                                skills={following.skills}
-                                hobbies={following.hobbies}
-                                level={following.level}
-                                />
-                                </div>
-                            </Link>
-                        })}
-
-
-                </div>
-
-
-                </div>
-           </div> */}
         </div>
     )
 }
 
-export default ProfilePage
+
+export default React.memo(Profile);

@@ -1,0 +1,88 @@
+@import '../../App.scss';
+
+
+.errorPage-container{
+    width:100%;
+    padding:40px 0; 
+    background:#fff; 
+    font-family: 'Arvo', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .loading{
+        max-height:800px;
+        width: 100%;
+        @include tablet{
+            max-height:600px;
+        }
+        @include mobile{
+            max-height:550px;
+        }
+    }
+    .lottiee-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:750px;
+        height:430px;
+        @include mobile{
+            height:280px;
+            width: 280px;
+        }
+    }
+
+    &-gif{
+        height: 400px;
+        width: 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &-head{
+        font-size:50px;
+        text-align: center;
+        @include mobile{
+            padding:0 5px ;
+        }
+    }
+    &-para{
+        font-size:30px;
+        text-align: center;
+        @include mobile{
+            padding:0 5px ;
+        }
+    }
+    &-link{
+        color: #fff!important;
+        padding: 10px 20px;
+        background: #39ac31;
+        margin-top: 20px;
+        display: inline-block;
+        border-radius: 5px;
+        padding:20px 60px;
+        font-size: 24px;
+        @include mobile{
+            padding:10px 30px;
+                font-size: 18px;
+        }
+
+    }
+    &-goBack{
+        color: #fff!important;
+        padding: 10px 20px;
+        background: #39ac31;
+        margin-top: 10px;
+        text-decoration: underline;
+        display: inline-block;
+        border-radius: 5px;
+        cursor: pointer;
+        padding:20px 60px;
+        font-size: 24px;
+@include mobile{
+    padding:10px 30px;
+        font-size: 18px;
+}
+    }
+}
+
+

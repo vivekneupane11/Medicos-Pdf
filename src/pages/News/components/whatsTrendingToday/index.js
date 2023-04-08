@@ -9,35 +9,13 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Autoplay } from 'swiper';
-import { logEventWithParams } from '../../../../functions/commonMethod';
+// import { logEventWithParams } from '../../../../functions/commonMethod';
 import shortid from  "shortid";
+import { getColorByIndex, getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
+import { newTab } from '../../../../functions/newTabMethod';
 SwiperCore.use([Autoplay]);
 
 const WhatsTrendingToday = ({details}) => {
-
-  const newTab=(url,title)=>{
-    window.open(
-       url, "_blank");
-       logEventWithParams('web_news_detail_page_opened', { newsTitle: title })
-}
-  const getReadingTime = (text) => {
-    const wordsPerMinute = 120;
-    const textLength = text.split(" ").length;
-    let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-    return minutesToRead;
-
-  };
-
-  const getColorsByIndex = (index) => {
-    let color = "yellow";
-    if (index % 3 == 0) {
-        color = 'red'
-    } else if (index %2 == 0) {
-        color = 'skyblue'
-    } 
-    return color;
-}
-
 
     return (
         <>
@@ -75,14 +53,14 @@ const WhatsTrendingToday = ({details}) => {
                 {details?.filter((data,index)=>index<10).map((data,index)=>(
                      <SwiperSlide key={shortid.generate()}> 
                         <div className="newsWhatsTrendingToday-wrapper-slide">
-                          <div onClick={()=>newTab(data?.link,data?.title)}  className="newsWhatsTrendingToday-wrapper-slide-img" style={{backgroundImage:`url(${data['media:content']?.$?.url})`}}>
+                          <div onClick={()=>newTab(data?.link,data?.title,'web_article_detail_page_opened')}  className="newsWhatsTrendingToday-wrapper-slide-img" style={{backgroundImage:`url(${data['media:content']?.$?.url})`}}>
                             
                           </div>
                           <div className="newsWhatsTrendingToday-wrapper-slide-tag">
-                              <NewsLinkTag color={getColorsByIndex(index)} tag={data?.content} />
+                              <NewsLinkTag color={getColorByIndex(index)} tag={data?.content} />
                           </div>
-                          <h3 className="newsWhatsTrendingToday-wrapper-slide-head" onClick={()=>newTab(data?.link,data?.title)}>{data?.title}</h3>  
-                          <AuthorDateRead date={new Date(data?.isoDate).toDateString()} readTime={getReadingTime(data?.content) + " min read"} color='#9f9f9f' fontSize='12px'/>
+                          <h3 className="newsWhatsTrendingToday-wrapper-slide-head" onClick={()=>newTab(data?.link,data?.title,'web_article_detail_page_opened')}>{data?.title}</h3>  
+                          <AuthorDateRead date={new Date(data?.isoDate).toDateString()} readTime={getReadTime(data?.content) + " min read"} color='#9f9f9f' fontSize='12px'/>
                       </div> 
                      </SwiperSlide>
 
@@ -96,4 +74,4 @@ const WhatsTrendingToday = ({details}) => {
     )
 }
 
-export default WhatsTrendingToday
+export default React.memo(WhatsTrendingToday)

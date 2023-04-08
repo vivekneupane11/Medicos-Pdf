@@ -3,58 +3,46 @@ import { Link } from 'react-router-dom';
 import shortid from "shortid";
 import NewsLinkTag from '../../../../components/global/newsLinkTag';
 import { logEventWithParams } from '../../../../functions/commonMethod';
+import { getColorByIndex, getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
 import AuthorDateRead from '../../../News/components/author-date-readTime';
 import './_articleMainTop.scss';
 
-export const MainTop = ({ mainTopDetails, sourceDocId }) => {
+ const MainTop = ({ mainTopDetails, sourceDocId }) => {
 
-    const getColorsByIndex = (index) => {
-        let color = "yellow";
-        if (index % 3 == 0) {
-            color = 'red'
-        } else if (index % 2 == 0) {
-            color = 'skyblue'
-        }
-        return color;
-    }
-
-    const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text?.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
-
-    };
-
+ 
     return (
         <div className="mainTop-wrapper">
             <div className="mainTop">
                 <div className="mainTop-col1">{
                     mainTopDetails?.filter((data, index) => index < 2).map((data, index) => {
+
+                        
+                    const clickhandlerlogevent = () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })
+                    const clickhandlerarticle = () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })
                         return <div key={shortid.generate()} className="mainTop-col1-content">
                             <Link
-                                onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                onClick={clickhandlerlogevent}
                                 style={{ textDecoration: 'none' }}
                                 to={{
-                                    pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                    pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
 
                                 }}>
                                 <div className="mainTop-col1-content-image" style={{ backgroundImage: `url(${data?.image?.source_url})` }}></div>
                             </Link>
                             <div className="mainTop-col1-content-bottom">
-                                <NewsLinkTag color={getColorsByIndex(index)} tag={data?.slug} />
+                                <NewsLinkTag color={getColorByIndex(index)} tag={data?.slug} />
                                 <Link
-                                    onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                    onClick={clickhandlerarticle}
                                     style={{ textDecoration: 'none' }}
                                     to={{
-                                        pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                        pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                                     }}>
                                     <h3 className="mainTop-col1-content-bottom-heading">{data?.title?.rendered}</h3>
                                 </Link>
-                                <p style={{ fontSize: '18px', marginBottom: '10px' }}>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
+                                <p className='content'>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
 
 
-                                <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' />
+                                <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' />
 
                             </div>
 
@@ -69,12 +57,14 @@ export const MainTop = ({ mainTopDetails, sourceDocId }) => {
                 <div className="mainTop-col2">
                     {
                         mainTopDetails?.filter((data, index) => index === 2).map((data, index) => {
+                            const clickhandlerarticletitle = () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })
+                            const clickhandlerarticle2 = () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })
                             return <div key={shortid.generate()} className="mainTop-col2-content">
                                 <Link
-                                    onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                    onClick={clickhandlerarticle2}
                                     style={{ textDecoration: 'none' }}
                                     to={{
-                                        pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                        pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
 
                                     }}>
                                     <div className="mainTop-col2-content-image" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
@@ -82,26 +72,19 @@ export const MainTop = ({ mainTopDetails, sourceDocId }) => {
                                     </div>
                                 </Link>
                                 <div className="mainTop-col2-content-bottom">
-                                    <NewsLinkTag color={getColorsByIndex(index)} tag={data?.slug} />
+                                    <NewsLinkTag color={getColorByIndex(index)} tag={data?.slug} />
                                     <Link
-                                        onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                        onClick={clickhandlerarticletitle}
                                         style={{ textDecoration: 'none' }}
                                         to={{
-                                            pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                            pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                                         }}>
                                         <h3 className="mainTop-col2-content-bottom-heading">{data?.title?.rendered}</h3>
                                     </Link>
-                                    <p style={{ fontSize: '18px', marginBottom: '10px' }}>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
-                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' />
+                                    <p className='content'>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
+                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' />
 
-                                    {/* <Link
-                                        onClick={() => logEventWithParams('web_article_detail_page_opened')}
-                                        style={{ textDecoration: 'none' }}
-                                        to={{
-                                            pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
-                                        }}>
-                                        <Button type="primary" label="Read More" />
-                                    </Link> */}
+                                
                                 </div>
 
                             </div>
@@ -113,29 +96,32 @@ export const MainTop = ({ mainTopDetails, sourceDocId }) => {
                 <div className="mainTop-col3">
                     {
                         mainTopDetails?.filter((data, index) => index > 2 && index < 5).map((data, index) => {
+
+                            const clickhandlerlogwith = () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })
+                            const clickhandlerpageopen = () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })
                             return <div key={shortid.generate()} className="mainTop-col3-content">
                                 <Link
-                                    onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                    onClick={clickhandlerlogwith}
                                     style={{ textDecoration: 'none' }}
                                     to={{
-                                        pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                        pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                                     }}>
                                     <div className="mainTop-col3-content-image" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
 
                                     </div>
                                 </Link>
                                 <div className="mainTop-col3-content-bottom">
-                                    <NewsLinkTag color={getColorsByIndex(index)} tag={data?.slug} />
+                                    <NewsLinkTag color={getColorByIndex(index)} tag={data?.slug} />
                                     <Link
-                                        onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                                        onClick={clickhandlerpageopen}
                                         style={{ textDecoration: 'none' }}
                                         to={{
-                                            pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                                            pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                                         }}>
                                         <h3 className="mainTop-col3-content-bottom-heading">{data?.title?.rendered}</h3>
                                     </Link>
-                                    <p style={{ fontSize: '18px', marginBottom: '10px' }}>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
-                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' />
+                                    <p className='content'>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
+                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' />
 
 
                                 </div>
@@ -154,3 +140,6 @@ export const MainTop = ({ mainTopDetails, sourceDocId }) => {
         </div>
     )
 }
+
+
+export default React.memo(MainTop)

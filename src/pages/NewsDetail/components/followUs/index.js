@@ -1,11 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
+import { newTab } from '../../../../functions/newTabMethod'
 import './_followUs.scss'
 const FollowUs = ({details}) => {
-    const newTab=(url)=>{
-        window.open(
-           url, "_blank");
-    }
+
     return (
         <>
         <div className="newsDetailFollowUs-container">
@@ -13,12 +10,15 @@ const FollowUs = ({details}) => {
             <div  className="newsDetailFollowUs-container-cards">
                 {details.map(data => (
                     <div key={data.id} className="newsDetailFollowUs-container-cards-card" style={{ backgroundColor: `${data.bgColor}` }}>
-                        <a className="newsDetailFollowUs-container-cards-card-link" onClick={()=>newTab(data.socialmedialink)} >
+                        <a className="newsDetailFollowUs-container-cards-card-link" onClick={()=>newTab(data.socialmedialink,data.socialmedianame,'social_media_visited')} >
                             <div className="newsDetailFollowUs-container-cards-card-link-wrapper">
                                 <h5 className="newsDetailFollowUs-container-cards-card-link-wrapper-head">{data.socialmedianame}</h5>
                                 <p className="newsDetailFollowUs-container-cards-card-link-wrapper-para">{data.likes}</p>
                             </div>
-                            <FontAwesomeIcon icon={data.logo} className="newsDetailFollowUs-container-cards-card-link-icon" />
+
+                            <div>
+                            {data.logo}
+                            </div>
                         </a>
                     </div>
                   

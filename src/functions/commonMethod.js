@@ -1,8 +1,7 @@
-import firebase from "firebase";
-
+import {getAnalytics, logEvent} from 'firebase/analytics';
 export const logEventWithoutParams = (eventName = "some_event_name") => {
     try {
-        firebase.analytics().logEvent(eventName)
+        logEvent(getAnalytics(),eventName)
     } catch (error) {
         console.log(`EVENT WITHOUT PARAMS ERROR LOGGED: ${eventName}, ${error}`)
 
@@ -12,7 +11,7 @@ export const logEventWithoutParams = (eventName = "some_event_name") => {
 
 export const logEventWithParams = (eventName = "some_event_name", params = {}) => {
     try {
-        firebase.analytics().logEvent(eventName, params)
+        logEvent(getAnalytics(),eventName, params)
     } catch (error) {
         console.log(`EVENT WITHOUT PARAMS ERROR LOGGED: ${eventName}, ${error} ,${params}`)
     }

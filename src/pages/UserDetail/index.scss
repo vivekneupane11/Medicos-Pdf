@@ -1,0 +1,95 @@
+@import '../../App.scss';
+
+.user-detail-page-container {
+    padding: 40px 0px;
+    @include flexColSbCenter;
+    width: 90%;
+    .preference-heading {
+        @include flexColCenter;
+        text-align: center;
+        // background-color: red
+    }
+.text-focus{
+    color:#4e3232;
+}
+    .username-container {
+        @include flexColCenter;
+
+        @include mobile {
+            p {
+                text-align: center;
+            }
+        }
+    }
+
+    .label {
+        color: gray;
+    }
+
+    .input-container {
+        @include flexColSbCenter;
+        //  height: 150px;
+         margin: 50px 0px;
+        padding: 20px ;
+        box-sizing: border-box;
+        // border: 2px solid gray;
+        box-shadow: 1px 5px 15px rgba(128, 128, 128, 0.15);
+
+        .username {
+            @include flexColSbCenter;
+            margin-bottom: 20px;
+            p{
+                margin-bottom: 10px;
+            }
+        }
+
+
+    }
+
+    .error-msg-container {
+        @include flexRowCenter;
+
+        .icon {
+            color: red;
+            height: 25px;
+        }
+
+        .error-msg {
+            color: red;
+        }
+    }
+
+    .preference-category {
+        @include flexRowCenter;
+        flex-wrap: wrap;
+
+        @include mobile {
+            width: 90%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+    }
+
+    input {
+        outline: none;
+        /* border-top: none; */
+        /* border-left: none; */
+        /* border-right: none; */
+        width: 100%;
+        padding: 10px;
+        /* max-width: 350px; */
+        min-width: 320px;
+        border-color: #2ad794;
+        border-radius: 6px;
+    }
+    
+}
+
+
+.preference-create-button-container{
+    .button.primary-rounded{
+        padding:15px 50px;
+    }
+}

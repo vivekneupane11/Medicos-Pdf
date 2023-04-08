@@ -1,0 +1,118 @@
+@import "../../../App.scss";
+.playlist-form-modal-container{
+    background-color: #fff;
+    border-radius: 12px;
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:-300px;
+    left: 50%;
+    width: 30%;
+    padding:2.5rem 3rem;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    transition:0.4s top linear;
+    @include mobile{
+        width: 90%;
+    }
+    @include tablet{
+        width: 50%;
+    }
+    .playlist-folder-name{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .arrow-right-icon{
+            color:lightgray;
+            height: 25px;
+        }
+        aside{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    input[type='text']{
+        padding:15px;
+        outline: none;
+        border:0.2px solid $--primary;
+        border-radius: 6px;
+        width:70%;
+        margin:15px 0;
+        @include mobile{
+            width: 100%;
+        }
+        @include tablet{
+            width: 100%;
+        }
+    }
+    button{
+        width: 70%;
+        padding:15px;
+        background-color: $--primary;
+        cursor:pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      border:none;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: 6px;
+        @include tablet{
+            width: 100%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+        &:hover{
+            color:white;
+        }
+        span{
+            color:#000000;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 0 8px;
+        }
+    }
+    h5{
+        padding:10px 0;
+    }
+    span{
+        font-size: 13px;
+        color:rgb(185, 166, 166);
+    }
+
+    .playlist-form-modal-close-icon{
+        position: absolute;
+        top:10px;
+        right: 10px;
+        color:gray;
+        font-size: 24px;
+        height: 25px;
+        cursor: pointer;
+        &:hover{
+            color:$--primary;
+        }
+    }
+}
+
+
+.playlist-form-modal-container-active{
+    top:26%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    overflow-y: hidden;
+    @include tablet{
+        width: 50%;
+        top:21%;
+    }
+    @include mobile{
+        width: 90%;
+        
+    }
+  
+
+}

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700,800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700,800;900&display=swap');
 @import '../../../../App.scss';
 .swiper-container:hover{
       
@@ -176,7 +175,7 @@
    &-Bottom{
       
        position:absolute;
-       font-family: 'Rubik';
+       font-family: 'Nunito';
        display: flex;
        width: 60%;
        right: 0;

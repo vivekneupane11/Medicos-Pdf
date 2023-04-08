@@ -1,0 +1,1030 @@
+# Query: subcategory
+# ContextLines: 1
+
+407 results - 39 files
+
+src/App.js:
+   39  const SlideDetail = React.lazy(() => LazyLoadingComponentLoader(() => import("./pages/SlideDetail")));
+   40: const SlideSubCategoryPage = React.lazy(() => LazyLoadingComponentLoader(() => import("./pages/SlideSubCategories")));
+   41  const Journal = React.lazy(() => LazyLoadingComponentLoader(() => import("./pages/journal")));
+
+  191  
+  192:             <Route path="/slidesubcategory/:slideCategory/:slideSubCategory">
+  193                <Suspense fallback={<div style={{ padding: '200px 0' }}><Loading /></div>}>
+  194:                 <SlideSubCategoryPage />
+  195                </Suspense>
+
+  197  
+  198:             <Route path="/slidedetails/:slideDocId/:slideCategory/:slideSubCategory">
+  199                <Suspense fallback={<div style={{ padding: '200px 0' }}><Loading /></div>}>
+
+  267  
+  268:             <Route path="/medicalnotes/:title/:category/(subCategory)?/:subCategory?"
+  269              >
+
+src/components/global/tags/index.js:
+  48  
+  49:         if (!props?.loadedTagsFromEdit?.length && props.subCategory) {
+  50:             setTags([props.subCategory, ...tags])
+  51          }
+
+  55          }
+  56:     }, [props.subCategory])
+  57      //RENDERING INCOMING SLIDE TAGS FROM loadedTagFromEdit
+
+src/components/postPopUp/index.js:
+   91                      const Books = firestoreDatabase
+   92:                         .collection(`K-Slides-${SlidesID[0]?.slideCategory}-${SlidesID[0]?.slideSubCategory}`)
+   93                          // .collection('K-Slides-BasicScience-Microbiology')
+
+  126      slideCategory: slides?.slideCategory,
+  127:     slideSubCategory: slides?.slideSubCategory
+  128  })
+
+  131      slideCategory: slides?.slideCategory,
+  132:     slideSubCategory: slides?.slideSubCategory
+  133  })
+
+  195                                  to={{
+  196:                                     pathname: `/slidedetails/${slides?.SlideName}/${slides?.slideCategory}/${slides?.slideSubCategory.replace(/\s|\//g, "")}`,
+  197                                      state: {
+
+  213                                  to={{
+  214:                                     pathname: `/slidedetails/${slides?.SlideName}/${slides?.slideCategory}/${slides?.slideSubCategory.replace(/\s|\//g, "")}`,
+  215                                      state: {
+
+  221                                      <h3>{ slides?.slideCategory }</h3>
+  222:                                     <h3>{ slides?.slideSubCategory}</h3>
+  223                                  </Link>
+
+src/functions/filterSlideSubCategory.js:
+   1  
+   2: export default function filterSlideSubcategory(subCategory) {
+   3      function capitalize(mySentence) {
+
+  11      }
+  12:     if (subCategory) {
+  13:         let capitalizedWords = capitalize(subCategory)
+  14:         // console.log('capitalize', capitalizedWords, subCategory)
+  15          return capitalizedWords.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]\s|[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]|\s/g, '');
+
+src/functions/firebaseMethod.js:
+    8  
+    9: const randomSubcategory = category => {
+   10      let filtered = slideCategories.filter(
+
+  123                          return await firebase.firestore()
+  124:                             .collection(`K-Slides-${(category?.subjectName).replace(/\s|\/g, ""/g, "")}-${(randomSubcategory(category?.subjectName)).replace(/\s|\//g, "")}`)
+  125                              .get()
+
+  218  
+  219: export async function addUserVisited(uid, type, title = '', category = '', subCategory = '') {
+  220      try {
+
+  232                          category: category,
+  233:                         subCategory: subCategory,
+  234                          createdAt: new Date()
+
+src/functions/randomSlideSubCategory.js:
+   2  
+   3: export default function randomSlideSubcategory(category) {
+   4      function capitalize(s) {
+
+  12      let randomInteger = Math.floor(Math.random() * (subCategories?.length - 1));
+  13:     let subCategory = subCategories[Math.floor(Math.random() * (subCategories?.length - 1))].category.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]\s|[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]|\s/g, '')
+  14:     return capitalize(subCategory);
+  15  }
+
+src/pages/Book/index.js:
+   42      const [exploreLinkActiveData, setExploreLinkActiveData] = useState('All')
+   43:     const [subCategoryActiveHeading, setSubCategoryActiveHeading] = useState('')
+   44      const [loadingBooks, setLoadingBooks] = useState(false);
+
+   59  
+   60:     const randomSubcategory = useCallback(category => {
+   61          let filtered = bookCategories.filter(
+
+  122  
+  123:         getUserPreferencesData(exploreLinkActiveData?.length ? exploreLinkActiveData : 'All', subCategoryActiveHeading);
+  124         }
+
+  127          }
+  128:     }, [exploreLinkActiveData, subCategoryActiveHeading])
+  129  
+
+  180      }
+  181:     const subCategoryHeading = (data) => {
+  182          if (data != '') {
+  183:             setSubCategoryActiveHeading(data)
+  184          }
+
+  200              case "Basic Science":
+  201:                 collectionName = `K-Books-BasicScience-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  202                  break
+  203              case "Clinical Science":
+  204:                 collectionName = `K-Books-ClinicalScience-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  205                  break
+  206              case "Physiotherapy":
+  207:                 collectionName = `K-Books-Physiotherapy-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  208                  break
+  209              case "Nursing":
+  210:                 collectionName = `K-Books-Nursing-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  211                  break
+  212              case "Dental":
+  213:                 collectionName = `K-Books-Dental-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  214                  break
+
+  346                          exploreLinkActiveData={exploreLinkActiveData}
+  347:                         subCategoryActiveHeading={subCategoryActiveHeading}
+  348                          bookDocId={bookDocId}
+
+  356                      <div className="sub-categories">
+  357:                         <SubCatagories slideArr={bookCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
+  358                      </div>
+
+  367                      <div className="sub-categories-forMobile">
+  368:                         <SubCatagories slideArr={bookCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
+  369                      </div>
+
+  385  
+  386:                         <div className='dropdownForMobile-subcategory'>
+  387                              {
+
+  391                                      <h3 className='dropdownForMobile-category-dd' onClick={clickhandlerdrop3}>
+  392:                                         <span>Sub-category : {subCategoryActiveHeading}</span>
+  393                                          {/* <FontAwesomeIcon icon={faSortDown} className={`showD ${showDDS? 'rotateD':''}`}/>  */}
+
+  399                              <div className={`dd-hide ${showDDS ? 'dd-show' : ''}`} onClick={clickhandlerhide}>
+  400:                                 <SubCatagories slideArr={bookCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
+  401                              </div>
+
+  405                              exploreLinkActiveData={exploreLinkActiveData}
+  406:                             subCategoryActiveHeading={subCategoryActiveHeading}
+  407                              bookDocId={bookDocId}
+
+src/pages/Book/index.scss:
+  225  
+  226:     &-subcategory {
+  227          width: 100%;
+
+src/pages/Book/components/bookStackCard/index.js:
+  14      const clickhandlertodo = () => {
+  15:         logEventWithParams("web_book_opened", { book_title: title, book_subcategory: data && data?.subject })
+  16      }
+
+src/pages/Book/components/bookSuggestion/index.js:
+   32  
+   33:   const randomSubcategory = useCallback(category => {
+   34      let filtered = bookCategories.filter(
+
+   65    //               // console.log("CATEGORY",category.subjectName.replace(/\s|\/g, ""/g,""))
+   66:   //               // console.log("SUBCATEGORY",randomSubcategory(category.subjectName))
+   67:   //               firestoreDatabase.collection(`K-Books-${(category?.subjectName).replace(/\s|\/g, ""/g, "")}-${(randomSubcategory(category?.subjectName)).replace(/\s|\//g, "")}`)
+   68    //                 .get()
+
+  103            if (preferenceCategory) {
+  104:             fetchSlidesAndBooksOrderedByNameWithLimit(`K-Books-${preferenceCategory?.replace(/\s|\//g, "")}-${randomSubcategory(preferenceCategory)?.replace(/\s|\//g, "")}`, 'title', 10)
+  105                .then((res) => {
+  106:                 // console.log('PREFERENCES BOOKS DATA', res.allData, preferenceCategory, randomSubcategory(preferenceCategory));
+  107                  setRecommendedBooks(res.allData)
+
+  131  
+  132:   }, [user?.uid, preference?.length,randomSubcategory,preference?.fullName,preference?.subjects])
+  133  
+
+src/pages/Book/components/bookTrending/index.js:
+   31  
+   32:   const randomSubcategory = useCallback(category => {
+   33  
+
+   70  
+   71:   //                 firestoreDatabase.collection(`K-Books-${(category?.subjectName).replace(/\s|\/g, ""/g, "")}-${(randomSubcategory(category?.subjectName)).replace(/\s|\//g, "")}`)
+   72    //                   .get()
+
+  128        if (preferenceCategory) {
+  129:         fetchSlidesAndBooksOrderedByNameWithLimit(`K-Books-${preferenceCategory?.replace(/\s|\//g, "")}-${randomSubcategory(preferenceCategory)?.replace(/\s|\//g, "")}`, 'title', 10)
+  130            .then((res) => {
+  131:             // console.log('PREFERENCES BOOKS DATA', res.allData, preferenceCategory, randomSubcategory(preferenceCategory));
+  132              setRecommendedBooks(res.allData)
+
+  156     
+  157:   }, [user?.uid, preference?.length,randomSubcategory,preference?.fullName,preference?.subjects])
+  158  
+
+src/pages/Book/components/exploreSearch/index.js:
+   10      exploreLinkActiveData,
+   11:     subCategoryActiveHeading,
+   12      searchResult,
+
+  178          </div>
+  179:         <span>You are looking inside : </span> <span className="search-breadcrumb-text">{`${exploreLinkActiveData}${subCategoryActiveHeading ? ` > ${subCategoryActiveHeading}` : ''}${searchText ? ` > ${searchText}` : ''}`}</span>
+  180      </div>
+
+src/pages/BookDetail/index.js:
+  305      const clickhandlershowform = () => setShowFormModel(true)
+  306:     const clickhandlerbookdetail = () => logEventWithParams("web_book_downloaded", { book_title: bookDetail?.title, book_subcategory: bookDetail?.subject })
+  307      const clickhandleratag = () => setShowFormModel(true)
+
+src/pages/MedicalNotes/index.js:
+  14      const [reference,setReference]=useState(null)
+  15:     const {title,category,subCategory}=useParams();
+  16  
+
+  19          if(isMounted){
+  20:             if(title && category && subCategory){
+  21:                 setReference(flashNotesData.filter((data,index)=>data.properties.System===title && data.properties.Category===category && data.properties.Condition===subCategory)[0].properties.Refs)
+  22:                 let subPropertiesObject=flashNotesData.filter((data,index)=>data.properties.System===title && data.properties.Category===category && data.properties.Condition===subCategory)[0].properties
+  23                  let subPropertiesArray = Object.keys(subPropertiesObject).map((key) => [String(key), subPropertiesObject[key]]);
+
+  39          }
+  40:     }, [title,category,subCategory])
+  41  
+
+  79                     {
+  80:                        title && category && subCategory &&
+  81                         <RecommendationSlider />
+
+src/pages/MedicalNotes/components/contentScroll/index.js:
+   29      const titleRef=useRef()
+   30:     const {title,category,subCategory}=useParams();
+   31      
+
+  195                                                                            {
+  196:                                                                               flashNotesData.filter((data,index)=>data?.properties?.System===noteTitle && data?.properties?.Category===categoryData).map((subcategory,index)=>{
+  197                                                                                    return <Link
+
+  200                                                                                                to={{
+  201:                                                                                                   pathname: `/medicalnotes/${noteTitle}/${categoryData}/${subcategory?.properties?.Condition}`,
+  202                                                                                                    
+
+  204                                                                                                >
+  205:                                                                                                   <p style={{color:subcategory?.properties?.Condition===subCategory?'#12d288':''}} className='contentScroll-container-mobile-wrapper-box-bottom-para'>{subcategory?.properties?.Condition}</p>
+  206                                                                                                </Link>
+
+  240                 {
+  241:                    subCategory &&
+  242                     <FaChevronRight className='contentScroll-breadCrumb-icon'/>
+
+  244                 {
+  245:                    subCategory &&  <span className='contentScroll-breadCrumb-text'>{subCategory}</span>
+  246                 }
+
+  251                <div className='contentScroll-container-wrapper'>
+  252:                 
+  253                    {
+
+  283                                                 {
+  284:                                                    flashNotesData.filter((data,index)=>data?.properties?.System===title && data?.properties?.Category===categoryData).map((subcategory,index)=>{
+  285                                                         return <Link
+
+  288                                                                  to={{
+  289:                                                                     pathname: `/medicalnotes/${title}/${categoryData}/${subcategory?.properties?.Condition}`,
+  290                                                                      
+
+  292                                                                  >
+  293:                                                                     <p style={{color:subcategory?.properties?.Condition===subCategory?'#12d288':''}} className='contentScroll-container-wrapper-box-bottom-para'>{subcategory?.properties?.Condition}</p>
+  294                                                                  </Link>
+
+src/pages/MedicalNotes/components/noteSlider/index.js:
+  28            // console.log('sssssss',flashNotesData.filter((data,index)=>data.properties.System===storedTitle).sort())
+  29:           let subCategory=flashNotesData.filter((data,index)=>data.properties.System===storedTitle)[0].properties.Condition;
+  30:           if(category && subCategory){
+  31:             history.push(`/medicalnotes/${storedTitle}/${category}/${subCategory}`)
+  32            }
+  33:           else if(!category && subCategory){
+  34:             history.push(`/medicalnotes/${storedTitle}/${subCategory}`)
+  35            }
+
+src/pages/MedicalNotes/components/noteSliderDropdown/index.js:
+  24            // console.log('sssssss',flashNotesData.filter((data,index)=>data.properties.System===storedTitle).sort())
+  25:           let subCategory=flashNotesData.filter((data,index)=>data.properties.System===storedTitle)[0].properties.Condition;
+  26:           if(category && subCategory){
+  27:             history.push(`/medicalnotes/${storedTitle}/${category}/${subCategory}`)
+  28            }
+  29:           else if(!category && subCategory){
+  30:             history.push(`/medicalnotes/${storedTitle}/${subCategory}`)
+  31            }
+
+src/pages/MedicalNotes/components/recommendationSlider/index.js:
+  54              {
+  55:                  flashNotesData.filter((data,index)=>data?.properties?.System===title && data?.properties?.Category===category).map((subcategory,index)=>{
+  56                       return <SwiperSlide key={index}  className='recommendationSlider-container-swiperContainer-swiperSlide'>
+
+  64                                          to={{
+  65:                                             pathname: `/medicalnotes/${title}/${category}/${subcategory?.properties?.Condition}`,
+  66                                              
+
+  68                                          >
+  69:                                         <h3 className='recommendationSlider-container-swiperContainer-swiperSlide-container-right-title'>{subcategory?.properties?.Condition}</h3>
+  70                                       </Link>
+
+src/pages/NewsDetail/components/leaveAReply/index.js:
+  124                          slideCategory: data?.slideCategory,
+  125:                         slideSubCategory: data?.slideSubCategory,
+  126                          reviewComment: input,
+
+src/pages/Playlist/components/SlideMultilevelSlider/index.scss:
+  17        
+  18:         .slideCard-categoryAndSubCategory{
+  19              p{
+
+src/pages/Profile/components/pinnedSlides/index.js:
+  108              <ShareModal
+  109:                url={encodeURI(`https://medicospdf.com/slidedetails/${callBackData?.SlideName}/${callBackData?.slideCategory}/${callBackData?.slideSubCategory.replace(/\s|\//g, "")}`)}
+  110                 appId={process.env.REACT_APP_ID}
+
+  123                                        title={data.slideCategory}
+  124:                                       title2={data.slideSubCategory}
+  125                                        description={data.SlideName}
+
+src/pages/Profile/components/slideTrendingProfile/index.js:
+  57            <ShareModal
+  58:             url={encodeURI(`https://medicospdf.com/slidedetails/${callBackData?.SlideName}/${callBackData?.slideCategory}/${callBackData?.slideSubCategory.replace(/\s|\//g, "")}`)}
+  59              appId={process.env.REACT_APP_ID}
+
+  74                              title={data.slideCategory}
+  75:                             title2={data.slideSubCategory}
+  76                              description={data.SlideName}
+
+src/pages/SearchResult/index.js:
+  669                                                  title={slide.slideCategory}
+  670:                                                 title2={slide.slideSubCategory}
+  671                                                  description={slide.SlideName}
+
+src/pages/Slide/index.js:
+   40      const [exploreLinkActiveData, setExploreLinkActiveData] = useState('All')
+   41:     const [subCategoryActiveHeading, setSubCategoryActiveHeading] = useState('')
+   42      const [loadingSlides, setLoadingSlides] = useState(false);
+
+   91      }
+   92:     const randomSubcategory = useCallback(category => {
+   93          let filtered = slideCategories.filter(
+
+  138                          firebase.firestore()
+  139:                             .collection(`K-Slides-${preferenceCategory?.replace(/\s|\//g, "")}-${randomSubcategory(preferenceCategory)?.replace(/\s|\//g, "")}`)
+  140                              .orderBy('SlideName', 'asc')
+
+  178  
+  179:         getInitialData(exploreLinkActiveData?.length ? exploreLinkActiveData : 'All', subCategoryActiveHeading);
+  180        }
+
+  183          }
+  184:     }, [exploreLinkActiveData, subCategoryActiveHeading, preference?.length,preference,randomSubcategory])
+  185  
+
+  191  
+  192:     const subCategoryHeading = (data) => {
+  193          if (data != '') {
+  194:             setSubCategoryActiveHeading(data)
+  195          }
+
+  210              case "Basic Science":
+  211:                 collectionName = `K-Slides-BasicScience-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  212                  break
+  213              case "Clinical Science":
+  214:                 collectionName = `K-Slides-ClinicalScience-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  215                  break
+  216              case "Physiotherapy":
+  217:                 collectionName = `K-Slides-Physiotherapy-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  218                  break
+  219              case "Nursing":
+  220:                 collectionName = `K-Slides-Nursing-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  221                  break
+  222              case "Dental":
+  223:                 collectionName = `K-Slides-Dental-${subCategoryActiveHeading.replace(/\s|\//g, "")}`;
+  224                  break
+
+  338              <ShareModal
+  339:                 url={encodeURI(`https://medicospdf.com/slidedetails/${callBackData?.SlideName}/${callBackData?.slideCategory}/${callBackData?.slideSubCategory.replace(/\s|\//g, "")}`)}
+  340                  appId={process.env.REACT_APP_ID}
+
+  376                              exploreLinkActiveData={exploreLinkActiveData}
+  377:                             subCategoryActiveHeading={subCategoryActiveHeading}
+  378                              searchResult={searchResult}
+
+  385                          <div className="sub-categories">
+  386:                             <SubCatagories slideArr={slideCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
+  387                          </div>
+
+  396                          <div className="S-sub-categories-forMobile">
+  397:                             <SubCatagories slideArr={slideCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
+  398                          </div>
+
+  413  
+  414:                             <div className='S-dropdownForMobile-subcategory'>
+  415                                  {
+
+  419                                          <h3 className='S-dropdownForMobile-category-dd' onClick={clickhandlerddc3}>
+  420:                                             <span>Sub-category : {subCategoryActiveHeading}</span>
+  421                                              <FaChevronRight id="iconfix" className={`showD ${showDDS ? 'rotateD' : ''}`} width={5} fill={"#777"} />
+
+  426                                  <div className={`S-dd-hide ${showDDS ? 'S-dd-show' : ''}`} onClick={clickhandlerddc4}>
+  427:                                     <SubCatagories slideArr={slideCategories} activeLinkData={exploreLinkActiveData} subCategoryHeading={subCategoryHeading} />
+  428                                  </div>
+
+  432                                  exploreLinkActiveData={exploreLinkActiveData}
+  433:                                 subCategoryActiveHeading={subCategoryActiveHeading}
+  434                                  searchResult={searchResult}
+
+  446                                                      title={slide.slideCategory}
+  447:                                                     title2={slide.slideSubCategory}
+  448                                                      description={slide.SlideName}
+
+  471                                                              title={slide.slideCategory}
+  472:                                                             title2={slide.slideSubCategory}
+  473                                                              description={slide.SlideName}
+
+src/pages/Slide/index.scss:
+  300  
+  301:     &-subcategory {
+  302          width: 100%;
+
+src/pages/Slide/component/recent/index.js:
+   6  import Loading from '../../../../components/loading'
+   7: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   8  
+
+  19                     <div className="slideRecent-wrapper-left-mid">
+  20:                        <NewsLinkTag color='red' tag={slideDetailsRight[7].slideSubCategory} />
+  21                         <Link
+
+  23                                          to={{
+  24:                                             pathname: `/slidedetails/${slideDetailsRight[7]?.SlideName}/${slideDetailsRight[7]?.slideCategory}/${filterSlideSubCategory(slideDetailsRight[7]?.slideSubCategory)}`,
+  25                                            }}>
+
+  49                                          to={{
+  50:                                             pathname: `/slidedetails/${data?.SlideName}/${data?.slideCategory}/${filterSlideSubCategory(data?.slideSubCategory)}`,
+  51                                              }}>
+
+  53                                      </Link>
+  54:                                     <AuthorDateRead author={`Medicos Int'l`} authorColor='black' link='/ram' date={data?.slideCategory} readTime={data?.slideSubCategory} color='#9f9f9f' fontSize='12px' />
+  55                                  </div>
+
+src/pages/Slide/component/recentSlideCard/index.js:
+   10  import useTotalViews from '../../../../components/customHooks/totalViews';
+   11: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   12  import './_recentSlideCard.scss';
+
+   88                          slideImages: data?.slideImages,
+   89:                         slideSubCategory: data?.slideSubCategory
+   90                      })
+
+  147              slideCategory: data?.slideCategory,
+  148:             slideSubCategory: data?.slideSubCategory,
+  149            })}
+
+  151            to={{
+  152:             pathname: `/slidedetails/${data?.SlideName}/${data?.slideCategory}/${filterSlideSubCategory(data?.slideSubCategory)}`,
+  153              state: {
+  154                slideCategory: data?.slideCategory,
+  155:               slideSubCategory: data?.slideSubCategory,
+  156                slideName: data?.SlideName,
+
+  162          <div className="slideRecentSlide-container-swiperContainer-slide-bgImg-tag">
+  163:             <NewsLinkTag color='orange' tag={data?.slideSubCategory} />
+  164            </div>
+
+  170                slideCategory: data?.slideCategory,
+  171:               slideSubCategory: data?.slideSubCategory,
+  172              })}
+
+  174              to={{
+  175:               pathname: `/slidedetails/${data?.SlideName}/${data?.slideCategory}/${filterSlideSubCategory(data?.slideSubCategory)}`,
+  176              }}>
+
+src/pages/Slide/component/slideRecentSlides/index.js:
+   14  import useLocalStorage from '../../../../customHooks/useLocalStorage';
+   15: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   16  import { fetchSlidesAndBooksOrderedByNameWithLimit } from '../../../../functions/firebaseMethod';
+   17: import randomSlideSubCategory from '../../../../functions/randomSlideSubCategory';
+   18  import RecentSlideCard from '../recentSlideCard';
+
+   64                    firebase.firestore()
+   65:                     .collection(`K-Slides-${querySnapshot?.docs[0]?.data()?.category?.replace(/\s|\//g, "")}-${filterSlideSubCategory(querySnapshot?.docs[0]?.data()?.subCategory)}`)
+   66                      .get()
+   67                      .then(res => {
+   68:                       console.log('RECENT SLIDE DATA', querySnapshot?.docs[0]?.data()?.category?.replace(/\s|\//g, ""),filterSlideSubCategory(querySnapshot?.docs[0]?.data()?.subCategory))
+   69                        let recentSlidesData = []
+
+   78                    preferenceCategory = preferenceCategory ? preferenceCategory : 'Basic Science'
+   79:                   fetchSlidesAndBooksOrderedByNameWithLimit(`K-Slides-${preferenceCategory?.replace(/\s|\//g, "")}-${randomSlideSubCategory(preferenceCategory)}`, 'SlideName', 10)
+   80                      .then((res) => {
+
+  164        <ShareModal
+  165:         url={encodeURI(`https://medicospdf.com/slidedetails/${callbackData?.SlideName}/${callbackData?.slideCategory}/${filterSlideSubCategory(callbackData?.slideSubCategory)}`)}
+  166          appId={process.env.REACT_APP_ID}
+
+src/pages/Slide/component/slideTrending/index.js:
+   17  import { fetchSlidesAndBooksOrderedByNameWithLimit } from "../../../../functions/firebaseMethod";
+   18: import randomSlideSubCategory from '../../../../functions/randomSlideSubCategory';
+   19  import SlideCard from '../../../SlideDetail/components/slideCard';
+
+   52                  if (querySnapshot.size >= 1) {
+   53:                   console.log('RECENT SLIDE DATA', randomSlideSubCategory(querySnapshot?.docs[0]?.data()?.category))
+   54                    firebase.firestore()
+   55:                     .collection(`K-Slides-${querySnapshot?.docs[0]?.data()?.category?.replace(/\s|\//g, "")}-${randomSlideSubCategory(querySnapshot?.docs[0]?.data()?.category)}`)
+   56                      .get()
+
+   67                    console.log('SLIDE PREFERENCE CATEGORY',preferenceCategory);
+   68:                   fetchSlidesAndBooksOrderedByNameWithLimit(`K-Slides-${preferenceCategory?.replace(/\s|\//g, "")}-${randomSlideSubCategory(preferenceCategory)}`, 'SlideName', 10)
+   69                      .then((res) => {
+   70:                       console.log('USER PREFERENCES', preferenceCategory?.replace(/\s|\//g, ""), randomSlideSubCategory(preferenceCategory))
+   71                        console.log('PREFERENCES DATA', res.allData);
+
+   80              preferenceCategory = preferenceCategory ? preferenceCategory : 'Basic Science'
+   81:             fetchSlidesAndBooksOrderedByNameWithLimit(`K-Slides-${preferenceCategory?.replace(/\s|\//g, "")}-${randomSlideSubCategory(preferenceCategory)}`, 'SlideName', 10)
+   82                .then((res) => {
+
+  147        <ShareModal
+  148:         url={encodeURI(`https://medicospdf.com/slidedetails/${callbackData?.SlideName}/${callbackData?.slideCategory}/${callbackData?.slideSubCategory.replace(/\s|\//g, "")}`)}
+  149          appId={process.env.REACT_APP_ID}
+
+  194                    title={data?.slideCategory}
+  195:                   title2={data?.slideSubCategory}
+  196                    description={data?.SlideName}
+
+src/pages/Slide/component/SubCatagories/index.js:
+   5  
+   6: export const SubCatagories = ({ slideArr, activeLinkData,subCategoryHeading}) => {
+   7  
+
+  13          setActive(slideArr.filter((data)=>data.category == activeLinkData)[0]?.subCategories[0].category)
+  14:         subCategoryHeading(slideArr.filter((data)=>data.category == activeLinkData)[0]?.subCategories[0].category)
+  15      },[activeLinkData])
+
+  18          setActive(item)
+  19:         subCategoryHeading(item)
+  20      }
+
+src/pages/SlideDetail/index.js:
+   11  import { logEventWithParams } from "../../functions/commonMethod";
+   12: import filterSlideSubCategory from '../../functions/filterSlideSubCategory';
+   13  import { addUserVisited } from "../../functions/firebaseMethod";
+
+   21  const SlideDetail = () => {
+   22:     const { slideDocId, slideCategory, slideSubCategory, data } = useParams();
+   23      let location = useLocation();
+
+   50  
+   51:             // console.log("This is parameter",`+++K-Slides-${(slideCategory).replace(/\s|\/g, ""/g, "")}-${(slideSubCategory).replace(/\s|\//g, "")}-${slideDocId}`);
+   52              if (location?.state?.data?.length) {
+
+   55                  if (user?.uid) {
+   56:                     addUserVisited(user?.uid, 'slide', locationData?.SlideName, locationData?.slideCategory, locationData?.slideSubCategory);
+   57:                     ShareUrl = encodeURI(`https://medicospdf.com/slidedetails/${slide?.SlideName}/${slide?.slideCategory}/${filterSlideSubCategory(slide?.slideSubCategory)}`)
+   58                  }
+
+   60                  try {
+   61:                     firebase.firestore().collection(`K-Slides-${(slideCategory).replace(/\s|\/g, ""/g, "")}-${(slideSubCategory).replace(/\s|\//g, "")}`)
+   62                          .doc(slideDocId)
+
+   65                                  if (user?.uid && res?.data()) {
+   66:                                     addUserVisited(user?.uid, 'slide', res?.data()?.SlideName, res?.data()?.slideCategory, res?.data()?.slideSubCategory)
+   67                                  }
+
+   69                                  setSlide(res.data())
+   70:                                 ShareUrl = encodeURI(`https://medicospdf.com/slidedetails/${slide?.SlideName}/${slide?.slideCategory}/${filterSlideSubCategory(slide?.slideSubCategory)}`)
+   71                              }
+
+   80          }
+   81:     }, [slideDocId, slideSubCategory, slideCategory, location?.state?.data?.length])
+   82  
+
+  105              </script>
+  106:             <SEO image={slide?.slideImages[0]} title='MedicosPDF Slide page' description={user + slide?.SlideName + slide?.slideTags?.toString() + slide?.slideTextExtract + slide?.userEmail + slide?.slideSubCategory + slide?.slideCategory} />
+  107              {
+
+src/pages/SlideDetail/components/categorizedSlides/index.js:
+    9  import 'swiper/swiper.scss';
+   10: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   11  
+
+  133          firebase.firestore()
+  134:           .collection(`K-Slides-${(data?.slideCategory).replace(/\s|\/g, ""/g, "")}-${(data?.slideSubCategory).replace(/\s|\//g, "")}`)
+  135            .onSnapshot(async (querySnapshot) => {
+  136:             let subCategoryData = [];
+  137              querySnapshot.forEach((doc) => {
+  138:               subCategoryData.push(doc.data())
+  139              })
+  140:             await fetchRelevantData(data?.SlideName?.trim(), subCategoryData).then((res) => {
+  141:               console.log('RECOMMENDED DATA', res?.length, subCategoryData?.length)
+  142                if (res?.length > 1) {
+
+  144                } else {
+  145:                 setRecommendedData(subCategoryData.filter((resData) => resData?.SlideName != data?.SlideName))
+  146                }
+
+  215            <ShareModal
+  216:             url={encodeURI(`https://medicospdf.com/slidedetails/${callbackData?.SlideName}/${callbackData?.slideCategory}/${filterSlideSubCategory(callbackData?.slideSubCategory)}`)}
+  217              appId={process.env.REACT_APP_ID}
+
+  388                        title={slide?.slideCategory}
+  389:                       title2={slide?.slideSubCategory}
+  390                        description={slide?.SlideName}
+
+src/pages/SlideDetail/components/slideCard/index.js:
+   18  import { logEventWithParams } from '../../../../functions/commonMethod';
+   19: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   20  import { SlideDataContext } from '../../../Slide';
+
+   47      // console.log('from slideCard:', datas)
+   48:     // const ShareUrl = encodeURI(`https://medicospdf.com/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`);
+   49      let dividedPortion = useMemo(() => 100 / images.filter((data, index) => (index < 5))?.length, []);
+
+  115                          slideImages: datas?.slideImages,
+  116:                         slideSubCategory: datas?.slideSubCategory
+  117                      })
+
+  202          slideCategory: datas.slideCategory,
+  203:         slideSubCategory: datas.slideSubCategory,
+  204      })
+
+  207          slideCategory: datas?.slideCategory,
+  208:         slideSubCategory: datas?.slideSubCategory
+  209      })
+  210:     const clickhandlerslideshare3 = () => logEventWithParams("web_slide_categoryAndSubCategory_opened", {
+  211          slideCategory: datas?.slideCategory,
+  212:         slideSubCategory: datas?.slideSubCategory
+  213      })
+
+  221          slideCategory: datas?.slideCategory,
+  222:         slideSubCategory: datas?.slideSubCategory
+  223      })
+
+  316          
+  317:                         firebase.db.collection(`K-Slides-${datas?.slideCategory.replace(/\s|\//g, "")}-${datas?.slideSubCategory.replace(/\s|\//g, "")}`).doc(datas?.SlideName).delete()
+  318                          firebase.db.collection("AllSlidesDataLockDownVersions").doc(datas?.SlideName).delete()
+
+  329          }
+  330:     }, [confirmModalConfirmation,slideDocId,datas?.SlideName,usernameLocalStorage,datas?.slideCategory,datas?.slideSubCategory])
+  331  
+
+  383                  slideImages: datas?.slideImages,
+  384:                 slideSubCategory: datas?.slideSubCategory
+  385              })
+
+  432                      to={{
+  433:                         pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+  434                          state: {
+
+  471                              to={{
+  472:                                 pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+  473                                  state: {
+
+  487                              to={{
+  488:                                 pathname: `/slidesubcategory/${datas?.slideCategory}/${(datas?.slideSubCategory)}`,
+  489                              }}>
+  490:                             <div className='slideCard-categoryAndSubCategory'>
+  491                                  <p>{title}</p>
+  492:                                 <MdKeyboardArrowRight className='slideCard-categoryAndSubCategory-icon' />
+  493                                  <p>{title2}</p>
+
+  582                                      to={{
+  583:                                         pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+  584                                          state: {
+
+  615                                                  slideCategory: datas?.slideCategory,
+  616:                                                 slideSubCategory: datas?.slideSubCategory
+  617                                              })}
+
+  636                                                  slideCategory: datas?.slideCategory,
+  637:                                                 slideSubCategory: datas?.slideSubCategory
+  638                                              })}
+  639                                              to={{
+  640:                                                 pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+  641                                                  state: {
+
+  661                                          slideCategory: datas?.slideCategory,
+  662:                                         slideSubCategory: datas?.slideSubCategory
+  663                                      })}
+  664                                      to={{
+  665:                                         pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+  666                                          state: {
+
+src/pages/SlideDetail/components/slideCard/index.scss:
+  251  }
+  252: .slideCard-categoryAndSubCategory{
+  253      display: flex;
+
+src/pages/SlideDetail/components/slideDescription/index.js:
+   13  import useLocalStorage from '../../../../customHooks/useLocalStorage';
+   14: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   15  import { getColorByIndex } from '../../../../functions/tagColorAndReadTimeMethod';
+
+   21  const SlideDescription = ({ data, user ,viewCount}) => {
+   22:     let shareUrl = encodeURI(`https://medicospdf.com/slidedetails/${data?.SlideName}/${data?.slideCategory}/${filterSlideSubCategory(data?.slideSubCategory)}`);
+   23      let shareTitle = data?.SlideName
+
+  134                      slideImages: data?.slideImages,
+  135:                     slideSubCategory: data?.slideSubCategory
+  136                  })
+
+  356                              to={{
+  357:                                 pathname: `/slidesubcategory/${data?.slideCategory}/${data?.slideSubCategory.replace(/\s|\//g, "")}`,
+  358                              }}>
+
+  362                         <IoIosArrowForward className='slideDescription-categoryAndViewsContainer-cat-icon'/>
+  363:                        <p className='slideDescription-categoryAndViewsContainer-cat-para'>{data?.slideSubCategory}</p>
+  364                      </div>
+
+  401                            <h3 className='slideDescription-descriptionContainer-head'>Description</h3>
+  402:                           <p className='paragraph'>{data?.slideDescription ? data?.slideDescription : `This is a slide about ${data?.SlideName}. It falls into ${data?.slideSubCategory} of ${data?.slideCategory}. `}</p> 
+  403                          </>
+
+  448  
+  449:                 {/* <p className='paragraph'>{data?.slideDescription ? data?.slideDescription : `This is a slide about ${data?.SlideName}. It falls into ${data?.slideSubCategory} of ${data?.slideCategory}. `}</p> */}
+  450                  <Link to='/uploadslide' className='slideDescription-uploadNote ' dangerouslySetInnerHTML={{ __html: `If you want to contribute you can upload your own slide from <a href='/uploadslide'>here</a>` }}></Link>
+
+src/pages/SlideDetail/components/slider/index.js:
+   17  import { logEventWithParams } from '../../../../functions/commonMethod';
+   18: import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+   19  import "./index.scss";
+
+   54      const [showEditAndDelete, setShowEditAndDelete] = useState(null)
+   55:     let shareUrl = encodeURI(`https://medicospdf.com/slidedetails/${images?.SlideName}/${images?.slideCategory}/${filterSlideSubCategory(images?.slideSubCategory)}`);
+   56  
+
+  206                          slideImages: images?.slideImages,
+  207:                         slideSubCategory: images?.slideSubCategory
+  208                      })
+
+  487  
+  488:             firebase.firestore().collection(`K-Slides-${images?.slideCategory.replace(/\s|\//g, "")}-${images?.slideSubCategory.replace(/\s|\//g, "")}`)
+  489                  .doc(slideDocId)
+
+  542      const clickhandlermotion3 = () => setShowFormModel(true)
+  543:     const clickhandlerslideshare5 = () => logEventWithParams("web_slide_categoryAndSubCategory_opened", {
+  544          slideCategory: images?.slideCategory,
+  545:         slideSubCategory: images?.slideSubCategory
+  546      })
+
+  800                              to={{
+  801:                                 pathname: `/slidesubcategory/${images?.slideCategory}/${images?.slideSubCategory.replace(/\s|\//g, "")}`,
+  802                              }}>
+
+  811                                  <IoIosArrowForward className="category-icon" />
+  812:                                 <h6>{images.slideSubCategory}</h6>
+  813                              </motion.div>
+
+  876                                          slideCategory: images?.slideCategory,
+  877:                                         slideSubCategory: images?.slideSubCategory
+  878                                      })}
+
+src/pages/SlideSubCategories/_slideSubCategoryPage.scss:
+    1  @import "../../App.scss";
+    2: .slideSubCategoryPage-container{
+    3      width: 100%;
+
+   19          }
+   20:         &-subCategory{
+   21              margin-top: 10px;
+
+  106              }
+  107:             &-subCategory{
+  108                 
+
+  201  }
+  202: .slideSubCategoryPage-container-slidesContainer-select-category-top-icon-rotate{
+  203      transform: rotate(90deg);
+
+  205  }
+  206: .slideSubCategoryPage-container-slidesContainer-select-category-lists-active{
+  207      display: flex;
+
+src/pages/SlideSubCategories/index.js:
+   13  import SlideCard from '../SlideDetail/components/slideCard'
+   14: import './_slideSubCategoryPage.scss';
+   15: import filterSlideSubCategory from '../../functions/filterSlideSubCategory';
+   16  
+   17  
+   18: const SlideSubCategoryPage = () => {
+   19  
+
+   21      const { user } = useContext(AuthContext);
+   22:     const { slideCategory, slideSubCategory } = useParams()
+   23      const [categoryName, setCategoryName] = useState(slideCategory)
+   24:     const [subCategoryName, setSubCategoryName] = useState(slideSubCategory)
+   25      const [showCategory, setShowCategory] = useState(false)
+   26:     const [showSubCategory, setShowSubCategory] = useState(false)
+   27      const [loadingSlides, setLoadingSlides] = useState(false)
+
+   39          let isMounted = true;
+   40:         const getUserPreferencesData = (category, subCategory) => {
+   41              try {
+   42:                 if (category && subCategory) {
+   43                      setLoadingSlides(true);
+   44                      firebase.firestore()
+   45:                         .collection(`K-Slides-${category.replace(/\s|\//g, "")}-${subCategory?.replace(/\s|\//g, "")}`)
+   46                          .orderBy('SlideName', 'asc')
+
+   62  
+   63:         getUserPreferencesData(categoryName, subCategoryName);
+   64          return () => {
+
+   66          }
+   67:     }, [categoryName, subCategoryName])
+   68  
+
+   77              case "Basic Science":
+   78:                 collectionName = `K-Slides-BasicScience-${subCategoryName.replace(/\s|\//g, "")}`;
+   79                  break
+   80              case "Clinical Science":
+   81:                 collectionName = `K-Slides-ClinicalScience-${subCategoryName.replace(/\s|\//g, "")}`;
+   82                  break
+   83              case "Physiotherapy":
+   84:                 collectionName = `K-Slides-Physiotherapy-${subCategoryName.replace(/\s|\//g, "")}`;
+   85                  break
+   86              case "Nursing":
+   87:                 collectionName = `K-Slides-Nursing-${subCategoryName.replace(/\s|\//g, "")}`;
+   88                  break
+   89              case "Dental":
+   90:                 collectionName = `K-Slides-Dental-${subCategoryName.replace(/\s|\//g, "")}`;
+   91                  break
+
+  122  
+  123:     const handleCategory = (category, subCategory) => {
+  124:         if (category, subCategory) {
+  125              setCategoryName(category)
+  126:             setSubCategoryName(subCategory)
+  127              setShowCategory(false)
+
+  129      }
+  130:     const handleSubCategory = (data) => {
+  131          if (data) {
+  132:             setSubCategoryName(data)
+  133:             setShowSubCategory(false)
+  134:             console.log('Subcategory', data)
+  135          }
+
+  142      }
+  143:     const toggleSubCategory = () => {
+  144:         setShowSubCategory(!showSubCategory)
+  145  
+
+  196      return (
+  197:         <div className='slideSubCategoryPage-container'>
+  198              <ScrollToTopButton />
+
+  201              <ShareModal
+  202:                 url={encodeURI(`https://medicospdf.com/slidedetails/${callBackData?.SlideName}/${callBackData?.slideCategory}/${filterSlideSubCategory(callBackData?.slideSubCategory)}`)}
+  203                  appId={process.env.REACT_APP_ID}
+
+  208              />
+  209:             <div className='slideSubCategoryPage-container-top'>
+  210:                 <h3 className='slideSubCategoryPage-container-top-category'>{categoryName}</h3>
+  211:                 <h5 className='slideSubCategoryPage-container-top-subCategory'>{subCategoryName}</h5>
+  212  
+  213              </div>
+  214:             <div className='slideSubCategoryPage-container-slidesContainer'>
+  215:                 <div className='slideSubCategoryPage-container-slidesContainer-select'>
+  216:                     <div className='slideSubCategoryPage-container-slidesContainer-select-category'>
+  217:                         <div className='slideSubCategoryPage-container-slidesContainer-select-category-top' onClick={() => toggleCategory()}>
+  218:                             <h3 className='slideSubCategoryPage-container-slidesContainer-select-category-top-head' >Category: {categoryName}</h3>
+  219:                             <IoIosArrowForward className={`slideSubCategoryPage-container-slidesContainer-select-category-top-icon ${showCategory ? 'slideSubCategoryPage-container-slidesContainer-select-category-top-icon-rotate' : ''}`} />
+  220                          </div>
+  221  
+  222:                         <div className={`slideSubCategoryPage-container-slidesContainer-select-category-lists ${showCategory ? 'slideSubCategoryPage-container-slidesContainer-select-category-lists-active' : ''}`}>
+  223                              {
+  224                                  slideCategories.map((data, index) => {
+  225:                                     return <p key={index} onClick={() => handleCategory(data?.category, data.subCategories[0].category)} className='slideSubCategoryPage-container-slidesContainer-select-category-lists-data'>{data?.category}</p>
+  226                                  })
+
+  230  
+  231:                     <div className='slideSubCategoryPage-container-slidesContainer-select-subCategory'>
+  232:                         <div className='slideSubCategoryPage-container-slidesContainer-select-subCategory-top' onClick={() => toggleSubCategory()}>
+  233:                             <h3 className='slideSubCategoryPage-container-slidesContainer-select-subCategory-top-head' >Sub-Category: {subCategoryName}</h3>
+  234:                             <IoIosArrowForward className={`slideSubCategoryPage-container-slidesContainer-select-subCategory-top-icon ${showSubCategory ? 'slideSubCategoryPage-container-slidesContainer-select-category-top-icon-rotate' : ''}`} />
+  235                          </div>
+  236  
+  237:                         <div className={`slideSubCategoryPage-container-slidesContainer-select-subCategory-lists ${showSubCategory ? 'slideSubCategoryPage-container-slidesContainer-select-category-lists-active' : ''}`}>
+  238                              {
+
+  240                                      if (categories?.category === categoryName) {
+  241:                                         return categories?.subCategories?.map((subCategory, index) => {
+  242:                                             return <p key={subCategory?.category + index} onClick={() => handleSubCategory(subCategory?.category)} className='slideSubCategoryPage-container-slidesContainer-select-subCategory-lists-data'>{subCategory?.category}</p>
+  243                                          })
+
+  252  
+  253:                 <div className='slideSubCategoryPage-container-slidesContainer-DatasContainer'>
+  254  
+
+  257                              mappingData?.length > 0 ?
+  258:                                 <div className='slideSubCategoryPage-container-slidesContainer-DatasContainer-Section'>
+  259                                      {mappingData.map((slide, index) => (
+  260:                                         <div key={index} className='slideSubCategoryPage-container-slidesContainer-DatasContainer-Section-item'>
+  261                                              <SlideCard
+  262                                                  title={slide.slideCategory}
+  263:                                                 title2={slide.slideSubCategory}
+  264                                                  description={slide.SlideName}
+
+  283                          user ?
+  284:                             <div className='slideSubCategoryPage-container-slidesContainer-DatasContainer-loadMoreContainer'>
+  285                                  {
+  286                                      showLoadMore &&
+  287:                                     <div onClick={clickhandlerloadfrom} className='slideSubCategoryPage-container-slidesContainer-DatasContainer-loadMoreContainer-load'>
+  288                                          <Button type="primary-outline-rounded" label="Load More" labelColor="black" />
+
+  297                              :
+  298:                             <div className='slideSubCategoryPage-container-slidesContainer-DatasContainer-loadMoreContainer'>
+  299                                  {
+  300  
+  301:                                     <div className='slideSubCategoryPage-container-slidesContainer-DatasContainer-loadMoreContainer-load'
+  302                                          onClick={() => setShowFormModel(true)}
+
+  317  
+  318: export default SlideSubCategoryPage
+
+src/pages/uploadPageMain/index.js:
+   22  import useLocalStorage from '../../customHooks/useLocalStorage';
+   23: import filterSlideSubCategory from '../../functions/filterSlideSubCategory';
+   24  import ShareModelAfterUpload from './components/shareModelAfterUploading';
+
+   58      const [slideDescription, setSlideDescription] = useState(null)
+   59:     const [slideSubCategory, setSlideSubCategory] = useState(null)
+   60      const [slideTags, setSlideTags] = useState(null)
+
+   89                              setSlideImages(data.slideImages);
+   90:                             setSlideSubCategory(data.slideSubCategory);
+   91                              setSlideTags(data.slideTags);
+
+  118                      .delete()
+  119:                 firebase.firestore().collection(`K-Slides-${slideCategory.replace(/\s|\//g, "")}-${slideSubCategory.replace(/\s|\//g, "")}`)
+  120                      .doc(slideDocId)
+
+  130  
+  131:                 firebase.firestore().collection(`K-Slides-${values?.category.replace(/\s|\//g, "")}-${values.subCategory.replace(/\s|\//g, "")}`)
+  132                      .doc(values.title.replace(/-/g, ' ') + '-' + randomNumber)
+
+  135                          slideCategory: values.category,
+  136:                         slideSubCategory: values.subCategory,
+  137                          slideDescription: values.description,
+
+  151                                  slideCategory: values.category,
+  152:                                 slideSubCategory: values.subCategory,
+  153                                  slideDescription: values.description,
+
+  161                                  setUpdateLoading(false)
+  162:                                 history.push(`/slidedetails/${values.title.replace(/-/g, ' ') + '-' + randomNumber}/${values.category}/${filterSlideSubCategory(values.subCategory)}`)
+  163                                  // <Redirect to={}/>
+
+  171                      slideCategory: values.category,
+  172:                     slideSubCategory: values.subCategory,
+  173                      slideDescription: values.description,
+
+  273                  setShareTitle(response?.data?.data[0]?.slideTitle);
+  274:                 setShareURL(encodeURI(`https://medicospdf.com/slidedetails/${response?.data?.data[0]?.slideTitle}/${response?.data?.data[0]?.slideCategory}/${filterSlideSubCategory(response?.data?.data[0]?.slidesubCategory)}`))
+  275                  setShowShareModal(true);
+
+  301  
+  302:         fd.delete('slidesubCategory')
+  303  
+
+  314  
+  315:         if(values.category == 'Category' || values.subCategory == 'Sub Category'){
+  316:             toast.error(`Please select valid category and subcategory.`,{theme:'dark',hideProgressBar:true})
+  317              return;
+  318          }
+  319:         // setTagsData([...values.title, ...values.category, ...values.subCategory,...tags]);
+  320          if (fd.get('slide')) {
+
+  327  
+  328:             fd.append('slidesubCategory', values.subCategory)
+  329  
+
+  333              fd.append('username', usernameLocalStorage)
+  334:             fd.append('tags', [values.title,values.category,values.subCategory,...tags])
+  335  
+  336:         // setTagsData([...values.title, ...values.category, ...values.subCategory,...tags]);
+  337  
+
+  422                      category: slideCategory ? slideCategory : '',
+  423:                     subCategory: slideSubCategory ? slideSubCategory : '',
+  424                  }}
+
+  428                      category: Yup.string().required('Required'),
+  429:                     subCategory: Yup.string().required('Required'),
+  430                  })}
+
+  540                                              as="select"
+  541:                                             name='subCategory'
+  542                                              placeholder=""
+  543                                              onChange={props.handleChange}
+  544:                                             value={props.values.subCategory}
+  545  
+
+  547                                          >
+  548:                                             <option value="subcategory">-- Sub-category</option>
+  549                                              {
+
+  551                                                      if (categories?.category == props.values.category) {
+  552:                                                         return categories?.subCategories?.map((subCategory, index) => {
+  553:                                                             return <option key={subCategory?.category + index} value={subCategory.category}>{subCategory.category}</option>
+  554                                                          })
+
+  558                                          </Field>
+  559:                                         <ErrorMessage name="subCategory" render={renderError} />
+  560                                      </div>
+
+  569                                              category={props.values.category}
+  570:                                             subCategory={props.values.subCategory}
+  571                                          />

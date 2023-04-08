@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 @import '../../abstracts/variables';
 @import '../../abstracts/mixins';
 
     
 .newsLinkTag-container{
+    text-decoration: none;
     font-family:'nunito';
     display: flex;
     width: 100%;
@@ -36,6 +36,9 @@
                 color: #428BCA;
                 transition: .25s ease;
             }
+
+            font-weight: 600;
+            color:black;
         }
        
     }

@@ -1,49 +1,48 @@
 import React from 'react';
 import './_socialFollower.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook,faTwitter,faGithub,faInstagram,faLinkedin,
-    faPinterest,faYoutube,faSlack,faReddit,faDribbble,faVimeo,faTumblr} from '@fortawesome/free-brands-svg-icons'
-import {faGlobe } from '@fortawesome/free-solid-svg-icons'
-import { motion } from 'framer-motion';
+import { newTab } from '../../../functions/newTabMethod';
+import FacebookIcon from '../icons/SocialIcon/facebook';
+import Globe from '../icons/globe';
+import GithubIcon from '../icons/SocialIcon/github';
+import PiIntrestIcon from '../icons/SocialIcon/piIntrest';
+import LinkedinIcon from '../icons/SocialIcon/linkedin';
+import InstagramIcon from '../icons/SocialIcon/instagram';
+import TwitterIcon from '../icons/SocialIcon/twitter';
 
 
 export const SocialFollower = (props) => {
     const className = `Social__follower ${props.type}`;
 
-    const newTab=(url)=>{
-        window.open(
-           url, "_blank");
-    }
    const render_icon =()=>{
     switch (props.icon) {
         case 'facebook':
-            return <FontAwesomeIcon className="icon" icon={faFacebook} />
+            return <FacebookIcon className="icon"  />
         case 'twitter':
-            return <FontAwesomeIcon className="icon" icon={faTwitter} />
+            return <TwitterIcon className="icon" />
         case 'globe':
-            return <FontAwesomeIcon className="icon"  icon={faGlobe} />
+            return <Globe className="icon"  />
         case 'git':
-            return <FontAwesomeIcon className="icon"  icon={faGithub} />
-        case 'youtube':
-            return <FontAwesomeIcon className="icon"  icon={faYoutube} />
-        case 'tumblr':
-            return <FontAwesomeIcon className="icon" icon={faTumblr} />
-        case 'slack':
-            return <FontAwesomeIcon className="icon" icon={faSlack} />
+            return <GithubIcon className="icon"   />
+   
+        // case 'tumblr':
+        //     return <FontAwesomeIcon className="icon"  />
+        // case 'slack':
+        //     return <FontAwesomeIcon className="icon" />
         case 'pintrest':
-            return <FontAwesomeIcon className="icon" icon={faPinterest} />
-        case 'reddit':
-            return <FontAwesomeIcon className="icon" icon={faReddit} />
+            return <PiIntrestIcon className="icon"  />
+        // case 'reddit':
+        //     return <FontAwesomeIcon className="icon"  />
         case 'linkedin':
-            return <FontAwesomeIcon className="icon"  icon={faLinkedin} />
+            return <LinkedinIcon className="icon"   />
         case 'instagram':
-            return <FontAwesomeIcon className="icon" icon={faInstagram} />
-        case 'vimeo':
-        return <FontAwesomeIcon className="icon" icon={faVimeo} />
+            return <InstagramIcon className="icon"  />
+        // case 'vimeo':
+        // return <FontAwesomeIcon className="icon" />
       
     }
    }
-    return <a onClick={()=>newTab(props.link)} className='socialFollower-link'>
+   const clickhandlernewtablink = ()=>newTab(props.link,props.icon,'social_media_visited')
+       return <a onClick={clickhandlernewtablink} className='socialFollower-link'>
         <div className={className}>
         
         <div className="label">

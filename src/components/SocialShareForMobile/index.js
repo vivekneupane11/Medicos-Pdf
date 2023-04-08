@@ -4,17 +4,17 @@ import {
     EmailShareButton,
     FacebookMessengerShareButton,
     FacebookShareButton,
-    TwitterShareButton,
-    TwitterIcon,
-    EmailIcon,
-    FacebookIcon,
-    FacebookMessengerIcon,
+    TwitterShareButton
 
 } from "react-share";
+import FacebookIcon from '../global/icons/SocialIcon/facebook';
+import MessengerIcon from '../global/icons/SocialIcon/messenger';
+import TwitterIcon from '../global/icons/SocialIcon/twitter';
+import Envelop from '../global/icons/envelop';
 
 const SocialShareForMobile =({shareUrl,title}) => {
     const [scroll, setScroll] = useState(false);
-    const [closeModal, setCloseModal] = useState(false);
+    const [closeModal] = useState(false);
     const PopUp = () => {
         const winScroll=document.documentElement.scrollTop;
         const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
@@ -39,38 +39,39 @@ const SocialShareForMobile =({shareUrl,title}) => {
         {
              !closeModal &&
              <div className={`socialShareForMObile-container ${scroll ? "social-active" : ""}`}>
-             <p>Share Now</p>
+             <p className='socialShareForMObile-container-para'>Share Now</p>
              <FacebookShareButton
                     url={shareUrl}
                     quote={title}
-                    className="shareBtn"
+                    className="shareBtnFB"
                 >
-                    <FacebookIcon size={32} round />
+                    <FacebookIcon size={16} className='shareBtnFB-icon'/>
                 </FacebookShareButton>
 
                 <FacebookMessengerShareButton
                     appId={process.env.REACT_APP_APP_ID}
                     url={shareUrl}
                     title={title}
-                    className="shareBtn"
+                    className="shareBtnM"
                 >
-                    <FacebookMessengerIcon size={32} round />
+                    <MessengerIcon  size={16} className="shareBtnM-icon"/>
                 </FacebookMessengerShareButton>
 
                 <TwitterShareButton
                     url={shareUrl}
                     title={title}
-                    className="shareBtn"
+                    className="shareBtnTW"
                 >
-                    <TwitterIcon size={32} round />
+                    <TwitterIcon size={16}  className="shareBtnTW-icon"/>
                 </TwitterShareButton>
 
                 <EmailShareButton
                     body={shareUrl}
                     subject={title}
-                    className="shareBtn"
+                    className="shareBtnE"
+                    
                 >
-                    <EmailIcon size={32} round />
+                    <Envelop size={16}  className="shareBtnE-icon"/>
                 </EmailShareButton>
         </div>
 

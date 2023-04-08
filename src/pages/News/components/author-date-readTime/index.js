@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import './_authorDateReadDate.scss'
 const AuthorDateRead = ({author,authorColor,link,date,readTime,color,fontSize}) => {
 
@@ -37,7 +38,7 @@ const AuthorDateRead = ({author,authorColor,link,date,readTime,color,fontSize}) 
             <div className='authorDateReadDate-wrapper' style={{fontSize:`${fontSize}`}}>
                 <div className='authorDateReadDate-wrapper-author'>
                     <span className='authorDateReadDate-wrapper-author-firstSpan' style={{fontSize:`${fontSize}`,color:`${color}`}}>
-                        By:<a href={link} style={{fontSize:`${fontSize}`,color:`${authorColor}`}}>{author}</a>
+                        By:<Link to={link} style={{fontSize:`${fontSize}`,color:`${authorColor}`}}>{author}</Link>
                     </span>
                 </div>
                 <div className='authorDateReadDate-wrapper-dot' style={{color:`${color}`,border:`1px solid ${color}`}}></div>
@@ -77,4 +78,4 @@ const AuthorDateRead = ({author,authorColor,link,date,readTime,color,fontSize}) 
     )
 }
 
-export default AuthorDateRead
+export default React.memo(AuthorDateRead)

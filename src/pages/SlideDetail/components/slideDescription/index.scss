@@ -6,14 +6,16 @@
     // background-color: red;
     // height: 1000px;
     padding: 4% 0px;
-
+    width: 85%;
     @include tablet {
         padding: 5% 0 6% 0px;
+        width: 100%
         // width: 80%;
     }
 
     @include mobile {
         // width: 80%;
+        width: 100%
     }
 
     &-container {
@@ -29,14 +31,19 @@
             width: 80%;
         }
 
+        h3{
+          @include mobile{
+            font-size: 22px;
+            margin-bottom: 8px;
+          }
+        }
         .paragraph {
-            margin: 25px 0px;
+            width: 100%;
+            margin: 0 0 10px 0;
             font-weight:normal;
             line-height: 1.7;
-            display: -webkit-box;
-            overflow: hidden;
-            -webkit-line-clamp: 5;
-            -webkit-box-orient: vertical;
+        
+      
         }
 
         &-bottom-container {
@@ -57,13 +64,14 @@
                     @include flexRowSbCenter;
 
                     .profilePic {
-                        width: 50px;
+                        width: 60px;
                         border-radius: 100%;
                         margin-right: 15px
                     }
 
                     .name {
                         @include flexColCenterStart;
+
 
                         h5 {
                             font-weight: bold;
@@ -82,7 +90,8 @@
                 }
 
                 .button-container {
-                    @include flexRowCenter;
+                    display: flex;
+                    justify-content: flex-end;
                     position: relative;
 
                     .icon {
@@ -117,15 +126,18 @@
 
                     .share {
                         @include flexRowCenter;
-                        padding: 7px 10px;
-                        border-top-right-radius: 3px;
-                        border-bottom-right-radius: 3px;
-                        border: 0.5px solid lightgray;
+                        padding:8px;
+                        border-radius: 50%;
+                        border: 0.5px solid $--primary;
+                      
                     }
 
                     .share:hover {
                         cursor: pointer;
-                        border: 0.5px solid gray;
+                        background-color:$--primary;
+                        .slideDescription-shareIcon{
+                            color: #fff;
+                        }
                     }
                 }
             }
@@ -134,13 +146,128 @@
 }
 .slideDetail-longModalButton{
     padding: 10px 20px;
-    background-color: $--primary;
-    border: none;
+    border:.2px solid $--primary;
     border-radius: 5px;
-    color: #fff;
+    font-weight: 600;
+    background-color: #fff;
+    color: #333;
     cursor: pointer;
-    margin-bottom: 30px;
     &:hover{
         background-color: #82C09A;
+    }
+}
+.slideDetailPage-tagsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    &-tag{
+    margin-right: 15px;
+    margin-top: 5px;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 18px;
+    color: $--primary;
+    @include tablet{
+        margin-bottom: 10px;
+    }
+    @include mobile{
+        margin-bottom: 10px;
+    }
+    }
+}
+.slideDescription-shareIcon{
+  
+    font-size: 30px;
+    color:$--primary;
+}
+.slideDescription-categoryAndViewsContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &-cat{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        &-icon{
+            height: 18px;
+            color: $--primary;
+
+        }
+        &-para{
+           margin-left: 5px;
+           @include mobile{
+               font-size: 12px;
+           }
+
+        }
+
+    }
+    &-count{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 10px;
+        &-icon{
+            color: #333;
+
+        }
+        &-para{
+            margin-left: 5px;
+            
+        }
+
+    }
+}
+.slideDescription-descriptionContainer{
+    position: relative;
+    &-textFade{
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(0deg, white 0%, rgba(255, 255, 255, 0) 100%);
+    }
+}
+.slideDescription-uploadNote{
+    width: 100%;
+    padding: 10px;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    color: #333;
+}
+
+  .slideDescription-descriptionContainer-head{
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 10px;
+  }
+
+  .slideDescription-likeCount{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 10px;
+      &-likedIcon{
+        color: #333;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+      &-unLikedIcon{
+        color: #333;
+        margin-right: 5px;
+        cursor: pointer;
+
+      }
+  }
+  .slideDetails-description-followButton{
+    padding: 5px 8px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover{
+        background-color: $--primary;
+        color: #fff;
     }
 }

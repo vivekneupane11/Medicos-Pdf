@@ -1,0 +1,62 @@
+@import '../../App.scss';
+
+
+.profileDetails-container{
+    width: 100%;
+    h3{
+        margin-top: 20px;
+        padding:20px;
+
+    }
+    &-top{
+        background-image: url('../../assets/images/slidesubcategories/background.webp');
+        height:300px;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position:center ;
+        background-repeat: no-repeat;
+        & h2{
+            text-align: center;
+            color: #fff;
+          
+        }
+
+
+    }
+    &-profileContainer{
+        width: 100%;
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        padding:20px;
+        &-profile{
+            width: 30%;
+            margin-right: 3%;
+            @media screen and (max-width: 1369px) and (min-width: 768px) {
+              width: 48%;
+              margin-right: 2%;
+               }
+            @include tablet{
+                width: 48%;
+                margin-right: 2%;
+            }
+            @include mobile{
+                width: 100%;
+                margin-right: 0;
+                
+            }
+        }
+    }
+}
+.profileDetails-loadMore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}

@@ -1,31 +1,16 @@
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import loaderImage from '../../../../assets/images/book/loaderpdf.png';
+import loaderImage from '../../../../assets/images/book/loadertrending.webp';
 import { Headings } from '../../../../components/global/headings';
 import "./index.scss";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import checkIfImageExists from '../../../../functions/checkImageValidity';
+import StarFill from '../../../../components/global/icons/star_fill';
 const BookCard = ({ book=null,image, title, author, rating, }) => {
-    // console.log("This is book",book)
 
     const [state,setState]=useState(false)
-    const  checkIfImageExists=(url, callback) =>{
-        const img = new Image();
-    
-        img.src = url;
-    
-        if (img.complete) {
-          callback(true);
-        } else {
-          img.onload = () => {
-            callback(true);
-          };
-          
-          img.onerror = () => {
-            callback(false);
-          };
-        }
-      }
+  
       useState(()=>{
         checkIfImageExists(image, (exists) => {
             if (exists) {
@@ -40,12 +25,18 @@ const BookCard = ({ book=null,image, title, author, rating, }) => {
     return (
         <>
             <div className="book-card-container">
-                <img src={`${state?`${image}`:`${loaderImage}`}`} alt={`${state?`${title}`:'MedicosPdf default book image'}`} className="book-card-container-img" />
+            <LazyLoadImage
+                alt={`${state?`${title}`:'MedicosPdf default book image'}`}
+                effect="blur"
+                src={`${state?`${image}`:`${loaderImage}`}`}
+                className="book-card-container-img"
+                />
+     
                 <div className="book-card-container-content">
                     <Headings type="heading6" content={title} />
-                    <p>{author}</p>
+                    <p className="book-card-container-content-para">{author}</p>
                     <div className="book-card-container-content-rating">
-                        <FontAwesomeIcon icon={faStar} className="icon" />
+                        <StarFill className="icon" />
                         <div className="rating">
                             <Headings type="heading6" content={rating} />
                         </div>

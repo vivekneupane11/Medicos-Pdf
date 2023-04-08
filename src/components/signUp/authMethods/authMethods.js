@@ -1,6 +1,5 @@
-import firebase from "firebase";
-
-export const facebookProvider=new firebase.auth.FacebookAuthProvider();
-export const twitterProvider=new firebase.auth.TwitterAuthProvider();
-export const githubProvider=new firebase.auth.GithubAuthProvider();
-export const googleProvider=new firebase.auth.GoogleAuthProvider();
+import {FacebookAuthProvider,TwitterAuthProvider,GithubAuthProvider,GoogleAuthProvider} from 'firebase/auth'
+export const googleProvider = new GoogleAuthProvider();
+export const facebookProvider=new FacebookAuthProvider();
+export const twitterProvider=new TwitterAuthProvider();
+export const githubProvider=new GithubAuthProvider();

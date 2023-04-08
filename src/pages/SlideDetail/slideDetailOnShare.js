@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import {
     useParams
 } from "react-router-dom";
-import firebase from "firebase";
+// import firebase from "firebase/compat/app";
+// import 'firebase/compat/auth';
+// import 'firebase/compat/firestore';
 import "./index.scss";
 
 
@@ -15,18 +17,29 @@ import SlideDescription from './components/slideDescription';
 import ImgSlider from './components/slider';
 import "./index.scss";
 import Loading from '../../components/loading';
+// import { getDoc } from 'firebase/firestore';
 const SlideDetailOnShare = () => {
     const { user } = useContext(AuthContext);
     const { slideDocId } = useParams();
     const [data, setData] = useState()
-    useEffect(() => {
+    const getFirebaseAll = () => {
+        return Promise.all([
+          import('../../../firebase/firestore'),
+        ]).then(([ firestore]) => {
+          return { firestore };
+        });
+      };
+    useEffect(async() => {
         let isMounted = true;
         if (isMounted) {
             if (slideDocId) {
                 try {
-                    firebase.firestore().collection('AllSlidesDataLockDownVersions')
-                        .doc(slideDocId)
-                        .get()
+                const { firestore: { db, getDoc,doc } } = await getFirebaseAll()
+
+                    getDoc(doc(db,'AllSlidesDataLockDownVersions',slideDocId))
+                    // firebase.firestore().collection('AllSlidesDataLockDownVersions')
+                    //     .doc(slideDocId)
+                    //     .get()
                         .then((doc) => {
                             setData(doc.data())
                          
@@ -58,5 +71,4 @@ const SlideDetailOnShare = () => {
         </div>
     )
 }
-
 export default SlideDetailOnShare

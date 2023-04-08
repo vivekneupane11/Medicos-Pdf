@@ -1,16 +1,17 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './_buttonWithArrow.scss'
-import {HiArrowNarrowRight} from "react-icons/hi";
+import ArrowRightLong from '../../../../components/global/icons/arrorRight_Long';
 
 const ButtonWithArrow = ({name,link}) => {
 
     return (
         <div  className="homeButtonWithArrow-container">
-            <a href={link}> <button className="homeButtonWithArrow-container-btn">
+            <Link to={link}> <button className="homeButtonWithArrow-container-btn">
                 <span>{name}</span>
-                < HiArrowNarrowRight size={20} className="homeButtonWithArrow-container-btn-icon"/>  
+                <ArrowRightLong  className="homeButtonWithArrow-container-btn-icon"/>  
             </button>
-            </a>
+            </Link>
         </div>
     )
 }

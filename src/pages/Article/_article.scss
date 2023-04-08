@@ -1,8 +1,23 @@
 .article-wrapper{
     width: 100%;
+    .suspenseLoading{
+        padding: 200px 0;
+    }
+    .storiesForYou-Placeholder{
+        padding: 20px;
+                    // @include mobile{
+                    //     padding: 10px;
+                    // }
+                    // @include tablet{
+                    //     padding: 20px 10px;
+                    // }
+
+    }
 }
 
 .article-loading-wrapper{
-    padding-top: 100px;
-    padding-bottom: 100px;
+     padding-top: 100px;
+     padding-bottom: 100px;
+  
+
 }

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 @import '../../../../App.scss';
 
 .worldwide-wrapper{
@@ -60,6 +59,9 @@
                 padding:50px;
                 @include mobile{
                     padding: 30px;
+                }
+                .links{
+                    text-decoration: none;
                 }
                 &-heading{
                     font-size: 22px;

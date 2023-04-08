@@ -1,12 +1,13 @@
 import React from 'react';
 import SEO from '../../components/global/SEO';
+import img from '../../assets/images/bookbackg.webp'
 import './_termsAndServices.scss';
 
 export const TermsAndConditions = ({terms}) => {
     return (
         <div className="termsAndConditions-wrapper">
             
-             <SEO title='MedicosPDF terms and condition page' description='Terms and conditions of medicos PDf'/>
+             <SEO image={img} title='MedicosPDF terms and condition page' description='Terms and conditions of medicos PDf'/>
             <div className="termsAndConditions">
                 <div className="termsAndConditions-content">
                     <div className="termsAndConditions-content-muted-heading">
@@ -167,10 +168,10 @@ export const TermsAndConditions = ({terms}) => {
                       </div>
                    
                 </div>
-                <div className="termsAndConditions-button">
+                {/* <div className="termsAndConditions-button">
                    <button className="cancel">Not Right Now..</button>
                    <button className="accept">Accept the terms</button>
-                </div>
+                </div> */}
             </div>
 
             

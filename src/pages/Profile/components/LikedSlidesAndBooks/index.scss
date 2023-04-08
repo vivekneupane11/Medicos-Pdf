@@ -1,0 +1,46 @@
+@import '../../../../App.scss';
+
+.likedBookAndSlides-load-more-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.liked-slides-container{
+    margin-top: 15px;
+    // padding-left: 2px;
+    
+    @media only screen and (max-width: 1600px) and (min-width: 1000px)  {
+    
+            .slide-card{   width: 327px;
+        }
+      
+    }
+}
+.liked-books-container{
+    // background-color: #fdfdfd;
+    // padding: 30px 30px 30px 0;
+  
+    margin-top:10px;
+}
+.profileLikedBooks-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+
+    &-wrapper{
+        margin-bottom: 30px;
+        margin-right: 20px;
+        @include mobile{
+            margin-right: 0;
+        }
+
+    }
+}
+.profileLikedBooks-infoPara{
+    text-align: center;
+    padding: 30px 0;
+}

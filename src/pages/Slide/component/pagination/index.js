@@ -1,34 +1,87 @@
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faTimes, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
-// import "./_pagination.scss";
+import React, { useState,useCallback ,useContext,useEffect} from 'react'
+import { AuthContext } from '../../../../components/signUp/authMethods/authentication'
 
+// import "./_pagination.scss";
+import Loadable from 'react-loadable';
+import ArrowRight from '../../../../components/global/icons/arrow_right';
+import ArrowLeft from '../../../../components/global/icons/arrow_left';
+import DoubleArrowLeft from '../../../../components/global/icons/doubleArrow_left';
+import DoubleArrowRight from '../../../../components/global/icons/doubleArrow_right';
+
+const LoadableLoginModal =  Loadable({
+    loader: () => import('../../../../components/global/loginModel').then(module => module.LoginModal),
+    loading() {
+      return <div className='loading'>Loading...</div>
+    }
+  });
 const SlidePagination = ({ pages, activeColor,nextTrigger, previousTrigger, activeSlideTab, firstSlide, lastSlide }) => {
     // console.log(activeSlideTab, firstSlide, lastSlide, "activeSlideTap")
 
-    const [activePage, setActivePage] = useState(0);
+    const { user} = useContext(AuthContext);
+    const [showFormModel, setShowFormModel] = useState(false)
+    // const [activePage, setActivePage] = useState(0);
     const nextPage = () => {
         // if (activePage < pages.length - 1) {
         //     setActivePage(activePage + 1)
-            nextTrigger( activeSlideTab)
+
+                nextTrigger( activeSlideTab)
+              
+           
+           
         // }
     }
     const previousPage = () => {
         // if (activePage > 0) {
         //     setActivePage(activePage - 1)
+
             previousTrigger()
+        
         // }
     }
 
+    const FormModel = useCallback(
+        (dontShow) => {
+
+            if (dontShow === false) {
+                setShowFormModel(false)
+
+            }
+        },
+        [showFormModel],
+    )
+
+    useEffect(() => {
+        let isMounted=true
+
+        if(user){
+            setShowFormModel(false)
+        }
+        return () => {
+           isMounted=false
+        }
+    }, [user])
+
+    const clickhandlerpreviouspage = () => previousPage()
+    const clickhandlersetshowformmodel = () => setShowFormModel(true)
+    const clickhandlernextpage5 = () => nextPage()
+    const clickhandlerbuttoncircle = () => setShowFormModel(true)
     return (
         <div className="pagination-wrapper">
+            <LoadableLoginModal show={showFormModel} formModel={FormModel} />
             <div className="pagination-wrapper-container">
                 <div className="pagination-wrapper-container-button-circle">
-                    <FontAwesomeIcon className="pagination-wrapper-container-button-icon" icon={faAngleDoubleLeft} />
+                    <DoubleArrowLeft className="pagination-wrapper-container-button-icon"  />
                 </div>
-                <div className="pagination-wrapper-container-button-circle" onClick={() => previousPage()}>
-                    <FontAwesomeIcon className="pagination-wrapper-container-button-icon" icon={faChevronLeft} />
-                </div>
+                {
+                    user?
+                    <div className="pagination-wrapper-container-button-circle" onClick={clickhandlerpreviouspage}>
+                       <ArrowLeft className="pagination-wrapper-container-button-icon"  />
+                   </div>
+                   :
+                   <div className="pagination-wrapper-container-button-circle" onClick={clickhandlersetshowformmodel}>
+                      <ArrowLeft className="pagination-wrapper-container-button-icon"  />
+                   </div>
+                }
 
                 {/*{*/}
                 {/*    pages.map((page, index) => {*/}
@@ -53,16 +106,22 @@ const SlidePagination = ({ pages, activeColor,nextTrigger, previousTrigger, acti
                 {/*    })*/}
                 {/*}*/}
 
-                <div className="pagination-wrapper-container-button-circle" onClick={() => nextPage()}>
-                    <FontAwesomeIcon className="pagination-wrapper-container-button-icon" icon={faChevronRight} />
-                </div>
+               {
+                   user?
+                   <div className="pagination-wrapper-container-button-circle" onClick={clickhandlernextpage5}>
+                      <ArrowRight className="pagination-wrapper-container-button-icon"  />
+                  </div>
+                  :
+                  <div className="pagination-wrapper-container-button-circle" onClick={clickhandlerbuttoncircle}>
+                     <ArrowRight className="pagination-wrapper-container-button-icon"  />
+                  </div>
+               }
                 <div className="pagination-wrapper-container-button-circle">
-                    <FontAwesomeIcon className="pagination-wrapper-container-button-icon" icon={faAngleDoubleRight} />
+                    <DoubleArrowRight className="pagination-wrapper-container-button-icon"  />
                 </div>
 
             </div>
         </div>
     )
 }
-
 export default SlidePagination

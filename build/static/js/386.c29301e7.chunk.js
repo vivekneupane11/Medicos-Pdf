@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmedicos_pdf=self.webpackChunkmedicos_pdf||[]).push([[386],{20386:function(s,i,d){d.r(i),d.d(i,{default:function(){return n}});d(72791);var e=d(80184),n=function(){return(0,e.jsx)("div",{className:"loading-wrapper",children:(0,e.jsxs)("div",{className:"lds-ellipsis",children:[(0,e.jsx)("div",{}),(0,e.jsx)("div",{}),(0,e.jsx)("div",{}),(0,e.jsx)("div",{})]})})}}}]);
+//# sourceMappingURL=386.c29301e7.chunk.js.map

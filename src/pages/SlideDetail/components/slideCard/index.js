@@ -1,199 +1,634 @@
-import React, { useState, useContext } from 'react';
-import { RiShareForwardFill } from "react-icons/ri";
-
-import { GoComment } from "react-icons/go";
-
-import { BsArrowsAngleExpand } from "react-icons/bs";
-import { Paragraphs } from '../../../../components/global/paragraphs';
-import { Headings } from '../../../../components/global/headings'
-import { Link } from "react-router-dom";
-import "./index.scss";
-import { SlideDataContext } from '../../../Slide';
-import {
-    EmailShareButton,
-    FacebookMessengerShareButton,
-    FacebookShareButton,
-    TwitterShareButton,
-    TwitterIcon,
-    EmailIcon,
-    FacebookIcon,
-    FacebookMessengerIcon,
-
-} from "react-share";
+// import firebase from 'firebase/compat';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { Link, useLocation, useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
+import useTotalViews from '../../../../components/customHooks/totalViews';
+import ConfirmationModal from '../../../../components/global/confirmationModal';
+import { Headings } from '../../../../components/global/headings';
+import { AuthContext } from '../../../../components/signUp/authMethods/authentication';
+// import useLocalStorage from '../../../../customHooks/useLocalStorage';
 import { logEventWithParams } from '../../../../functions/commonMethod';
+import filterSlideSubCategory from '../../../../functions/filterSlideSubCategory';
+import "./index.scss";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import { getFirestore, getDoc, doc, onSnapshot, setDoc, deleteDoc, addDoc } from 'firebase/firestore';
+import useSlideLikeCount from '../../../../components/customHooks/SlideLikes';
+import ArrowRight from '../../../../components/global/icons/arrow_right';
+import HeartFill from '../../../../components/global/icons/heart_fill';
+import HeartOutline from '../../../../components/global/icons/heart_outline';
+import Delete from '../../../../components/global/icons/delete';
+import Eye from '../../../../components/global/icons/eye';
+import EditIcon from '../../../../components/global/icons/edit';
+import VerticleDots from '../../../../components/global/icons/dots_Verticle';
+import ShareIcon from '../../../../components/global/icons/share';
+import CommentBoxIcon from '../../../../components/global/icons/comment';
+import ExpandIcon from '../../../../components/global/icons/expand';
+import TagFill from '../../../../components/global/icons/tagFill';
+import { async } from '@firebase/util';
 
-const SlideCard = ({ title, description, images, wholeDatas, datas }) => {
-    const [checkShare, setCheckShare] = useState(false)
-    const slidesWholeData = useContext(SlideDataContext)
-    // console.log('from slideCard:', slidesWholeData)
-    const ShareUrl = encodeURI(`https://medicospdf.com/slideDetails/${datas?.SlideName}/${datas?.slideCategory}/${datas?.slideSubCategory.replace(/\s|\//g, "")}`);
-    let dividedPortion = 100 / images.filter((data, index) => (index < 5))?.length;
-    const [activeSlide, setActiveSlide] = useState(0);
-    // const [onHover, setOnHover] = useState(0);
+
+const SlideCard = ({ title, title2, description, images, datas, showModal, showShareModal }) => {
+    const { user,username } = useContext(AuthContext)
+    const { likeCount, slideLiked } = useSlideLikeCount(datas?.SlideName);
+    const [showFormModel, setShowFormModel] = useState(false)
+    const [optionCheck, setOptionCheck] = useState(false)
+    const [showEdit, setShowEdit] = useState(null);
+    const [pinState, setPinState] = useState(null)
+    const [showPin, setShowPin] = useState(null)
+
+    const totalViewsCount = useTotalViews('slidedetails', datas?.SlideName)
+    const [confirmModalShowState, setConfirmModalShowState] = useState(false)
+    const [confirmModalConfirmation, setConfirmModalConfirmation] = useState(false)
+    const [slideDocId, setSlideDocId] = useState(false)
+    const [istrue, setIstrue] = useState(true);
+
+
+    const { userId } = useParams();
+    const location = useLocation()
+    const ref = useRef()
+
+    let dividedPortion = useMemo(() => 100 / images?.filter((data, index) => (index < 5))?.length, []);
     const [progressValue, setProgressValue] = useState(dividedPortion);
 
-    const progressPercentage = (event) => {
-        let elementWidth = event.currentTarget.offsetWidth;
-        let widthPercentage = (event.nativeEvent.offsetX / elementWidth) * 100;
-        if (widthPercentage >= (dividedPortion * (activeSlide + 1))) {
-            if (activeSlide < images?.length - 1) {
-                setActiveSlide(activeSlide + 1);
-                setProgressValue((activeSlide + 2) * dividedPortion)
+    const [toggleLike] = useState(false);
+    // const db = getFirestore();
+    const getFirebaseAll = () => {
+        return Promise.all([
+          import('../../../../firebase/firestore'),
+        ]).then(([ firestore]) => {
+          return { firestore };
+        });
+      };
+
+
+
+
+
+
+    const likeSlide = async() => {
+        console.log('log is increasing')
+        try {
+    const { firestore: { db, doc,setDoc } } = await getFirebaseAll()
+
+            setDoc(doc(db, 'Web-Slide-Reviews', datas?.SlideName, 'Likes', 'Like-Count'),
+                {
+                    like_count: likeCount ? likeCount + 1 : 1,
+                })
+
+            if (username) {
+                setDoc(doc(db, 'Web-User-Data', username, 'LikedSlides', datas?.SlideName),
+                    {
+                        SlideName: datas?.SlideName,
+                        slideCategory: datas?.slideCategory,
+                        slideImages: datas?.slideImages,
+                        slideSubCategory: datas?.slideSubCategory,
+                        userAvatar: datas?.userAvatar ? datas?.userAvatar : null,
+                        username: datas?.username ? datas?.username : null 
+
+                    })
             }
 
-        } else if (widthPercentage < (dividedPortion * (activeSlide))) {
-            if (activeSlide > 0) {
-                setActiveSlide(activeSlide - 1);
-                setProgressValue((activeSlide) * dividedPortion)
-            }
 
+
+        } catch (error) {
+            console.log('Error liking slide', error)
         }
     }
-    const removeUnderscore=(str)=> {
+    const dislikeSlide = async() => {
+        try {
+    const { firestore: { db, doc,setDoc,deleteDoc } } = await getFirebaseAll()
+
+            setDoc(doc(db, 'Web-Slide-Reviews', datas?.SlideName, 'Likes', 'Like-Count'),
+                {
+                    like_count: likeCount && likeCount > 0 ? likeCount - 1 : 0,
+                })
+
+
+            if (username) {
+                deleteDoc(doc(db, 'Web-User-Data', username, 'LikedSlides', datas?.SlideName))
+            }
+
+
+        } catch (error) {
+            console.log('Error disliking slide', error)
+        }
+    }
+
+
+
+
+
+    const removeUnderscore = (str) => {
+        str = str.split("-", 1)[0]
         var i, frags = str.split('_');
-        for (i=0; i<frags.length; i++) {
-          frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+        for (i = 0; i < frags.length; i++) {
+            frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
         }
         return frags.join(' ');
-      }
-    return (
-        <div className="slide-card">
-            <Link
-                onClick={() => logEventWithParams("web_slide_opened", {
-                    slideTitle: title,
-                    slideCategory: datas.slideCategory,
-                    slideSubCategory: datas.slideSubCategory,
-                })}
-                className="slide-links"
-                style={{ textDecoration: 'none' }}
-                to={{
-                    pathname: `/slideDetails/${datas?.SlideName}/${datas?.slideCategory}/${datas?.slideSubCategory.replace(/\s|\//g, "")}`,
-                    state: {
-                        data: JSON.stringify(datas),
-                        wholeData: JSON.stringify(slidesWholeData),
-                    }
-                }}>
-                <div
-                    className="slide-card-image-container"
-                    onMouseOut={() => setActiveSlide(0)}
-                    onMouseMove={(event) => progressPercentage(event)}
-                >
+    }
 
-                    {images?.map((image, index) => {
-                        if (activeSlide == index) {
-                            return <img
-                                key={index}
-                                src={image}
-                                alt={description}
-                                className="slide-card-image"
-                            />
+
+    useEffect(() => {
+        let isMounted = true
+
+        if (isMounted && user?.uid) {
+            setShowFormModel(false)
+
+        }
+        return () => {
+            isMounted = false
+        }
+    }, [user?.uid])
+
+    const clickhandlerslideshare = () => logEventWithParams("web_slide_opened", {
+        slideTitle: title,
+        slideCategory: datas.slideCategory,
+        slideSubCategory: datas.slideSubCategory,
+    })
+    const clickhandlerslideshare2 = () => logEventWithParams("web_slide_opened", {
+        slideTitle: title,
+        slideCategory: datas?.slideCategory,
+        slideSubCategory: datas?.slideSubCategory
+    })
+    const clickhandlerslideshare3 = () => logEventWithParams("web_slide_categoryAndSubCategory_opened", {
+        slideCategory: datas?.slideCategory,
+        slideSubCategory: datas?.slideSubCategory
+    })
+
+    const clickhandlerrighticon0 = () => setShowFormModel(true)
+
+
+    useEffect(async() => {
+        let isMounted = true;
+        if (isMounted && username && datas?.SlideName) {
+            try {
+    const { firestore: { db, doc,getDoc } } = await getFirebaseAll()
+
+                getDoc(doc(db, 'UserUploadedSlides', username, 'slides', datas?.SlideName))
+                    .then((res) => {
+
+                        if (res?.exists() && isMounted) {
+                            setShowEdit(true)
                         }
-                    })}
 
-                    <div className="progress-indicator-container">
-                        <div className="progress-indicator-container-active" style={{ width: progressValue + "%" }}></div>
-                    </div>
-                </div>
+                    })
+            } catch (error) {
+                console.log("Error while fetching user's selected slides")
+            }
+        }
+        return () => {
+            isMounted = false;
+        }
+    }, [username, datas?.SlideName])
 
-            </Link>
 
-            <div className="slide-card-bottom">
-                <div className="description">
-                    <Link
-                        onClick={() => logEventWithParams("web_slide_opened", {
-                            slideTitle: title,
-                            slideCategory: datas?.slideCategory,
-                            slideSubCategory: datas?.slideSubCategory
-                        })}
-                        className="slide-links"
-                        style={{ textDecoration: 'none' }}
-                        to={{
-                            pathname: `/slideDetails/${datas?.SlideName}/${datas?.slideCategory}/${datas?.slideSubCategory.replace(/\s|\//g, "")}`,
-                            state: {
-                                data: JSON.stringify(datas),
-                                wholeData: JSON.stringify(slidesWholeData),
-                            }
-                        }}>
-                        <div className="title">
-                            <Headings type="heading5" content={removeUnderscore(description)} />
-                        </div>
-                        <Paragraphs content={title} />
-                    </Link>
-                </div>
-                <div className="slide-info">
-                    <div className="left">
-                        <div className="userInfo">
-                            <img className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images//slide/medicos.png").default} alt='MedicosPdf logo' />
-                            <Headings type="heading7" content={datas?.userEmail ? datas?.userEmail.replace(/@gmail.com/g,'') : "Medicos Int'l"} />
-                         
-                        </div>
-                    </div>
-                    <div className="right">
-                        <div className="right-comment-icon">
-                            <GoComment className="icon" />
-                       
-                        </div>
-                       
-                        <div className="shareOptions">
-                            <RiShareForwardFill className="shareIcon" onClick={() => setCheckShare(!checkShare)} />
-                            <div className={`sharePopUp ${checkShare ? 'sharePopUpActive' : ''}`}>
-                                <FacebookShareButton
-                                    url={ShareUrl}
-                                    quote={datas?.SlideName}
-                                    className="shareBtn"
-                                >
-                                    <FacebookIcon size={32} round />
-                                </FacebookShareButton>
+    useEffect(() => {
+        let isMounted = true
+        const checkIfClickedOutside = e => {
+            if (optionCheck && ref.current && !ref.current.contains(e.target)) {
+                setOptionCheck(false)
+            }
 
-                                <FacebookMessengerShareButton
-                                    appId={process.env.REACT_APP_ID}
-                                    url={ShareUrl}
-                                    title={datas?.SlideName}
-                                    className="shareBtn"
-                                >
-                                    <FacebookMessengerIcon size={32} round />
-                                </FacebookMessengerShareButton>
+        }
 
-                                <TwitterShareButton
-                                    url={ShareUrl}
-                                    title={datas?.SlideName}
-                                    className="shareBtn"
-                                >
-                                    <TwitterIcon size={32} round />
-                                </TwitterShareButton>
+        if (isMounted) {
 
-                                <EmailShareButton
-                                    body={ShareUrl}
-                                    subject={datas?.SlideName}
-                                    className="shareBtn"
-                                >
-                                    <EmailIcon size={32} round />
-                                </EmailShareButton>
+            document.addEventListener("mousedown", checkIfClickedOutside)
+        }
 
+
+        return () => {
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+            isMounted = false
+
+        }
+    }, [optionCheck])
+    const confirmDelete = (data) => {
+        if (data) {
+            setSlideDocId(data)
+            setConfirmModalShowState(true)
+        }
+
+    }
+    const cancelConfirmModal = useCallback(
+        (show) => {
+
+            if (show === false) {
+                setConfirmModalShowState(false)
+            }
+        }, []
+    )
+
+    const ConfirmModalConfirmation = useCallback(
+        (show) => {
+
+            if (show === true) {
+                setConfirmModalConfirmation(true)
+            }
+        }, []
+    )
+
+    useEffect(async() => {
+        let isMounted = true;
+
+        if (isMounted && confirmModalConfirmation && slideDocId) {
+            const deleteSlide = async(slideDocId) => {
+                if (username && slideDocId) {
+                    try {
+                    const { firestore: { db, doc,deleteDoc } } = await getFirebaseAll()
+
+                        deleteDoc(doc(db, 'UserUploadedSlides', username, 'slides', slideDocId))
+                            .then((res) => {
+                                toast.success("Deleted Successfully", { theme: 'dark', hideProgressBar: true })
+                                setConfirmModalShowState(false)
+                                setConfirmModalConfirmation(false)
+                            })
+                        deleteDoc(doc(db, `K-Slides-${datas?.slideCategory.replace(/\s|\//g, "")}-${datas?.slideSubCategory.replace(/\s|\//g, "")}`, datas?.SlideName))
+                        deleteDoc(doc(db, "AllSlidesDataLockDownVersions", datas?.SlideName))
+
+                    } catch (error) {
+                        console.log("Error while fetching user's selected slides")
+                    }
+                }
+            }
+            deleteSlide(slideDocId)
+        }
+        return () => {
+            isMounted = false
+        }
+    }, [confirmModalConfirmation, slideDocId, datas?.SlideName, username, datas?.slideCategory, datas?.slideSubCategory])
+
+
+    useEffect(() => {
+        let isMounted = true
+
+        if (isMounted) {
+            if (location.pathname.split('/').includes('profile')) {
+                setShowPin(true)
+            }
+
+
+        }
+        return () => {
+            isMounted = false
+        }
+    }, [showPin, location.pathname])
+
+
+    useEffect(async() => {
+        let isMounted = true
+        try{
+         const { firestore: { db, doc,onSnapshot } } = await getFirebaseAll()
+
+            if (isMounted && username && location.pathname.split('/').includes('profile')) {
+                const docRef = doc(db, 'Web-User-Data', username, 'Pinned-Slide', datas?.SlideName)
+                onSnapshot(docRef, (querySnapShot) => {
+                    if (querySnapShot?.data()) {
+                        setPinState(true)
+                    }
+    
+                })
+            }
+        }
+        catch(err){
+            console.log(err,'error')
+        }
+        return () => {
+            isMounted = false
+        }
+    }, [pinState, datas?.SlideName, location.pathname, username])
+
+
+    const handlePinSlide = async() => {
+        setPinState(!pinState)
+        try{
+    const { firestore: { db, doc,setDoc } } = await getFirebaseAll()
+
+            if (username) {
+                setDoc(doc(db, 'Web-User-Data', username, 'Pinned-Slide', datas?.SlideName),
+                    {
+                        SlideName: datas?.SlideName,
+                        slideCategory: datas?.slideCategory,
+                        slideImages: datas?.slideImages,
+                        slideSubCategory: datas?.slideSubCategory,
+                        userAvatar: datas?.userAvatar,
+                        username: datas?.username
+    
+                    })
+            }
+
+        }
+        catch{
+
+        }
+
+
+    }
+
+    const handleUnPinSlide = async() => {
+        setPinState(!pinState)
+        try{
+    const { firestore: { db, doc,deleteDoc } } = await getFirebaseAll()
+
+            if (username) {
+                deleteDoc(doc(db, 'Web-User-Data', username, 'Pinned-Slide', datas?.SlideName))
+            }
+        }
+        catch(err){
+            console.log(err,'errr')
+        }
+
+    }
+    const unpinhandeler=() => handleUnPinSlide()
+    const handelmodal=() => showModal(true)
+
+
+
+    return (
+        <>
+            {/* <LoginModal show={showFormModel} formModel={FormModel}/> */}
+            <ConfirmationModal show={confirmModalShowState} cancel={cancelConfirmModal} confirm={ConfirmModalConfirmation} />
+            <div className="slide-card">
+
+                {
+                    showPin && userId === username &&
+                    <div className='slideCardPin-container' onMouseOver={() => setIstrue(!istrue)} onMouseOut={() => setIstrue(!istrue)}>
+                        {
+                            pinState ?
+                            <div onClick={unpinhandeler}>
+
+                                <TagFill className='slideCardPin-container-icon'  />
                             </div>
-                        </div>
-                        <Link
-                            onClick={() => logEventWithParams("web_slide_opened", {
-                                slideTitle: title,
-                                slideCategory: datas?.slideCategory,
-                                slideSubCategory: datas?.slideSubCategory
-                            })}
-                            to={{
-                                pathname: `/slideDetails/${datas?.SlideName}/${datas?.slideCategory}/${datas?.slideSubCategory.replace(/\s|\//g, "")}`,
-                                state: {
-                                    data: JSON.stringify(datas),
-                                    wholeData: JSON.stringify(slidesWholeData),
-                                }
-                            }}>
-                            <BsArrowsAngleExpand className="downloadIcon" />
-                        </Link>
+                                :
+                                <div onClick={unpinhandeler}>
+
+                                    <TagFill className='slideCardPin-container-icon2'  />
+                                </div >
+                        }
+                        {!istrue &&
+                            <p className={`slideCardPin-container-tooltip ${istrue ? '' : `slideCardPin-container-tooltip-hide`}`}>{pinState ? 'Unpin' : 'Pin'}</p>
+                        }
+                    </div>
+                }
+
+
+                <Link
+                    onClick={clickhandlerslideshare}
+                    className="slide-links"
+                   
+                    to={{
+                        pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+                    }}>
+                    <div
+                        className="slide-card-image-container"
+                    >
+
+
+                        <LazyLoadImage
+                            key={'slide-thumbnails'}
+                            alt={'Slide thumbnail image'}
+                            effect="blur"
+                            src={images[0]}
+                            className="slide-card-image"
+                        />
+
+
+
+
+
                     </div>
 
-                </div>
-            </div>
+                </Link>
 
-        </div>
+                <div className="slide-card-bottom">
+                    <div className="description">
+                        <Link
+                            onClick={clickhandlerslideshare2}
+                            className="slide-links"
+                           
+                            to={{
+                                pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+                           
+                            }}>
+                            <div className="title">
+                                <Headings type="heading5" content={removeUnderscore(description)} />
+                            </div>
+                        </Link>
+                        {/* <Paragraphs content={title} /> */}
+                        <Link
+                            onClick={clickhandlerslideshare3}
+                            className="slide-links"
+                            to={{
+                                pathname: `/slidesubcategory/${datas?.slideCategory}/${(datas?.slideSubCategory)}`,
+                            }}>
+                            <div className='slideCard-categoryAndSubCategory'>
+                                <p>{title}</p>
+                                <ArrowRight className='slideCard-categoryAndSubCategory-icon' />
+                                <p>{title2}</p>
+                            </div>
+                        </Link>
+
+
+                        <div className='slideCard-likesAndViews-Container'>
+                            {
+                                likeCount > 0 &&
+                                <p className='slideCard-likesAndViews-Container-likes'>{likeCount} likes</p>
+                            }
+
+                            {
+                                totalViewsCount > 0 &&
+                                <div className='slideCard-likesAndViews-Container-views'>
+                                    <Eye className='slideCard-likesAndViews-Container-views-icon' />
+                                    <h6 className='slideCard-likesAndViews-Container-views-count'>{totalViewsCount}</h6>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div className="slide-info">
+                        {
+                            user ?
+                                <Link
+                                    className='slide-links'
+                                    to={{
+                                        pathname: `${datas.username ? `/profile/${datas?.username}` : '/profile/medicos.int7'}`,
+                                    }}>
+                                    <div className="left">
+                                        <div className="userInfo">
+                                            {/* {console.log('user data',datas)} */}
+                                            <LazyLoadImage className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' effect='blur'/>
+                                            {/* <img loading="lazy" className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' /> */}
+                                            <Headings type="heading7" content={datas?.username ? datas?.username : "Medicos Int'l"} />
+                                        </div>
+                                    </div>
+                                </Link>
+                                :
+                                <div onClick={handelmodal}>
+                                    <div className="left">
+                                        <div className="userInfo">
+                                        <LazyLoadImage className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' effect='blur'/>
+
+                                            {/* <img loading="lazy" className="profilePic" src={datas?.userAvatar ? datas?.userAvatar : require("../../../../assets/images/slide/medicos.webp").default} alt='MedicosPdf logo' /> */}
+                                            <Headings type="heading7" content={datas?.username ? datas?.username : "Medicos Int'l"} />
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+
+                        <div className="right">
+                            {
+                                user ?
+                                    <>
+                                        <TransitionGroup>
+                                            {
+                                                slideLiked ?
+
+                                                    <div className='right-likeDislikeContainer'onClick={dislikeSlide}>
+                                                        <CSSTransition
+                                                            timeout={300}
+                                                            in={true}
+                                                            appear={true}
+                                                            classNames="like"
+                                                        >
+                                                            <HeartFill  className='right-likeDislikeContainer-icon1' />
+                                                        </CSSTransition>
+                                                    </div>
+
+                                                    :
+                                                    <div className='right-likeDislikeContainer'onClick={likeSlide}>
+                                                        <HeartOutline  className='right-likeDislikeContainer-icon2' />
+                                                    </div>
+
+                                            }
+                                        </TransitionGroup>
+
+                                    </>
+                                    :
+                                    <>
+                                        {
+                                            toggleLike ?
+                                                <div className='right-likeDislikeContainer' onClick={handelmodal}>
+                                                    <HeartFill  className='right-likeDislikeContainer-icon1' />
+                                                </div>
+                                                :
+                                                <div className='right-likeDislikeContainer'onClick={handelmodal}>
+                                                    <HeartOutline  className='right-likeDislikeContainer-icon2' />
+                                                </div>
+                                        }
+
+                                    </>
+
+                            }
+
+
+
+                            {
+                                user ?
+                                    <Link
+                                        className="right-comment-icon"
+                                        onClick={clickhandlerslideshare2}
+                                        to={{
+                                            pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+                                      
+                                        }}>
+                                        <CommentBoxIcon className="icon" />
+                                    </Link>
+                                    :
+                                    <div className="right-comment-icon" onClick={clickhandlerrighticon0}>
+                                        <CommentBoxIcon className="icon"  />
+                                    </div>
+                            }
+
+                            {
+                                user ?
+                                    <div className="shareOptions" onClick={() => showShareModal(true, datas)}>
+                                        <ShareIcon className="shareIcon"  />
+                                    </div>
+                                    :
+                                    <div className="shareOptions" onClick={handelmodal}>
+                                        <ShareIcon className="shareIcon"  />
+                                    </div>
+                            }
+                            {
+                                showEdit &&
+                                <div className="profile-options-container" ref={ref}>
+                                    <div onClick={() => setOptionCheck(!optionCheck)}>
+
+                                    <VerticleDots className="profile-options-container-icon"  />
+                                    </div>
+                                    <div className={`profile-options-container-options ${optionCheck ? 'profile-options-container-options-Active' : ''}`}>
+                                        <Link
+                                            onClick={() => logEventWithParams("web_slide_opened", {
+                                                slideTitle: title,
+                                                slideCategory: datas?.slideCategory,
+                                                slideSubCategory: datas?.slideSubCategory
+                                            })}
+                                            to={{
+                                                pathname: `/uploadslide/${username}/${datas?.SlideName}`,
+                                            }}
+                                            className='slideCardProfile-options-editLink'
+                                        >
+
+                                            <EditIcon className="profile-expandIcon" />
+                                            <span>Edit</span>
+                                        </Link> 
+
+                                        <div className="slideCardProfile-delete" onClick={() => confirmDelete(datas?.SlideName)}>
+                                            <Delete className="profile-expandIcon" />
+                                            <span>Delete</span>
+                                        </div>
+
+                                        <Link
+                                            onClick={() => logEventWithParams("web_slide_opened", {
+                                                slideTitle: title,
+                                                slideCategory: datas?.slideCategory,
+                                                slideSubCategory: datas?.slideSubCategory
+                                            })}
+                                            to={{
+                                                pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+                                       
+                                            }}
+                                            className='slideCardProfile-options-expandLink'
+                                        >
+                                            <ExpandIcon className="profile-expandIcon" />
+                                            <span>Expand</span>
+                                        </Link>
+
+                                    </div>
+
+                                </div>
+                            }
+                            {
+                                !showEdit &&
+                                <Link
+                                    onClick={() => logEventWithParams("web_slide_opened", {
+                                        slideTitle: title,
+                                        slideCategory: datas?.slideCategory,
+                                        slideSubCategory: datas?.slideSubCategory
+                                    })}
+                                    to={{
+                                        pathname: `/slidedetails/${datas?.SlideName}/${datas?.slideCategory}/${filterSlideSubCategory(datas?.slideSubCategory)}`,
+                                   
+                                    }}>
+                                    <ExpandIcon className="downloadIcon" />
+                                </Link>
+                            }
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </>
     )
 }
 
-export default React.memo(SlideCard) ;
+
+export default React.memo(SlideCard);

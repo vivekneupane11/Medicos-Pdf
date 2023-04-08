@@ -1,11 +1,10 @@
 import React from 'react'
 import { Avatar, Images } from '../../../../components/global/images'
 import './_reviews.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReply, faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { Headings } from '../../../../components/global/headings'
-import { DisplayTitle } from '../../../../components/global/Titles'
-import { FiSend } from "react-icons/fi";
+import HeartFill from '../../../../components/global/icons/heart_fill';
+import EditIcon from '../../../../components/global/icons/edit';
+import SendIcon from '../../../../components/global/icons/send';
+import ShareIcon from '../../../../components/global/icons/share';
 
 export const Reviews = ({ profilePic, reviews, username }) => {
     return (
@@ -15,11 +14,11 @@ export const Reviews = ({ profilePic, reviews, username }) => {
                     <Avatar Image={profilePic} text={username} />
                 </div>
                 <div className="review-input-container-textarea">
-                    <FontAwesomeIcon className="edit" icon={faEdit} />
+                    <EditIcon className="edit"  />
                     <input
                         type="textfield" placeholder="Write your Reviews" />
-                    <div className="send">
-                        <FiSend />
+                    <div >
+                        <SendIcon className="send"/>
                     </div>
                 </div>
 
@@ -35,11 +34,11 @@ export const Reviews = ({ profilePic, reviews, username }) => {
                         <p>{review.review}</p>
                         <div className="button-container">
                             <div className="like">
-                                <FontAwesomeIcon className="like-icon" icon={faHeart} />
+                                <HeartFill className="like-icon" />
                                 <p>{review.likes} likes</p>
                             </div>
                             <div className="share">
-                                <FontAwesomeIcon className="share-icon" icon={faReply} />
+                                <ShareIcon className="share-icon"  />
                                 <p>{review.shares} shares</p>
                             </div>
                             <div className="time">

@@ -2,20 +2,22 @@ import React from 'react'
 import { useLocation } from 'react-router';
 import SEO from '../../components/global/SEO';
 import { DisplayTitle } from '../../components/global/Titles';
-import Loading from '../../components/loading';
+// import Loading from '../../components/loading';
 import SlideCard from '../SlideDetail/components/slideCard';
+import img from '../../assets/images/bookbackg.webp'
 import './_uploadedSlidePage.scss'
+import { SlideCardPlaceholder } from '../Slide/component/slideCardPlaceholder';
 
 const UploadedSlide = () => {
     const location = useLocation();
     const {uploadData} = location.state;
     let  uploadedSlides = JSON.parse(uploadData);
  
-    console.log('data in uploaded page:',uploadedSlides)
+
     return (
         <div className="slideUploaded-result-page-container">
 
-            <SEO title='MedicosPDF uploadedSlide Page' description='All the search results are shown in this page that includes uploaded slides' />
+            <SEO image={img} title='MedicosPDF uploadedSlide Page' description='All the search results are shown in this page that includes uploaded slides' />
             <div className="slideUploaded-result-page-book-section">
                
                 <div className="slideUploaded-result-page-book-section-head">
@@ -42,7 +44,7 @@ const UploadedSlide = () => {
                             {
                                 uploadedSlides?
                                     <div className="slideUploaded-search-loading">
-                                        <Loading />
+                                       <SlideCardPlaceholder/>
                                     </div>
                                     :
                                     <h3 className='slideUploaded-dataNotFound-head'>(◕︵◕) Sorry,Data not found</h3>
@@ -56,5 +58,4 @@ const UploadedSlide = () => {
         </div>
     )
 }
-
 export default UploadedSlide

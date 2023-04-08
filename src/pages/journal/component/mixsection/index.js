@@ -1,34 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
 import TextClamp from 'react-string-clamp';
-import { latestJournal } from '../../../../components/constants/mock'
 import NewsLinkTag from '../../../../components/global/newsLinkTag';
 import { SocialFollow } from '../../../Article/Component/SocialFollow';
 import AuthorDateRead from '../../../News/components/author-date-readTime';
 
 import { LatestJournal } from '../latestJournal'
 import './_mixsection.scss';
+import { getColorByIndex, getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
+import PagePagination from '../pagination/pagePagination';
 
 
 export const MixSection = ({ mostVisited, journalData = {} }) => {
-    const newTab = (url,title) => {
-        window.open(
-            url, "_blank");
-        // logEventWithParams('web_journals_detail_page_opened', { journalTitle: title })
-    }
-    // console.log('MixSection data',journalData)
+
     const allData = journalData;
 
     const refToTop = useRef();
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
     const PER_PAGE = 25;
+    const [active,setActive]=useState(false)
 
 
     const offset = currentPage * PER_PAGE;
     const currentPageData = data?.slice(offset, offset + PER_PAGE)
     const pageCount = Math.ceil(data?.length / PER_PAGE);
+    
 
 
     useEffect(() => {
@@ -43,37 +40,32 @@ export const MixSection = ({ mostVisited, journalData = {} }) => {
         }
     }, [allData])
 
-    const handlePageClick = ({ selected: selectedPage }) => {
-        setCurrentPage(selectedPage);
+    // const handlePageClick = ({ selected: selectedPage }) => {
+    //     setCurrentPage(selectedPage);
+    //     refToTop.current.scrollIntoView({ behavior: 'smooth' })
+    // }
+    const handlePageClick =  number => {
+        setCurrentPage(number);
+        setActive(true)
+        refToTop.current.scrollIntoView({ behavior: 'smooth' })
+    }
+    const handelPrev=()=>{
+        setCurrentPage(currentPage-1);
         refToTop.current.scrollIntoView({ behavior: 'smooth' })
     }
 
-
-
+    const handelNext=()=>{
+        setCurrentPage(currentPage+1);
+        refToTop.current.scrollIntoView({ behavior: 'smooth' })
+    }
     const recentJournalsData = allData?.sort(function (a, b) {
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
         return new Date(b?.isoDate) - new Date(a?.isoDate);
     });
-    //   const recentJournalsData = allData
 
-    const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
 
-    };
 
-    const getColorsByIndex = (index) => {
-        let color = "yellow";
-        if (index % 3 == 0) {
-            color = 'red'
-        } else if (index % 2 == 0) {
-            color = 'skyblue'
-        }
-        return color;
-    }
     return (
         <div className="mixsection-wrapper">
             <div className="mixsection-wrapper-content">
@@ -83,15 +75,15 @@ export const MixSection = ({ mostVisited, journalData = {} }) => {
                         {
                             // allData?.map((data,index)=>{
                             currentPageData?.map((data, index) => {
-                                let time_to_read = getReadingTime(data.content) + ' min read'
+                                let time_to_read = getReadTime(data.content) + ' min read'
 
                                 return <div className="mixsection-wrapper-content-col1-item-content" key={index}>
-                                    <NewsLinkTag color={getColorsByIndex(index)} tag={data?.creator} />
+                                    <NewsLinkTag color={getColorByIndex(index)} tag={data?.creator} />
                                     <Link
-                                        className="journal-mixSection-col1-links"
-                                        style={{ textDecoration: 'none' }}
+                                        className="mixsection-wrapper-content-col1-links"
+                                        
                                         to={{
-                                            pathname: '/journalDetails',
+                                            pathname: '/journaldetails',
                                             state: {
                                                 data: JSON.stringify(data),
                                             }
@@ -114,7 +106,7 @@ export const MixSection = ({ mostVisited, journalData = {} }) => {
                     </div>
 
                     <div className="mixsection-wrapper-content-col1-pagination">
-                        <ReactPaginate
+                        {/* <ReactPaginate
                             previousLabel={"<"}
                             nextLabel={">"}
                             pageCount={pageCount}
@@ -124,14 +116,16 @@ export const MixSection = ({ mostVisited, journalData = {} }) => {
                             nextLinkClassName={"pagination__link-next"}
                             disabledClassName={"pagination__link--disabled"}
                             activeClassName={"pagination__link--active"}
-                        />
+                        /> */}
+
+                        <PagePagination pagecount={pageCount} pageClick={handlePageClick} prevClick={handelPrev} nextClick={handelNext}/>
                     </div>
 
 
                 </div>
 
                 <div className="mixsection-wrapper-content-col2">
-                    <LatestJournal latestJournal={latestJournal} journalsData={mostVisited} />
+                    <LatestJournal  journalsData={mostVisited} />
                     <SocialFollow />
                 </div>
 

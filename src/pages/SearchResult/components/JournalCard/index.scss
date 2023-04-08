@@ -1,0 +1,92 @@
+@import '../../../../App.scss';
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+
+.journal-card-wrapper{
+    background-color: red;
+    padding: 20px 30px;
+    width: 25%;
+   &-content{
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+       @include tablet{
+        flex-direction: column;
+    }
+       @include mobile{
+           flex-direction: column;
+       }
+        &-col1{
+            // position: sticky;
+            // align-self: flex-start;
+            // top: 100px;
+            // left: 0;
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            @include tablet{
+                position: relative;
+                width: 100%;
+            }
+            @include mobile{
+                position: relative;
+                width: 100%;
+            }   
+           
+            
+            &-heading{
+            // padding-bottom: 10px;
+                border-bottom: 1px solid gray;
+                color: #0f0e0e;
+               
+            }
+       
+            &-item{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            &-content{
+                padding: 20px 0;
+                width: 48%;
+                @include mobile{
+                    width: 100%;
+                }
+                &-heading{
+                    color: #0f0e0e;
+                    font-size: 18px;
+                    font-weight: 800;
+                    font-family: 'Nunito';
+                    margin: 15px 0;
+                    line-height: 1;
+                    cursor: pointer;
+                    &:hover{
+                        color: $--primary ;
+                    }
+                }
+                &-para{
+                    margin-bottom: 15px;
+                    color: rgba(117, 117, 117, 1);
+                }
+            }
+       
+            
+        }
+
+        &-pagination{
+            margin: 15px 0;
+        }
+    }
+    &-col2{
+        width: 30%;
+        @include tablet{
+            width: 100%;
+            margin-top: 120px;
+        }
+        @include mobile{
+            width: 100%;
+            margin-top: 120px;
+        }
+        
+    }
+   }
+}
+

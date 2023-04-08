@@ -30,7 +30,7 @@
         height: 50px;
         // background-color:red;
         display: flex;
-        box-shadow: 2px 5px 15px rgba(128, 128, 128, 0.3);
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
         .edit{
            color: gray;
             font-size: 20px;
@@ -46,12 +46,14 @@
         border-style: none;
     }
     .send{
-        transform: rotate(45deg);
+        transform: rotate(90deg);
         font-size: 30px;
         // margin-left: 5px;
         color: gray;
         cursor: pointer;
-        
+        &:hover{
+            color: $--primary;
+        }
     }
 }
 

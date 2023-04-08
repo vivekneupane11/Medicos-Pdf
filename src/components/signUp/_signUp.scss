@@ -11,12 +11,9 @@
     background-size: cover;
 }
 .WholeContainer{
-    // background-image: url('./../../images/registerbg.png');
     width: 100%;
     padding-top: 20px;
-    // height: 550px;
-    // background-repeat: no-repeat;
-    // background-size: cover;
+    
     
 .WholeContainer-wrapper{
     margin: 20px auto;
@@ -150,6 +147,7 @@
                 &-icon{
                     transform: translate(30px,20px);
                     color: #8898aa;
+                    height: 30px;
                 }
                 input{
                     color: #8898aa;
@@ -178,6 +176,7 @@
                 &-icon{
                     transform: translate(30px,20px);
                     color: #8898aa;
+                    height: 30px;
                 }
                 input{
                     color: #8898aa;
@@ -364,6 +363,7 @@
                 &-icon{
                     transform: translate(30px,20px);
                     color: #8898aa;
+                    height: 25px;
                 }
                 input{
                     color: #8898aa;

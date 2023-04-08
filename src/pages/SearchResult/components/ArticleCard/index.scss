@@ -1,0 +1,83 @@
+@import '../../../../App.scss';
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+
+.article-card {
+    @include tablet {}
+
+    &-content {
+        @include tablet {
+            width: 48%;
+        }
+
+        @include mobile {
+            width: 100%;
+        }
+
+        // background-color: red;
+        width:350px;
+        padding: 20px 0;
+
+        &-image {
+            @include tablet {
+                height: 250px;
+            }
+
+            @include mobile {
+                height: 250px;
+            }
+
+            width: 100%;
+            height: 200px;
+            border-radius: 5px;
+            background-size: cover;
+            background-color: transparent;
+            background-blend-mode: overlay;
+            cursor: pointer;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background: #f2f2f2;
+                border-width: 0;
+                border-style: solid;
+                display: block;
+                border-color: $--primary transparent transparent $--primary;
+                transition: all 0.25s linear;
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+                transition: background-color 0.25s linear;
+
+                &::after {
+                    border-width: 20px;
+                    transition: all 0.25s linear;
+                }
+
+
+            }
+        }
+
+        &-bottom {
+            margin-top: 20px;
+
+            &-heading {
+                font-size: 24px;
+                font-family: 'Nunito';
+                font-weight: 800;
+                margin: 10px 0;
+                line-height: 1;
+                cursor: pointer;
+                color: #0f0e0e;
+
+                &:hover {
+
+                    color: $--primary;
+                }
+            }
+        }
+    }
+}

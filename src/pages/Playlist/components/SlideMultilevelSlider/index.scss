@@ -1,0 +1,114 @@
+@import '../../../../App.scss';
+
+.playlist-select-your-slide-container{
+    padding:20px 20px 20px 0;
+  
+  
+    .slide-card{
+        width:100%;
+        margin-bottom: 50px;
+        .slide-card-image-container {
+            height:145px;
+         
+        }
+        .slide-card-bottom .description .title h5{
+            font-size: 14px;
+            padding: 2px 10px 2px 0px;
+        }
+      
+        .slideCard-categoryAndSubCategory{
+            p{
+                font-size: 13px;
+            }
+        }
+        .slideCard-likesAndViews-Container{
+            display: none;
+        }
+        .slide-card-bottom .slide-info .right{
+            display: none;
+        }
+    }
+    .selected-count{
+        padding: 10px 0;
+        color:lightgray;
+    }
+    .swiper-container{
+        margin-top: 10px;
+    }
+    .swiper-button-next, .swiper-container-rtl, .swiper-button-prev, .swiper-button-prev, .swiper-button-disabled, .swiper-button-next, .swiper-button-disabled {
+      
+        background: #ffffff;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        
+        @include mobile{
+            
+            transform: translateY(-25px);
+        }
+        /* font-size: 12px; */
+    }
+    .swiper-button-prev:after, .swiper-button-next:after {
+        font-size: 20px !important;
+        color:$--primary;
+        @include mobile{
+            font-size: 15px !important;
+        }
+    }
+.swiper-button-disabled{
+   display: none;
+}
+    .playlist-slide-container{
+
+        .playlist-checkbox-selected{
+  
+            background-color: rgba(0, 0, 0, 0.4);
+      
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+            position: absolute;
+            z-index: 1;
+         height:145px;
+         width: 98%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .playlist-checkbox-icon-selected{
+                color:#ffffff;
+                transition: 0.2s all linear;
+                height: 50px;
+            }
+            .playlist-checkbox-icon-selected-active{
+                color:$--primary;
+            }
+           &:hover{
+            .playlist-checkbox-icon-selected{
+    
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            }
+           } 
+        }
+        
+// .playlist-checkbox{
+//     display: inline-block;
+//     position: absolute;
+//     background-color: rgba(0, 0, 0, 0.1);
+//     padding: 4px 10px 10px 10px;
+//     border-top-right-radius: 12px;
+//     z-index: 100;
+//     top:0px;
+//     right:5px;
+//     cursor: pointer;
+//    &:hover{
+//     .playlist-checkbox-icon{
+// color:white;
+// box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+//     }
+//    } 
+// }
+
+
+    }
+}

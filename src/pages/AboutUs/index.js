@@ -1,11 +1,12 @@
 import React from 'react'
 import SEO from '../../components/global/SEO'
+import img from '../../assets/images/bookbackg.webp'
 import './_aboutUs.scss'
 const AboutUs = () => {
     return (
         <div className="aboutUs-container">
           
-             <SEO title='MedicosPDF About us page' description='The journey of medicos pdf tells the story of colaboration of medical and IT field....'/>
+            <SEO image={img} title='MedicosPDF About us ' description='The journey of medicos pdf tells the story of colaboration of medical and IT field..Provides thousands of medical books, slides, articles, news, journals in one app.Useful for quick reference to bedside history taking and clinical examinations.Easy guide for ECG/EKG interpretation and practice with more than 100 real cases.Best app for bedside pediatric ward posting useful for students, doctors and nurses.Contains notes and handmade diagrams for anatomy histology covering all topics.This is offline abbreviation system which lets user to discover medical short form and terms found in health records or medical documentation, medical prescriptions, descriptions of health conditions, treatments, diseases or surgeries in daily life.Useful for users wanting quick reference to contents while they are in bedside classes taking history and performing clinical examination of surgery.'/>
             <div className="aboutUs-container-wrapper">
                 <div className="aboutUs-container-wrapper-main">
                      <h2 className='aboutus-h2'>About Us:</h2>

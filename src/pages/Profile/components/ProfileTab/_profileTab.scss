@@ -1,0 +1,92 @@
+@import '../../../../App.scss';
+
+.profileTab-wrapper{
+    display: flex;
+    // background-color: #f8f7fc;
+    padding: 0px 100px;
+    justify-content: space-between;
+    align-items: center;
+    //@at-root: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    // padding: 5px;
+    @include mobile{
+       
+        padding: 0px 25px;
+        //flex-wrap: wrap;
+
+    }
+    @include tablet{
+        padding: 0px 50px;
+
+    }
+    
+    &-item{
+        text-align: center;
+        padding: 20px 40px;
+        cursor: pointer;
+        text-decoration: none;
+        p{
+            @include mobile{
+                font-size: 10px;
+            }
+           
+            
+        }
+        
+        @include mobile{
+            padding: 5px 10px;
+
+        }
+        @include tablet{
+            padding: 10px 30px;
+        }
+        &-active{
+           // padding: 8px 38px;
+           text-align: center;
+           padding: 20px 40px;
+            // background-color:white;
+            text-decoration: none;
+            cursor: pointer;
+            // color: black;
+            p{
+                color: $--primary;
+            }
+            border-bottom: 3px solid $--primary;
+            //border: 1px solid #ebecf0;
+            // box-shadow: 0 5px 10px rgba(50,50,93,0), 0 3px 6px rgba(0 ,0,0,.1);
+            // border-radius: 5px;
+            p{
+                @include mobile{
+                    font-size: 10px;
+                }
+               
+                
+            }
+            
+            @include mobile{
+                padding: 5px 10px;
+    
+            }
+            @include tablet{
+                padding: 10px 30px;
+            }
+            
+        }
+
+    }
+}
+.profileTab-body-wrapper{
+    padding: 15px 100px 15px 100px;
+    background-color: #f8f7fc;
+    .suspenseLoading{
+        padding: 200px 0;
+    }
+    @include mobile{
+        padding: 15px 25px;
+    }
+    @include tablet{
+        padding: 15px 50px;
+    }
+}

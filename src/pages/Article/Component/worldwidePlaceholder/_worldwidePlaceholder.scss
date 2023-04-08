@@ -1,0 +1,28 @@
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+
+.worldwidePlaceholder-wrapper{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    @include mobile{
+        flex-direction: column;
+    }
+    &-image{
+        margin: 10px 0;
+        width: 30%;
+        height:380px;
+        background-color: #f6f7f8;
+        border-radius: 5px;
+        @include tablet{
+            width: 48%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+
+    }
+}

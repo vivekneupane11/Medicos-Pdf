@@ -1,17 +1,24 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import {
     useLocation,
     useParams
 } from "react-router-dom";
-import firebase from "firebase";
+// import firebase from "firebase/compat/app";
+// import 'firebase/compat/auth';
+// import 'firebase/compat/firestore';
 
 
 //LOCAL IMPORTS
-import { AiOutlineShareAlt, AiOutlineExclamationCircle, AiFillStar } from "react-icons/ai";
+// import { AiOutlineShareAlt, AiOutlineExclamationCircle, AiFillStar } from "react-icons/ai";
 import "./index.scss";
 import Loading from '../../components/loading';
+// import { getDoc } from 'firebase/firestore';
+import StarFill from '../../components/global/icons/star_fill';
+import ShareIcon from '../../components/global/icons/share';
+import ExclamanationCircle from '../../components/global/icons/exclamanationCircle';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 
 const transition = { duration: .4, ease: [0.6, 0.01, -0.05, 0.9] };
@@ -48,15 +55,25 @@ const BookDetailOnShare = () => {
     const { bookDocId } = useParams();
     // const { user } = useContext(AuthContext);
     const [data, setData] = useState()
+    const getFirebaseAll=()=>{
+        return Promise.all([
+            import('../../firebase/firestore')
+        ])
+        .then(([firestore])=>{
+            return{firestore}
+        })
+    }
 
-    useEffect(() => {
+    useEffect(async() => {
         let isMounted = true;
         if (isMounted) {
             if (bookDocId) {
                 try {
-                    firebase.firestore().collection('K-Books')
-                        .doc(bookDocId)
-                        .get()
+                    const{firestore:{db,getDoc}}=await getFirebaseAll()
+                    getDoc(doc(db,'K-Books',bookDocId))
+                    // firebase.firestore().collection('K-Books')
+                    //     .doc(bookDocId)
+                    //     .get()
                         .then((doc) => {
                             setData(doc.data())
                      
@@ -77,108 +94,69 @@ const BookDetailOnShare = () => {
         <div>
             {
                 data ?
-                    <motion.div
-                        initial={{
-                            y: 400,
-                            opacity: 0,
-                        }}
-                        animate={{
-                            y: 0,
-                            opacity: 1,
-                        }}
-                        transition={{ delay: .1, ...transition }}
+                    <div
+                      
                         className="book-detail-page">
                         <div className="book-detail-page-wrapper">
                             <div className="book-detail-page-wrapper-book-detail-section">
                                 <div className="book-detail-page-wrapper-book-detail-section-container">
-                                    <motion.img
-                                        variants={imgVariants}
-                                        initial='initial'
-                                        animate='animate'
-                                        transition={{ delay: .2, ...transition }}
-                                        src={data.image} />
+                                    {/* <img src={data.image} /> */}
+                                    <LazyLoadImage src={data.image} alt='bookimage' effect='blur'/>
                                     <div className="book-detail-page-wrapper-book-detail-section-container-content">
                                         <div className="book-title-section">
-                                            <motion.div
-                                                variants={animate}
-                                                initial='initial'
-                                                animate='animate'
-                                                transition={{ delay: .2, ...transition }}
+                                            <div
+                                            
                                                 className="book-title">
                                                 <h4>{data.title}</h4>
-                                            </motion.div>
-                                            <motion.div
-                                                variants={animate}
-                                                initial='initial'
-                                                animate='animate'
-                                                transition={{ delay: .2, ...transition }}
+                                            </div>
+                                            <div
+                                           
                                                 className="icon-container">
                                                 <div className="share">
-                                                    <AiOutlineShareAlt className="icon" />
+                                                    <ShareIcon className="icon" />
                                                 </div>
-                                                <AiOutlineExclamationCircle className="icon" />
-                                            </motion.div>
+                                                <ExclamanationCircle className="icon" />
+                                            </div>
                                         </div>
                                         <div className="book-rating-section">
-                                            <motion.div
-                                                variants={animate}
-                                                initial='initial'
-                                                animate='animate'
-                                                transition={{ delay: .3, ...transition }}
+                                            <div
+                                            
                                                 className="star-container">
-                                                <AiFillStar className="icon" />
-                                                <AiFillStar className="icon" />
-                                                <AiFillStar className="icon" />
-                                                <AiFillStar className="icon" />
-                                                <AiFillStar className="icon" />
+                                                <StarFill className="icon" />
+                                                <StarFill className="icon" />
+                                                <StarFill className="icon" />
+                                                <StarFill className="icon" />
+                                                <StarFill className="icon" />
                                                 <h6>{data.rating}</h6>
-                                            </motion.div>
+                                            </div>
                                             <div className="views">
-                                                <motion.p
-                                                    variants={animate}
-                                                    initial='initial'
-                                                    animate='animate'
-                                                    transition={{ delay: .3, ...transition }}
-                                                >5K Views</motion.p>
+                                                <p
+                                              
+                                                >5K Views</p>
                                             </div>
                                         </div>
                                         <div className="book-summary-section">
-                                            <motion.h6
-                                                variants={animate}
-                                                initial='initial'
-                                                animate='animate'
-                                                transition={{ delay: .4, ...transition }}
-                                            >Summary</motion.h6>
+                                            <h6
+                                             
+                                            >Summary</h6>
                                             <div className="summary">
-                                                <motion.p
-                                                    variants={animate}
-                                                    initial='initial'
-                                                    animate='animate'
-                                                    transition={{ delay: .4, ...transition }}
-                                                >{data.description}</motion.p>
+                                                <p
+                                                
+                                                >{data.description}</p>
                                             </div>
                                         </div>
                                         <div className="book-author-section">
-                                            <motion.h6
-                                                variants={animate}
-                                                initial='initial'
-                                                animate='animate'
-                                                transition={{ delay: .5, ...transition }}
-                                            >Author</motion.h6>
+                                            <h6
+                                              
+                                            >Author</h6>
                                             <div className="summary">
-                                                <motion.p
-                                                    variants={animate}
-                                                    initial='initial'
-                                                    animate='animate'
-                                                    transition={{ delay: .5, ...transition }}
-                                                >{data.writer}</motion.p>
+                                                <p
+                                               
+                                                >{data.writer}</p>
                                             </div>
                                         </div>
-                                        <motion.div
-                                            variants={animate}
-                                            initial='initial'
-                                            animate='animate'
-                                            transition={{ delay: .6, ...transition }}
+                                        <div
+                                         
                                             className="book-button-container">
                                             <a href={data?.link}>
                                                 <Button type="info-outline-rounded" label="Download Now" labelColor="white" />
@@ -187,13 +165,13 @@ const BookDetailOnShare = () => {
                                             <div className="right-button" >
                                                 <Button type="info-outline-rounded" label="Preview" labelColor="white" />
                                             </div> */}
-                                        </motion.div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                    </motion.div>
+                    </div>
                     :
                     <div className="book-detail-loading-wrapper">
                         <Loading />

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import firebase from 'firebase';
+// import firebase from 'firebase/compat';
+// import { collection, doc, getDoc, getFirestore, limit, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-
+import useViewsCount from '../../components/customHooks/viewsCount';
 //LOCAL IMPORTS
 import SEO from '../../components/global/SEO';
 import Loading from '../../components/loading';
@@ -10,8 +11,6 @@ import NewsDetailRelatedPosts from '../NewsDetail/components/newsDetailsRelatedP
 import NewsDetailBottomFullContainer from './components/newsDetailBottomFullContainer';
 import TopBackground from './components/topBackground';
 import "./index.scss";
-
-
 
 
 const NewsDetail = () => {
@@ -22,39 +21,27 @@ const NewsDetail = () => {
   const [articleDataSecond, setArticleDataSecond] = useState([])
   const [articleDataThird, setArticleDataThird] = useState([])
   const [articleDataFourth, setArticleDataFourth] = useState([])
-
-
-
-  const [scrollTop, setScrollTop] = useState(0);
-  const onScroll = () => {
-    const winScroll = document.documentElement.scrollTop;
-    // console.log(winScroll);
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    // console.log(height);
-    const scrolled = (winScroll / height) * 100;
-    setScrollTop(scrolled);
+  // const db =getFirestore();
+  const getFirebaseAll=()=>{
+    return Promise.all([
+      import('../../firebase/firestore')
+    ])
+    .then(([firestore])=>{
+      return{firestore}
+    })
   }
 
+ const viewCount=useViewsCount(articleTitle)
 
-
-  useEffect(() => {
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-
-  }, [])
-
-
-  useEffect(() => {
+  useEffect(async() => {
     let isMounted = true;
     try {
-      firebase.firestore().collection('Web-Articles')
-        .doc(articleSource)
-        .collection('Articles')
-        .doc(articleTitle)
-        .onSnapshot((querySnapshot) => {
-     
-          if (querySnapshot.exists && isMounted) {
+      const {firestore:{db,doc,onSnapshot}}=await getFirebaseAll()
+        const colRef=doc(db,'Web-Articles',articleSource,'Articles',articleTitle)
+        
+        onSnapshot(colRef,(querySnapshot) => {
+
+          if (querySnapshot.exists() && isMounted) {
             setArticleData(querySnapshot.data().data)
           }
         })
@@ -64,15 +51,14 @@ const NewsDetail = () => {
     return () => {
       isMounted = false
     }
-  }, [articleSource,articleTitle])
+  }, [articleSource, articleTitle])
 
-  useEffect(() => {
+  useEffect(async() => {
     let isMounted = true;
     try {
-      firebase.firestore().collection('Web-Articles')
-        .doc(articleSource)
-        .collection('Articles')
-        .onSnapshot((querySnapshot) => {
+      const{firestore:{db,collection,onSnapshot}}=await getFirebaseAll()
+        const colRef=collection(db,'Web-Articles',articleSource,'Articles')
+        onSnapshot(colRef,(querySnapshot) => {
           if (!querySnapshot.empty && isMounted) {
             let relatedArticlesData = []
             querySnapshot.forEach((doc) => {
@@ -87,9 +73,9 @@ const NewsDetail = () => {
     return () => {
       isMounted = false
     }
-  }, [])
+  }, [articleSource])
 
-  useEffect(async () => {
+  useEffect(() => {
     let isMounted = true;
     async function addArticle(source, docId) {
       await axios.get(source).then((response) => {
@@ -99,37 +85,53 @@ const NewsDetail = () => {
             response?.data.map(async data => {
               if (data._links["wp:featuredmedia"][0].href) {
                 let image = await axios.get(data._links["wp:featuredmedia"][0].href,)
-           
-                data.image = image.data.media_details.sizes.medium;
+
+                data.image = image.data.media_details.sizes.full;
+                console.log('CHECKING IMAGE',data.image);
                 return data;
               }
             })
-          ).then(data => {
+          ).then(async(data) => {
             // console.log('This is article dataaaa',data);
             // ADD ARTICLE OF RESPECTIVE SOURCE
             // ADD EXPIRATION DATE FOR ARTICLE
-            let expiry_date = new Date();
-            expiry_date.setDate(expiry_date.getDate() + parseInt(1))
-            firebase.firestore().collection('Web-Articles')
-              .doc("expiry")
-              .set({
+            // firebase.firestore().collection('Web-Articles')
+            //   .doc("expiry")
+            //   .set({
+              //     expiry_date: expiry_date.toISOString()
+              //   })
+             try {
+               const {firestore:{db,setDoc,doc}}=await getFirebaseAll()
+              let expiry_date = new Date();
+              expiry_date.setDate(expiry_date.getDate() + parseInt(1))
+              setDoc(doc(db,"Web-Articles","expiry"),{
                 expiry_date: expiry_date.toISOString()
               })
               .then(() => {
                 data?.map((article) => {
-               
-                  firebase.firestore().collection('Web-Articles')
-                    .doc(docId)
-                    .collection('Articles')
-                    .doc(article?.title?.rendered.replace(/\/|\[|\]/g, ''))
-                    .set({
-                      data: article,
-                      date: article?.modified,
-                      sourceDocId: docId
-                    })
+
+                  // firebase.firestore().collection('Web-Articles')
+                  //   .doc(docId)
+                  //   .collection('Articles')
+                  //   .doc(article?.title?.rendered.replace(/\/|\[|\]/g, ''))
+                  //   .set({
+                  //     data: article,
+                  //     date: article?.modified,
+                  //     sourceDocId: docId
+                  //   })
+                  setDoc(doc(db,'Web-Articles',docId,'Articles',article?.title?.rendered.replace(/\/|\[|\]/g, ''),
+                          {
+                            data: article,
+                            date: article?.modified,
+                            sourceDocId: docId
+                          }))
                 })
                 setAllArticles((init) => [...init, data]);
               })
+               
+             } catch (error) {
+               
+             }
             // return response.data?.items;
           })
         }
@@ -139,25 +141,31 @@ const NewsDetail = () => {
     }
     async function fetchArticle(source, docId) {
       try {
-   
-        await firebase.firestore().collection('Web-Articles')
-          .doc(docId)
-          .collection('Articles')
-          .orderBy('date', 'desc')
-          .limit(100)
-          .onSnapshot(async (querySnapshot) => {
+        const {firestore:{db,collection,onSnapshot,query,limit,getDoc,doc,orderBy}}=await getFirebaseAll()
+
+        // await
+        //  firebase.firestore().collection('Web-Articles')
+        //   .doc(docId)
+        //   .collection('Articles')
+        //   .orderBy('date', 'desc')
+        //   .limit(100)
+        const colref=query(collection(db,'Web-Articles',docId,'Articles'),
+        orderBy('date', 'desc'),
+        limit(100))
+          await onSnapshot(colref,async (querySnapshot) => {
             // console.log("ARTICLE DATA DOC", querySnapshot);
 
             //CHECKS IF WEB ARTICLE COLLECTION EXISTS OF RESPECTIVE SOURCES
             if (!querySnapshot.empty) {
-           
-              return await firebase.firestore().collection('Web-Articles')
-                .doc("expiry")
-                .get()
+
+              //  firebase.firestore().collection('Web-Articles')
+              //   .doc("expiry")
+              //   .get()
+              return await getDoc(doc(db,"Web-Articles","expiry"))
                 .then((res) => {
                   //CHECKS EXPIRY DATE OF ARTICLE TO UPDATE ARTICLE DATA 
                   if (res.data().expiry_date < new Date().toISOString()) {
-                  
+
                     addArticle(source, docId)
                   } else {
                     //FETCHING ARTICLE FROM FIREBASE
@@ -165,7 +173,7 @@ const NewsDetail = () => {
                     querySnapshot.forEach((doc) => {
                       fetchedData.push(doc.data().data)
                     })
-                    console.log("firebase DATA FETCHED");
+                  
                     if (isMounted) {
                       setAllArticles((init) => [...init, fetchedData]);
                     }
@@ -182,9 +190,9 @@ const NewsDetail = () => {
       }
     }
     if (isMounted) {
-      await fetchArticle('https://medschoolinsiders.com/wp-json/wp/v2/posts', 'medschoolinsiders')
-      await fetchArticle('https://thenepalidoctor.com/wp-json/wp/v2/posts', 'thenepalidoctor')
-      await fetchArticle('https://amedstudentsjourney.com/wp-json/wp/v2/posts', 'amedstudentsjourney')
+       fetchArticle('https://medschoolinsiders.com/wp-json/wp/v2/posts', 'medschoolinsiders')
+       fetchArticle('https://thenepalidoctor.com/wp-json/wp/v2/posts', 'thenepalidoctor')
+       fetchArticle('https://amedstudentsjourney.com/wp-json/wp/v2/posts', 'amedstudentsjourney')
     }
     return (() => {
       isMounted = false
@@ -194,37 +202,69 @@ const NewsDetail = () => {
     let isMounted = true;
     if (isMounted) {
       allArticles.map((article, index) => {
-        if (index == 0 && isMounted) {
+        if (index === 0 && isMounted) {
           setArticleDataSecond(article)
-        } else if (index == 1 && isMounted) {
+        } else if (index === 1 && isMounted) {
           setArticleDataThird(article)
-        } else if (index == 2 && isMounted) {
+        } else if (index === 2 && isMounted) {
           setArticleDataFourth(article)
         }
       })
     }
-  }, [allArticles?.length])
+  }, [allArticles])
 
-
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://google.com/article"
+    },
+    "headline": articleData?.title?.rendered,
+    "image": [
+     articleData?.image?.source_url
+    ],
+    "datePublished": new Date(articleData?.date).toDateString(),
+    "dateModified": new Date(articleData?.date).toDateString(),
+    "author": {
+      "@type": "Person",
+      "name": "Medicos",
+      "url": "https://play-lh.googleusercontent.com/g5GanfEH-tDgbGkyoGJ2HQ3nU6uMU7t__m-qVBKxCD693NjgJKGHAfVVWUzoV_5ZPYG9=s180-rw"
+        },    "publisher": {
+      "@type": "Organization",
+      "name": "Medicos",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://play-lh.googleusercontent.com/g5GanfEH-tDgbGkyoGJ2HQ3nU6uMU7t__m-qVBKxCD693NjgJKGHAfVVWUzoV_5ZPYG9=s180-rw"
+      }
+    }
+  }
 
   return (
     <div className="news-detail-page-container">
-
-      <SEO title='MedicosPDF terms and condition page' description='Terms and conditions of medicos PDf' />
+      <script type="application/ld+json">
+        {JSON.stringify(articleStructuredData)}
+      </script>
+      {
+        // console.log('article data', articleData)
+      }
+      <SEO image={articleData?.image?.source_url} title={articleData?.title?.rendered} description='Article details page of  Medicospdf' />
       {/*
          TODO
         <SocialShareForMobile /> */}
-      <div className="progressBarContainer">
-        <div className="progressBarContainer-increment" style={{ width: `${scrollTop}%` }}></div>
-      </div>
-      <TopBackground details={articleData} />
+
+      <TopBackground details={articleData} viewCount={viewCount}/>
       <NewsDetailBottomFullContainer
-        details2Source={articleSource}
-        details1Source={'amedstudentsjourney'}
+       
         details1={articleDataFourth}
+        details1Source={'amedstudentsjourney'}
+       
         details2={relatedArticles}
-        details1Source={'medschoolinsiders'}
+        details2Source={articleSource}
+
         details3={articleDataSecond}
+        details3Source={'medschoolinsiders'}
+       
         articlePara={articleData?.content?.rendered}
       />
 
@@ -244,5 +284,4 @@ const NewsDetail = () => {
     </div>
   )
 }
-
 export default NewsDetail

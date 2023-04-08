@@ -1,6 +1,5 @@
 @import '../../../../App.scss';
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 
 .markets-wrapper{
     width: 100%;
@@ -36,6 +35,9 @@
             margin: 10px 0 ;
             @include mobile{
                 margin: 10px 0 20px 0;
+            }
+            .link{
+                text-decoration: none;
             }
             &-heading{
                 color: #0f0e0e;

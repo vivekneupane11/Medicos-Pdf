@@ -1,0 +1,78 @@
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+.slidecardPlaceholder-wrapper{
+     position: relative;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+   max-width: 340px;
+   width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+ 
+    // height: 363px;
+    // overflow: hidden;
+
+    @include tablet{
+        width: 310px;
+    }
+    @include mobile{
+        width: 345px;
+    }
+
+    @media only screen and (max-width: 639px) and (min-width: 360px)  {
+        width: 340px;
+    }
+    @media only screen and (max-width: 377px) and (min-width: 250px)  {
+        width: 290px;
+    }
+    @media only screen and (max-width: 2200px) and (min-width: 1334px)  {
+        width: 320px;
+    }
+    @media only screen and (max-width: 1334px) and (min-width: 1024px)  {
+        width: 280px;
+    }
+    &-image-container{
+    height: 186px;
+    width: 100%;
+    background-color: #f6f7f8;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin: 0 0 20px 0;
+    }
+    &-heading-container{
+        width: 80%;
+        height: 8px;
+        background-color: #f6f7f8;
+        margin: 10px 0;
+        margin-left: 20px;
+
+    }
+    &-subheading-container{
+        margin: 10px 0;
+        width: 50%;
+        height: 8px;
+        background-color: #f6f7f8;
+        margin-left: 20px;
+
+    }
+    &-bottom-container{
+        margin: 10px 0;
+        border-top:1px solid #f6f7f8;
+        padding: 10px 20px;
+
+        &-profile{
+            display: flex;
+            align-items: center;
+        }
+        &-profile-image{
+            margin-right: 10px;
+            
+
+        }
+        &-profile-username{
+            height: 8px;
+            background-color: #f6f7f8;
+            width: 100px;
+        }
+    }
+}

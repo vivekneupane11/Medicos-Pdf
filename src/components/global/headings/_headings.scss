@@ -1,15 +1,10 @@
 @import "../../../App.scss";
 @import '../../../App.scss';
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
 
 .headingText{
-    //font-family: "Montserrat",sans-serif;
-    font-weight: 800;
-    // color: #1D264F;
-    // color: red;
-    //line-height: 1.2;
+    font-weight: 600;
+   
     font-family: 'Nunito';
     color: #0f0e0e;
     &.heading1 {
@@ -22,7 +17,6 @@
 
     &.heading3 {
         font-size: 1.65rem;
-        //font-weight: 400;
     }
 
     &.heading4 {
@@ -31,13 +25,17 @@
 
     &.heading5 {
         font-size: 1.25rem;
+        text-transform: capitalize;
+        padding: 10px;
     }
 
     &.heading6 {
-        // font-size: 1rem;
-        font-family: 'Rubik',sans-serif;
-        font-size: 20px;
-        font-weight: 400;
+        font-family: 'Nunito',sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        @include tablet{
+            font-size: 14px;
+        }
       
     }
     &.heading7 {
@@ -46,6 +44,5 @@
 }
 
 .activeLinksCategoryColor{
-    color: $--primary;
     transition: .4s ease;
 }

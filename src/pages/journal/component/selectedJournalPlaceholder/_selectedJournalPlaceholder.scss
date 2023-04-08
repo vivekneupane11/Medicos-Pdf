@@ -1,0 +1,61 @@
+@import '../../../../components/global/placeholder/placeholder';
+@import '../../../../App.scss';
+
+.selectedJournalPlaceholder-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 70px 30px;
+    @include tablet{
+        flex-direction: column;
+    }
+    @include mobile{
+        flex-direction: column;
+    }
+    &-col1{
+        width: 30%;
+        height: 250px;
+        border-radius: 10px;
+        background-color: #f6f7f8;
+        @include mobile{
+            width: 100%;
+        }
+        @include tablet{
+            width: 100%;
+        }
+
+    }
+    &-col2{
+        width: 30%;
+        @include tablet{
+            width: 100%;
+            margin: 20px 0;
+        }
+        @include mobile{
+            width:100%;
+            margin: 20px 0;
+        }
+        h1{
+            height: 15px;
+            background-color: #f6f7f8;
+            width: 100%;
+            margin: 10px 0;
+
+        }
+        h2,h3,h4{
+            height: 12px;
+            background-color: #f6f7f8;
+            width: 100%;
+            margin: 10px 0;
+        }
+        p{
+            height: 12px;
+            background-color: #f6f7f8;
+            width: 70%;
+            margin: 10px 0;
+
+        }
+
+
+    }
+}

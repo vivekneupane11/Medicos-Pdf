@@ -1,0 +1,108 @@
+
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+
+.newsTechnologyPlaceholder-wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    //flex-direction: column;
+    padding: 0 30px;
+    p{
+        margin: 10px 0;
+        height: 8px;
+        background-color: #f6f7f8;
+        width: 80%;
+    }
+    &-head1{
+       margin-top: 10px;
+      height: 15px;
+      width: 30%;
+      border-radius: 3px;
+      background-color: #f6f7f8;
+    }
+    &-head2{
+        margin-top: 10px;
+      height: 10px;
+      width:50%;
+      border-radius: 2px;
+      background-color: #f6f7f8;
+    }
+    &-cardsContainer{
+        margin: 30px 0;
+        width: 30%;
+        display: flex;
+       
+        flex-wrap: wrap;
+        @include tablet{
+            width: 48%;
+        }
+        @include mobile{
+            width: 100%;
+        }
+        &-card{
+            width:350px;
+            width: 100%;
+            margin-bottom: 30px;
+          
+
+            &-img{
+                position: relative;
+                height: 240px;
+                width: 100%;
+                border-radius: 5px;
+                background-color:#f6f7f8;
+              
+                background-size: cover;
+                border: none;
+               
+                cursor: pointer;
+                @include tablet{
+                    width: 100%;
+                }
+                @include mobile{
+                    width: 100%;
+                   
+                }
+               
+            }
+          
+            &-tags{
+                margin: 20px 0;
+                display: flex;
+                height: 8px;
+                background-color: #f6f7f8;
+               
+
+            }
+            &-head{
+               
+               background-color: #f6f7f8;
+               height: 12px;
+               width: 50%;
+               border-radius: 2px;
+                
+               
+
+            }
+            &-dateread{
+                margin: 10px 0;
+                height: 8px;
+                width: 30%;
+                background-color: #f6f7f8;
+
+            }
+            &-para{
+                margin: 10px 0;
+                height: 8px;
+                width: 90%;
+                background-color: #f6f7f8;
+                
+
+            }
+
+        }
+    }
+   
+}

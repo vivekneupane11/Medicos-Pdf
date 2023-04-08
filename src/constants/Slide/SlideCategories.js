@@ -162,7 +162,7 @@ const slideCategories = [
     {
         key: 'Devin',
         id: 3,
-        image: require("../../../assets/images/categories/nursing.jpg"),
+        image: require("../../../assets/images/categories/nursing.webp"),
         category: "Nursing",
         publisher: 'We have more than 700 books that falls inside Nursing. Hope you find your choice.',
         subCategories: [

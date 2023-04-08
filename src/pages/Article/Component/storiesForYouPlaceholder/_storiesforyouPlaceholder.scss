@@ -1,0 +1,65 @@
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+
+.storiesForYouPlaceholder-wrapper{
+    background-color: white;
+    padding: 10px 40px 10px 30px ;
+    h3{
+       height: 15px;
+       background-color: #f6f7f8;
+       border-radius: 3px;
+       width: 40%;
+      }
+    p{
+        height: 8px;
+        background-color: #f6f7f8;
+        margin: 10px 0;
+        width: 80%;
+
+    }
+   
+    .storiesForYouPlaceholder{
+       margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      
+        @include tablet{
+           
+        }
+        
+        &-content{
+            @include tablet{
+                width:48%;
+            }
+            @include mobile{
+                width: 100%;
+            }
+            
+            width:23%;
+           padding: 20px 0;
+            &-image{
+                @include tablet{
+                    height: 250px;
+                }
+                @include mobile{
+                    height: 250px;
+                }
+                width: 100%;
+                height: 200px;
+                border-radius: 5px;
+                background-size: cover;
+               background-color: #f6f7f8;
+
+            }
+            &-bottom{
+                margin-top: 20px;
+                &-heading{
+                height: 10px;
+                background-color: #f6f7f8;
+                width: 80%;
+                }
+            }
+        }
+    }
+}

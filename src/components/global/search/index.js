@@ -1,77 +1,43 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
 import { useHistory } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
 import "./_search.scss";
-import Loading from '../../loading';
+import { logEventWithParams } from '../../../functions/commonMethod';
+import { AuthContext } from '../../signUp/authMethods/authentication';
+import SearchIcon from '../icons/search';
 
-const Search = ({ bookDocId, slideDocId }) => {
+const Search = () => {
     let history = useHistory();
     const [searchText, setSearchText] = useState("");
-    const [loading, setLoading] = useState(false);
+    const { user } = useContext(AuthContext);
     const inputRef = useRef();
-    let search = ""
-    function setSearch(value) {
-        // console.log("This is value", value)
-        search = value
-        setSearchText(value)
-    }
 
     useEffect(() => {
-
-        if (loading) {
-            if (bookDocId.length > 0 && slideDocId.length > 0) {
-                setLoading(false);
-                history.push({
-                    pathname: '/searchResult',
-                    state: {
-                        slideDocId: JSON.stringify(slideDocId),
-                        bookDocId: JSON.stringify(bookDocId),
-                        searchText: searchText
-                    }
-                })
-            }
-        }
-
         function enterHandler(event) {
-            if (event.key == "Enter") {
-                if (searchText != "") {
-                    setLoading(true)
-                    if (bookDocId.length > 0 && slideDocId.length > 0) {
-                        setLoading(false);
-                        history.push({
-                            pathname: '/searchResult',
-                            state: {
-                                slideDocId: JSON.stringify(slideDocId),
-                                bookDocId: JSON.stringify(bookDocId),
-                                searchText: searchText
-                            }
-                        })
-                    }
+            if (event.key === "Enter") {
+                if (searchText !== "") {
+                    logEventWithParams("search KeyWords", { SearchKeyword: searchText })
+                    history.push({
+                        pathname: `/search/searchtext/${searchText}`
+                    })
                 }
+                console.log('search reneder')
             }
         }
         inputRef?.current?.addEventListener("keyup", enterHandler)
         return () => {
             inputRef?.current?.removeEventListener('keyup', enterHandler)
         }
-    }, [searchText, bookDocId, slideDocId])
+    }, [searchText, user?.uid])
     return (
         <div className="search-container">
             <div className="search-container-search-box">
-                <BsSearch className="icon" />
-                {/* <p>Search Medical Books</p> */}
+                <SearchIcon className="icon" />
                 <input
                     ref={inputRef}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search Medical Books"
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="Search medical books , slides , articles , news , journals , flashnotes ..."
                     className="hello"
                     type="search" />
-                {
-                    loading &&
-                    <div className="search-loading-wrapper">
-                        <Loading type="clip" size={35} />
-                    </div>
-                }
             </div>
         </div>
     )

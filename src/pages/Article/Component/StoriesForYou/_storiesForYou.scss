@@ -1,6 +1,5 @@
 @import '../../../../App.scss';
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 
 .storiesForYou-wrapper{
     background-color: white;
@@ -34,6 +33,13 @@
             
             width:23%;
            padding: 20px 0;
+           .link{
+               text-decoration: none;
+           }
+           .content{
+               margin-bottom: 10px;
+               font-size: 18px;
+           }
             &-image{
                 @include tablet{
                     height: 250px;

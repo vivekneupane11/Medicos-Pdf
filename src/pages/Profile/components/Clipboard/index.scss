@@ -1,0 +1,83 @@
+@import '../../../../App.scss';
+
+
+.clipboard-page-container {
+    // flex-wrap: wrap;
+    // background-color: red;
+    padding: 20px 0px;
+    width: 100%;
+
+    .clipped-image-list {
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+        flex-wrap: wrap;
+        padding-left: 10px;
+
+        .clipped-image-container {
+            border-radius: 5px;
+            overflow: hidden;
+            // background-color: black;
+            box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+           margin-right: 15px;
+            margin-bottom: 21px;
+            cursor:pointer;
+            @include mobile{
+                // background-color: red;
+                width: 100%;
+            }
+
+            .image {
+                // height: 200px;
+                width: 245px;
+                object-fit: contain;
+                @include mobile{
+                    width: 100%
+                }
+                @include tablet{
+                    width: 255px;
+                }
+            }
+
+            .bottom-container {
+                @include flexRowSbCenter;
+                z-index: 5;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 7px 10px;
+
+                .userInfo {
+                    @include flexRowStartCenter;
+                    text-decoration: none;
+                    p {
+                        color: white;
+                        margin-left: 10px;
+                    }
+                }
+
+                .icon {
+                    &:hover{
+                        cursor: pointer;
+                    }
+                    color: white;
+                    font-size: 25px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+    .text-container{
+        @include flexColCenter;
+        // background-color: red;
+        height: 40vh;
+        h3{
+            text-align: center;
+            font-weight: normal;
+            font-size: 22px;
+        }
+    }
+    .button-container{
+        @include flexRowCenter;
+        // background-color: red;
+    }
+
+}

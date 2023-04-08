@@ -10,23 +10,15 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Autoplay } from 'swiper';
+import { getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
 SwiperCore.use([Autoplay]);
 
 const InHypeSponsored = ({details,details3Source}) => {
-    const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
-
-      };
-      const newTab=(url)=>{
-        window.open(
-           url, "_blank");
-    }
+ 
     const goTop=()=>{
         window.scrollTo({top:0,behavior:'smooth'});
     }
+    const clickhandlergoto = ()=>goTop()
     return (
         <>
         <div className="newsDetailInHypeSponsoredWrapper">
@@ -52,13 +44,13 @@ const InHypeSponsored = ({details,details3Source}) => {
                                    
                                     <Link
                         
-                                        style={{ textDecoration: 'none' }}
+                                       className='links'
                                         to={{
-                                            pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details3Source}`
+                                            pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details3Source}`
                                         }}>
-                                    <h3 onClick={()=>goTop()} className="newsDetailInHypeSponsoredWrapper-swiperContainer-slide-wrapper-img-description-head">{data?.title?.rendered}</h3>
+                                    <h3 onClick={clickhandlergoto} className="newsDetailInHypeSponsoredWrapper-swiperContainer-slide-wrapper-img-description-head">{data?.title?.rendered}</h3>
                                     </Link>
-                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#fff' fontSize='12px'/>
+                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#fff' fontSize='12px'/>
                               </div>
                             </div>
                            

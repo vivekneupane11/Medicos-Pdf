@@ -12,27 +12,12 @@ import SwiperCore, { Autoplay } from 'swiper';
 import AuthorDateRead from '../../../News/components/author-date-readTime';
 import { logEventWithParams } from '../../../../functions/commonMethod';
 import shortid from  "shortid";
+import { getColorByIndex, getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
 
 SwiperCore.use([Autoplay]);
 
 const European_News = ({ details, sourceDocId }) => {
-  const getColorsByIndex = (index) => {
-    let color = "yellow";
-    if (index % 3 == 0) {
-      color = 'red'
-    } else if (index % 2 == 0) {
-      color = 'skyblue'
-    }
-    return color;
-  }
-
-  const getReadingTime = (text) => {
-    const wordsPerMinute = 120;
-    const textLength = text?.split(" ").length;
-    let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-    return minutesToRead;
-
-  };
+ 
   return (
     <>
 
@@ -74,7 +59,7 @@ const European_News = ({ details, sourceDocId }) => {
                   <Link
                     style={{ textDecoration: 'none' }}
                     to={{
-                      pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                      pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                     }}>
                     <div className="europeanNews-wrapper-slide-img" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
                       <div className="europeanNews-wrapper-slide-img-icon">
@@ -84,18 +69,18 @@ const European_News = ({ details, sourceDocId }) => {
                     </div>
                   </Link>
                   <div className="europeanNews-wrapper-slide-tag">
-                    <NewsLinkTag color={getColorsByIndex(index)} tag={data?.slug} className="TodaysHighlights-wrapper-slider-slide-description-tag" />
+                    <NewsLinkTag color={getColorByIndex(index)} tag={data?.slug} className="TodaysHighlights-wrapper-slider-slide-description-tag" />
                   </div>
                   <Link
-                    onClick={() => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
+                    onClick={ () => logEventWithParams('web_article_detail_page_opened', { articleTitle: data?.title?.rendered })}
                     style={{ textDecoration: 'none' }}
                     to={{
-                      pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
+                      pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${sourceDocId}`
                     }}>
                     <h3 className="europeanNews-wrapper-slide-head">{data?.title?.rendered}</h3>
                   </Link>
-                  <p style={{ fontSize: '18px', marginBottom: '10px' }}>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
-                  <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' className="TodaysHighlights-wrapper-slider-slide-description-dateread" />
+                  <p className='content'>{data?.excerpt?.rendered.replace(/<p[^>]*>/g && /<\/?p[^>]*>/g, "")}</p>
+                  <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#9f9f9f' fontSize='12px' className="TodaysHighlights-wrapper-slider-slide-description-dateread" />
                 </div>
               </div>
             </SwiperSlide>

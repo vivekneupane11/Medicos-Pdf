@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 @import '../../../../App.scss';
 
 .newsIntroductionCard-wrapper{
@@ -32,7 +31,7 @@
 
         }
         &-para{
-            font-family: 'Rubik';
+            font-family: 'Nunito';
             font-size: 15px;
             color: #333;
             line-height: 1.75;
@@ -45,11 +44,11 @@
             padding: 13px 30px;
             border: none;
             border-radius: 5px;
-            color: #fff;
-            background-color: #2568ef;
+            color: rgb(201, 188, 188);
+            background-color: $--primary;
             cursor: pointer;
             transition: .25s;
-            a{
+            p{
                 text-decoration: none;
                 color: #fff;
             }

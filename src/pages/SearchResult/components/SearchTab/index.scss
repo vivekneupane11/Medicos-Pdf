@@ -1,0 +1,150 @@
+@import '../../../../App.scss';
+
+.search-header {
+    width: 100%;
+    @include flexRowSbStart;
+    @include tablet {
+        @include flexColCenterStart;
+       
+       
+    }
+
+    @include mobile {
+        @include flexColCenterStart;
+       
+    }
+
+    padding-top: 25px;
+
+    .search-tab-container {
+        flex-wrap: wrap;
+        @include mobile {
+            width: 100%;
+            overflow-x: scroll;
+            padding-bottom: 15px;
+        }
+
+        @include flexRowStartCenter;
+
+        // width: 100%;
+        .search-tab {
+            @include flexRowCenter;
+            margin-right: 35px;
+            margin-bottom: 20px;
+            border: 1px solid #12D288;
+            padding: 10px 28px;
+            border-radius: 2px;
+            .tab-name {
+                font-weight: bolder;
+                font-size: 18px;
+            }
+
+            &-active {
+                @include flexRowCenter;
+                border-radius: 2px;
+                margin-right: 35px;
+                margin-bottom: 20px;
+                padding: 10px 28px;
+                background-color: $--primary;
+
+                .tab-name {
+                    color: white;
+                    font-weight: bolder;
+                    font-size: 18px;
+                }
+
+                p {
+                    color: white;
+                }
+            }
+        }
+
+        .search-tab:hover {
+            cursor: pointer;
+        }
+
+    }
+
+    .order-container {
+        position: relative;
+        width: 100%;
+        @include tablet {
+            margin-top: 10px
+        }
+        @include mobile {
+            margin-top: 10px
+        }
+
+        @include flexRowCenter;
+        background-color: $--primary;
+        padding: 10px 25px;
+
+        p {
+            color: white;
+            font-weight: bold;
+        }
+
+        .icon {
+            color: white;
+            margin-left: 10px;
+            height: 25px;
+        }
+
+        .order-list-container {
+            width: 100%;
+            box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .1);
+            padding: 10px 15px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            z-index: 1;
+            background-color: #fff;
+            .smalltext{
+                font-size: 11px; 
+                display: flex;
+                font-weight: 600;
+                align-items: center;
+                color: #1a0a0a;
+               
+                .icon{
+                    padding: 0 2px;
+                    color: #0f0e0e;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+
+
+    .order-list {
+        @include flexColCenterStart;
+        // background-color: $--primary;
+        padding: 10px 35px 0px 25px;
+
+        .active-order {
+            color: black;
+            font-size: large;
+            font-weight: bolder;
+        }
+
+        p {
+            color: black;
+            padding:8px;
+            font-weight: unset;
+        }
+
+        .icon {
+            color: white;
+            margin-left: 10px;
+        }
+
+        p:hover {
+            cursor: pointer;
+        }
+    }
+
+    .order-container:hover {
+        cursor: pointer;
+    }
+}

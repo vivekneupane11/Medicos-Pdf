@@ -1,0 +1,110 @@
+@import '../../../App.scss';
+.imagemodal-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-blend-mode: overlay;
+    background-size: cover;
+    z-index: 2;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%,-50%);
+  
+    @include mobile{
+        top: 40%;
+    }
+    &-container{
+       
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+        @include mobile{
+            padding: 10px;
+        }
+
+
+        &-image{
+            position: relative;
+            width: 100%;
+            .modal-image{
+                height: 60vh;
+                object-fit: contain;
+                @include tablet{
+                    height: 50vh;
+                }
+                @include mobile{
+                    height: 32vh;
+                    
+                }
+            }
+            .close{
+                @include flexRowCenter;
+                &:hover{
+                    cursor: pointer;
+                }
+                position: absolute;
+                top: 0;
+                right: 0;
+             
+                height: 39px;
+                width: 39px;
+                border-radius: 5px;
+                background-color: rgba(0,0,0,0.5);
+                .icon{
+                  color:white;
+                  font-size: 19px;
+                  height: 20px;
+                }
+            }
+        }
+        &-userdetails{
+            @include flexRowCenter;
+
+    .user-info{
+        cursor: pointer;
+        text-decoration: none;
+        @include flexRowCenter;
+        padding: 7px 10px;
+        border-radius: 5px;
+        width: fit-content;
+        h6{
+            color: black;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+    }
+        }
+    }
+}
+.tipsTransition-appear{
+    transform: scale(0);
+  
+  }
+  
+  .tipsTransition-appear-active{
+      
+  
+  }
+  .tipsTransition-appear-done{
+      transform:scale(1) ;
+      transition:  transform .3s;
+  
+  
+  }
+  .tipsTransition-exit{
+      transform: scale(1);
+      transition:  transform .3s;
+  }
+  .tipsTransition-exit-active{
+    transform: scale(0);
+    transition:  transform .3s;
+  
+  }
+  .tipsTransition-exit-done{
+      transform: scale(0);
+    //   transition:  transform .5s;
+  
+  }

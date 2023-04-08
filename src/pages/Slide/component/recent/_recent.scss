@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 @import '../../../../App.scss';
 .slideRecent-wrapper{
     width: 100%;
@@ -59,7 +58,7 @@
 
             }
             &-para{
-               font-family: 'Rubik';
+               font-family: 'Nunito';
                font-size: 15px;
                color: #fff;
                line-height: 1.5;
@@ -114,4 +113,14 @@
 .recent-loading-wrapper{
     padding-top: 200px;
     padding-bottom: 200px;
+}
+.slidePage-recentLeftSide-loading{
+    padding: 200px 0;
+    width: 50%;
+    @include tablet{
+        width: 100%;
+    }
+    @include mobile{
+        width: 100%;
+    }
 }

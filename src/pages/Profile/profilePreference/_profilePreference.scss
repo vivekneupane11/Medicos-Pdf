@@ -1,0 +1,46 @@
+@import '../../../App.scss';
+
+
+.profile-followers-container{
+    width: 100%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    &-wrapper{
+        width: 30%;
+        margin-right: 3%;
+        @media screen and (max-width: 1369px) and (min-width: 768px) {
+          width: 30%;
+          margin-right: 2%;
+           }
+        @include tablet{
+            width: 38%;
+            margin-right: 2%;
+        }
+        @include mobile{
+            width: 100%;
+            margin-right: 0;
+            
+        }
+
+    }
+    .followersAndFollowing-container-option-container-btn{
+       
+            width:60%;
+        
+    }
+
+}
+.Profile-load-more-container{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mobile{
+        width: 100%;
+    }
+    @include tablet{
+        width: 80%;
+    }
+}

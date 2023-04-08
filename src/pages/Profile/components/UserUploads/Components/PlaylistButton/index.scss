@@ -1,0 +1,29 @@
+@import '../../../../../../App.scss';
+.playlist-create-button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:20px;
+    margin-left: 0;
+    padding:30px 20px;
+    background-color: #eeeaea;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+    border-radius: 12px;
+    @include mobile{
+        margin:20px 0;
+        width: 66%;
+    }
+    &:hover{
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+    .playlist-create-icon{
+        color:#493333;
+        font-size: 27px;
+        height: 30px;
+    }
+   .playlist-para{
+       padding:15px 10px;
+   }
+}

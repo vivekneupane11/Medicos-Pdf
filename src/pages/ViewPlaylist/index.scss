@@ -1,0 +1,169 @@
+@import '../../App.scss';
+
+.view-playlist-container{
+    // height: 100;
+    width: 100%;
+   // padding: 30px;
+    .playlist-title{
+        padding-left: 30px;
+        margin-top: 50px;
+        .title-container{
+         display: flex;
+         justify-content: flex-start;
+         align-items: flex-start;
+         width: 50%;
+            margin: 5px 0;
+        
+         
+            .icon{
+                font-size: 28px;
+                margin-right: 10px;
+                color: gray;
+                height: 35px;
+            }
+            h5{
+                color: gray;
+            }
+        }
+    }
+    .playlist-container{
+        h4{
+            padding-left: 18px;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+        padding-top: 19px;
+        // background-color:red;
+        @include flexColCenterStart;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin: 5px 18px 0px 15px;
+        &::-webkit-scrollbar {
+            width: 8px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: #12D288;
+            border: 4px solid white;
+            border-radius: 6px;
+            }
+           
+          &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+          }
+           
+        @include mobile{
+            margin-top: 0px;
+        }
+        padding-bottom: 10px;
+    
+        .playlist-slidecard{
+            &-active{
+                border: 2px solid goldenrod;
+            }
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            padding: 0.8rem;
+            padding-right: 5px;
+            margin:10px;
+            align-items: center;
+            position: relative;
+            border-radius: 12px;
+            // display: flex;
+            // justify-content: flex-start;
+            // align-items: center;
+            // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            // padding: 0.8rem;
+            // margin:10px ;
+            // align-items: center;
+            // position: relative;
+            // border-radius: 12px;
+            // border-radius: 12px;
+           
+            .card-thumbnails{
+                height:120px;
+                
+                @include mobile{
+                    height: 90px;
+                }
+                   
+                img{
+                    object-fit: contain;
+                    height: 120px;
+                    @include mobile{
+                        height: 90px;
+                    }
+                    border-radius: 5px;
+                    @include mobile{
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+            .slide-descriptions{
+                padding:10px 0px 10px 10px;
+                overflow: hidden;
+                // background-color: red;
+                @include mobile{
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                }
+               
+                h3{
+                    padding: 0;
+                    font-size: 16px;
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: "----"; 
+                    white-space: nowrap; 
+                    width: 200px; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                   
+                }
+                p{
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: "----"; 
+                    white-space: nowrap; 
+                    width: 180px; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                   
+        
+                }
+                span{
+                    font-size: 10px;
+                }
+                .playlist-categoryAndSubCategory-icon{
+                    transform: translateY(5px);
+                    font-size: 14px;
+                    color:$--primary;
+                    height: 15px;
+                 }
+                .user-descriptions{
+                    // width: 90%;
+                    display: flex;
+                    align-items: center;
+                     padding-top: 10px;
+                    p{
+                        padding-left: 10px;
+                    }
+                    .user-avatar-name{
+                        font-size: 12px;
+                    }
+                   
+                }
+            }
+        }
+        .playlist-slider{
+            @include flexRowStartCenter;
+        }
+    }
+    .loading-container{
+        @include flexColCenter;
+        height: 100vh;
+    }
+}

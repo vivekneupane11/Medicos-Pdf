@@ -1,8 +1,6 @@
 import React from 'react';
 import './_button.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUpload } from '@fortawesome/free-solid-svg-icons'
-//import classes from './Button.module.css';
+import UploadIcon from '../icons/uploadIcon';
 
 export function Button(props) {
   const className = `button ${props.type}`
@@ -10,7 +8,7 @@ export function Button(props) {
     <div className="button-a">
       <button className={className} >
 
-        {props.icon && <FontAwesomeIcon style={{ marginRight: '5px' }} icon={faUpload} />}
+        {props.icon && <UploadIcon className='uploadIcon' />}
         <p style={{ color: props.labelColor && props.labelColor }}>{props.label}</p>
 
 

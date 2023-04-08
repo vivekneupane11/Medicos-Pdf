@@ -1,5 +1,7 @@
 @import "../../App.scss";
-
+.loading{
+    color: gray;
+}
 .footer-Container{
     width: 100%;
     display: flex;
@@ -8,7 +10,6 @@
     &-top{
         width: 100%;
         display: flex;
-        // justify-content: space-between;
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
@@ -37,10 +38,11 @@
                 text-decoration: none;
                 font-size: .85em;
                 cursor: pointer;
-                img{
-                    height: 40px;
-                    width: 40px;
-                    
+                &-icon{
+                    font-size: 40px;
+                    color: $--primary;
+                    height: 50px;
+                   
 
                 }
                 &-count{
@@ -148,6 +150,9 @@
             line-height: 1.75;
             margin-top: 20px;
             margin-bottom: 10px;
+           }
+           .errormessage{
+               color: red;
            }
            &-subscribe{
                height: 45px;

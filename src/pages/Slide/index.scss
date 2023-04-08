@@ -1,96 +1,105 @@
 @import "../../App.scss";
+.suspenseLoading{
+    padding: 200px 0;
+}
 
 .slide-page-container {
     width: 100%;
 
     &-wrapper {
+        .slide-trending-wrapper {
+            margin-top: 10px
+        }
 
-        
         .slide-page-slide-section {
             @include flexRowSbStart;
             border-top: 0.1px solid #f7f7f7;
             width: 100%;
-            &-col1 {
-                @include flexColStartCenter;
-                padding: 35px 0px 0px 25px;
-                text-align: center;
-                width: 30%;
-                @include mobile{
-                    display: none;
-                }
-                .heading {
-                    text-align: left;
-                    width: 100%;
-                }
-                .sub-heading {
-                    align-self: flex-start;
-                    margin-top: 20px;
-                    text-align: left;
-                    border-bottom: 1.9px solid $--primary;
-                }
-                .sub-categories{
-                    width: 100%;
-                    margin-top: 10px;
-                    @include mobile{
-                        width: 100%
-                    }
-                   
-                }
-            }
 
-            &-col2 {
+                      &-col2 {
                 @include flexColCenterStart;
-                padding-top: 35px;
+                padding: 10px 30px 0 30px;
                 width: 100%;
                 border-left: 0.1px solid #f7f7f7;
-                
+
+                @media screen and (max-width: 1023px) and (min-width: 768px) {
+                    width: 100%;
+                }
 
                 &-content-section {
                     width: 100%;
                     display: flex;
-                    justify-content: space-evenly;
+                    justify-content: space-between;
                     flex-wrap: wrap;
                     margin: 40px 0;
-                    
-                    @include mobile{
+                    // padding: 0 10px;
+
+                    @media screen and (max-width: 1023px) and (min-width: 768px) {
+                        justify-content: center;
+                    }
+
+                    @include mobile {
                         margin: 40px 0 20px 0;
                         justify-content: center;
                         align-items: center;
 
                     }
-                   
-                    
-                        .item{
-                            padding: 10px 10px 20px 10px;
-                         }
-                  
-                   
-                     
-                     // background-color: red;
-                 }
+
+
+                    .item {
+                        padding: 10px 0px 20px 0px;
+
+                        @media screen and (max-width: 1023px) and (min-width: 768px) {
+                            padding: 10px;
+                        }
+                    }
+
+
+
+                    // background-color: red;
+                }
 
                 .tabs {
                     width: 100%;
-                    @include mobile{
+
+                    @media screen and (max-width: 1023px) and (min-width: 768px) {
+                        display: none;
+                    }
+
+                    @include mobile {
                         display: none;
                     }
                 }
-                .S-sub-categories-forMobile{
+
+                .S-sub-categories-forMobile {
                     display: none;
-                    @include mobile{
+
+                    @include mobile {
                         // display: block;
                         display: none;
                         width: 100%;
                         padding: 0 20px;
                         margin-top: 14px;
-                        
+
                     }
                 }
 
                 .pagination {
-                    @include flexRowEndCenter;
+                    @include flexRowCenter;
+                    margin: 15px 0px;
                     width: 100%;
-                    border-top: 1px solid #f7f7f7;
+
+                    &-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        // background-color: blue;
+                        width: 170px;
+
+                        @include mobile {
+                            justify-content: center;
+                        }
+                    }
                 }
             }
         }
@@ -160,6 +169,7 @@
                         width: 250px;
                         margin: 0px;
                     }
+
                     &-content {
                         width: 90%;
                         // background-color: white;
@@ -177,6 +187,7 @@
                 .book-review-section {
                     width: 100%;
                 }
+
                 .related-book-section {
                     width: 100%;
                 }
@@ -186,79 +197,216 @@
 
 }
 
-.slide-loading-wrapper{
+.slide-loading-wrapper {
     padding-top: 250px;
     padding-bottom: 250px;
     width: 100%;
 }
 
 
-.S-dropdownForMobile{
-    display: none;
-    
-    @include mobile{
+.S-dropdownForMobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        // padding: 0 30px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        position: sticky;
+        top: 65px;
+        left: 0;
+        z-index: 3;
+       
+
+        h2{
+            display: none;
+        }
+
+    @media screen and (max-width: 1023px) and (min-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        position: relative;
+        top: 0;
+        left: 0;
+        // margin-bottom: 10px;
+    }
+
+    @include mobile {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        padding: 0 20px;
+        padding: 0 20px 0 25px;
+        position: relative;
+        top: 0;
+        left: 0;
     }
-    &-head{
+
+    &-head {
         font-size: 30px;
+
+        @media screen and (max-width: 1023px) and (min-width: 768px) {
+            margin-bottom: 20px;
+            width: 100%;
+        }
     }
-    &-category{
-        width: 100%;
+
+    &-category {
+        // width: 40%;
+        
         margin-bottom: 5px;
-        &-dd{
+        margin-right: 10px;
+        display: none;
+        position: relative;
+
+        @media screen and (max-width: 1023px) and (min-width: 768px) {
+            width: 48%;
+            display: block;
+        }
+        @include mobile{
+            display: block;
+        }
+
+        &-dd {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // border: 1px solid #41d288;
+            background-color: #fff;
+            padding: 10px;
+            margin-top: 15px;
+            // box-shadow: ;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            
+            border-radius: 6px;
+            animation-name: tabchange;
+            animation-duration: .7s;
+            // animation-iteration-count: 3;
+            // width: 30%;
+            
+           
+            #iconfix{
+                margin-top: -2px;
+                transition: .2s linear;
+                margin-left: 10px;
+                height: 15px;
+                width: 15px;
+            }
+            span {
+
+                font-size: 18px;
+
+                padding: 5px 0;
+            }
+        }
+    }
+
+    &-subcategory {
+        // width: 40%;
+        position: relative;
+       
+
+        @media screen and (max-width: 1023px) and (min-width: 768px) {
+            width: 50%;
+        }
+
+        &-dd {
             cursor: pointer;
             // height: 50px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border: 2px solid #eee;
-            padding:10px;
-           span{
-           
-            font-size: 18px;
-          
-            padding: 5px 0;
-           }
+            padding: 10px;
+            // width: 40%;
+
+            span {
+                font-size: 18px;
+
+                padding: 5px 0;
+            }
         }
     }
-    &-subcategory{
-       width: 100%;
-       &-dd{
-        cursor: pointer;
-        // height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 2px solid #eee;
-        padding: 10px;
-        span{
-            font-size: 18px;
-            
-            padding: 5px 0;
-        }
-       }
-    }
-    .S-dd-hide{
+
+    .S-dd-hide {
         display: none;
     }
-    .S-dd-show{
+
+    .S-dd-show {
         display: block;
+        margin-top: 5px;
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+       
+        
+        .exploreLinkTab-container-link,.exploreLinkTab-container-link-active{
+            &:hover{
+                transform: scale(1.09, 1.1);
+                box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .1);
+                background-color: #fff;
+                border-radius: 5px;
+                transition: .2s ease;
+    
+            }
+
+        }
+        
+        
     }
 }
 
-.S-showD{
-    margin-top: -2px;
-    transition:.2s linear;
+.S-showD {
+    // margin-top: px;
+    transition: .2s linear;
     margin-left: 10px;
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    // width: 20px;
 }
-.S-rotateD{
-   margin-top: 4px;
-    transform:rotate(90deg);
-    transition:.2s linear;
+.showD{
+    // margin-top: -2px;
+    transition: .2s linear;
+    margin-left: 10px;
+    height: 20px;
+    // width: 20px;
+}
+.S-rotateD,.rotateD {
+    margin-top: 4px;
+    transform: rotate(90deg);
+    transition: .2s linear;
+}
+
+#iconfix{
+       margin-top: -2px;
+    transition: .2s linear;
+    margin-left: 10px;
+    height: 25px;
+    width: 25px;
+}
+@keyframes tabchange{
+    0%{
+        // width: 0;
+        opacity: 0;
+        transform: translateX(-100px);
+        // height: 0;
+        // transition: all 2s ;
+    }
+   
+    100%{
+        // height: 100%;
+        opacity: 1;
+        // width: auto;
+        transform: translateX(0);
+        // transition:  all 2s;
+    }
+}
+.explore-heading{
+    padding:25px 0;
 }

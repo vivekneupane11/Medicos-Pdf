@@ -1,12 +1,14 @@
 @import "../../../../App.scss";
+
 .swiper-container {
-    .swiper-wrapper{
-        .swiper-slide{
-           
-        }
+    .swiper-wrapper {
+        .swiper-slide {}
+    }
+    .slide-category-arrow{
+        height:25px;
     }
 
-    .swiper-button-prevCs{
+    .swiper-button-prevCs {
         position: absolute;
         display: flex;
         justify-content: center;
@@ -17,14 +19,15 @@
         height: 40px;
         width: 40px;
         border-radius: 50%;
-        box-shadow: 0px 1px 5px rgba(0,0,0,.3);
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
         z-index: 8;
         cursor: pointer;
         transition: .25 ease-in;
-        
+
     }
-    .swiper-button-prevCs:hover{
-        background-color: rgba(0,0,0,.2);
+
+    .swiper-button-prevCs:hover {
+        background-color: rgba(0, 0, 0, .2);
         transition: .25 ease-in;
     }
 
@@ -39,13 +42,14 @@
         height: 40px;
         width: 40px;
         border-radius: 50%;
-        box-shadow: 0px 1px 5px rgba(0,0,0,.3);
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
         z-index: 8;
         cursor: pointer;
         transition: .25 ease-in;
     }
-    .swiper-button-nextCs:hover{
-        background-color: rgba(0,0,0,.2);
+
+    .swiper-button-nextCs:hover {
+        background-color: rgba(0, 0, 0, .2);
         transition: .25 ease-in;
     }
 
@@ -57,9 +61,8 @@
     padding: 25px 0px;
     // height: 500px;
     width: 100%;
-    @include mobile{
-        
-    }
+
+    @include mobile {}
 
     &-container {
         @include flexColCenter;
@@ -67,18 +70,25 @@
         // height: 500px;
         width: 80%;
 
+        @include mobile {
+            width: 90%;
+        }
+
         &-top {
             @include flexRowSbCenter;
             width: 100%;
-            @include mobile{
+
+            @include mobile {
                 flex-direction: column;
                 padding-top: 10px
             }
-           &-head{
-              @include mobile{
-                  width: 91%;
-              }
-           }
+
+            &-head {
+                @include mobile {
+                    width: 91%;
+                }
+            }
+
             .button {
                 @include flexRowCenter;
                 background-color: white;
@@ -89,27 +99,43 @@
                     margin-left: 10px;
                 }
             }
-            .button:hover{
+
+            .button:hover {
                 border: 1px solid $--primary;
             }
         }
-        &-swiper{
+
+        &-swiper {
             width: 100%;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 50px 0 20px 0;
-            &-slide{
+
+            &-slide {
                 width: 100%;
                 padding: 25px 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }
 }
 
-@include tablet{
-    .categorized-slide{
-        &-container{
+.loading-container {
+    // background-color: red;
+    margin: 100px 0px;
+    width: 100%;
+}
+
+@include tablet {
+    .categorized-slide {
+        &-container {
             width: 90%;
         }
     }
+}
+.arrowicon{
+    height: 25px;
 }

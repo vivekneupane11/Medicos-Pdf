@@ -9,7 +9,7 @@ const  ArticleCategories = ({details}) => {
           <h3 className="articleCategories-wrapper-heading">Explore</h3>
               <div className="articleCategories-wrapper-imgContainer">
                   {details.map((data,index)=>(
-                        <a  key={shortid.generate()}  href={data.tag.link} style={{textDecoration:'none'}}>
+                        <Link  key={shortid.generate()}  to={data.tag.link} style={{textDecoration:'none'}}>
                         <div className="articleCategories-wrapper-imgContainer-bgImg" style={{backgroundImage:`url(${data.bgImg})`}} >
                            
                                 <div className="articleCategories-wrapper-imgContainer-bgImg-mid">
@@ -20,7 +20,7 @@ const  ArticleCategories = ({details}) => {
 
 
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>

@@ -1,0 +1,106 @@
+@import "../../../../App.scss";
+@import '../../../../components/global/placeholder/placeholder';
+
+.book-card-placeholder-container {
+  
+    width: 206px;
+    
+    @include mobile{
+        width: 180px;
+    }
+    @media screen and (max-width: 567px) and (min-width: 320px) {
+        width: 123px;
+     }
+     @media screen and (max-width: 666px) and (min-width: 375px) {
+        width: 140px;
+     }
+    @media screen and (max-width: 811px) and (min-width: 375px) {
+        width: 148px;
+     }
+     @media screen and (max-width: 1023px) and (min-width: 768px) {
+        width: 206px;
+     }
+    
+   
+   .image{
+       height: 150px;
+       background-color: #f6f7f8;
+   }
+  
+
+    &-content {
+        padding-top: 15px;
+        @include mobile{
+            padding: 15px 5px;
+        }
+        @media screen and (max-width: 567px) and (min-width: 320px) {
+            width: 123px;
+         }
+         @media screen and (max-width: 666px) and (min-width: 375px) {
+            width: 140px;
+         }
+        @media screen and (max-width: 811px) and (min-width: 375px) {
+            width: 148px;
+         }
+       
+       
+       
+        
+        // background-color: yellow;
+        p {
+            margin: 10px 0px;
+           height: 8px;
+           background-color: #f6f7f8;
+           width: 100%
+        }
+        .heading{
+            height: 15px;
+            width: 100%;
+            border-radius: 3px;
+            background-color: #f6f7f8;
+
+        }
+        &-rating {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+           
+            .rating {
+                
+               height: 15px;
+               width: 10%;
+               border-radius: 5px;
+               background-color: #f6f7f8;
+
+            
+            }
+        }
+    }
+
+    .image {
+        height: 220px;
+        width: 198px;
+        border-radius: 15px;
+        @include mobile{
+            height: 190px;
+            width: 170px;
+        }
+        @media screen and (max-width: 567px) and (min-width: 320px) {
+            height: 150px;
+            width: 133px;
+         }
+         @media screen and (max-width: 666px) and (min-width: 375px) {
+            height: 160px;
+            width: 145px;
+         }
+        @media screen and (max-width: 666px) and (min-width: 375px) {
+            height: 180px;
+            width: 155px;
+         }
+        
+       
+       
+       
+    }
+}
+

@@ -1,0 +1,318 @@
+@import '../../../App.scss';
+.topcard-wrapper{
+    border: 1px solid #ebecf0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    padding-bottom: 20px;
+    &-top{
+        height: 160px;
+        width: 100%;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        background-size: cover;
+        position: relative;
+        @include mobile{
+            height: 140px;
+        }
+    
+        &-container{
+            background-color: rgba(0,0,0,.7);
+            border: .3px solid $--primary;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+
+          
+            .custom-file-upload {
+                display: flex;
+                padding: 10px;
+                cursor: pointer;
+                color: $--primary;
+                input[type="file"] {
+                    display: none;
+                }
+            }
+         
+           
+        }
+
+    }
+    &-bottom{
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        padding: 0px 40px;
+        &-image{
+            position: absolute;
+        
+           top: -100px;
+           .avatar{
+               @include flexColCenter;
+               background-color: $--primary;
+               width: 140px;
+               height: 140px;
+               border-radius: 100%;
+               @include mobile{
+                width: 120px;
+                height: 120px;
+
+               }
+           }
+        
+           img{
+            border: 10px solid white;
+            box-sizing: content-box;
+            box-shadow: none;
+            @include mobile{
+                width: 120px;
+                height: 120px;
+            }
+           }
+       
+        }
+       &-right{
+           margin-top: 65px;
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           align-items: center;
+      
+        &-top{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            &-profileDetails{
+                width:100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-start;
+                position: relative;
+                @include mobile{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    text-align: center;
+                    align-items: center;
+                }
+                &-container{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    &-userName{
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items:center;
+                       
+                        &-verified{
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items:center;
+                            margin-left: 10px;
+                            &-icon{
+                                font-size: 20px;
+                                background-color: $--primary;
+                                color: #fff;
+                                border-radius: 50%;
+                                height: 20px;
+                            }
+                            &-text{
+                                margin-left: 5px;
+                                text-transform: capitalize;
+                                color:#2c9469;
+                            }
+                            
+                        }
+                    }
+                }
+               
+                .address{
+                    width: 100%;
+                    margin-top: 10px;
+                    padding: 0px 10px;
+                    background-color: #f6f5f8;
+                    width: fit-content;
+                    border-radius: 5px;
+                  
+                    @include mobile{
+                         display: flex;
+                         justify-content: center;
+                         align-items: center;
+                         width: 100%;
+                        text-align: center;
+                    }
+                }
+        
+    
+            }
+            &-editProfile{
+                width: 40%;
+                @include mobile{
+                    width: 100%;
+                    margin-top: 10px;
+                    display: flex;
+                    justify-content: center;
+                   
+                }
+                &-content{
+                    border-radius: 10px;
+                    border: 1px solid #ebecf0;
+                    display: flex;
+                    padding: 5px 10px;
+                    float: right;
+                    align-items: center;
+                    @include mobile{
+                        width: 100%;
+                        align-items: center;text-align: center;
+                    }
+                    &-icon{
+                        color: $--primary;
+                        font-size: 15px;
+                    }
+                    &-heading{
+                        margin-left: 10px;
+    
+                    }
+    
+                }
+                
+     
+            }
+        }
+        &-bottom{
+            display: flex;
+            width: 100%;
+            .biodata{
+                padding: 5px;
+    
+                overflow: hidden;
+               
+            }
+           
+        }
+        &-followContainer{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            position: absolute;
+            transform: translateX(80px);
+            @include mobile{
+                justify-content: center;
+                margin-top: 15px;
+                position: relative;
+                transform: translateX(0);
+            }
+            &-followBtn{
+                padding: 5px 10px;
+                background-color: #fff;
+                border: 1px solid $--primary;
+                cursor: pointer;
+                border-radius: 5px;
+                &:hover{
+                    color: #fff;
+                    background-color: $--primary;
+                }
+            }
+            &-followBtnActive{
+                color: #fff;
+                background-color: $--primary;
+            }
+            &-unFollowBtn{
+                padding: 5px 10px;
+                background-color: #fff;
+                border: 1px solid $--primary;
+                cursor: pointer;
+                border-radius: 5px;
+                &:hover{
+                    color: #fff;
+                    background-color: $--primary;
+                }
+            }
+            &-unFollowBtnActive{
+                color: #fff;
+                background-color: $--primary;
+            }
+        }
+        &-followerDetails{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-top: 20px;
+          
+            &-followers{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-decoration: none;
+                span{
+                   font-size: 15px;
+                   color: #555558;
+                   font-weight: 800;
+                }
+                p{
+                    margin-left: 5px;
+                    color: $--primary;
+                }
+             
+
+            }
+            &-following{
+                margin-left: 15px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-decoration: none;
+                span{
+                    font-size: 15px;
+                    color: #555558;
+                    font-weight: 800;
+
+                }
+                p{
+                    margin-left: 5px;
+                    color: #909091;
+                    color: $--primary;
+                }
+            }
+        }
+      
+       }
+    }
+}
+
+.top-card-additionalDetails-tooltips-tip-top{
+    display: none;
+    position: absolute;
+    background-color: #0e1b30;    
+    color: white;
+    padding: 8px 15px;
+    margin-top:-77px;
+    border-radius: .25rem;
+
+}
+.top-card-additionalDetails-tooltips-tip-top::before{
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: #0e1b30;
+    margin: 12px 0 0 3px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.top-card-additionalDetails-tooltips-tipS-top{
+    display: flex ;
+}
+.cameraIcon{
+    height: 25px;
+}

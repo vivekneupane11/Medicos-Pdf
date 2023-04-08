@@ -3,23 +3,15 @@ import './_newsDetailAlsoRead.scss'
 import { Link } from 'react-router-dom'
 
 import AuthorDateRead from '../../../News/components/author-date-readTime'
+import { getReadTime } from '../../../../functions/tagColorAndReadTimeMethod'
 
 const NewsDetailAlsoRead = ({details,details1Source}) => {
-    const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
-
-      };
-                                         
-const newTab=(url)=>{
-    window.open(
-       url, "_blank");
-}
+  
 const goTop=()=>{
     window.scrollTo({top:0,behavior:'smooth'});
 }
+const clickhandlergotop = ()=>goTop()
+const clickhandlergotop2 = ()=>goTop()
     return (
         <>
          <div className="newsDetailAlsoRead-Container">
@@ -29,11 +21,11 @@ const goTop=()=>{
                             <div key={index}  className="newsDetailAlsoRead-Container-wrapper-card">
                                  <Link
                         
-                                    style={{ textDecoration: 'none' }}
+                                    className='links'
                                     to={{
-                                        pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
+                                        pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
                                     }}>
-                                <div onClick={()=>goTop()} className="newsDetailAlsoRead-Container-wrapper-card-img" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
+                                <div onClick={clickhandlergotop} className="newsDetailAlsoRead-Container-wrapper-card-img" style={{ backgroundImage: `url(${data?.image?.source_url})` }}>
                                    
                                 </div>
                                 </Link>
@@ -41,13 +33,13 @@ const goTop=()=>{
                                    
                                      <Link
                         
-                                        style={{ textDecoration: 'none' }}
+                                        className='links'
                                         to={{
-                                            pathname: `/articleDetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
+                                            pathname: `/articledetails/${data?.title?.rendered.replace(/\/|\[|\]/g, '')}/${details1Source}`
                                         }}>
-                                    <h3 onClick={()=>goTop()} className="newsDetailAlsoRead-Container-wrapper-card-description-head">{data?.title?.rendered}</h3>
+                                    <h3 onClick={clickhandlergotop2} className="newsDetailAlsoRead-Container-wrapper-card-description-head">{data?.title?.rendered}</h3>
                                     </Link>
-                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadingTime(data?.content?.rendered) + " min read"} color='#0f0e0e' fontSize='12px'/>
+                                    <AuthorDateRead date={new Date(data?.date).toDateString()} readTime={getReadTime(data?.content?.rendered) + " min read"} color='#0f0e0e' fontSize='12px'/>
                                 </div>
                               
                             </div>

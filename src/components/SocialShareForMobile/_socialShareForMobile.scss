@@ -13,7 +13,6 @@
         width: 100%;
         background-color: white;
         overflow: hidden;
-        padding:0 30px;
         opacity: 1;
         z-index: 1000;
         height: 0;
@@ -24,10 +23,55 @@
     
     }
     .social-active{
-        padding: 7px;
+       
         height: auto;
         transition:all 0.25s linear;
         background-color: #ffffff;
        
     }
+}
+.socialShareForMObile-container-para{
+    width: 36%;
+    text-align: center;
+    
+}
+.shareBtnFB{
+    width: 16%;
+    background-color: rgb(33, 150, 243);
+    padding: 10px 0;
+  
+    &-icon{
+      color: #fff;
+      height: 30px;
+    }
+}
+.shareBtnM{
+    width: 16%;
+    background-color: #40c0f2;
+    padding: 10px 0;
+
+    &-icon{
+        color: #fff;
+        height: 30px;
+      }
+}
+.shareBtnTW{
+    width: 16%;
+    background-color: #0088cc;
+    padding: 10px 0;
+    &-icon{
+        color: #fff;
+        height: 30px;
+      }
+}
+.shareBtnE{
+    width: 16%;
+    background-color: red;
+    padding: 10px 0;
+  
+    &-icon{
+        color: #fff;
+        height: 30px;
+      }
+    
 }

@@ -1,0 +1,43 @@
+.placeholder-enter{
+
+}
+.placeholder-enter-active{
+    
+
+}
+.placeholder-enter-done{
+    
+}
+.placeholder-appear{
+    
+
+}
+.placeholder-appear-active{
+   
+
+}
+.placeholder-appear-done{
+
+    // background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+opacity: 0.5;
+    animation-fill-mode: alternate;
+    //background-repeat: no-repeat;
+    //transition: all 3000ms linear;
+    background-color: hsl(200, 20%, 76%);
+    animation-duration: 3s;
+  animation-fill-mode: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: placeHolderShimmer;
+  background-size: 600px 100px;
+
+}
+@keyframes placeHolderShimmer {
+  0% {
+    background-color: hsl(200, 20%, 76%);
+  }
+
+  100% {
+    background-color: hsl(206, 18%, 92%);
+  }
+  }

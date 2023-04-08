@@ -12,10 +12,11 @@
         justify-content: center;
         align-items: center;
         content: '';
-        top: 10px;
-        right: 160px;
-        height: 50px;
-        width: 50px;
+        background-color: #ffffff;
+        top: 40%;
+        left: 20px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         box-shadow: 0px 1px 5px rgba(0,0,0,.3);
         z-index: 8;
@@ -24,20 +25,21 @@
         @include tablet{
             height: 40px;
             width: 40px;
-            right: 108px;
+     
         
         }
         @include mobile{
-            right: 216px;
+   
             height: 40px;
             width: 40px;
+     
            
         }
         
     }
     .swiper-button-prevBs:hover{
-        background-color: rgba(0,0,0,.1);
-        transition: .25 ease-in;
+        border: 1px solid #12D288;
+        color: #12D288;
     }
 
     .swiper-button-nextBs {
@@ -45,31 +47,30 @@
         justify-content: center;
         align-items: center;
         position: absolute;
+        background-color: #ffffff;
         content: '';
-        top: 10px;
-        right: 90px;
-        height: 50px;
-        width: 50px;
+        top: 40%;
+        right: 20px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         box-shadow: 0px 1px 5px rgba(0,0,0,.3);
         z-index: 8;
         cursor: pointer;
         transition: .25 ease-in;
         @include tablet{
-            right: 46px;
             height: 40px;
             width: 40px;
         
         }
         @include mobile{
-            right: 160px;
             height: 40px;
             width: 40px;
         }
     }
     .swiper-button-nextBs:hover{
-        background-color: rgba(0,0,0,.1);
-        transition: .25 ease-in;
+        border: 1px solid #12D288;
+        color: #12D288;
     }
 
 }
@@ -87,12 +88,18 @@
         width: 100%;
         // background-color: #1d264f;
         // background-color: rgba(29,38,79,1);
-        padding: 90px 0 20px 0;
+        padding: 60px 0 20px 0;
+        @include mobile{
+            padding: 0 0 90px 0;
+        }
         &-slide{
          display: flex;
          justify-content: center;
          align-items: center;
         }
+    }
+    .bookSuggestion-container{
+        padding:10px 0;
     }
 }
 
@@ -102,7 +109,9 @@
 }
 .swiperButtonArrow-bookSuggestion{
     font-size: 20px;
+    height: 30px;
     @include mobile{
         font-size: 15px;
+        height: 25px;
     }
 }

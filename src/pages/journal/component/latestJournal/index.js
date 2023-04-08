@@ -4,39 +4,22 @@ import NewsLinkTag from '../../../../components/global/newsLinkTag';
 import AuthorDateRead from '../../../News/components/author-date-readTime';
 import './_latestJournal.scss';
 import shortid from  "shortid";
-export const LatestJournal = ({latestJournal, journalsData}) => {
-    const newTab=(url)=>{
-        window.open(
-           url, "_blank");
-    }
-    const getReadingTime = (text) => {
-        const wordsPerMinute = 120;
-        const textLength = text.split(" ").length;
-        let minutesToRead = Math.ceil(textLength / wordsPerMinute);
-        return minutesToRead;
-      };
-      const getColorsByIndex = (index) => {
-        let color = "yellow";
-        if (index % 3 == 0) {
-            color = 'red'
-        } else if (index %2 == 0) {
-            color = 'skyblue'
-        } 
-        return color;
-    }
-
+import { getColorByIndex, getReadTime } from '../../../../functions/tagColorAndReadTimeMethod';
+import { newTab } from '../../../../functions/newTabMethod';
+export const LatestJournal = ({ journalsData}) => {
+   
     return (
         <div className="latestJournal-wrapper">
         <h3 className="latestJournal-wrapper-heading">Latest Journals</h3>
         <div className="latestJournal-wrapper-content">
         {
             journalsData?.filter((data,index)=>index<10).map((data,index)=>{
-                let time_to_read = getReadingTime(data.content) + ' min read'
+                let time_to_read = getReadTime(data.content) + ' min read'
 
                 return  <div className="latestJournal-wrapper-content-item" key={shortid.generate()}>
-                    <NewsLinkTag color={getColorsByIndex(index)} tag={data?.creator}  />
-                    <div onClick={()=>newTab(data?.link)}
-                       style={{textDecoration:'none'}} >
+                    <NewsLinkTag color={getColorByIndex(index)} tag={data?.creator}  />
+                    <div onClick={ ()=>newTab(data?.link,data?.title,'web_journals_detail_page_opened')}
+                       className='links' >
                         <h3 className="latestJournal-wrapper-content-item-heading">{data?.title}</h3>
                         <TextClamp
                             text={data.contentSnippet}

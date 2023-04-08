@@ -2,7 +2,7 @@ import React from 'react'
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser'
 
 //local imports
-import { newsDetailFollowUsDetails, newsIntroductionCardDetails } from '../../../../components/constants/mock'
+import { newsDetailFollowUsDetails} from '../../../../components/constants/mock'
 import Loading from '../../../../components/loading'
 import FollowUs from '../followUs'
 import InHypeSponsored from '../inHypeSponsored'
@@ -25,14 +25,14 @@ const NewsDetailBottomFullContainer = ({
     details3Source,
     articlePara,
 }) => {
-//    console.log('aaaaaaaaaaaaa:',articlePara)
+ 
     function transform(node,index){
         if(node.type==="tag"){
             switch(node.name){
                 case 'st':
                     node.name = 'strong';
                     if(node.children?.length){
-                        if(node?.children[0].data!=undefined){
+                        if(node?.children[0].data!==undefined){
                             return <strong key={index} style={{color:'#333333',fontSize:'22px',fontFamily:'Nunito',fontWeight:'800',textTransform:'capitalize'}}>{node.children[0].data}</strong>
                         }
                    
@@ -45,16 +45,17 @@ const NewsDetailBottomFullContainer = ({
   
                 case 'p':
                     if(node.children?.length){
-                        if(node.children[0].data!=undefined){
+                        if(node.children[0].data!==undefined){
                             return <p key={index} style={{lineHeight:'1.75',margin:'10px 0'}}>{node.children[0].data}</p>
                         }
                     
                     }
                     return  convertNodeToElement(node, index, transform);
+             
                 case 'li':
                     node.name = 'ol';
                     if(node.children?.length){
-                        if(node.children[0].data!=undefined){
+                        if(node.children[0].data!==undefined){
                             return <p key={index} style={{margin:'10px 0'}}>{node.children[0].data}</p>
                         }
                     
@@ -73,15 +74,10 @@ const NewsDetailBottomFullContainer = ({
         <>
           <div className="newsDetailBottomFullContainer-wrapper">
               <div className="newsDetailBottomFullContainer-wrapper-left">
-                    <p className="newsDetailBottomFullContainer-wrapper-left-para1">
+                    <div className="newsDetailBottomFullContainer-wrapper-left-para1">
                        
                         {ReactHtmlParser(articlePara,options)}
-                         {/* <div dangerouslySetInnerHTML={{__html: articlePara}}></div> */}
-                        
-                        </p>
-
-                   
-
+                        </div>
                     <div className="newsDetailBottomFullContainer-wrapper-left-morefromHype">
                         <div className="newsDetailBottomFullContainer-wrapper-left-morefromHype-top">
                              <h3 className="newsDetailBottomFullContainer-wrapper-left-morefromHype-top-head1">More for you</h3>
@@ -115,7 +111,7 @@ const NewsDetailBottomFullContainer = ({
                   
               </div>
               <div className="newsDetailBottomFullContainer-wrapper-right">
-                    <NewsIntroductionCard details={newsIntroductionCardDetails} />
+                    <NewsIntroductionCard />
                     {
                         details2.length>0?
                         <Trending details2Source={details2Source} details={details2} />

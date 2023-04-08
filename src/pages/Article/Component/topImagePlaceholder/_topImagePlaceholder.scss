@@ -1,0 +1,44 @@
+@import '../../../../App.scss';
+@import '../../../../components/global/placeholder/placeholder';
+.ImagePlaceholder-wrapper{
+    width: 100%;
+    position: relative;
+    .image{
+        height: 600px;
+        background-color: #f6f7f8;
+        @include tablet{
+            height: 400px;
+        }
+        @include mobile{
+            height: 400px;
+        }
+
+    }
+    .card{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        @include mobile{
+            display: none;
+        }
+        .black{
+            height: 240px;
+            width: 10%;
+            background-color: rgba(0,0,0,0.7);
+           
+            bottom: 0;
+        }
+        .blank{
+            height: 200px;
+            width: 40%;
+            background-color: rgba(0,0,0,0.1);
+            bottom: 0;
+            transform: translateY(40px);
+        }
+    }
+}

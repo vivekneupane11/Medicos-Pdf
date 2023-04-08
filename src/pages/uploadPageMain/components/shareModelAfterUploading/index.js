@@ -1,24 +1,25 @@
-import React,{useState,useEffect} from 'react'
-import './_shareModelAfterUpload.scss'
+import React, { useEffect, useState } from 'react';
+// import { BiSlideshow } from 'react-icons/bi';
+// import { HiOutlineClipboard, HiOutlineClipboardCheck } from 'react-icons/hi';
+// import { ImCross } from 'react-icons/im';
+// import { Link } from 'react-router-dom';
 import {
-    EmailShareButton,
-    FacebookMessengerShareButton,
-    FacebookShareButton,
-    TwitterShareButton,
-    TwitterIcon,
-    EmailIcon,
-    FacebookIcon,
-    FacebookMessengerIcon,
-
+    EmailIcon, EmailShareButton, FacebookIcon,
+    FacebookMessengerIcon, FacebookMessengerShareButton,
+    FacebookShareButton, TwitterIcon, TwitterShareButton
 } from "react-share";
-import { ImCross } from 'react-icons/im';
+import './_shareModelAfterUpload.scss';
+import CloseCircle from '../../../../components/global/icons/xMark_Circle';
+import ClipboardIcon from '../../../../components/global/icons/clipboard';
+import ClipboardCheck from '../../../../components/global/icons/clipboard_check';
+import SlideIcon from '../../../../components/global/icons/slide_Icon';
 const ShareModelAfterUpload = ({shareUrl,shareTitle}) => {
 
     const [showShareModal,setShowShareModal]=useState(true)
 
-    const [showMessage,setShowMessage]=useState(false)
+    // const [showMessage,setShowMessage]=useState(false)
     const [check,setCheck]=useState(false)
-    const [message,setMessage]=useState(null)
+    // const [message,setMessage]=useState(null)
 
   
     const copyToClipBoard=(textURL)=>{
@@ -33,22 +34,18 @@ const ShareModelAfterUpload = ({shareUrl,shareTitle}) => {
     useEffect(() => {
        let isMounted=true;
       
-        if(check){
-            setMessage('Copied')
-
-            setTimeout(()=>{
-                setCheck(false)
-
-            },5000)
-        }
-        else
-         setMessage('')
-
+            if(check && isMounted){
+                setTimeout(()=>{
+                    setCheck(false)
+                },5000)
+            }
         return () => {
           isMounted=false
         }
     }, [check===true])
 
+    const clickhandlershare = ()=>setShowShareModal(false)
+    const clickhandlercopy = () => copyToClipBoard(shareUrl)
     return (
         <>
          {
@@ -58,15 +55,15 @@ const ShareModelAfterUpload = ({shareUrl,shareTitle}) => {
             
              <div className="shareModelAfterUploading-container-modal">
                 
-                     <div className="shareModelAfterUploading-container-modal-iconContainer">
-                         <ImCross className="shareModelAfterUploading-container-modal-iconContainer-icon" onClick={()=>setShowShareModal(false)}/>
+                     <div className="shareModelAfterUploading-container-modal-iconContainer" onClick={clickhandlershare}>
+                         <CloseCircle className="shareModelAfterUploading-container-modal-iconContainer-icon" />
                      </div>
                        
                      <div className="shareModelAfterUploading-container-modal-main">
                          
                          <div className="shareModelAfterUploading-container-modal-main-top">
                              <h2 className="shareModelAfterUploading-container-modal-main-top-head">Your Slide is Uploaded!</h2>
-                             <p className="shareModelAfterUploading-container-modal-main-top-para">Do you want your Slides to be read by others.</p>
+                             <a href={shareUrl} className="shareModelAfterUploading-container-modal-main-top-para"> <SlideIcon className='icon' /> Have a look at your uploads.</a>
  
                          </div>
  
@@ -122,8 +119,8 @@ const ShareModelAfterUpload = ({shareUrl,shareTitle}) => {
                                  </EmailShareButton>
                                 
                          </div>
-                         <div className="shareModelAfterUploading-container-modal-main-bottom-linkShare">
-                             <p onClick={() => copyToClipBoard(shareUrl)} onMouseOver={()=>setShowMessage(true)}  onMouseOut={()=> setShowMessage(false)} className="shareModelAfterUploading-container-modal-main-bottom-linkShare-para">{`copy story link ${shareUrl}`}</p>
+                         <div className="shareModelAfterUploading-container-modal-main-bottom-linkShare" style={{background:check?'rgba(0, 0, 0, 0.09)':''}}>
+                             {/* <p onClick={clickhandlercopy} onMouseOver={()=>setShowMessage(true)}  onMouseOut={()=> setShowMessage(false)} className="shareModelAfterUploading-container-modal-main-bottom-linkShare-para">{`copy story link ${shareUrl}`}</p>
                              <p
                               className="successContainerForCopyToClipboard"
                               style={{display:showMessage?'flex':'none'}}
@@ -131,15 +128,27 @@ const ShareModelAfterUpload = ({shareUrl,shareTitle}) => {
                                 {
                                   message
                                 }  
-                              </p>
-
-                         </div>
- 
-                         </div>
+                              </p> */}
+                               {
+                                    !check?
+                                    <div  onClick={ clickhandlercopy} className="shareModelAfterUploading-container-modal-main-bottom-linkShare-container">
+                                    <ClipboardIcon className="shareModelAfterUploading-container-modal-main-bottom-linkShare-container-icon"/>
+                                    <p className="shareModelAfterUploading-container-modal-main-bottom-linkShare-container-text">Copy link</p>
+                                    
+                                </div>
+                                :
+                                <div  onClick={clickhandlercopy} className="shareModelAfterUploading-container-modal-main-bottom-linkShare-container">
+                                    <ClipboardCheck className="shareModelAfterUploading-container-modal-main-bottom-linkShare-container-icon"/>
+                                    <p className="shareModelAfterUploading-container-modal-main-bottom-linkShare-container-text">Link copied</p>
+                                </div>
+                            }
                      
-                     </div>  
-             </div>
-         </div>
+                        </div>  
+                        </div>
+                   </div>
+                </div> 
+             </div>   
+              
          }
 
          {/* <button onClick={()=>setShowShareModal(true)}>Click me to view pop up share model after uploading file</button> */}

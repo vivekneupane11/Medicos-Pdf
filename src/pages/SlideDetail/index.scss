@@ -1,5 +1,9 @@
+@import '../../App.scss';
 .slide-detail-page-wrapper{
     width: 100%;
+    .suspenseLoading{
+        padding: 200px 0;
+    }
 }
 .slide-detail-loading-wrapper{
     height: 70vh;
@@ -7,4 +11,34 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+}
+.slideDetail-currentSlide-description{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 4% 0;
+    &-head{
+        width: 59%;
+        @include mobile{
+            width: 80%;
+        }
+        @include tablet{
+            width: 80%;
+        }
+      
+
+    }
+    &-para{
+        margin-top: 20px;
+        width: 59%;
+       
+        @include mobile{
+            width: 80%;
+        }
+        @include tablet{
+            width: 80%;
+        }
+    }
 }

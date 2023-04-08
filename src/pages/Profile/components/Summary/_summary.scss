@@ -1,0 +1,59 @@
+@import '../../../../App.scss';
+.summary-wrapper{
+    border: 1px solid #ebecf0;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    &-top{
+        display: flex;
+        justify-content: space-between;
+        &-heading{
+
+        }
+        &-edit{
+            align-items: flex-end;
+            &-icon{
+                padding: 5px;
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 15px;
+                color: $--primary;
+                height: 40px;
+                cursor: pointer;
+            }
+
+        }
+    }
+    &-details{
+        width: 98%;
+        @include mobile{
+            margin-top: 10px;
+            width: 100%;
+        }
+
+    }
+}
+.summary-input{
+    width: 100%;
+    border: none;
+    resize: none;
+    padding: 10px;
+    background-color: transparent;
+}
+.summary-save-button{
+    display: flex;
+    margin-top: 18px;
+    width: 70px;
+    border-radius: 5px;
+    background-color: $--primary;
+    padding: 5px 5px;
+    justify-content: center;
+    align-items: center;
+    justify-self: flex-end;
+    p{
+        color: white;
+    }
+}
+.summary-save-button:hover{
+    cursor: pointer;
+}
